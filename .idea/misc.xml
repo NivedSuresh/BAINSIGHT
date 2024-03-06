@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/ExchangeOrderPersistance" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeRegistry/pom.xml" />
+        <option value="$PROJECT_DIR$/Library/pom.xml" />
+        <option value="$PROJECT_DIR$/BrokerService/pom.xml" />
+        <option value="$PROJECT_DIR$/AdminService/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeAdminService/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeUserService/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeLoggingService/pom.xml" />
+        <option value="$PROJECT_DIR$/PersistanceExchange/pom.xml" />
+        <option value="$PROJECT_DIR$/PersistenceExchange/pom.xml" />
+        <option value="$PROJECT_DIR$/BrokerRegistry/pom.xml" />
+        <option value="$PROJECT_DIR$/BrokerLoggingService/pom.xml" />
+        <option value="$PROJECT_DIR$/BrokerPersistence/pom.xml" />
+        <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/JournalService/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/BrokerService/pom.xml" />
+        <option value="$PROJECT_DIR$/ExchangeAdminService/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>

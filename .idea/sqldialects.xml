@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Repository/OrderRepo.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/OrderManagement/src/main/resources/db/migration/V1__create_tables_user_service.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Repository/ClientMetaRepo.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Repository/Symbol.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/RiskManagement/src/main/resources/db/migration/V1__create_tables_user_service.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/RiskManagement/src/main/resources/db/queries/other.sql" dialect="PostgreSQL" />
+  </component>
+</project>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/ExchangeOrderPersistance">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ExchangeOrderPersistance" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Dockerfile" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2cHUTzhRkrwiwzUKFuQlLb1DD4G" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.AuthServiceTests (1).executor": "Run",
+    "JUnit.AuthServiceTests.executor": "Run",
+    "JUnit.AuthServiceTests.failRenewJwt.executor": "Run",
+    "JUnit.AuthServiceTests.testAdminLogin.executor": "Run",
+    "JUnit.AuthServiceTests.testRenewJwt.executor": "Run",
+    "JUnit.AuthServiceTests.testSuccessfulAuthentication.executor": "Run",
+    "JUnit.BrokerServiceTests.executor": "Run",
+    "JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor": "Run",
+    "JUnit.BrokerServiceTests.testSaveBroker.executor": "Run",
+    "JUnit.ClientServiceTests.executor": "Run",
+    "JUnit.ClientServiceTests.testSignup.executor": "Run",
+    "JUnit.ExchangeUserTests.UnAuthTest.executor": "Run",
+    "JUnit.ExchangeUserTests.authorizedWhenJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.executor": "Run",
+    "JUnit.ExchangeUserTests.testAdminLogin.executor": "Run",
+    "JUnit.ExchangeUserTests.testJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRefreshJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRenewJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor": "Run",
+    "JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor": "Run",
+    "JUnit.ExchangeUserTests.testTest.executor": "Run",
+    "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
+    "Maven.LiquidityService [clean].executor": "Run",
+    "Maven.LiquidityService [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AdminServiceApplication.executor": "Run",
+    "Spring Boot.BrokerServiceApplication.executor": "Run",
+    "Spring Boot.BrokerUserService.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.ExchangeGatewayApplication.executor": "Run",
+    "Spring Boot.ExchangeRegistryApplication.executor": "Run",
+    "Spring Boot.ExchangeUser.executor": "Run",
+    "Spring Boot.LiquidityServiceApplication.executor": "Run",
+    "Spring Boot.MatchingEngineApplication.executor": "Debug",
+    "Spring Boot.RiskManagementApplication.executor": "Run",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/apple/Desktop/BAINSIGHT/RiskManagement/src/main/java/com/exchange/riskmanagement/Model",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "database.query.execution",
+    "spring.configuration.checksum": "33c034acc31924bfb2a71c7f6579a759",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
+      "PostgreSQL"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.exchange.riskmanagement.Advice.Kafka" />
+      <recent name="com.exchange.gateway.Config.Filters" />
+      <recent name="org.exchange.library.Exception" />
+      <recent name="com.exchange.riskmanagement.service" />
+      <recent name="org.exchange.library.Enums" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model" />
+      <recent name="$PROJECT_DIR$/PersistenceExchange/src/main/java/org/exchange/persistance" />
+      <recent name="$PROJECT_DIR$/PersistanceExchange/src/main/resources/db/migration" />
+      <recent name="$PROJECT_DIR$/RiskManagement/src/main/resources/db/migration" />
+      <recent name="$PROJECT_DIR$/RiskManagement/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ZRedisConfig" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/AdminService/src/main/resources" />
+      <recent name="$PROJECT_DIR$/RiskManagement/src/main/resources" />
+      <recent name="$PROJECT_DIR$/BrokerService/src/main/resources/db/queries" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.exchange.user.Service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.bainsight.liquidity.Model" />
+      <recent name="com.exchange.riskmanagement.Model.Cache" />
+      <recent name="org.exchange.user.Advice" />
+      <recent name="org.exchange.user.ExceptionHandler" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="CompoundRunConfigurationType" />
+        <option value="JarApplication" />
+        <option value="MavenRunConfiguration" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.ClientServiceTests">
+    <configuration name="AuthServiceTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.exchange.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.AuthServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceTests.testSuccessfulAuthentication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.exchange.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.AuthServiceTests" />
+      <option name="METHOD_NAME" value="testSuccessfulAuthentication" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.exchange.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.ClientServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="BAINSIGHT-EXCHANGE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="BAINSIGHT-EXCHANGE" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BrokerUserService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="UserService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.user.BrokerUserService" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientManagement" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="RiskManagement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exchange.riskmanagement.ClientManagement" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ConfigServer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.config.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExchangeGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="BainsightGateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exchange.gateway.ExchangeGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExchangeRegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ServiceRegistry" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.registry.ExchangeRegistryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JournalServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="JournalService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.journal.JournalServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Library" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.library.LibraryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiquidityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" nameIsGenerated="true">
+      <module name="LiquidityService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.liquidity.LiquidityServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchingEngineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="MatchingEngine" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exchange.matchingengine.MatchingEngineApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistanceExchangeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="OrderManagement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.order.PersistanceExchangeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="JUnit.AuthServiceTests (1)" />
+      <item itemvalue="JUnit.AuthServiceTests.testSuccessfulAuthentication" />
+      <item itemvalue="JUnit.ClientServiceTests" />
+      <item itemvalue="Spring Boot.JournalServiceApplication" />
+      <item itemvalue="Spring Boot.LiquidityServiceApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.BrokerUserService" />
+      <item itemvalue="Spring Boot.ClientManagement" />
+      <item itemvalue="Spring Boot.PersistanceExchangeApplication" />
+      <item itemvalue="Spring Boot.ExchangeGatewayApplication" />
+      <item itemvalue="Spring Boot.ExchangeRegistryApplication" />
+      <item itemvalue="Spring Boot.LibraryApplication" />
+      <item itemvalue="Spring Boot.MatchingEngineApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ClientServiceTests" />
+        <item itemvalue="JUnit.AuthServiceTests (1)" />
+        <item itemvalue="JUnit.AuthServiceTests.testSuccessfulAuthentication" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.redis: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SliceToolwindowSettings">
+    <option name="autoScroll" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringProfilesService">
+    <option name="activeProfiles">
+      <map>
+        <entry key="ConfigServer" value="dev" />
+      </map>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="" />
+      <created>1707768009473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707768009473</updated>
+      <workItem from="1707768010895" duration="336000" />
+      <workItem from="1708008839812" duration="780000" />
+      <workItem from="1708009626258" duration="46000" />
+      <workItem from="1708009676786" duration="120000" />
+      <workItem from="1708009810691" duration="1560000" />
+      <workItem from="1708025696328" duration="53000" />
+      <workItem from="1708025805557" duration="648000" />
+      <workItem from="1708064435757" duration="3814000" />
+      <workItem from="1708068951009" duration="4050000" />
+      <workItem from="1708082746294" duration="2859000" />
+      <workItem from="1708170872848" duration="9692000" />
+      <workItem from="1708194736668" duration="5748000" />
+      <workItem from="1708201059561" duration="5245000" />
+      <workItem from="1708240979783" duration="10824000" />
+      <workItem from="1708255086914" duration="5443000" />
+      <workItem from="1708260710526" duration="19658000" />
+      <workItem from="1708284083896" duration="778000" />
+      <workItem from="1708285280231" duration="153000" />
+      <workItem from="1708286898358" duration="7014000" />
+      <workItem from="1708334057438" duration="9858000" />
+      <workItem from="1708354415936" duration="6438000" />
+      <workItem from="1708418219078" duration="31215000" />
+      <workItem from="1708505883875" duration="7407000" />
+      <workItem from="1708518947022" duration="20438000" />
+      <workItem from="1708543408396" duration="1699000" />
+      <workItem from="1708587857213" duration="18495000" />
+      <workItem from="1708612404581" duration="18994000" />
+      <workItem from="1708635007050" duration="676000" />
+      <workItem from="1708636606241" duration="4210000" />
+      <workItem from="1708671712281" duration="5982000" />
+      <workItem from="1708690826598" duration="2627000" />
+      <workItem from="1708696507600" duration="20370000" />
+      <workItem from="1708754484134" duration="7668000" />
+      <workItem from="1708771449350" duration="27482000" />
+      <workItem from="1708803603184" duration="9000" />
+      <workItem from="1708804288439" duration="288000" />
+      <workItem from="1708844313482" duration="8023000" />
+      <workItem from="1708856500122" duration="11023000" />
+      <workItem from="1708875291888" duration="13125000" />
+      <workItem from="1708932885055" duration="171000" />
+      <workItem from="1708933061446" duration="2010000" />
+      <workItem from="1708936296623" duration="1119000" />
+      <workItem from="1708937661215" duration="3657000" />
+      <workItem from="1708948694240" duration="8744000" />
+      <workItem from="1709018737745" duration="2854000" />
+      <workItem from="1709045682198" duration="1776000" />
+      <workItem from="1709048432994" duration="598000" />
+      <workItem from="1709049174673" duration="376000" />
+      <workItem from="1709049896431" duration="2037000" />
+      <workItem from="1709054937797" duration="9871000" />
+      <workItem from="1709100878148" duration="20424000" />
+      <workItem from="1709131877139" duration="12082000" />
+      <workItem from="1709188143918" duration="19710000" />
+      <workItem from="1709274821788" duration="21543000" />
+      <workItem from="1709393450810" duration="18350000" />
+      <workItem from="1709455426604" duration="1511000" />
+      <workItem from="1709457630335" duration="7034000" />
+      <workItem from="1709467201639" duration="16803000" />
+      <workItem from="1709539545777" duration="19654000" />
+      <workItem from="1709625816023" duration="7835000" />
+      <workItem from="1709747513163" duration="3860000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/ExchangeGateway" />
+      <path value="$PROJECT_DIR$/MatchingEngine" />
+      <path value="$PROJECT_DIR$/RiskManagement" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
