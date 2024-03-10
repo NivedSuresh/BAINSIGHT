@@ -24,16 +24,22 @@ import org.exchange.user.Security.Authentication.Client.ClientDetails;
 import org.exchange.user.Service.AuthService;
 import org.exchange.user.Service.JwtService;
 import org.exchange.user.Service.MfaService;
+import org.exchange.user.Utils.CookieUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -53,6 +59,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final MfaService mfaService;
     private final ClientRepo clientRepo;
+    private final CookieUtils cookieUtils;
 
     public AuthServiceImpl(final ReactiveJwtDecoder decoder,
                            @Qualifier("CLIENT_AUTH_MANAGER") final ClientAuthenticationManager CLIENT_AUTH_MANAGER,
@@ -60,7 +67,7 @@ public class AuthServiceImpl implements AuthService {
                            @Qualifier("ADMIN_AUTH_MANAGER") final AdminAuthenticationManager ADMIN_AUTH_MANAGER,
                            final JwtService jwtService,
                            final MfaService mfaService,
-                           final ClientRepo clientRepo) {
+                           final ClientRepo clientRepo, CookieUtils cookieUtils) {
         this.adminRepo = adminRepo;
 
         this.ADMIN_AUTH_MANAGER = ADMIN_AUTH_MANAGER;
@@ -69,15 +76,20 @@ public class AuthServiceImpl implements AuthService {
         this.decoder = decoder;
         this.mfaService = mfaService;
         this.clientRepo = clientRepo;
+        this.cookieUtils = cookieUtils;
     }
 
 
     @Override
-    public Mono<String> renewJwt(String refreshToken) {
+    public Mono<String> renewJwt(ServerHttpRequest request) {
+        HttpCookie cookie = request.getCookies().getFirst("REFRESH_TOKEN");
 
+        if(cookie == null) return Mono.error(InvalidJwtException::new);
+
+        String refreshToken = cookie.getValue();
         log.debug("Inside Renew Jwt");
 
-        return decoder.decode(refreshToken.substring(7))
+        return decoder.decode(refreshToken)
                 .flatMap(jwt -> {
                     return findPrincipalValidationFromDB(jwt.getClaim("authority"), jwt.getSubject())
                             .switchIfEmpty(Mono.error(new InvalidJwtException(Error.INVALID_JWT)))
@@ -122,9 +134,14 @@ public class AuthServiceImpl implements AuthService {
 
     private Mono<PrincipalRevoked> findPrincipalValidationFromDB(String authority, String subject) {
         log.info("Went to database, {}, {}!", authority, subject);
-        return authority.equals("CLIENT_REFRESH_TOKEN") ?
+        return
+                authority.equals("CLIENT_REFRESH_TOKEN") ?
                 clientRepo.getPrincipalValidationForClient(UUID.fromString(subject)) :
-                getPrincipalValidationForAdmin(subject);
+
+                authority.equals("ADMIN_REFRESH_TOKEN") ?
+                getPrincipalValidationForAdmin(subject) :
+
+                Mono.error(InvalidJwtException::new);
     }
 
     private Mono<PrincipalRevoked> getPrincipalValidationForAdmin(String subject) {
@@ -136,7 +153,7 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public Mono<ClientAuthResponse> loginClient(AuthRequest request) {
+    public Mono<ClientAuthResponse> loginClient(AuthRequest request, ServerWebExchange webExchange) {
 
         log.info("Authenticate method called!");
         return CLIENT_AUTH_MANAGER.authenticate(getAuthToken(request.getIdentifier(), request.getPassword()))
@@ -164,12 +181,12 @@ public class AuthServiceImpl implements AuthService {
                     ClientDetails clientDetails = (ClientDetails) authentication.getPrincipal();
 
                     return jwtResponseMono.map(jwtResponse -> {
+                        cookieUtils.bakeCookies(webExchange, jwtResponse);
                         return new ClientAuthResponse(
                                 clientDetails.getUsername(), //will return ucc
                                 clientDetails.getUsername(),
                                 clientDetails.getEmail(),
-                                clientDetails.getPhoneNumber(),
-                                jwtResponse
+                                clientDetails.getPhoneNumber()
                         );
                     });
                 })
@@ -183,7 +200,7 @@ public class AuthServiceImpl implements AuthService {
 
     /* The Admin if exists will be pulled from the DB and will be validated. */
     @Override
-    public Mono<AdminAuthResponse> loginAdmin(AuthRequest request) {
+    public Mono<AdminAuthResponse> loginAdmin(AuthRequest request, ServerWebExchange webExchange) {
         return ADMIN_AUTH_MANAGER.authenticate(getAuthToken(request.getIdentifier(), request.getPassword()))
                 .handle((authentication, sink) -> {
                     log.debug("Finished Authentication : {}", authentication);
@@ -210,10 +227,8 @@ public class AuthServiceImpl implements AuthService {
                             instant.plus(10000, ChronoUnit.DAYS),
                             instant.plus(30000, ChronoUnit.DAYS)
                     ).map(jwtResponse -> {
-                        return new AdminAuthResponse(
-                                adminDetails.getUsername(),
-                                jwtResponse
-                        );
+                        cookieUtils.bakeCookies(webExchange, jwtResponse);
+                        return new AdminAuthResponse(adminDetails.getUsername());
                     });
                     sink.next(adminAuthResponseMono);
                 })
@@ -253,4 +268,6 @@ public class AuthServiceImpl implements AuthService {
         System.out.println(username + " " + password);
         return new UsernamePasswordAuthenticationToken(username, password);
     }
+
+
 }

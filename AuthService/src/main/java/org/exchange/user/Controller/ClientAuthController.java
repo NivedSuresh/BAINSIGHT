@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.WebExchangeBindException;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -26,16 +27,16 @@ public class ClientAuthController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    public Mono<ClientAuthResponse> saveClient(@Validated @RequestBody ClientSignupRequest request) {
+    public Mono<ClientAuthResponse> saveClient(@Validated @RequestBody ClientSignupRequest request, ServerWebExchange webExchange) {
         System.out.println(request);
-        return clientService.save(request);
+        return clientService.save(request, webExchange);
     }
 
     @PostMapping("/login")
-    public Mono<ResponseEntity<ClientAuthResponse>> loginClient(@Validated @RequestBody AuthRequest request) {
+    public Mono<ResponseEntity<ClientAuthResponse>> loginClient(@Validated @RequestBody AuthRequest request, ServerWebExchange webExchange) {
         log.info("Inside method, Request : {}", request);
 
-        return authService.loginClient(request)
+        return authService.loginClient(request, webExchange)
                 .map(s -> ResponseEntity.status(HttpStatus.ACCEPTED).body(s))
                 .onErrorResume(throwable -> {
                     if (throwable instanceof WebExchangeBindException webBindException) {

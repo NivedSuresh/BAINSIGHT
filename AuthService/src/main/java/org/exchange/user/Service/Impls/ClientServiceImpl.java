@@ -12,13 +12,16 @@ import org.exchange.library.Exception.IO.ConnectionFailureException;
 import org.exchange.user.Mapper.Mapper;
 import org.exchange.user.Model.Client;
 import org.exchange.user.Repository.Postgres.ClientRepo;
+import org.exchange.user.Service.AuthService;
 import org.exchange.user.Service.ClientService;
 import org.exchange.user.Service.JwtService;
 import org.exchange.user.Service.KafkaService;
+import org.exchange.user.Utils.CookieUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
@@ -33,9 +36,9 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepo clientRepo;
     private final Mapper mapper;
     private final PasswordEncoder passwordEncoder;
-    private final WebClient webClient;
     private final JwtService jwtService;
     private final KafkaService kafkaService;
+    private final CookieUtils cookieUtils;
 
     @Override
     public Mono<Client> findByPhone(String phoneNumber) {
@@ -53,7 +56,8 @@ public class ClientServiceImpl implements ClientService {
      Admin shouldn't be allowed to change Client's password but Client.
     */
     @Override
-    public Mono<ClientAuthResponse> save(ClientSignupRequest request) {
+    @Transactional
+    public Mono<ClientAuthResponse> save(ClientSignupRequest request, ServerWebExchange webExchange) {
 
         return clientRepo.existsByPhoneNumber(request.getPhoneNumber())
                 .flatMap(exists -> {
@@ -74,7 +78,8 @@ public class ClientServiceImpl implements ClientService {
                 })
 
                 .map(tuple -> {
-                    return mapper.getClientDto(tuple.getT1(), tuple.getT2());
+                    cookieUtils.bakeCookies(webExchange, tuple.getT2());
+                    return mapper.getClientDto(tuple.getT1());
                 })
 
 

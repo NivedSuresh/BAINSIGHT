@@ -16,10 +16,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpCookie;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
+import org.springframework.test.web.reactive.server.ExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
@@ -78,44 +83,56 @@ public class AuthServiceTests {
 
         when(adminRepo.findByEmail(email)).thenReturn(Mono.just(admin));
 
-        Mono<AdminAuthResponse> result = authService.loginAdmin(request);
-        result.as(StepVerifier::create)
-                .expectNextMatches(auth -> {
 
-                    Assertions.assertEquals(auth.getEmail(), "niveds406@gmail.com");
+        ExchangeResult result = webTestClient.post()
+                .uri("/api/bainsight/auth/admin/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(request))
+                .exchange()
+                .expectStatus().isAccepted()
+                .expectBody(AdminAuthResponse.class)
+                .returnResult();
 
-                    Jwt jwt = decoder.decode(auth.getJwtResponse().refreshToken()).block();
+        ResponseCookie refreshToken = result.getResponseCookies().getFirst("REFRESH_TOKEN");
 
-                    assert jwt != null;
+        Assertions.assertNotNull(refreshToken);
 
-                    return jwt.getSubject().equals("niveds406@gmail.com") &&
-                            jwt.getClaim("authority").equals("ADMIN_REFRESH_TOKEN") &&
-                            Objects.requireNonNull(jwt.getExpiresAt()).isAfter(Instant.now().plus(30, ChronoUnit.DAYS));
-                })
-                .expectComplete()
-                .verify();
+        Jwt jwt = decoder.decode(refreshToken.getValue()).block();
+
+        assert jwt != null;
+        Assertions.assertEquals(jwt.getSubject(), "niveds406@gmail.com");
+        Assertions.assertEquals(jwt.getClaim("authority"), "ADMIN_REFRESH_TOKEN");
+
     }
 
     @Test
     void testRenewJwt() {
         UUID uuid = UUID.randomUUID();
         String jwt = jwtService.generateJwt(uuid.toString(), "CLIENT_REFRESH_TOKEN", Instant.now().plus(100, ChronoUnit.DAYS)).block();
+
         PrincipalRevoked revoked = PrincipalRevoked.builder().revoked(false).username(uuid.toString()).build();
         when(clientRepo.getPrincipalValidationForClient(uuid)).thenReturn(Mono.just(revoked));
 
         Assertions.assertNotNull(jwt);
-        webTestClient.get()
-                .uri("/api/bainsight/token")
-                .header("Authorization", "Bearer ".concat(jwt))
+        ExchangeResult result = webTestClient.get()
+                .uri("/api/bainsight/auth/refresh")
+                .cookie("REFRESH_TOKEN", jwt)
                 .exchange()
                 .expectStatus().isAccepted()
                 .expectBody(String.class)
-                .value(s -> {
-                    Jwt jwt1 = decoder.decode(s).block();
-                    Assertions.assertNotNull(jwt1);
-                    Assertions.assertEquals("CLIENT", jwt1.getClaim("authority"));
-                    Assertions.assertEquals(uuid.toString(), jwt1.getSubject());
-                });
+                .returnResult();
+
+        ResponseCookie accessToken = result.getResponseCookies().getFirst("ACCESS_TOKEN");
+
+        Assertions.assertNotNull(accessToken);
+
+        Jwt newJwt = decoder.decode(accessToken.getValue()).block();
+
+        assert newJwt != null;
+        Assertions.assertEquals(newJwt.getSubject(), uuid.toString());
+
+        Assertions.assertEquals(newJwt.getClaim("authority"), "CLIENT");
+
 
     }
 

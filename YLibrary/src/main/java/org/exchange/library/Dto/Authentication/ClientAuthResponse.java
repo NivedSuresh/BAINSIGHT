@@ -15,5 +15,4 @@ public class ClientAuthResponse {
     private String username;
     private String email;
     private String phoneNumber;
-    private JwtResponse authResponse;
 }

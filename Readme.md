@@ -30,10 +30,13 @@
        
        Users authenticate using credentials.
        JWTs are generated upon successful authentication.
-       Refresh tokens allow for seamless token renewal.
+       Refresh tokens allow for token renewal.
+
+
        Token Management:
        
        JWTs have a limited lifespan and may expire.
+       Tokens are stored in HttpOnlyCookie mitigating XSS.
        Refresh tokens enable obtaining new JWTs without re-entering credentials.
        
        Sign-Up Logic:

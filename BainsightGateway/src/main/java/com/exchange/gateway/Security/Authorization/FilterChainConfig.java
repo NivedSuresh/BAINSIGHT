@@ -28,10 +28,8 @@ public class FilterChainConfig {
 
         security.csrf(ServerHttpSecurity.CsrfSpec::disable);
 
-        security.oauth2ResourceServer(oauth -> oauth.jwt(jwtSpec ->
-                jwtSpec.jwtDecoder(decoder)
-                        .jwtAuthenticationConverter(this::createAuthenticationToken))
-        );
+
+        security.authorizeExchange(exchange -> exchange.anyExchange().permitAll());
 
         security.authorizeExchange(auth -> auth
                 .pathMatchers("/eureka/**").permitAll()

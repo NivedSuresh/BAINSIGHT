@@ -1,5 +1,6 @@
 package org.exchange.user.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.exchange.library.Dto.Authentication.ClientAuthResponse;
 import org.junit.jupiter.api.Assertions;
@@ -10,13 +11,17 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
+import org.springframework.test.web.reactive.server.ExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -54,20 +59,25 @@ public class ClientServiceTests {
                 .confirmPassword("12345")
                 .build();
 
-        testClient.post().uri("/api/bainsight/auth/client/signup")
+        ExchangeResult result = testClient.post().uri("/api/bainsight/auth/client/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(request))
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody(ClientAuthResponse.class)
-                .value(signupResponse -> {
-                    Assertions.assertEquals(request.getPhoneNumber(), signupResponse.getPhoneNumber());
-                    String refresh = signupResponse.getAuthResponse().refreshToken();
-                    Jwt jwt = jwtDecoder.decode(refresh).block();
-                    assert jwt != null;
-                    Assertions.assertNotNull(jwt.getSubject());
-                    Assertions.assertEquals("CLIENT_REFRESH_TOKEN", jwt.getClaim("authority"));
-                });
+                .value(authResponse -> {
+                    assert authResponse != null;
+                    Assertions.assertEquals(request.getPhoneNumber(), authResponse.getPhoneNumber());
+                })
+                .returnResult();
+
+        ResponseCookie refreshToken = result.getResponseCookies().getFirst("REFRESH_TOKEN");
+        Assertions.assertNotNull(refreshToken);
+
+        Jwt jwt = jwtDecoder.decode(refreshToken.getValue()).block();
+        assert jwt != null;
+        Assertions.assertNotNull(jwt.getSubject());
+        Assertions.assertEquals("CLIENT_REFRESH_TOKEN", jwt.getClaim("authority"));
     }
 
 }

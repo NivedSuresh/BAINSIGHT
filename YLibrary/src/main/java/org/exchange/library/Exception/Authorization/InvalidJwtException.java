@@ -1,5 +1,6 @@
 package org.exchange.library.Exception.Authorization;
 
+import org.exchange.library.Advice.Error;
 import org.exchange.library.Exception.GlobalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,6 +16,14 @@ public class InvalidJwtException extends GlobalException {
                 "You're UnAuthorized to access this URL, please authenticate yourself and try again.",
                 HttpStatus.UNAUTHORIZED,
                 errorCode
+        );
+    }
+
+    public InvalidJwtException() {
+        super(
+                "You're UnAuthorized to access this URL, please authenticate yourself and try again.",
+                HttpStatus.UNAUTHORIZED,
+                Error.INVALID_JWT
         );
     }
 }

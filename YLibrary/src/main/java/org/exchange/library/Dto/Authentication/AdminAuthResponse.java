@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminAuthResponse {
     private String email;
-    private JwtResponse jwtResponse;
 }

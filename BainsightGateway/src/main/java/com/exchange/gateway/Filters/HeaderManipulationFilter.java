@@ -1,4 +1,4 @@
-package com.exchange.gateway.Config.Filters;
+package com.exchange.gateway.Filters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Advice.Error;

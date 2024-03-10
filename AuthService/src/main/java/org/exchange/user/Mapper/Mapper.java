@@ -21,10 +21,9 @@ public class Mapper {
     }
 
 
-    public ClientAuthResponse getClientDto(Client client, JwtResponse t2) {
+    public ClientAuthResponse getClientDto(Client client) {
         ClientAuthResponse clientAuthResponse = new ClientAuthResponse();
         BeanUtils.copyProperties(client, clientAuthResponse);
-        clientAuthResponse.setAuthResponse(t2);
         return clientAuthResponse;
     }
 

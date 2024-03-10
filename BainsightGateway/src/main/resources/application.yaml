@@ -44,35 +44,27 @@ spring:
 
 
         #UserService Client
-        - id: user-service
-          uri: lb://user-service
+        - id: auth-service
+          uri: lb://auth-service
           predicates:
-            - Path=/api/bainsight/client/**
+            - Path=/api/bainsight/auth/**
             - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
 
-        #UserService Admin
-        - id: user-service
-          uri: lb://user-service
+        #UserService Client
+        - id: auth-service
+          uri: lb://auth-service
           predicates:
             - Path=/api/bainsight/admin/**
             - Method=GET,PUT,POST
-
-        #UserService Admin
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/api/bainsight/token/**
-            - Method=GET, POST
-
-        #UserService Admin
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/api/bainsight/auth/**
-            - Method=GET, POST
+          filters:
+            - SecurityFilter
 
 
-        #OrderPersistence
+
+
+            #OrderPersistence
         - id: persistence-exchange
           uri: lb://persistence-exchange
           predicates:
