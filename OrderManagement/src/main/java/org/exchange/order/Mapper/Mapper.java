@@ -10,13 +10,5 @@ import org.exchange.order.Model.Order;
 
 public interface Mapper {
 
-    OrderResponse entityToOrderResponse(Order order);
-
-    Order requestToOrderEntity(OrderRequest request, OrderStatus status, Long matchedSize, String broker);
-
-    OrderAcceptedEvent entityToOrderCreatedEvent(Order order);
-
     OrderDto entityToOrderDto(Order order);
-
-    Order verifiedEventToOrderEntity(OrderVerifiedEvent verifiedEvent);
 }

@@ -127,9 +127,9 @@ public class OrderServiceImpl implements OrderService {
 //      introducing Smart Order Routing which allows the brokers trading engines to
 //      systematically choose the execution destination based on factors viz. marketPrice, costs,
 //      speed, likelihood of execution and settlemen
-    public Flux<SymbolUpdate> findLiquidity(OrderRequest request){
-
-        return Flux.error(NotImplementedException::new);
-    }
+//    public Flux<SymbolUpdate> findLiquidity(OrderRequest request){
+//
+//        return Flux.error(NotImplementedException::new);
+//    }
 
 }

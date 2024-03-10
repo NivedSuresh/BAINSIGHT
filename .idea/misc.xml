@@ -23,6 +23,7 @@
         <option value="$PROJECT_DIR$/BrokerPersistence/pom.xml" />
         <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
         <option value="$PROJECT_DIR$/JournalService/pom.xml" />
+        <option value="$PROJECT_DIR$/AuthService/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -67,5 +67,10 @@
       <user-name>postgres</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="risk_service@localhost" uuid="46d13aaf-ec88-40bc-9ba4-85a78e6bf547">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>postgres</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

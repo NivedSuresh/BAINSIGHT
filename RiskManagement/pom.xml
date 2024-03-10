@@ -61,7 +61,7 @@
 
         <dependency>
             <groupId>org.exchange</groupId>
-            <artifactId>Library</artifactId>
+            <artifactId>YLibrary</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

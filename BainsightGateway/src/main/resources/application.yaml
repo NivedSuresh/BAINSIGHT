@@ -122,5 +122,5 @@ logging:
           route:
             RouteDefinitionLocator: info
 rsa:
-  private-key: file:/Users/apple/Desktop/BAINSIGHT/Library/src/main/resources/certs/private.pem
-  public-key: file:/Users/apple/Desktop/BAINSIGHT/Library/src/main/resources/certs/public.pem
+  private-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/private.pem
+  public-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/public.pem

@@ -2,7 +2,6 @@ package org.exchange.order;
 
 import org.exchange.order.Controller.AdminOrderController;
 import org.exchange.order.Repository.OrderRepo;
-import org.exchange.order.Service.PersistentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -12,9 +11,6 @@ import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest
 class PersistenceExchangeApplicationTests {
-
-    @Autowired
-    PersistentService persistentService;
 
 
     @Autowired
