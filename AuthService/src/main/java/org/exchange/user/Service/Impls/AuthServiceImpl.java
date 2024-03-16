@@ -3,14 +3,12 @@ package org.exchange.user.Service.Impls;
 
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Advice.Error;
-import org.exchange.library.Dto.Authentication.AdminAuthResponse;
-import org.exchange.library.Dto.Authentication.AuthRequest;
-import org.exchange.library.Dto.Authentication.ClientAuthResponse;
-import org.exchange.library.Dto.Authentication.JwtResponse;
+import org.exchange.library.Dto.Authentication.*;
 import org.exchange.library.Enums.MfaType;
 import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
 import org.exchange.library.Exception.Authentication.UnableToInitiateMfaException;
 import org.exchange.library.Exception.Authorization.InvalidJwtException;
+import org.exchange.library.Exception.Authorization.JwtExpiredException;
 import org.exchange.library.Exception.BadRequest.InvalidStateException;
 import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Exception.IO.ConnectionFailureException;
@@ -28,18 +26,17 @@ import org.exchange.user.Utils.CookieUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtValidationException;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -82,6 +79,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Mono<String> renewJwt(ServerHttpRequest request) {
+        System.out.println("Renew Jwt triggered");
         HttpCookie cookie = request.getCookies().getFirst("REFRESH_TOKEN");
 
         if(cookie == null) return Mono.error(InvalidJwtException::new);
@@ -91,6 +89,7 @@ public class AuthServiceImpl implements AuthService {
 
         return decoder.decode(refreshToken)
                 .flatMap(jwt -> {
+                    System.out.println("Decoded jwt");
                     return findPrincipalValidationFromDB(jwt.getClaim("authority"), jwt.getSubject())
                             .switchIfEmpty(Mono.error(new InvalidJwtException(Error.INVALID_JWT)))
                             .flatMap(principalValidation -> Mono.zip(Mono.just(jwt), Mono.just(principalValidation)));
@@ -108,11 +107,12 @@ public class AuthServiceImpl implements AuthService {
                     }
 
 
-                    Instant expiry = Instant.now().plus(1, ChronoUnit.HOURS);
+//                    Instant expiry = Instant.now().plus(1, ChronoUnit.HOURS);
+                    Instant expiry = Instant.now();
 
                     /*  Refresh token's should only be used for access token renewal, thus
-                     *   Refresh Tokens are decoded with a different authority which will
-                     *   restrict the user from accessing other endpoints */
+                     *  Refresh Tokens are decoded with a different authority which will
+                     *  restrict the user from accessing other endpoints */
 
                     String authority = jwt.getClaim("authority").toString();
                     authority = authority.substring(0, authority.length() - 14);
@@ -174,8 +174,8 @@ public class AuthServiceImpl implements AuthService {
                     Mono<JwtResponse> jwtResponseMono=  getJwtResponse(
                             authentication.getName(),
                             authority.get(),
-                            expiry.plus(1500, ChronoUnit.DAYS),
-                            expiry.plus(1000, ChronoUnit.DAYS)
+                            expiry.plus(15, ChronoUnit.MINUTES),
+                            expiry.plus(100, ChronoUnit.DAYS)
                     );
 
                     ClientDetails clientDetails = (ClientDetails) authentication.getPrincipal();
@@ -224,8 +224,8 @@ public class AuthServiceImpl implements AuthService {
                     Mono<AdminAuthResponse> adminAuthResponseMono = getJwtResponse(
                             adminDetails.getUsername(),
                             adminDetails.getRole(),
-                            instant.plus(10000, ChronoUnit.DAYS),
-                            instant.plus(30000, ChronoUnit.DAYS)
+                            instant.plus(1, ChronoUnit.MINUTES),
+                            instant.plus(100, ChronoUnit.DAYS)
                     ).map(jwtResponse -> {
                         cookieUtils.bakeCookies(webExchange, jwtResponse);
                         return new AdminAuthResponse(adminDetails.getUsername());
@@ -261,6 +261,25 @@ public class AuthServiceImpl implements AuthService {
 
     public Mono<JwtResponse> getJwtResponse(String ucc, String authority, Instant forAccess, Instant forRefresh) {
         return jwtService.getAuthResponse(ucc, authority, forAccess, forRefresh);
+    }
+
+    @Override
+    public Mono<TokenMeta> validateToken(ServerWebExchange webExchange) {
+        HttpCookie accessToken = webExchange.getRequest().getCookies().getFirst("ACCESS_TOKEN");
+
+        if(accessToken == null) return Mono.error(InvalidJwtException::new);
+        return decoder.decode(accessToken.getValue())
+                .map(jwt -> {
+                    System.out.println("Now : " + Instant.now());
+                    System.out.println("Expires " + jwt.getExpiresAt());
+                    String authority = jwt.getClaim("authority");
+                    String subject = jwt.getSubject();
+                    return new TokenMeta(subject, subject, authority);
+                })
+                .onErrorResume(throwable -> {
+                    if(throwable.getMessage().startsWith("Jwt expired")) return Mono.error(JwtExpiredException::new);
+                    return Mono.error(InvalidJwtException::new);
+                });
     }
 
 

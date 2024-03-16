@@ -20,10 +20,6 @@ public class EndpointsUtil {
         this.admin = initializeAdminEndpoints();
     }
 
-    private String initializeRefreshTokenEndpoint() {
-        return "/api/bainsight/token";
-    }
-
 
     public boolean isAllowed(String endpoint, String role){
         if(role.equals("CLIENT") && iterate(client, endpoint)) return true;
@@ -37,6 +33,7 @@ public class EndpointsUtil {
 
     private boolean iterate(List<String> endpoints, String endpoint){
         for(String uri : endpoints){
+            System.out.println(endpoint + " starts with " + uri);
             if(endpoint.startsWith(uri)) return true;
         }
         return false;

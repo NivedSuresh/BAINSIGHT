@@ -5,30 +5,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Config/CorsConfigurationSourceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Adapters/InstantAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/TickDisruptorExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/ExecutorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/GsonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/SynchronousSink/SinkConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/LockSnatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/TickEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/BackupGroupListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/GroupListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/ListenerJobs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageRangeBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/PrimaryGroupListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/UdpListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/MessageEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/TickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Adapters/InstantAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/ExecutorServiceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/GsonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/MulticastSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Enums/PushTo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/TokenMeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/JwtExpiredException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Config/Redis/RedisConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Redis/PrincipalValidationCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/ClientService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Config/Filters/HeaderManipulationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/HeaderManipulationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/ExchangeGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/ExchangeGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/AdminAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/AdminAuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/ClientAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/ClientAuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/InvalidJwtException.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/InvalidJwtException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Controller/CacheTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/LiquidityServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/MarketData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/SymbolPerformance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/TestLiquidityServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/TestLiquidityServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketDataGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketDataJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MatchingEngineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/TestExchangeEnv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/test/java/com/exchange/matchingengine/MatchingEngineApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/test/java/com/exchange/matchingengine/TestExchangeEnvTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/InvalidCredentialsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/InvalidCredentialsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,10 +115,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="Dockerfile" />
         <option value="Record" />
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -90,91 +144,94 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests.failRenewJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTests.testSuccessfulAuthentication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrokerServiceTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BrokerServiceTests.testSaveBroker.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ClientServiceTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ClientServiceTests.testSignup.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.UnAuthTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.authorizedWhenJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testRefreshJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.testTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RiskManagementApplicationTests.assertThatS.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RiskManagementApplicationTests.connectionEstablished.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RiskManagementApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RiskManagementApplicationTests.testCancelOrder.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LiquidityService [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.LiquidityService [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AdminServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.BrokerServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.BrokerUserService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ExchangeGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ExchangeRegistryApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ExchangeUser.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.LiquidityServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MatchingEngineApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.RiskManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Desktop/BAINSIGHT_API/LiquidityService/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;33c034acc31924bfb2a71c7f6579a759&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.AuthServiceTests (1).executor": "Run",
+    "JUnit.AuthServiceTests.executor": "Run",
+    "JUnit.AuthServiceTests.failRenewJwt.executor": "Run",
+    "JUnit.AuthServiceTests.testAdminLogin.executor": "Run",
+    "JUnit.AuthServiceTests.testRenewJwt.executor": "Run",
+    "JUnit.AuthServiceTests.testSuccessfulAuthentication.executor": "Run",
+    "JUnit.BrokerServiceTests.executor": "Run",
+    "JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor": "Run",
+    "JUnit.BrokerServiceTests.testSaveBroker.executor": "Run",
+    "JUnit.ClientServiceTests.executor": "Run",
+    "JUnit.ClientServiceTests.testSignup.executor": "Run",
+    "JUnit.ExchangeUserTests.UnAuthTest.executor": "Run",
+    "JUnit.ExchangeUserTests.authorizedWhenJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.executor": "Run",
+    "JUnit.ExchangeUserTests.testAdminLogin.executor": "Run",
+    "JUnit.ExchangeUserTests.testJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRefreshJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRenewJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor": "Run",
+    "JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor": "Run",
+    "JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor": "Run",
+    "JUnit.ExchangeUserTests.testTest.executor": "Run",
+    "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
+    "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
+    "Maven.LiquidityService [clean].executor": "Run",
+    "Maven.LiquidityService [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AdminServiceApplication.executor": "Run",
+    "Spring Boot.AuthService.executor": "Run",
+    "Spring Boot.BrokerServiceApplication.executor": "Run",
+    "Spring Boot.BrokerUserService.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.ExchangeGatewayApplication.executor": "Run",
+    "Spring Boot.ExchangeRegistryApplication.executor": "Run",
+    "Spring Boot.ExchangeUser.executor": "Run",
+    "Spring Boot.LiquidityServiceApplication.executor": "Run",
+    "Spring Boot.MarketData.executor": "Run",
+    "Spring Boot.MatchingEngineApplication.executor": "Debug",
+    "Spring Boot.RiskManagementApplication.executor": "Run",
+    "Spring Boot.TestExchangeEnv.executor": "Run",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/apple/Desktop/BAINSIGHT_API/MarketDataService/src/main/java/org/bainsight/liquidity",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "spring.configuration.checksum": "33c034acc31924bfb2a71c7f6579a759",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect&quot;: [
-      &quot;PostgreSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
+      "PostgreSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -187,11 +244,11 @@
       <recent name="org.exchange.library.Enums" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity" />
       <recent name="$PROJECT_DIR$/LiquidityService/src/main/resources" />
       <recent name="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model" />
       <recent name="$PROJECT_DIR$/PersistenceExchange/src/main/java/org/exchange/persistance" />
       <recent name="$PROJECT_DIR$/PersistanceExchange/src/main/resources/db/migration" />
-      <recent name="$PROJECT_DIR$/RiskManagement/src/main/resources/db/migration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ZRedisConfig" />
@@ -221,7 +278,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ClientServiceTests.testSignup">
+  <component name="RunManager" selected="Spring Boot.TestExchangeEnv">
     <configuration name="AuthServiceTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthService" />
       <extension name="coverage">
@@ -364,17 +421,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LiquidityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="MarketData" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="MarketDataService" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.liquidity.LiquidityServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MatchingEngineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="MatchingEngine" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exchange.matchingengine.MatchingEngineApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.liquidity.MarketData" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -383,6 +432,14 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="OrderManagement" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.order.PersistanceExchangeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestExchangeEnv" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="TestExchangeEnv" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exchange.matchingengine.TestExchangeEnv" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -400,7 +457,7 @@
       <item itemvalue="JUnit.AuthServiceTests.testSuccessfulAuthentication" />
       <item itemvalue="JUnit.ClientServiceTests" />
       <item itemvalue="Spring Boot.JournalServiceApplication" />
-      <item itemvalue="Spring Boot.LiquidityServiceApplication" />
+      <item itemvalue="Spring Boot.MarketData" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.AuthService" />
       <item itemvalue="Spring Boot.ClientManagement" />
@@ -408,7 +465,7 @@
       <item itemvalue="Spring Boot.ExchangeGatewayApplication" />
       <item itemvalue="Spring Boot.ExchangeRegistryApplication" />
       <item itemvalue="Spring Boot.LibraryApplication" />
-      <item itemvalue="Spring Boot.MatchingEngineApplication" />
+      <item itemvalue="Spring Boot.TestExchangeEnv" />
     </list>
     <recent_temporary>
       <list>
@@ -513,7 +570,16 @@
       <workItem from="1710064333676" duration="552000" />
       <workItem from="1710064908797" duration="67000" />
       <workItem from="1710065104398" duration="924000" />
-      <workItem from="1710075903803" duration="19475000" />
+      <workItem from="1710075903803" duration="19804000" />
+      <workItem from="1710147056586" duration="24435000" />
+      <workItem from="1710232258143" duration="2305000" />
+      <workItem from="1710236532449" duration="14889000" />
+      <workItem from="1710322043421" duration="17025000" />
+      <workItem from="1710362342854" duration="3266000" />
+      <workItem from="1710404367024" duration="31823000" />
+      <workItem from="1710496004027" duration="20928000" />
+      <workItem from="1710527148500" duration="12166000" />
+      <workItem from="1710577926623" duration="36758000" />
     </task>
     <servers />
   </component>

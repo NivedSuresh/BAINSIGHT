@@ -1,9 +1,6 @@
 package org.exchange.user.Service;
 
-import org.exchange.library.Dto.Authentication.AdminAuthResponse;
-import org.exchange.library.Dto.Authentication.AuthRequest;
-import org.exchange.library.Dto.Authentication.ClientAuthResponse;
-import org.exchange.library.Dto.Authentication.JwtResponse;
+import org.exchange.library.Dto.Authentication.*;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -19,4 +16,5 @@ public interface AuthService {
 
     Mono<JwtResponse> getJwtResponse(String ucc, String authority, Instant forAccess, Instant forRefresh);
 
+    Mono<TokenMeta> validateToken(ServerWebExchange webExchange);
 }

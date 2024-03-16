@@ -1,73 +1,82 @@
 package org.exchange.library.Dto.MarketRelated;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
+import java.time.Instant;
 
 
-public record Tick(
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+@Builder
+public class Tick implements Comparable<Tick> { //Estimated of 233Bytes
 
-        // Unique identifier for the instrument
-        String symbol,
+    // Can be used for recovery
+    private long sequenceNumber;
 
-        // Indicates if the instrument is currently tradable
-        boolean tradable,
+    private String exchange;
 
-        // Last traded price of the instrument
-        double lastTradedPrice,
+    // Unique identifier for the instrument
+    private String symbol;
 
-        // Highest price traded during the period
-        double highPrice,
+    // Indicates if the instrument is currently tradable
+    private boolean tradable;
 
-        // Lowest price traded during the period
-        double lowPrice,
+    // Last traded price of the instrument
+    private double lastTradedPrice;
 
-        // Opening price of the instrument for the period
-        double openPrice,
+    // Highest price traded during the period
+    private double highPrice;
 
-        // Closing price of the instrument for the period
-        double closePrice,
+    // Lowest price traded during the period
+    private double lowPrice;
 
-        // Change in price from the previous close
-        double change,
+    // Opening price of the instrument for the period
+    private double openPrice;
 
-        // Last traded quantity of the instrument
-        long lastTradedQuantity,
+    // Closing price of the instrument for the period
+    private double closePrice;
 
-        // Average price of trades for the instrument
-        double averageTradePrice,
+    // Change in price from the previous close
+    private double change;
 
-        // Total volume traded for the instrument today
-        long volumeTradedToday,
+    // Last traded quantity of the instrument
+    private long lastTradedQuantity;
 
-        // Total buy quantity for the instrument
-        double totalBuyQuantity,
+    // Average price of trades for the instrument
+    private double averageTradePrice;
 
-        // Total sell quantity for the instrument
-        double totalSellQuantity,
+    private long volume;
 
-        // Last traded time of the instrument
-        LocalDateTime lastTradedTime,
+    // Total volume traded for the instrument today
+    private long volumeTradedToday;
 
-        // Open interest (total outstanding contracts)
-        double oi,
+    // Last traded time of the instrument
+    private Instant lastTradedTime;
 
-        // Highest open interest for the day
-        double oiDayHigh,
+    // Timestamp of the tick data
+    private Instant tickTimestamp;
 
-        // Lowest open interest for the day
-        double oiDayLow,
+    // Order book depth data (map of price levels to depth information)
+    private MarketDepth marketDepth;
 
-        // Timestamp of the tick data
-        LocalDateTime tickTimestamp,
 
-        // Order book depth data (map of price levels to depth information)
-        MarketDepth depth
+    public String getKey(){
+        return this.getExchange().concat(":").concat(this.getSymbol());
+    }
 
-) {
+
+    @Override
+    public int compareTo(Tick other) {
+        if (other == null) return 1;
+
+        Long thisSerialNumber = this.getSequenceNumber();
+        Long otherSerialNumber = other.getSequenceNumber();
+        return thisSerialNumber.compareTo(otherSerialNumber);
+    }
 }
+
 

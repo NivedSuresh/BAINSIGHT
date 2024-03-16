@@ -21,7 +21,7 @@
         <module>ConfigServer</module>
         <module>ServiceRegistry</module>
         <module>BainsightGateway</module>
-        <module>MatchingEngine</module>
+        <module>TestExchangeEnv</module>
         <module>AuthService</module>
         <module>OrderManagement</module>
         <module>JournalService</module>

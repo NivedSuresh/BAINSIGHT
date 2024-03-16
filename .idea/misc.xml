@@ -24,6 +24,7 @@
         <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
         <option value="$PROJECT_DIR$/JournalService/pom.xml" />
         <option value="$PROJECT_DIR$/AuthService/pom.xml" />
+        <option value="$PROJECT_DIR$/TestExchangeEnv/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

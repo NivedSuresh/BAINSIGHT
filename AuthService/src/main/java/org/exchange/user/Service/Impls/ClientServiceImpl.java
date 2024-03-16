@@ -17,6 +17,7 @@ import org.exchange.user.Service.ClientService;
 import org.exchange.user.Service.JwtService;
 import org.exchange.user.Service.KafkaService;
 import org.exchange.user.Utils.CookieUtils;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,11 +85,13 @@ public class ClientServiceImpl implements ClientService {
 
 
                 .onErrorResume(throwable -> {
+                    throwable.printStackTrace();
                     log.error(throwable.getMessage());
                     if (throwable instanceof InvalidUpdateRequestException ||
-                        throwable instanceof EntityAlreadyExistsException) {
+                        throwable instanceof EntityAlreadyExistsException){
                         return Mono.error(throwable);
                     }
+
 
                     return Mono.error(ConnectionFailureException::new);
                 });
@@ -102,6 +105,9 @@ public class ClientServiceImpl implements ClientService {
                 })
                 .onErrorResume(throwable -> {
                     log.error(throwable.getMessage());
+                    if(throwable instanceof DuplicateKeyException){
+                        return Mono.error(new EntityAlreadyExistsException("User", request.getEmail()));
+                    }
                     return Mono.error(ConnectionFailureException::new);
                 });
 

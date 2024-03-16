@@ -12,6 +12,9 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.Collection;
@@ -21,46 +24,48 @@ import java.util.Collection;
 @EnableWebFluxSecurity
 public class FilterChainConfig {
 
-    private final ReactiveJwtDecoder decoder;
+
+//    private final CorsConfigurationSource configurationSource;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity security) {
 
         security.csrf(ServerHttpSecurity.CsrfSpec::disable);
 
+//        security.cors(cors -> cors.configurationSource(configurationSource));
 
         security.authorizeExchange(exchange -> exchange.anyExchange().permitAll());
-
-        security.authorizeExchange(auth -> auth
-                .pathMatchers("/eureka/**").permitAll()
-
-                /* This endpoint receives phone number and credentials.
-                   If authenticated, then Access & Refresh tokens are returned. */
-                .pathMatchers("/api/bainsight/token/**").permitAll()
-
-
-                .pathMatchers("/api/bainsight/auth/**").permitAll()
-
-
-                /* Both Admin and User can submit refresh token as header and can
-                   get a new access token. */
-                .pathMatchers("/api/bainsight/token").hasAnyAuthority("CLIENT_REFRESH_TOKEN", "ADMIN_REFRESH_TOKEN")
-
-                .pathMatchers("/api/bainsight/client/signup").permitAll()
-
-                /* This endpoint receives admin credentials.
-                   If authenticated, then Access & Refresh tokens are returned. */
-                .pathMatchers("/api/bainsight/admin/login").permitAll()
-
-                /* Every request to this endpoint will be Manipulated by the HeaderManipulationFilter. */
-                .pathMatchers("/api/bainsight/risk/order/**").hasAnyAuthority("CLIENT", "ADMIN")
-
-                .pathMatchers("/api/bainsight/risk/admin/**").hasAuthority("ADMIN")
-
-
-                .pathMatchers("/healthcheck/**", "/api/bainsight/admin/**").hasAuthority("ADMIN")
-
-                .anyExchange().hasAuthority("CLIENT"));
+//
+//        security.authorizeExchange(auth -> auth
+//                .pathMatchers("/eureka/**").permitAll()
+//
+//                /* This endpoint receives phone number and credentials.
+//                   If authenticated, then Access & Refresh tokens are returned. */
+//                .pathMatchers("/api/bainsight/token/**").permitAll()
+//
+//
+//                .pathMatchers("/api/bainsight/auth/**").permitAll()
+//
+//
+//                /* Both Admin and User can submit refresh token as header and can
+//                   get a new access token. */
+//                .pathMatchers("/api/bainsight/token").hasAnyAuthority("CLIENT_REFRESH_TOKEN", "ADMIN_REFRESH_TOKEN")
+//
+//                .pathMatchers("/api/bainsight/client/signup").permitAll()
+//
+//                /* This endpoint receives admin credentials.
+//                   If authenticated, then Access & Refresh tokens are returned. */
+//                .pathMatchers("/api/bainsight/admin/login").permitAll()
+//
+//                /* Every request to this endpoint will be Manipulated by the HeaderManipulationFilter. */
+//                .pathMatchers("/api/bainsight/risk/order/**").hasAnyAuthority("CLIENT", "ADMIN")
+//
+//                .pathMatchers("/api/bainsight/risk/admin/**").hasAuthority("ADMIN")
+//
+//
+//                .pathMatchers("/healthcheck/**", "/api/bainsight/admin/**").hasAuthority("ADMIN")
+//
+//                .anyExchange().hasAuthority("CLIENT"));
 
         return security.build();
     }

@@ -17,7 +17,7 @@
 //	}
 //
 //	public static void main(String[] args) {
-//		SpringApplication.from(LiquidityServiceApplication::main).with(TestLiquidityServiceApplication.class).run(args);
+//		SpringApplication.from(MarketData::main).with(TestLiquidityServiceApplication.class).run(args);
 //	}
 //
 //}

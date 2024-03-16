@@ -29,24 +29,13 @@ public class FilterChainConfig {
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity security) {
         security.csrf(ServerHttpSecurity.CsrfSpec::disable);
-//        security.authorizeExchange(exc -> exc.pathMatchers("/api/bainsight/token/renew/refresh_token").permitAll()
-//                .pathMatchers("/api/bainsight/admin/auth/**").permitAll()
-//                .pathMatchers("/api/bainsight/token/renew/jwt").authenticated()
-//                .anyExchange().hasAuthority("ADMIN"));
+        security.cors(ServerHttpSecurity.CorsSpec::disable);
 
         security.authorizeExchange(authorizeExchangeSpec -> authorizeExchangeSpec.anyExchange().permitAll());
 
         security.authenticationManager(authenticationManager);
 
-//        security.oauth2ResourceServer(oAuth -> {
-//            oAuth.jwt(jwtSpec -> jwtSpec.jwtAuthenticationConverter(this::convertAuthentication));
-//        });
         return security.build();
-    }
-
-    private Mono<? extends AbstractAuthenticationToken> convertAuthentication(Jwt source) {
-        return Mono.just(new JwtAuthenticationToken(source,
-                List.of(new SimpleGrantedAuthority(source.getClaim("authority")))));
     }
 
 

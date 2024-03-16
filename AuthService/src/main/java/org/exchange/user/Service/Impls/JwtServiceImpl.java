@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 @Slf4j
 @Service
@@ -23,7 +24,7 @@ public class JwtServiceImpl implements JwtService {
     public Mono<String> generateJwt(String identifier, String authority, Instant expiry) {
         log.debug("Jwt generate method has been triggered!");
 
-        JwtClaimsSet claimsSet = JwtClaimsSet.builder().issuedAt(Instant.now())
+        JwtClaimsSet claimsSet = JwtClaimsSet.builder().issuedAt(Instant.now().minus(2, ChronoUnit.MINUTES))
                 .expiresAt(expiry)
                 .issuer("self")
                 .subject(identifier)
@@ -36,10 +37,10 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public Mono<JwtResponse> getAuthResponse(String ucc, String authority, Instant forAccess, Instant forRefresh) {
-        return Mono.zip(generateJwt(ucc, authority, forAccess),
+        return Mono.zip(
+                generateJwt(ucc, authority, Instant.now().minus(50, ChronoUnit.SECONDS)),
                 generateJwt(ucc, authority.concat("_REFRESH_TOKEN"), forRefresh)
-        ).map(tokens -> {
-            return new JwtResponse(tokens.getT1(), tokens.getT2(), null);
-        });
+        )
+        .map(tokens ->  new JwtResponse(tokens.getT1(), tokens.getT2(), null));
     }
 }

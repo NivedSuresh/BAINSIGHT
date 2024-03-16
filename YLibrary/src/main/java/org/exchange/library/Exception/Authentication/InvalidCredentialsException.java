@@ -14,7 +14,7 @@ public class InvalidCredentialsException extends GlobalException {
 
     public InvalidCredentialsException() {
         super(
-                "BadRequest credentials or license could be expired/revoked.",
+                "Invalid credentials provided.",
                 HttpStatus.BAD_REQUEST, Error.INVALID_CREDENTIALS
         );
     }

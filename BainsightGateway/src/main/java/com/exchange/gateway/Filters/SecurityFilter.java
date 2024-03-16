@@ -1,6 +1,7 @@
 package com.exchange.gateway.Filters;
 
 import com.exchange.gateway.Filters.Helper.EndpointsUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Exception.Authorization.InvalidJwtException;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -18,6 +19,7 @@ import reactor.util.function.Tuple2;
 
 
 @Component
+@Slf4j
 public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.Config> {
 
     public static class Config {}
@@ -34,10 +36,19 @@ public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
+
+            System.out.println("Inside filter");
+
+            for(String key : exchange.getRequest().getCookies().keySet()){
+                System.out.println("Key : " + key);
+            }
+
+
             ServerHttpRequest request = exchange.getRequest();
             String path = request.getPath().toString();
 
             if(endpointsUtil.checkIfOpenEndpoint(path)){
+                System.out.println("open endpoint");
                 return chain.filter(exchange);
             }
 
