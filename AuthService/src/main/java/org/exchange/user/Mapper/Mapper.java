@@ -2,9 +2,8 @@ package org.exchange.user.Mapper;
 
 
 import lombok.RequiredArgsConstructor;
-import org.exchange.library.Dto.Authentication.JwtResponse;
-import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.exchange.library.Dto.Authentication.ClientAuthResponse;
+import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.exchange.user.Model.Client;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

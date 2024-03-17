@@ -31,7 +31,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtValidationException;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;

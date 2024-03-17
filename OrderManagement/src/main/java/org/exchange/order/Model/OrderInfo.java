@@ -4,10 +4,10 @@ package org.exchange.order.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.exchange.library.Enums.Validity;
 import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
+import org.exchange.library.Enums.Validity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 

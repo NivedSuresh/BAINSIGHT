@@ -1,8 +1,7 @@
 package org.exchange.user.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.exchange.library.Dto.Authentication.ClientAuthResponse;
+import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

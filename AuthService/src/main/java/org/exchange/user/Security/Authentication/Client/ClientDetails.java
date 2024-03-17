@@ -1,6 +1,5 @@
 package org.exchange.user.Security.Authentication.Client;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

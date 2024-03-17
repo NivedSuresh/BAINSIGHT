@@ -5,84 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Config/CorsConfigurationSourceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Adapters/InstantAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/TickDisruptorExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/ExecutorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/GsonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/SynchronousSink/SinkConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/LockSnatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/TickEventHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/BackupGroupListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/GroupListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/ListenerJobs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageBuffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageRangeBuffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/PrimaryGroupListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/UdpListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/MessageEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/TickEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Adapters/InstantAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/ExecutorServiceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/GsonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/MulticastSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Enums/PushTo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/TokenMeta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/JwtExpiredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Config/Redis/RedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Redis/PrincipalValidationCache.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/ExchangeGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/ExchangeGatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Controller/CacheTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/LiquidityServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/SymbolPerformance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/TestLiquidityServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/TestLiquidityServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketDataGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MarketDataSimulation/MarketDataJob.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/java/com/exchange/matchingengine/MatchingEngineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/TestExchangeEnv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatchingEngine/src/test/java/com/exchange/matchingengine/MatchingEngineApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/test/java/com/exchange/matchingengine/TestExchangeEnvTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Adapters/InstantAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/GsonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/SerializationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/SynchronousSink/SinkConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/TickEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/TickEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/BackupGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/BackupGroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/GroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/GroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/PrimaryGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/PrimaryGroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/TickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Events/TickEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/InvalidCredentialsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/InvalidCredentialsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +213,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TestExchangeEnv">
+  <component name="RunManager" selected="Spring Boot.MarketData">
     <configuration name="AuthServiceTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthService" />
       <extension name="coverage">
@@ -579,7 +514,8 @@
       <workItem from="1710404367024" duration="31823000" />
       <workItem from="1710496004027" duration="20928000" />
       <workItem from="1710527148500" duration="12166000" />
-      <workItem from="1710577926623" duration="36758000" />
+      <workItem from="1710577926623" duration="37078000" />
+      <workItem from="1710628213176" duration="6195000" />
     </task>
     <servers />
   </component>

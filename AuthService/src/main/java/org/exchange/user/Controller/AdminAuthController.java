@@ -5,22 +5,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Dto.Authentication.AdminAuthResponse;
 import org.exchange.library.Dto.Authentication.AuthRequest;
-import org.exchange.library.Dto.Authentication.JwtResponse;
 import org.exchange.library.Mapper.ValidationErrorMapper;
 import org.exchange.library.Utils.WebTrimmer;
 import org.exchange.user.Service.AuthService;
-import org.springframework.boot.web.server.Cookie;
-import org.springframework.http.*;
-import org.springframework.http.server.ServletServerHttpResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/bainsight/auth/admin/")

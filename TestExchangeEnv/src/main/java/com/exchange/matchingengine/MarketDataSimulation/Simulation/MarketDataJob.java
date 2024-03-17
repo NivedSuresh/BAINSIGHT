@@ -30,7 +30,7 @@ class MarketDataJob {
     }
 
     private void iterateAndSend() {
-        for(int i=0 ; i<25 ; i++){
+        for(int i=0 ; i<1 ; i++){
             engine.sendUpdates(count.incrementAndGet() % 2 == 1);
         }
     }

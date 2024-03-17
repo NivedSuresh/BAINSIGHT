@@ -12,7 +12,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @Builder
-public class Tick implements Comparable<Tick> { //Estimated of 233Bytes
+public class Tick { //Estimated of 233Bytes
 
     // Can be used for recovery
     private long sequenceNumber;
@@ -69,14 +69,6 @@ public class Tick implements Comparable<Tick> { //Estimated of 233Bytes
     }
 
 
-    @Override
-    public int compareTo(Tick other) {
-        if (other == null) return 1;
-
-        Long thisSerialNumber = this.getSequenceNumber();
-        Long otherSerialNumber = other.getSequenceNumber();
-        return thisSerialNumber.compareTo(otherSerialNumber);
-    }
 }
 
 

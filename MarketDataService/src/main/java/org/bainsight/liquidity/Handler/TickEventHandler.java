@@ -2,26 +2,26 @@ package org.bainsight.liquidity.Handler;
 
 import com.lmax.disruptor.EventHandler;
 import gnu.trove.set.hash.TLongHashSet;
-import lombok.RequiredArgsConstructor;
 import org.bainsight.liquidity.Listener.MessageRangeBuffer;
 import org.bainsight.liquidity.Model.Events.TickEvent;
 import org.exchange.library.Dto.MarketRelated.Tick;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.atomic.AtomicLong;
-
 @Component
-@RequiredArgsConstructor
 public class TickEventHandler implements EventHandler<TickEvent> {
 
 
     private final MessageRangeBuffer rangeBuffer;
-    private long sequence = 0;
-    private final Set<Long> missed = new ConcurrentSkipListSet<>();
+    private long sequence;
+
+    /* TODO: SCHEDULE CLEARING */
+    private final TLongHashSet missed;
+
+    public TickEventHandler(MessageRangeBuffer rangeBuffer) {
+        this.rangeBuffer = rangeBuffer;
+        missed = new TLongHashSet();
+        this.sequence = 0;
+    }
 
 
     /* TODO : REMOVE PRIMARY FIELD FROM TICK_EVENT
@@ -39,7 +39,6 @@ public class TickEventHandler implements EventHandler<TickEvent> {
         }
         updateLastReceived(received);
         event.releaseEvent();
-        System.out.println(missed.size());
     }
 
     private void updateLastReceived(long received) {
@@ -50,6 +49,7 @@ public class TickEventHandler implements EventHandler<TickEvent> {
         while (expected < received){
             missed.add(expected++);
         }
+        System.out.println(missed.size());
     }
 
 }

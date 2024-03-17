@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.exchange.library.Enums.TransactionType;
 import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
+import org.exchange.library.Enums.TransactionType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

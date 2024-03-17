@@ -3,10 +3,10 @@ package org.exchange.library.KafkaEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.exchange.library.Enums.Validity;
 import org.exchange.library.Enums.OrderStatus;
-import org.exchange.library.Enums.TransactionType;
 import org.exchange.library.Enums.OrderType;
+import org.exchange.library.Enums.TransactionType;
+import org.exchange.library.Enums.Validity;
 
 import java.util.UUID;
 
