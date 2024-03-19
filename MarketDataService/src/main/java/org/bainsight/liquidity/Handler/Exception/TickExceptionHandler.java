@@ -1,11 +1,11 @@
-package org.bainsight.liquidity.Config.Disruptor;
+package org.bainsight.liquidity.Handler.Exception;
 
 import com.lmax.disruptor.ExceptionHandler;
 import org.bainsight.liquidity.Model.Events.TickEvent;
 
-public class TickDisruptorExceptionHandler implements ExceptionHandler<TickEvent> {
+public class TickExceptionHandler<T extends TickEvent> implements ExceptionHandler<T> {
     @Override
-    public void handleEventException(Throwable ex, long sequence, TickEvent event) {
+    public void handleEventException(Throwable ex, long sequence, T event) {
         /* Todo : Journaling */
     }
 

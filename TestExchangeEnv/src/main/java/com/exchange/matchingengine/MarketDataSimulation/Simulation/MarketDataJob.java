@@ -17,21 +17,24 @@ class MarketDataJob {
     private final MarketDataEngine engine;
     private final ExecutorService primary;
     private final ExecutorService backup;
-    private final AtomicInteger count = new AtomicInteger(0);
-
+//
     @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
     public void multicastMessagesPrimary(){
-        primary.execute(this::iterateAndSend);
+        primary.execute(() -> iterateAndSend(true));
     }
 
     @Scheduled(initialDelay = 200, fixedRate = 1000)
     public void multicastMessagesBackup(){
-        backup.execute(this::iterateAndSend);
+        backup.execute(() -> iterateAndSend(false));
     }
 
-    private void iterateAndSend() {
-        for(int i=0 ; i<1 ; i++){
-            engine.sendUpdates(count.incrementAndGet() % 2 == 1);
+    private void iterateAndSend(boolean isPrimary) {
+        for(int i=0 ; i<20 ; i++){
+            try {
+                engine.sendUpdates(isPrimary);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

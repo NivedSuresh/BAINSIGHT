@@ -1,5 +1,6 @@
 package org.bainsight.liquidity.Model.Dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +12,8 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CandleStick {
-    private String symbol;
-    public ZonedDateTime timeStamp;
+public class ExchangeStick {
+    private String exchange;
     private Double open;
     private Double high;
     private Double close;

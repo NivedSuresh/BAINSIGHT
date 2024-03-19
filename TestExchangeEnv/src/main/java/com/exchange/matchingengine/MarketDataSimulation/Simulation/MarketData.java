@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -20,14 +21,17 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 class MarketData {
 
-    public static final AtomicLong aLong = new AtomicLong(0);
+    private static final AtomicLong nseSequenceGenerator = new AtomicLong(0);
+    private static final AtomicLong bseSequenceGenerator = new AtomicLong(0);
     private final Queue<TickerEx> dequeB;
     private final Queue<TickerEx> dequeA;
+    private final List<Tick> orderBookSim;
 
 
     MarketData() {
-        this.dequeB = new ArrayBlockingQueue<>(1000);
-        this.dequeA = new ArrayBlockingQueue<>(1000);
+        this.dequeB = new ArrayBlockingQueue<>(100);
+        this.dequeA = new ArrayBlockingQueue<>(100);
+        this.orderBookSim = new CopyOnWriteArrayList<>();
     }
 
     @PostConstruct
@@ -51,15 +55,18 @@ class MarketData {
                 "ATVI", "EA", "TTWO", "NTDOY", "UBSFF",  // Gaming
                 "T", "VZ", "TMUS", "CHTR", "CMCSA",     // Telecommunications & media
                 "INTU", "PAYX", "ADP", "FIS", "FISV",   // Financial technology
-                "NOW", "CRM", "ZM", "SNOW", "TEAM"      // Cloud & software
+                "NOW", "CRM", "ZM", "SNOW", "TEAM" ,
+                "BROSKI", "VNILUSSO", "KVASS", "SMACkED", "NIVED" // Cloud & software
         );
 
         tickers.forEach(s -> {
             double random = Math.random();
             double close = ThreadLocalRandom.current().nextDouble(10.0, 1000.0);
             double open = close + random > .6 ? random : -random;
-            getDequeB().offer(new TickerEx(s, open, close, Double.MIN_VALUE, Double.MAX_VALUE, 0));
-            getDequeA().offer(new TickerEx(s, open, close, Double.MIN_VALUE, Double.MAX_VALUE, 0));
+            TickerEx tickerEx = new TickerEx(s, open, close, Double.MIN_VALUE, Double.MAX_VALUE, 0);
+            this.getOrderBookSim().add(null);
+            this.getOrderBookSim().add(null);
+            getDequeA().offer(tickerEx);
         });
     }
 
@@ -90,7 +97,7 @@ class MarketData {
         return depth;
     }
 
-    public Tick getRandomTick(TickerEx meta, PushTo pushTo){
+    public Tick getRandomTick(TickerEx meta, PushTo pushTo, String exchange){
 
         double random = Math.random();
 
@@ -120,8 +127,10 @@ class MarketData {
 
         Tick tick = new Tick();
 
-        tick.setSequenceNumber(aLong.incrementAndGet());
-        tick.setExchange(getExchange());
+        long sequence = exchange.equals("BSE") ? bseSequenceGenerator.incrementAndGet() : nseSequenceGenerator.incrementAndGet();
+
+        tick.setSequenceNumber(sequence);
+        tick.setExchange(exchange);
         tick.setSymbol(meta.getSymbol());
         tick.setTradable(true);
         tick.setLastTradedPrice(lastTradedPrice);
@@ -145,12 +154,9 @@ class MarketData {
 
     private void pushTo(TickerEx meta, PushTo pushTo) {
         if(pushTo == PushTo.QUEUE_A) dequeA.offer(meta);
-        else dequeB.offer(meta);
+        else if(pushTo == PushTo.QUEUE_B) dequeB.offer(meta);
     }
 
-    private String getExchange(){
-        return aLong.get() % 2 == 0 ? "NSE" : "BSE";
-    }
 
 
 }

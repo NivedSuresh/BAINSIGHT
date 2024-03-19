@@ -11,33 +11,42 @@ import java.util.concurrent.ExecutorService;
 @Component
 public class UdpListener {
 
-    private final ExecutorService udpExecutor;
     private final MessageBuffer messageBuffer;
-    private final ExecutorService greenExecutor;
 
 
     @Value("${primary.multicast.address}")
-    public String primaryMulticastAddress;
-    @Value("${backup.multicast.address}")
-    public String backupMulticastAddress;
+    public String PRIMARY_MULTICAST_ADDRESS;
 
-    public UdpListener(final @Qualifier("listenerThreads") ExecutorService udpExecutor,
-                       final MessageBuffer messageBuffer,
-                       final ExecutorService greenExecutor) {
-        this.udpExecutor = udpExecutor;
+    @Value("${backup.multicast.address}")
+    public String BACKUP_MULTICAST_ADDRESS;
+
+    @Value("${primary.multicast.port}")
+    public int PRIMARY_MULTICAST_PORT;
+
+    @Value("${backup.multicast.port}")
+    public int BACKUP_MULTICAST_PORT;
+
+    public UdpListener(final MessageBuffer messageBuffer) {
         this.messageBuffer = messageBuffer;
-        this.greenExecutor = greenExecutor;
     }
 
 
     @PostConstruct
     public void startListeningToPrimary(){
-        new Thread(new PrimaryGroupListener(messageBuffer, primaryMulticastAddress)).start();
+        new Thread(new PrimaryGroupListener(
+                messageBuffer,
+                PRIMARY_MULTICAST_ADDRESS,
+                PRIMARY_MULTICAST_PORT))
+                .start();
     }
 
     @PostConstruct
     public void startListeningToBackup(){
-        new Thread(new BackupGroupListener(messageBuffer, backupMulticastAddress)).start();
+        new Thread(new BackupGroupListener(
+                messageBuffer,
+                BACKUP_MULTICAST_ADDRESS,
+                BACKUP_MULTICAST_PORT))
+                .start();
     }
 
 

@@ -1,17 +1,16 @@
 package org.bainsight.liquidity.Model.Events;
 
-import com.lmax.disruptor.EventFactory;
-import lombok.Data;
+import lombok.*;
 import org.exchange.library.Dto.MarketRelated.Tick;
 
-@Data
+import java.util.concurrent.atomic.AtomicLong;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class TickEvent {
     private Tick tick;
-
-    public TickEvent() {}
-
-    public void releaseEvent(){
-        this.tick = null;
-    }
-    public static EventFactory<TickEvent> TICK_EVENT_FACTORY = TickEvent::new;
+    public void clear(){ this.tick = null; }
 }

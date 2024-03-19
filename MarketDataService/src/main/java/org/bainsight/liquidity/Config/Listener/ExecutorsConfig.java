@@ -13,6 +13,19 @@ public class ExecutorsConfig {
         return Executors.newSingleThreadExecutor();
     }
 
+
+    @Bean
+    public ExecutorService recoveryExecutor(){
+        return Executors.newFixedThreadPool(3);
+    }
+
+
+    @Bean
+    public ExecutorService orderBookExecutor(){
+        return Executors.newSingleThreadExecutor();
+    }
+
+
     @Bean
     public ExecutorService greenExecutor(){
         return Executors.newVirtualThreadPerTaskExecutor();
