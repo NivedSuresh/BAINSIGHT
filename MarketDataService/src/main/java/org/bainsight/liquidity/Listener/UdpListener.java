@@ -2,16 +2,13 @@ package org.bainsight.liquidity.Listener;
 
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.ExecutorService;
 
 @Component
 public class UdpListener {
 
-    private final MessageBuffer messageBuffer;
+    private final MessageReceiveBuffer messageReceiveBuffer;
 
 
     @Value("${primary.multicast.address}")
@@ -26,15 +23,15 @@ public class UdpListener {
     @Value("${backup.multicast.port}")
     public int BACKUP_MULTICAST_PORT;
 
-    public UdpListener(final MessageBuffer messageBuffer) {
-        this.messageBuffer = messageBuffer;
+    public UdpListener(final MessageReceiveBuffer messageReceiveBuffer) {
+        this.messageReceiveBuffer = messageReceiveBuffer;
     }
 
 
     @PostConstruct
     public void startListeningToPrimary(){
         new Thread(new PrimaryGroupListener(
-                messageBuffer,
+                messageReceiveBuffer,
                 PRIMARY_MULTICAST_ADDRESS,
                 PRIMARY_MULTICAST_PORT))
                 .start();
@@ -43,7 +40,7 @@ public class UdpListener {
     @PostConstruct
     public void startListeningToBackup(){
         new Thread(new BackupGroupListener(
-                messageBuffer,
+                messageReceiveBuffer,
                 BACKUP_MULTICAST_ADDRESS,
                 BACKUP_MULTICAST_PORT))
                 .start();

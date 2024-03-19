@@ -2,7 +2,6 @@ package org.bainsight.liquidity.Listener;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bainsight.liquidity.Config.ConfigurationVariables;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,7 +14,7 @@ import java.net.NetworkInterface;
 class PrimaryGroupListener implements Runnable, GroupListener {
 
 
-    private final MessageBuffer messageBuffer;
+    private final MessageReceiveBuffer messageReceiveBuffer;
     private final String PRIMARY_MULTICAST_ADDRESS;
     private final int PRIMARY_MULTICAST_PORT;
 
@@ -32,7 +31,7 @@ class PrimaryGroupListener implements Runnable, GroupListener {
 
 
             byte[] buffer = new byte[1024];
-            this.listenToGroup(socket, group, buffer, messageBuffer, log);
+            this.listenToGroup(socket, group, buffer, messageReceiveBuffer, log);
         }
         catch (IOException e){
             e.printStackTrace();

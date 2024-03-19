@@ -18,18 +18,18 @@ class MarketDataJob {
     private final ExecutorService primary;
     private final ExecutorService backup;
 //
-    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 3, timeUnit = TimeUnit.SECONDS)
     public void multicastMessagesPrimary(){
         primary.execute(() -> iterateAndSend(true));
     }
 
-    @Scheduled(initialDelay = 200, fixedRate = 1000)
+    @Scheduled(initialDelay = 200, fixedRate = 3000)
     public void multicastMessagesBackup(){
         backup.execute(() -> iterateAndSend(false));
     }
 
     private void iterateAndSend(boolean isPrimary) {
-        for(int i=0 ; i<20 ; i++){
+        for(int i=0 ; i<1 ; i++){
             try {
                 engine.sendUpdates(isPrimary);
             } catch (InterruptedException e) {

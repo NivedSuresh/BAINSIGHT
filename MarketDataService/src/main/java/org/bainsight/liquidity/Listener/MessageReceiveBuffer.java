@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.util.concurrent.ExecutorService;
 
 @Component
-public class MessageBuffer {
+public class MessageReceiveBuffer {
 
     private static final int ORDER_BOOK_FETCH_RETRY_THRESHOLD = 2;
     private final ObjectMapper mapper;
@@ -26,11 +26,11 @@ public class MessageBuffer {
     @Value("${exchange.orderbook.url}")
     private String[] ORDER_BOOKS_URLS;
 
-    MessageBuffer(final ObjectMapper mapper,
-                  final RingBuffer<TickReceivedEvent> receiverBuffer,
-                  final WebClient.Builder builder,
-                  final ExecutorService orderBookExecutor,
-                  final ExecutorService greenExecutor)
+    MessageReceiveBuffer(final ObjectMapper mapper,
+                         final RingBuffer<TickReceivedEvent> receiverBuffer,
+                         final WebClient.Builder builder,
+                         final ExecutorService orderBookExecutor,
+                         final ExecutorService greenExecutor)
     {
         this.mapper = mapper;
         this.receiverBuffer = receiverBuffer;
@@ -77,7 +77,7 @@ public class MessageBuffer {
     private void fetchBookFrom(String orderBookUrl, int tryCount) {
         /* TODO: IMPLEMENT JOURNALING */
         if (tryCount > ORDER_BOOK_FETCH_RETRY_THRESHOLD) {
-            System.out.println("FAILED TO FETCH ORDER-BOOK FROM THE URL " + orderBookUrl + ". MAX RETRY LIMIT REACHED!");
+//            System.out.println("FAILED TO FETCH ORDER-BOOK FROM THE URL " + orderBookUrl + ". MAX RETRY LIMIT REACHED!");
             return;
         }
         this.webClient.get()
@@ -87,7 +87,7 @@ public class MessageBuffer {
                 .bodyToFlux(byte[].class)
                 .doOnError(throwable -> {
                     /* TODO: IMPLEMENT JOURNALING */
-                    System.out.println("EXCEPTION WHILE FETCHING ORDER_BOOK: TRY COUNT - " + tryCount + " FOR " + orderBookUrl + ". RETRYING THE SAME!");
+//                    System.out.println("EXCEPTION WHILE FETCHING ORDER_BOOK: TRY COUNT - " + tryCount + " FOR " + orderBookUrl + ". RETRYING THE SAME!");
                     fetchBookFrom(orderBookUrl, tryCount + 1);
                 })
                 .onErrorResume(throwable -> Mono.empty())

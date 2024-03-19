@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.net.*;
 
 interface GroupListener {
-    default void listenToGroup(MulticastSocket socket, InetAddress group, byte[] buffer, MessageBuffer messageBuffer, Logger log) throws IOException {
+    default void listenToGroup(MulticastSocket socket, InetAddress group, byte[] buffer, MessageReceiveBuffer messageReceiveBuffer, Logger log) throws IOException {
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         while (!Thread.currentThread().isInterrupted()) {
             try{
                 socket.receive(packet);
-                messageBuffer.offer(packet.getData());
+                messageReceiveBuffer.offer(packet.getData());
             }
             catch(IOException e){ log.error("Failed to receive packets"); }
         }
