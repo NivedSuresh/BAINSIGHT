@@ -3,6 +3,7 @@ package com.exchange.matchingengine.MarketDataSimulation.Simulation;
 
 import com.exchange.matchingengine.MarketDataSimulation.Enums.PushTo;
 import com.exchange.matchingengine.MarketDataSimulation.Models.TickerEx;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.util.Objects;
+import java.time.ZoneId;
+import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -22,7 +24,8 @@ class MarketDataEngine {
     private final MarketData marketData;
     private final Gson gson;
     private final MulticastSocket socket;
-    private AtomicLong sequence = new AtomicLong(0);
+    private final ZoneId zoneId = ZoneId.of("Asia/Kolkata");
+    private final AtomicLong sequence = new AtomicLong(0);
 
     private final Queue<Tick> backupBuffer;
     public MarketDataEngine(final MarketData marketData,
@@ -33,53 +36,60 @@ class MarketDataEngine {
         this.backupBuffer = new ArrayBlockingQueue<>(1000);
     }
 
-    public void sendUpdates(boolean primary) throws InterruptedException {
+
+    public void sendUpdates(boolean primary) throws JsonProcessingException {
         if(primary && !marketData.getDequeA().isEmpty()) bufferA();
         else if(primary && !marketData.getDequeB().isEmpty()) bufferB();
         else if(!primary) bufferBackup();
     }
 
-    private void bufferBackup() throws InterruptedException {
+    private void bufferBackup() {
         while (!backupBuffer.isEmpty()){
             Tick tick = backupBuffer.poll();
             if(tick == null) return;
-            Thread.sleep(10);
             multicastTick(tick);
         }
-        System.out.println("Backup buffer size after polling : " + backupBuffer.size());
     }
 
-    private void bufferA() throws InterruptedException {
+    private void bufferA() throws JsonProcessingException {
+
         int count = 0;
         int random = (int) (Math.random() * 100) + 1;
         while (!marketData.getDequeA().isEmpty()){
             TickerEx meta = marketData.getDequeA().poll();
             Tick tick = marketData.getRandomTick(meta, PushTo.QUEUE_B, getExchange());
-            count = updateBufferAndBookThenSend(count, random, tick);
+            count = backupAndMulticast(count, random, tick);
         }
     }
 
-    private void bufferB() throws InterruptedException {
+
+    public void bufferB() throws JsonProcessingException {
+
         int count = 0;
         int random = new Random().nextInt(50, 100);
         while (!marketData.getDequeB().isEmpty()){
             TickerEx meta = marketData.getDequeB().poll();
             Tick tick = marketData.getRandomTick(meta, PushTo.QUEUE_A, getExchange());
-            count = updateBufferAndBookThenSend(count, random, tick);
+
+            count = backupAndMulticast(count, random, tick);
         }
     }
 
-    private int updateBufferAndBookThenSend(int count, int random, Tick tick) throws InterruptedException {
+    private int backupAndMulticast(int count, int random, Tick tick) throws JsonProcessingException {
         backupBuffer.offer(tick);
-        this.marketData.getOrderBookSim().set(count, tick);
+        List<Tick> orderBook = this.marketData.getExchangeSpecificOrderBook().get(tick.getExchange());
+
+
+        orderBook.set(count, tick);
         if(++count % random == 0) {
-            System.out.println("Skipped : " + tick.getExchange() + " - " + tick.getSequenceNumber());
+            System.out.println(tick.getKey() + " - " + tick.getSequenceNumber());
             return count;
         }
-        Thread.sleep(10);
         multicastTick(tick);
         return count;
     }
+
+
 
     private void multicastTick(Tick tick) {
         try{
@@ -96,10 +106,14 @@ class MarketDataEngine {
         catch(IOException e){ e.printStackTrace();}
     }
 
-
+    private final Random random = new Random();
 
     private String getExchange(){
-        return this.sequence.incrementAndGet() % 2 == 0 ? "NSE" : "BSE";
+        int random = this.random.nextInt(1, 3);
+        return random % 2 == 0 ? "NSE" : "BSE";
     }
 
+
 }
+
+

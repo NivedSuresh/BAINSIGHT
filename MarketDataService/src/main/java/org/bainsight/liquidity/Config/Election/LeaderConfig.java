@@ -3,10 +3,11 @@ package org.bainsight.liquidity.Config.Election;
 import com.hazelcast.cluster.MembershipEvent;
 import com.hazelcast.cluster.MembershipListener;
 import com.hazelcast.config.Config;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 @Configuration
@@ -16,11 +17,12 @@ public class LeaderConfig implements MembershipListener {
     private HazelcastInstance hazelcast;
     private String leaderAddress;
 
-    private static boolean IS_LEADER = false;
+    public final static AtomicBoolean IS_LEADER = new AtomicBoolean(false);
 
     public LeaderConfig(Config config, HazelcastInstance instance) {
         this.hazelcast = instance;
         this.onStart();
+
     }
 
 
@@ -53,7 +55,7 @@ public class LeaderConfig implements MembershipListener {
 
     private void checkIfElected(){
         if(hazelcast.getCluster().getLocalMember().getSocketAddress().toString().equals(leaderAddress)){
-            IS_LEADER = true;
+            IS_LEADER .set(true);
             log.info("This node has been elected as the new leader!");
         }
     }

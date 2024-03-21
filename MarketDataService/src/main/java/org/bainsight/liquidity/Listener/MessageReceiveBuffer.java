@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 import java.util.concurrent.ExecutorService;
 
@@ -37,14 +38,6 @@ public class MessageReceiveBuffer {
         this.webClient = builder.build();
         this.orderBookExecutor = orderBookExecutor;
         this.greenExecutor = greenExecutor;
-
-
-//        LocalTime now = LocalTime.now();
-//        LocalTime start = LocalTime.of(8, 0);
-//        LocalTime end = LocalTime.of(16, 0);
-//
-//        /* Check if the current time is before 8 AM or after 4 PM */
-//        if (!now.isBefore(start) && !now.isAfter(end))
 
     }
 
@@ -91,11 +84,7 @@ public class MessageReceiveBuffer {
                     fetchBookFrom(orderBookUrl, tryCount + 1);
                 })
                 .onErrorResume(throwable -> Mono.empty())
-                .doOnComplete(() -> System.out.println("Function completed"))
-                .subscribe(bytes -> {
-                    System.out.println(bytes.length);
-                    this.offer(bytes);
-                });
+                .subscribe(this::offer);
     }
 
 
@@ -129,5 +118,6 @@ public class MessageReceiveBuffer {
         try{ return mapper.readValue(bytes, Tick.class); }
         catch (Exception e){ return null; }
     }
+
 
 }

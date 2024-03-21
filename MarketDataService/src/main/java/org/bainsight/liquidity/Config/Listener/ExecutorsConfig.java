@@ -25,6 +25,11 @@ public class ExecutorsConfig {
         return Executors.newSingleThreadExecutor();
     }
 
+    @Bean
+    public ExecutorService messageExecutor(){
+        return Executors.newSingleThreadExecutor();
+    }
+
 
     @Bean
     public ExecutorService greenExecutor(){

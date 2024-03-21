@@ -2,22 +2,23 @@
 
 ## Tools Used:
 
-* WebSocket.
+* TDD (TestContainers, JUNIT, Mockito)
 * Apache Kafka for streaming.
 * Flyway for database migrations.
-* Project Reactor to ensure scalability.
-* Redis Cluster.
-* Hazelcast embedded cache.
+* Hazelcast embedded cache for Leader election.
+* Spring Webflux to ensure scalability.
+* WebSocket.
 * Resilience4J as Circuit Breaker.
 * Spring Cloud Reactive Gateway as API Gateway.
 * Spring OAuth2 authorization server.
+* Redis Cluster.
+* ScyllaDB for Timeseries Data (Market Updates)
 * R2DBC with PostgreSQL for non-blocking database querying.
 * MongoDB Reactive
 * JobRunr for distributed jobs.
 * Zipkin for distributed logging.
 * UDP Multicasting for Exchange Layer.
 * Testcontainers.
-* TDD.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,7 +57,9 @@
 
 ## Market Data Processing with Redis Cluster and NoSQL Aggregation - MARKET DATA SERVICE (On Progress)
 
-This script outlines a process for handling market data updates from exchanges (NSE/BSE) for a broker that's not co-located.
+This script outlines a process for handling market data updates from exchanges (NSE/BSE) for a broker that's not co-located. The updates are received through UDP multicast. The user won't directly connect to this service but a seperate user layer. The MarketDataService will stream updates to the User layer and will also
+snapshot the current OrderBook each minute of the day from 9:00am till 3:30pm. The snapshots are persisted on ScyllaDB.
+
 
 Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-SERVICE?type=design&node-id=0%3A1&mode=design&t=OBxyYBzm23eqzfjY-1
 
@@ -68,50 +71,36 @@ Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-S
 
 **Proposed Approach:**
 
-1. **Role of Redis Cluster:**
+1. **Role of ScyllaDB:**
 
-        * Each market update is persisted/rewritten in the cluster.
-        * This data is the current state of the Market and can also be used for SOR/GTT/Stop Loss Orders by other services.
-        * Estimated size per update: 80 bytes (object + key).
+        * Market Data Snapshot persistance/History Persistnace.
 
 2. **Role of Hazelcast Embedded cache**
 
-        * Efficent and Secure distribued locking using FencedLock.
-        * Trending/Gainers/Losers (Tickers) are persisted and can be used by the UI during Homepage Initialization.
+        * Low latency Leader election. All nodes will listen to the UDP feeds and will have their state upto date but only
+          the leader would stream the tick updates to the UserService and take snapshots of the OrderBook.
 
-3. **Cron Job for Aggregation:**
+4. **Cron Job for Aggregation:**
 
-        * A cron job runs every 10 minutes to aggregate data from Redis.
+        * A cron job runs every 1 minute to aggregate data from Redis.
         * This aggregation could involve:
-        * Creating new candlestick objects representing the last 10 minutes.
+        * Creating new candlestick objects representing the last minute.
         * Calculating relevant market insights (e.g., symbol deviation within the last hour).
 
-4. **Further Aggregation with NoSQL:**
+5. **Further Aggregation with TimeseriesDB:**
 
-        * The aggregated data (e.g., candlesticks) is persisted in a NoSQL database for further analysis and historical tracking.
+        * The aggregated data (e.g., candlesticks) are persisted in a Timeseries database for further analysis and historical tracking.
 
-5. **UDP Multicasting**
+6. **UDP Multicasting**
 
         * The MarketDataService will recieve real time updates from the exchange through multicast groups.
         * UDP is made reliable by ensuring rate matching. (Virtual Threads and Multiple Instances listening to the same events)
         * Duplicate updations/persistance are avoided using distributed locking.
 
+7. **LMAX Disruptor**
 
-6. **Benefits:**
-
-        * Efficient storage and updates with in Redis.
-        * Flexible aggregation and insight generation using distributed jobs.
-        * Scalable storage of historical data in a NoSQL database.
-
-7. **Note:**
-
-        * This is a high-level overview. Actual implementation details and data sizes may vary.
-
-        **Further Considerations:**
-
-        * Data filtering strategies for selecting valuable updates in Redis.
-        * Error handling and data consistency across different storage layers. 
-
+       * Lmax Disruptor was used to ensure low latency message(ticks) processing. It was used to avoid locks and multicast messages
+         thus improving across the application thus enabling low latency and high through put.
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------

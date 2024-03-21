@@ -3,13 +3,11 @@ package org.bainsight.liquidity.Handler.Event;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
 import gnu.trove.set.hash.TLongHashSet;
-import org.bainsight.liquidity.Handler.Persistance.MessageBufferManager;
+import org.bainsight.liquidity.Handler.Persistance.RecentlyReceivedBuffer;
 import org.bainsight.liquidity.Model.Events.TickAcceptedEvent;
 import org.bainsight.liquidity.Model.Events.TickReceivedEvent;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -17,31 +15,36 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Component
+//@Component
 public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent> {
 
-    private final MessageBufferManager bufferManager;
+
+    private final RecentlyReceivedBuffer bufferManager;
 
     private final Map<String, Long> previousSequenceMap;
     private final  Map<String, TLongHashSet> missedMap;
     private final RingBuffer<TickAcceptedEvent> acceptedBuffer;
     private boolean isFirstMessage = true;
-    private final AtomicBoolean requireRecovery;
+    private final AtomicBoolean lock;
     private final ExecutorService recoveryExecutor;
+
+    private String[] profiles;
 
     @Value("${exchange.id}")
     private String[] exchanges;
 
-    public TickReceivedEventHandler(final MessageBufferManager bufferManager,
+    public TickReceivedEventHandler(final RecentlyReceivedBuffer bufferManager,
                                     final RingBuffer<TickAcceptedEvent> acceptedBuffer,
                                     final ExecutorService recoveryExecutor,
-                                    final @Value("${exchange.id}") String[] exchanges) {
+                                    final @Value("${exchange.id}") String[] exchanges,
+                                    final @Value("${spring.profiles.active}") String[] profiles) {
         this.bufferManager = bufferManager;
         this.acceptedBuffer = acceptedBuffer;
         this.recoveryExecutor = recoveryExecutor;
-        this.requireRecovery = new AtomicBoolean(false);
+        this.lock = new AtomicBoolean(false);
 
         this.exchanges = exchanges;
+        this.profiles = profiles;
 
         this.missedMap = new HashMap<>(exchanges.length);
         this.previousSequenceMap = new HashMap<>(exchanges.length);
@@ -49,6 +52,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
             previousSequenceMap.put(exchange, 0L);
             missedMap.put(exchange, new TLongHashSet());
         }
+
     }
 
 
@@ -56,6 +60,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
 
     @Override
     public void onEvent(TickReceivedEvent recEv, long rSeq, boolean endOfBatch) {
+
         Tick tick = recEv.getTick();
         String key = tick.getKey();
 
@@ -104,15 +109,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
         updateLastReceived(received, tick.getExchange());
 
 
-        /* TODO: CHECK WHY ATOMIC BOOLEAN ISN'T BEING UPDATED FOR THIS THREAD */
-//        if(this.requireRecovery.get())
-//        {
-//            Map<String, TLongHashSet> recoveryMap = new HashMap<>(this.missedMap);
-//            this.recoveryExecutor.execute(() -> requestTcpRecovery(recoveryMap));
-//        }
-
         recEv.clear();
-
     }
 
     private void logInvalidExchangeReceived(Tick tick) {
@@ -130,9 +127,11 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
         while (expected < received) missed.add(expected++);
     }
 
-    @Scheduled(fixedRate = 1000)
+
     public void requireRecovery(){
-        this.requireRecovery.set(false);
+//        System.out.println("recovery");
+//        Map<String, TLongHashSet> recoveryMap = new HashMap<>(this.missedMap);
+//        this.recoveryExecutor.execute(() -> requestTcpRecovery(recoveryMap));
     }
 
 
@@ -144,7 +143,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
      * */
     private void requestTcpRecovery(Map<String, TLongHashSet> recovery)
     {
-
+        System.out.println(recovery);
     }
 
 
@@ -156,7 +155,12 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
             this.missedMap.get(exchange).clear();
             this.previousSequenceMap.put(exchange, 0L);
         }
-        this.requireRecovery.set(true);
     }
 
+    public RecentlyReceivedBuffer getBufferManager() {
+        for(String profile : profiles){
+            if(profile.equals("test")) return this.bufferManager;
+        }
+        return null;
+    }
 }

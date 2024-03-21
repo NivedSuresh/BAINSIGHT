@@ -1,10 +1,8 @@
 package org.bainsight.liquidity.Handler.Persistance;
 
-import jakarta.annotation.PostConstruct;
 import org.bainsight.liquidity.Model.Dto.CandleStick;
 import org.bainsight.liquidity.Model.Dto.ExchangeStick;
 import org.exchange.library.Dto.MarketRelated.Tick;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.ZoneId;
@@ -13,7 +11,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
-public class CandleManagerBuffer {
+public class CandleStickBuffer {
 
     /* Will persist CandleStick info for all Exchanges */
     private final Map<String, List<ExchangeStick>> stickManager;
@@ -24,7 +22,7 @@ public class CandleManagerBuffer {
     private final ZoneId zoneId;
 
 
-    public CandleManagerBuffer()
+    public CandleStickBuffer()
     {
         this.aggregatedSticks = new HashMap<>();
         this.stickManager = new HashMap<>();
@@ -37,10 +35,12 @@ public class CandleManagerBuffer {
 
     /** Will take a CandleStick from a specific exchange and returns
     a combined stick of all exchanges plus updates the current state **/
-    public CandleStick getCombinedStick(final Tick tick)
+    public CandleStick updateAndGetCandleStick(final Tick tick)
     {
 
         while (lock.get());
+
+        lock.set(true);
 
         /* Get all Sticks from all exchanges, if null then create a new empty List */
         List<ExchangeStick> sticks = stickManager.computeIfAbsent(
@@ -68,6 +68,7 @@ public class CandleManagerBuffer {
         CandleStick combinedStick = getUpdatedStick(sticks, tick);
         aggregatedSticks.put(tick.getSymbol(), combinedStick);
 
+        lock.set(false);
         return combinedStick;
     }
 
@@ -84,18 +85,13 @@ public class CandleManagerBuffer {
         long volume = 0;
 
         for(ExchangeStick stick : sticks){
+            change = Math.min(change, stick.getChange());
             low = Math.min(low, stick.getLow());
             high = Math.max(high, stick.getHigh());
             open = Math.min(open, stick.getOpen());
             close = Math.min(close, stick.getClose());
             volume += stick.getVolume();
         }
-
-        low = (double) Math.round(low * 100) / 100;
-        high = (double) Math.round(high * 100) / 100;
-        open = (double) Math.round(open * 100) / 100;
-        close = (double) Math.round(close * 100) / 100;
-        change = (double) Math.round(change * 100) / 100;
 
 
         return CandleStick.builder()
@@ -112,8 +108,12 @@ public class CandleManagerBuffer {
 
 
     public Map<String, CandleStick> getSnapshot(){
+        while (lock.get());
         lock.set(true);
+        /* Capture last minute's snapshot */
         HashMap<String, CandleStick> clone = new HashMap<>(this.aggregatedSticks);
+        /* Reset after capturing snapshot */
+        this.reset();
         lock.set(false);
         return clone;
     }

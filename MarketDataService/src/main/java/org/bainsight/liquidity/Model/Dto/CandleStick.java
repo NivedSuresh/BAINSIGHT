@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 @Builder
 public class CandleStick {
     private String symbol;
-    public ZonedDateTime timeStamp;
+    private ZonedDateTime timeStamp;
     private Double open;
     private Double high;
     private Double close;

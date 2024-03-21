@@ -1,21 +1,14 @@
 package com.exchange.matchingengine.MarketDataSimulation.Simulation;
 
-import com.exchange.matchingengine.MarketDataSimulation.Enums.PushTo;
-import com.exchange.matchingengine.MarketDataSimulation.Models.TickerEx;
 import com.google.gson.Gson;
-import lombok.RequiredArgsConstructor;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import java.net.InetAddress;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RequestMapping("/stock/orderbook")
 @RestController
@@ -37,8 +30,10 @@ public class OrderBookController {
      * */
     @GetMapping
     public Flux<byte[]> getOrderBook(){
+        List<Tick> allTicks = new ArrayList<>(marketData.getExchangeSpecificOrderBook().get("NSE"));
+        allTicks.addAll(marketData.getExchangeSpecificOrderBook().get("BSE"));
         return Flux.create(fluxSink -> {
-            for(Tick tick : marketData.getOrderBookSim()){
+            for(Tick tick : allTicks){
                 if(tick == null) {
                     fluxSink.complete();
                     return;

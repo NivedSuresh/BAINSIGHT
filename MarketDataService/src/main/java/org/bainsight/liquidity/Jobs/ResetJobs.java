@@ -1,9 +1,8 @@
 package org.bainsight.liquidity.Jobs;
 
 import lombok.RequiredArgsConstructor;
-import org.bainsight.liquidity.Handler.Event.TickReceivedEventHandler;
-import org.bainsight.liquidity.Handler.Persistance.CandleManagerBuffer;
-import org.bainsight.liquidity.Handler.Persistance.MessageBufferManager;
+import org.bainsight.liquidity.Handler.Persistance.CandleStickBuffer;
+import org.bainsight.liquidity.Handler.Persistance.RecentlyReceivedBuffer;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,16 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResetJobs {
 
-
-    private final MessageBufferManager messageBufferManager;
-    private final TickReceivedEventHandler receivedEventHandler;
-    private final CandleManagerBuffer candleManagerBuffer;
-
+    private final RecentlyReceivedBuffer recentlyReceivedBuffer;
+    private final CandleStickBuffer candleStickBuffer;
 
     @Scheduled(cron = "0 0 16 * * *")
     public void reset(){
-        this.receivedEventHandler.reset();
-        this.messageBufferManager.reset();
-        this.candleManagerBuffer.reset();
+        this.recentlyReceivedBuffer.reset();
+        this.candleStickBuffer.reset();
     }
+
 }

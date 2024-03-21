@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.Objects;
 
 
 @AllArgsConstructor
@@ -63,6 +64,18 @@ public class Tick { //Estimated of 233Bytes
     // Order book depth data (map of price levels to depth information)
     private MarketDepth marketDepth;
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Tick tick = (Tick) object;
+        return Objects.equals(symbol, tick.symbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(symbol);
+    }
 
     public String getKey(){
         return this.getExchange().concat(":").concat(this.getSymbol());

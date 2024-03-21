@@ -1,20 +1,20 @@
 package org.bainsight.liquidity.Handler.Persistance;
 
 
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Component
-public class MessageBufferManager {
+public class RecentlyReceivedBuffer {
 
-    private Map<String, Long> managerMap;
+    private final Map<String, Long> managerMap;
 
 
-    public MessageBufferManager() {
+    public RecentlyReceivedBuffer() {
         this.managerMap = new HashMap<>();
     }
 
@@ -34,6 +34,14 @@ public class MessageBufferManager {
     }
 
 
+    @Value("${spring.profiles.active}")
+    private String[] profiles;
+    public Map<String, Long> getManagerMap() {
+        for(String profile : profiles){
+            if(profile.equals("test")) return this.managerMap;
+        }
+        return null;
+    }
 
     public void reset() {
         this.managerMap.clear();
