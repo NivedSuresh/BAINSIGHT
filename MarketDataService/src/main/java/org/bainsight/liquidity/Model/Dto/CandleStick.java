@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +22,5 @@ public class CandleStick {
     private Double low;
     private Double change;
     private Long volume;
+    private List<ExchangePrice> exchangePrices;
 }

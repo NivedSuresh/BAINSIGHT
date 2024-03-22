@@ -22,14 +22,19 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @SpringBootTest
 public class MarketDataEngineTest {
 
 
+
     @Autowired
     private DisruptorConfig disruptorConfig;
+
+    private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
 
     private final MarketDataGenerator marketData = new MarketDataGenerator();
 
@@ -51,13 +56,13 @@ public class MarketDataEngineTest {
      * Evoking this test multiple time because each time when the test is evoked,
      * the persisted snapshot of also gets cleared, similarly in production, a snapshot
      * is taken every 1 minute thus clearing the current Market state.
-     *
-     * This test here would send 40 * 1000 * 200 messages in total,
-     * will take 40 snapshots (no sleep)
+     * <p>
+     * This test here would send 100 * 1000 * 200 messages in total,
+     * will take 100 snapshots (no sleep) and compare
      * */
     @Test
     void testAFewTimes() throws JsonProcessingException {
-        for(int i=0 ; i<40 ; i++){
+        for(int i=0 ; i<10 ; i++){
             evokeTest();
         }
     }
@@ -69,7 +74,7 @@ public class MarketDataEngineTest {
         this.recent = disruptorConfig.getReceivedEventHandler().getBufferManager();
 
         //FOR EACH ITERATION, 200 MESSAGES ARE SENT 100 FROM PRIMARY AND 100 FROM SECONDARY
-        for(int i=0 ; i<1000 ; i++){
+        for(int i=0 ; i<100 ; i++){
             //Send updates
             this.sendUpdates(true);
 

@@ -25,11 +25,10 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
     @Override
     public void onEvent(TickAcceptedEvent event, long sequence, boolean endOfBatch) {
 
-        System.out.println(event.getTick());
-
         if (!LeaderConfig.IS_LEADER.get() || sequence % totalHandlers != shard) return;
         Tick tick = event.getTick();
         CandleStick combinedStick = this.candleStickBuffer.updateAndGetCandleStick(tick);
+
     }
 
 

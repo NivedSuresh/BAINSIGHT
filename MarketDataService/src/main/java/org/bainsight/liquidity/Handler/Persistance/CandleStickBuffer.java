@@ -1,6 +1,7 @@
 package org.bainsight.liquidity.Handler.Persistance;
 
 import org.bainsight.liquidity.Model.Dto.CandleStick;
+import org.bainsight.liquidity.Model.Dto.ExchangePrice;
 import org.bainsight.liquidity.Model.Dto.ExchangeStick;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Component
 public class CandleStickBuffer {
 
-    /* Will persist CandleStick info for all Exchanges */
+    /** Will persist CandleStick info for all Exchanges: {symbol = [nseStick, bseStick]} */
     private final Map<String, List<ExchangeStick>> stickManager;
 
     /* Will persist common CandleStick info by aggregating data from all exchanges */
@@ -84,7 +85,9 @@ public class CandleStickBuffer {
         double change = Double.MAX_VALUE;
         long volume = 0;
 
-        for(ExchangeStick stick : sticks){
+
+        for(ExchangeStick stick : sticks)
+        {
             change = Math.min(change, stick.getChange());
             low = Math.min(low, stick.getLow());
             high = Math.max(high, stick.getHigh());
@@ -93,6 +96,26 @@ public class CandleStickBuffer {
             volume += stick.getVolume();
         }
 
+        CandleStick candleStick = this.aggregatedSticks.get(tick.getSymbol());
+        List<ExchangePrice> exchangePrices = computePricesIfAbsentFromCandle(candleStick, tick);
+
+        ZonedDateTime timeStamp = ZonedDateTime.ofInstant(tick.getTickTimestamp(), zoneId);
+
+
+        /* Reuse the object if exists, helps with Garbage Collection */
+        if(candleStick != null){
+
+            candleStick.setLow(low);
+            candleStick.setHigh(high);
+            candleStick.setOpen(open);
+            candleStick.setClose(close);
+            candleStick.setChange(change);
+            candleStick.setVolume(volume);
+            candleStick.setTimeStamp(timeStamp);
+            candleStick.setExchangePrices(exchangePrices);
+
+            return candleStick;
+        }
 
         return CandleStick.builder()
                     .low(low)
@@ -100,10 +123,39 @@ public class CandleStickBuffer {
                     .open(open)
                     .close(close)
                     .symbol(tick.getSymbol())
-                    .timeStamp(ZonedDateTime.ofInstant(tick.getTickTimestamp(), zoneId))
+                    .timeStamp(timeStamp)
                     .volume(volume)
                     .change(change)
+                    .exchangePrices(exchangePrices)
                     .build();
+    }
+
+    private List<ExchangePrice> computePricesIfAbsentFromCandle(CandleStick candleStick, Tick tick)
+    {
+        List<ExchangePrice> exchangePrices = null;
+        String forExchange = tick.getExchange();
+
+        if(candleStick != null)
+        {
+            exchangePrices = candleStick.getExchangePrices();
+            boolean found = false;
+            for(ExchangePrice exchangePrice : exchangePrices) {
+                String iterableExchange = exchangePrice.getExchange();
+                if(iterableExchange.equals(forExchange)){
+                    exchangePrice.setLastTradedPrice(tick.getLastTradedPrice());
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) exchangePrices.add(new ExchangePrice(tick.getExchange(), tick.getLastTradedPrice()));
+        }
+        else
+        {
+            exchangePrices = new ArrayList<>();
+            exchangePrices.add(new ExchangePrice(tick.getExchange(), tick.getLastTradedPrice()));
+        }
+
+        return exchangePrices;
     }
 
 
@@ -123,6 +175,7 @@ public class CandleStickBuffer {
     private ExchangeStick getExchangeStick(Tick tick) {
         return ExchangeStick.builder()
                 .exchange(tick.getExchange())
+                .lastTradedPrice(tick.getLastTradedPrice())
                 .low(tick.getLowPrice())
                 .high(tick.getHighPrice())
                 .open(tick.getOpenPrice())

@@ -121,9 +121,9 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
     }
 
     private void markOutOfOrder(long expected, long received, TLongHashSet missed) {
-        for(String exchange : exchanges){
-            System.out.println("MISSING MESSAGE COUNT FOR " + exchange + ": " + missed.size());
-        }
+//        for(String exchange : exchanges){
+//            System.out.println("MISSING MESSAGE COUNT FOR " + exchange + ": " + missed.size());
+//        }
         while (expected < received) missed.add(expected++);
     }
 

@@ -5,33 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Sinks/SinksConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/MarketDataEngineTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/Models/PushTo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/Models/TickerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Dto/ExchangePrice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ZDocker/Scylla/docker-compose-scylla.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Election/LeaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Election/LeaderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/ExecutorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Config/Listener/ExecutorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Event/CandleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Event/CandleHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Event/TickReceivedEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Event/TickReceivedEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/CandleManagerBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/MessageBufferManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/RecentlyReceivedBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Jobs/ListenerJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Jobs/ListenerJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Jobs/ResetJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Jobs/ResetJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageReceiveBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Listener/MessageReceiveBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Dto/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/LiquidityServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/MarketDataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/TestLiquidityServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/OrderBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/OrderBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Depth.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Depth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Dto/ExchangeStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity/Model/Dto/ExchangeStick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/liquidity/MarketDataEngineTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZDocker/dependencies-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ZDocker/Redis/dependencies-compose-reddit.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +80,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
+    "Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
@@ -125,7 +110,7 @@
     "JUnit.ExchangeUserTests.testTest.executor": "Run",
     "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
     "JUnit.MarketDataEngineTest.executor": "Run",
-    "JUnit.MarketDataEngineTest.testAFewTimes.executor": "Debug",
+    "JUnit.MarketDataEngineTest.testAFewTimes.executor": "Run",
     "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
     "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
     "JUnit.RiskManagementApplicationTests.executor": "Run",
@@ -204,11 +189,11 @@
       <recent name="$PROJECT_DIR$/PersistanceExchange/src/main/resources/db/migration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ZDocker/Redis" />
+      <recent name="$PROJECT_DIR$/ZDocker/Scylla" />
       <recent name="$PROJECT_DIR$/ZRedisConfig" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/AdminService/src/main/resources" />
-      <recent name="$PROJECT_DIR$/RiskManagement/src/main/resources" />
-      <recent name="$PROJECT_DIR$/BrokerService/src/main/resources/db/queries" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.bainsight.liquidity" />
@@ -233,7 +218,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MarketDataGenerator">
+  <component name="RunManager" selected="JUnit.MarketDataEngineTest.testAFewTimes">
     <configuration name="AuthServiceTests.testRenewJwt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthService" />
       <extension name="coverage">
@@ -246,37 +231,6 @@
       <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.AuthServiceTests" />
       <option name="METHOD_NAME" value="testRenewJwt" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthServiceTests.testSuccessfulAuthentication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AuthService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.exchange.user.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
-      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.AuthServiceTests" />
-      <option name="METHOD_NAME" value="testSuccessfulAuthentication" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClientServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AuthService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.exchange.user.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
-      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.ClientServiceTests" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -308,6 +262,22 @@
       <option name="PACKAGE_NAME" value="org.bainsight.liquidity" />
       <option name="MAIN_CLASS_NAME" value="org.bainsight.liquidity.MarketDataEngineTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarketDataEngineTest.testAFewTimes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MarketDataService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bainsight.liquidity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.bainsight.liquidity" />
+      <option name="MAIN_CLASS_NAME" value="org.bainsight.liquidity.MarketDataEngineTest" />
+      <option name="METHOD_NAME" value="testAFewTimes" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -399,6 +369,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Scylla/docker-compose-scylla.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="ZDocker/Scylla/docker-compose-scylla.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -406,13 +384,13 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment" />
+      <item itemvalue="JUnit.MarketDataEngineTest.testAFewTimes" />
       <item itemvalue="JUnit.MarketDataEngineTest" />
       <item itemvalue="JUnit.AuthServiceTests.testRenewJwt" />
       <item itemvalue="JUnit.ClientServiceTests.testSignup" />
-      <item itemvalue="JUnit.AuthServiceTests.testSuccessfulAuthentication" />
-      <item itemvalue="JUnit.ClientServiceTests" />
+      <item itemvalue="Spring Boot.MarketData" />
       <item itemvalue="Spring Boot.JournalServiceApplication" />
-      <item itemvalue="Spring Boot.MarketDataGenerator" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.AuthService" />
       <item itemvalue="Spring Boot.ClientManagement" />
@@ -424,11 +402,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MarketDataEngineTest.testAFewTimes" />
+        <item itemvalue="Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment" />
         <item itemvalue="JUnit.MarketDataEngineTest" />
         <item itemvalue="JUnit.ClientServiceTests.testSignup" />
         <item itemvalue="JUnit.AuthServiceTests.testRenewJwt" />
-        <item itemvalue="JUnit.AuthServiceTests.testSuccessfulAuthentication" />
-        <item itemvalue="JUnit.ClientServiceTests" />
       </list>
     </recent_temporary>
   </component>
@@ -544,7 +522,8 @@
       <workItem from="1710886012389" duration="1457000" />
       <workItem from="1710888799473" duration="3420000" />
       <workItem from="1710953964433" duration="9094000" />
-      <workItem from="1711017731426" duration="34869000" />
+      <workItem from="1711017731426" duration="36041000" />
+      <workItem from="1711094807578" duration="6017000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

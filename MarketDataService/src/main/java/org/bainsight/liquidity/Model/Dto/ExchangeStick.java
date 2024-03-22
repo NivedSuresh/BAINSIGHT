@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 @Builder
 public class ExchangeStick {
     private String exchange;
+    private double lastTradedPrice;
     private Double open;
     private Double high;
     private Double close;
