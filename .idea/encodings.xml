@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/AuthService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AuthService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BainsightGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BrokerGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BrokerRegistry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BrokerService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BrokerUserService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ConfigServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExchangeAdminService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JournalService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/JournalService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MarketDataService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MarketDataService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OrderManagement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RiskManagement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServiceRegistry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestExchangeEnv/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestExchangeEnv/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/YLibrary/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/YLibrary/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

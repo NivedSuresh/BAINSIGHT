@@ -1,0 +1,118 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: exchange-gateway
+
+
+  #Gateway Specific
+  cloud:
+    gateway:
+      routes:
+        #Service Registry
+        - id: service-registry
+          uri: http://localhost:8761
+          filters:
+            - SetPath=/
+          predicates:
+            - Path=/eureka
+
+
+        - id: service-registry-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+
+        #RiskManagement
+        - id: risk-management
+          uri: lb://risk-management
+          predicates:
+            - Path=/api/exchange/risk/**
+            - Method=GET,PUT,POST,DELETE
+          filters:
+            - HeaderManipulationFilter
+
+
+        #MatchingEngine
+        - id: matching-engine
+          uri: lb://matching-engine
+          predicates:
+            - Path=/api/exchange/engine/**
+            - Method=GET,PUT,POST,DELETE
+
+
+        #UserService Client
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/bainsight/auth/**
+            - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
+
+        #UserService Client
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/bainsight/admin/**
+            - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
+
+
+
+
+            #OrderPersistence
+        - id: persistence-exchange
+          uri: lb://persistence-exchange
+          predicates:
+            - Path=/api/exchange/persist/**
+            - Method=GET,PUT,POST
+
+
+        #LoggingExchange
+        - id: logging-exchange
+          uri: lb://logging-exchange
+          predicates:
+            - Path=/api/exchange/log/**
+            - Method=GET,PUT,POST
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+
+#EUREKA
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 10
+#    lease-expiration-duration-in-seconds: 30
+#    metadata-map:
+#      replication: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+#    register-with-eureka: true
+#    fetch-registry: true
+
+
+
+
+#LOGGING
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: debug
+        cloud:
+          gateway: trace
+          route:
+            RouteDefinitionLocator: info
+rsa:
+  private-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/private.pem
+  public-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/public.pem
