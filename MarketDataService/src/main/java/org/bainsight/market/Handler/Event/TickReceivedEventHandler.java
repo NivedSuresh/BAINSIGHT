@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-//@Component
+
 public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent> {
 
 

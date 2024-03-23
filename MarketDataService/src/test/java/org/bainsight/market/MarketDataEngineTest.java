@@ -8,6 +8,8 @@ import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
 import org.bainsight.market.Handler.Persistance.RecentlyReceivedBuffer;
 import org.bainsight.market.Listener.MessageReceiveBuffer;
 import org.bainsight.market.Model.Dto.CandleStick;
+import org.bainsight.market.Model.Dto.VolumeWrapper;
+import org.bainsight.market.Models.TestStick;
 import org.bainsight.market.Models.PushTo;
 import org.bainsight.market.Models.TickerEx;
 import org.exchange.library.Dto.MarketRelated.Tick;
@@ -17,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -28,11 +29,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class MarketDataEngineTest {
 
 
-
     @Autowired
     private DisruptorConfig disruptorConfig;
 
     private final MarketDataGenerator marketData = new MarketDataGenerator();
+
+    private Map<String, TestStick> testStickMap = new HashMap<>();
 
     private final Random random= new Random();
 
@@ -45,20 +47,24 @@ public class MarketDataEngineTest {
 
     private RecentlyReceivedBuffer recent;
 
+    private final Map<String, List<VolumeWrapper>> volumeMap = new HashMap<>();
+    private final Map<String, Long> totalVolumeMap = new HashMap<>();
+
     private final ZoneId zoneId = ZoneId.of("Asia/Kolkata");
+
 
 
     /**
      * Evoking this test multiple time because each time when the test is evoked,
-     * the persisted snapshot of also gets cleared, similarly in production, a snapshot
+     * the persisted snapshot also gets cleared, similarly in production, a snapshot
      * is taken every 1 minute thus clearing the current Market state.
      * <p>
-     * This test here would send 100 * 1000 * 200 messages in total,
+     * This test here would send 1000 * 100 * 200 messages in total,
      * will take 100 snapshots (no sleep) and compare
      * */
     @Test
     void testAFewTimes() throws JsonProcessingException {
-        for(int i=0 ; i<10 ; i++){
+        for(int i=0 ; i<1000 ; i++){
             evokeTest();
         }
     }
@@ -74,8 +80,6 @@ public class MarketDataEngineTest {
             //Send updates
             this.sendUpdates(true);
 
-            // A small delay between primary and secondary/backup update
-//            Thread.sleep(50);
         /*
             Some updates are skipped when primary is set to true during testing, this
             is done to replicate the behavior of UDP multicasting. (NB: UDP is only
@@ -104,44 +108,8 @@ public class MarketDataEngineTest {
 
         assertSnapshot();
 
-
     }
 
-
-    /**
-     * Will validate the snapshot.
-     * */
-    public void assertSnapshot(){
-        //ASSERTION 2
-        CandleHandler candleHandler = disruptorConfig.getCandleHandler();
-        CandleStickBuffer candleStickBuffer = candleHandler.getCandleStickBuffer();
-        Map<String, CandleStick> snapshot = candleStickBuffer.getSnapshot();
-
-        Map<String, List<Tick>> exchangeSpecificOrderBook = this.marketData.getExchangeSpecificOrderBook();
-        List<Tick> nse = exchangeSpecificOrderBook.get("NSE");
-        List<Tick> bse = exchangeSpecificOrderBook.get("BSE");
-
-
-        List<CandleStick> sentSticksCombined = getSentSticksCombined(nse, bse);
-
-        for(CandleStick stick : sentSticksCombined){
-
-            double high = snapshot.get(stick.getSymbol()).getHigh();
-            double low = snapshot.get(stick.getSymbol()).getLow();
-            double change = snapshot.get(stick.getSymbol()).getChange();
-            double open = snapshot.get(stick.getSymbol()).getOpen();
-            double close = snapshot.get(stick.getSymbol()).getClose();
-            long volume = snapshot.get(stick.getSymbol()).getVolume();
-
-            Assertions.assertEquals(close, stick.getClose());
-            Assertions.assertEquals(high, stick.getHigh());
-            Assertions.assertEquals(change, stick.getChange());
-            Assertions.assertEquals(open, stick.getOpen());
-            Assertions.assertEquals(low, stick.getLow());
-            Assertions.assertEquals(volume, stick.getVolume());
-
-        }
-    }
 
 
     /**
@@ -152,11 +120,11 @@ public class MarketDataEngineTest {
 
 
         // ASSERTION 1
-       Map<String, Long> managerMap = recent.getManagerMap();
-       String key = tick.getKey();
+        Map<String, Long> managerMap = recent.getManagerMap();
+        String key = tick.getKey();
 
 
-       Long seq = managerMap.get(tick.getKey());
+        Long seq = managerMap.get(tick.getKey());
 
             /*
                 The update in the OrderBook { exchange:symbol = sequence }
@@ -177,58 +145,38 @@ public class MarketDataEngineTest {
 
     }
 
-    private List<CandleStick> getSentSticksCombined(List<Tick> nse, List<Tick> bse) {
 
 
-        List<CandleStick> sticks = new ArrayList<>();
 
-        for(Tick nseTick : nse){
-            for(Tick bseTick : bse){
-                if(nseTick == null && bseTick == null) break;
-                if(nseTick == null) nseTick = new Tick();
-                if(bseTick == null) bseTick = new Tick();
+    /**
+     * Will validate the snapshot.
+     * */
+    public void assertSnapshot(){
+        //ASSERTION 2
+        CandleHandler candleHandler = disruptorConfig.getCandleHandler();
+        CandleStickBuffer candleStickBuffer = candleHandler.getCandleStickBuffer();
+        Map<String, TestStick> testStickMap = this.testStickMap;
+        Map<String, CandleStick> snapshot = candleStickBuffer.getSnapshot();
 
-                if(Objects.equals(nseTick.getSymbol(), bseTick.getSymbol())){
-                    sticks.add(combineTicks(nseTick, bseTick));
-                }
-            }
+
+        for(String key : testStickMap.keySet()){
+            TestStick testStick = testStickMap.get(key);
+            CandleStick candleStick = snapshot.get(key);
+
+            Assertions.assertEquals(testStick.getChange(), candleStick.getChange());
+            Assertions.assertEquals(testStick.getLow(), candleStick.getLow());
+            Assertions.assertEquals(testStick.getHigh(), candleStick.getHigh());
+            Assertions.assertEquals(testStick.getOpen(), candleStick.getOpen());
+            Assertions.assertEquals(testStick.getClose(), candleStick.getClose());
+            Assertions.assertEquals(testStick.getVolume(), candleStick.getVolume());
+
         }
 
-
-        return sticks;
-
+        /* reset open close map as snapshots also get reset */
+        this.testStickMap.clear();
     }
 
-    private CandleStick combineTicks(Tick nseTick, Tick bseTick) {
 
-
-        double low = Math.min(bseTick.getLowPrice(), nseTick.getLowPrice());
-        double high = Math.max(bseTick.getHighPrice(), nseTick.getHighPrice());
-        double open = Math.min(bseTick.getOpenPrice(), nseTick.getOpenPrice());
-        double close = Math.min(bseTick.getClosePrice(), nseTick.getClosePrice());
-        double change = Math.min(bseTick.getChange(), nseTick.getChange());
-        long volume = bseTick.getVolume() + nseTick.getVolume();
-
-
-
-        Instant largest = bseTick.getTickTimestamp() == null ? nseTick.getTickTimestamp() :
-                          (bseTick.getTickTimestamp().isBefore(nseTick.getTickTimestamp()) ?
-                          nseTick.getTickTimestamp() : bseTick.getTickTimestamp());
-
-
-        return CandleStick.builder()
-                .symbol(nseTick.getSymbol())
-                .change(change)
-                .volume(volume)
-                .close(close)
-                .low(low)
-                .high(high)
-                .open(open)
-                .timeStamp(ZonedDateTime.ofInstant(largest, zoneId))
-                .build();
-
-
-    }
 
     public void sendUpdates(boolean primary) throws JsonProcessingException {
         if(primary && !marketData.getDequeA().isEmpty()) bufferA();
@@ -273,11 +221,73 @@ public class MarketDataEngineTest {
         backupBuffer.offer(tick);
         List<Tick> orderBook = this.marketData.getExchangeSpecificOrderBook().get(tick.getExchange());
 
+        generateTestStick(tick);
 
         orderBook.set(count, tick);
         if(++count % random == 0) return count;
         multicastTick(tick);
         return count;
+    }
+
+    private void generateTestStick(Tick tick) {
+        TestStick testStick = this.testStickMap.get(tick.getSymbol());
+        final double lastTradedPrice = tick.getLastTradedPrice();
+        long volume = updateVolumeMap(tick);
+        if(testStick == null)
+        {
+            testStick = TestStick.builder()
+                    .timeStamp(ZonedDateTime.ofInstant(tick.getTickTimestamp(), zoneId))
+                    .low(lastTradedPrice)
+                    .high(lastTradedPrice)
+                    .open(lastTradedPrice)
+                    .close(lastTradedPrice)
+                    .volume(volume)
+                    .change(0.0)
+                    .build();
+            this.testStickMap.put(tick.getSymbol(), testStick);
+        }
+        else
+        {
+            if(testStick.getTimeStamp().isAfter(ZonedDateTime.ofInstant(tick.getTickTimestamp(), zoneId))) return;;
+            testStick.setTimeStamp(ZonedDateTime.ofInstant(tick.getTickTimestamp(), zoneId));
+            testStick.setLow(Math.min(testStick.getLow(), tick.getLastTradedPrice()));
+            testStick.setHigh(Math.max(testStick.getHigh(), tick.getLastTradedPrice()));
+            testStick.setClose(tick.getLastTradedPrice());
+            testStick.setChange(Math.round(lastTradedPrice - testStick.getOpen()));
+            testStick.setVolume(volume);
+            this.testStickMap.put(tick.getSymbol(), testStick);
+        }
+    }
+
+    private long updateVolumeMap(Tick tick)
+    {
+        String exchange = tick.getExchange();
+        String symbol = tick.getSymbol();
+        List<VolumeWrapper> volumeWrappers = this.volumeMap.get(symbol);
+        long totalVolume = 0;
+        if(volumeWrappers == null)
+        {
+            volumeWrappers = new ArrayList<>();
+            volumeWrappers.add(new VolumeWrapper(exchange, tick.getVolume()));
+            this.volumeMap.put(symbol, volumeWrappers);
+            totalVolume = tick.getVolume();
+        }
+        else
+        {
+            boolean found = false;
+            for (VolumeWrapper volumeWrapper : volumeWrappers) {
+                if (volumeWrapper.getExchange().equals(exchange)) {
+                    found = true;
+                    volumeWrapper.setVolume(tick.getVolume());
+                }
+                totalVolume += volumeWrapper.getVolume();
+            }
+            if (!found) {
+                volumeWrappers.add(new VolumeWrapper(exchange, tick.getVolume()));
+                totalVolume += tick.getVolume();
+            }
+        }
+        return totalVolume;
     }
 
     private void multicastTick(Tick tick) throws JsonProcessingException {
