@@ -1,14 +1,13 @@
 package org.bainsight.liquidity.Handler.Event;
 
 import com.lmax.disruptor.EventHandler;
-import lombok.AllArgsConstructor;
+import io.aeron.Publication;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.liquidity.Config.Election.LeaderConfig;
 import org.bainsight.liquidity.Handler.Persistance.CandleStickBuffer;
 import org.bainsight.liquidity.Model.Dto.CandleStick;
 import org.bainsight.liquidity.Model.Events.TickAcceptedEvent;
 import org.exchange.library.Dto.MarketRelated.Tick;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Map;
 
@@ -21,6 +20,7 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
     private final byte totalHandlers;
     private final CandleStickBuffer candleStickBuffer;
     private final String[] profiles;
+    private final Publication publication;
 
     @Override
     public void onEvent(TickAcceptedEvent event, long sequence, boolean endOfBatch) {

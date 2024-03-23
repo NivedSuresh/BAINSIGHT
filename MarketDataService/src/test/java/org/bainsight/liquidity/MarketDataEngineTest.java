@@ -34,8 +34,6 @@ public class MarketDataEngineTest {
     @Autowired
     private DisruptorConfig disruptorConfig;
 
-    private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
-
     private final MarketDataGenerator marketData = new MarketDataGenerator();
 
     private final Random random= new Random();
@@ -62,7 +60,7 @@ public class MarketDataEngineTest {
      * */
     @Test
     void testAFewTimes() throws JsonProcessingException {
-        for(int i=0 ; i<10 ; i++){
+        for(int i=0 ; i<100 ; i++){
             evokeTest();
         }
     }
@@ -74,7 +72,7 @@ public class MarketDataEngineTest {
         this.recent = disruptorConfig.getReceivedEventHandler().getBufferManager();
 
         //FOR EACH ITERATION, 200 MESSAGES ARE SENT 100 FROM PRIMARY AND 100 FROM SECONDARY
-        for(int i=0 ; i<100 ; i++){
+        for(int i=0 ; i<1000 ; i++){
             //Send updates
             this.sendUpdates(true);
 

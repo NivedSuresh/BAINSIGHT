@@ -5,6 +5,8 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import io.aeron.Aeron;
+import io.aeron.Publication;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.liquidity.Config.Disruptor.ThreadFactory.TickEventFactory;
@@ -39,6 +41,15 @@ public class DisruptorConfig {
     private TickReceivedEventHandler receivedEventHandler;
 
 
+    public static final int STICK_STREAM_ID;
+    public static final String STICK_CHANNEL;
+
+    static {
+        STICK_STREAM_ID = Integer.getInteger("");
+        STICK_CHANNEL = System.getProperty("");
+    }
+
+
     @Bean
     public Disruptor<TickReceivedEvent> tickReceivedEventDisruptor(final RecentlyReceivedBuffer recentlyReceivedBuffer,
                                                                    final RingBuffer<TickAcceptedEvent> acceptedBuffer,
@@ -63,7 +74,8 @@ public class DisruptorConfig {
     }
 
     @Bean
-    public Disruptor<TickAcceptedEvent> tickAcceptedEventDisruptor(final CandleStickBuffer candleStickBuffer) {
+    public Disruptor<TickAcceptedEvent> tickAcceptedEventDisruptor(final CandleStickBuffer candleStickBuffer,
+                                                                   final Aeron aeron) {
         Disruptor<TickAcceptedEvent> disruptor = new Disruptor<>(
                 TickAcceptedEvent.TICK_ACCEPTED_EVENT_FACTORY,
                 1024,
@@ -73,7 +85,8 @@ public class DisruptorConfig {
         );
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
-        this.candleHandler = new CandleHandler((byte) 0, (byte) 1, candleStickBuffer, profiles);
+        Publication publication = aeron.addPublication(STICK_CHANNEL, STICK_STREAM_ID);
+        this.candleHandler = new CandleHandler((byte) 0, (byte) 1, candleStickBuffer, profiles, publication);
 
         disruptor.handleEventsWith(candleHandler, new MarketAnalyzer((byte) 0, (byte) 1));
 

@@ -34,6 +34,13 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/io.aeron/aeron-all -->
+		<dependency>
+			<groupId>io.aeron</groupId>
+			<artifactId>aeron-all</artifactId>
+			<version>1.43.0</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
