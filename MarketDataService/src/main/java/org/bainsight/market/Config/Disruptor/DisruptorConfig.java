@@ -1,10 +1,13 @@
 package org.bainsight.market.Config.Disruptor;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import io.aeron.Aeron;
+import io.aeron.Publication;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.market.Config.Disruptor.ThreadFactory.TickEventFactory;
 import org.bainsight.market.Config.Election.LeaderConfig;
@@ -30,10 +33,18 @@ public class DisruptorConfig {
     @Value("${exchange.id}")
     private String[] exchanges;
 
-
     private CandleHandler candleHandler;
 
     private TickReceivedEventHandler receivedEventHandler;
+
+    private final static String USER_SERVICE_CHANNEL;
+    private final static Integer USER_SERVICE_STREAM_ID;
+
+    static {
+        USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
+        USER_SERVICE_STREAM_ID = Integer.getInteger("aeron.user.service.multicast.steam.id",1001);
+    }
+
 
 
 
@@ -61,7 +72,9 @@ public class DisruptorConfig {
     }
 
     @Bean
-    public Disruptor<TickAcceptedEvent> tickAcceptedEventDisruptor(final CandleStickBuffer candleStickBuffer) {
+    public Disruptor<TickAcceptedEvent> tickAcceptedEventDisruptor(final CandleStickBuffer candleStickBuffer,
+                                                                   final Aeron aeron,
+                                                                   final ObjectMapper mapper) {
         Disruptor<TickAcceptedEvent> disruptor = new Disruptor<>(
                 TickAcceptedEvent.TICK_ACCEPTED_EVENT_FACTORY,
                 1024,
@@ -71,7 +84,16 @@ public class DisruptorConfig {
         );
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
-        this.candleHandler = new CandleHandler((byte) 0, (byte) 1, candleStickBuffer, profiles);
+
+        Publication userServicePublication = aeron.addPublication(USER_SERVICE_CHANNEL, USER_SERVICE_STREAM_ID);
+
+        this.candleHandler = new CandleHandler(
+                (byte) 0, (byte) 1,
+                candleStickBuffer,
+                profiles,
+                userServicePublication,
+                mapper
+        );
 
         disruptor.handleEventsWith(candleHandler, new MarketAnalyzer((byte) 0, (byte) 1));
 

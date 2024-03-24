@@ -22,4 +22,5 @@ public class CandleStick {
     private Double change;
     private Long volume;
     private List<ExchangePrice> exchangePrices;
+
 }

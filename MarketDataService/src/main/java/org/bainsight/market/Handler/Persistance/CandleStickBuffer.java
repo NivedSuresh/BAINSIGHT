@@ -1,8 +1,8 @@
 package org.bainsight.market.Handler.Persistance;
 
+import io.aeron.Aeron;
 import org.bainsight.market.Model.Dto.CandleStick;
 import org.bainsight.market.Model.Dto.ExchangePrice;
-import org.bainsight.market.Model.Dto.ExchangeStick;
 import org.bainsight.market.Model.Dto.VolumeWrapper;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.stereotype.Component;
@@ -23,15 +23,22 @@ public class CandleStickBuffer {
     private final Map<String, CandleStick> combinedSticks;
     private final AtomicBoolean lock = new AtomicBoolean(false);
     private final ZoneId zoneId;
+    private final Aeron aeron;
 
 
-    public CandleStickBuffer()
+    public CandleStickBuffer(final Aeron aeron)
     {
+        this.aeron = aeron;
         this.combinedSticks = new HashMap<>();
         this.volumeMap =  new HashMap<>();
         this.zoneId = ZoneId.of("Asia/Kolkata");
     }
 
+
+    /* TODO: FETCH ORDER BOOK ON CONSTRUCT */
+    public  void fetchOrderBook(){
+
+    }
 
 
 
@@ -151,13 +158,16 @@ public class CandleStickBuffer {
     }
 
 
-    public Map<String, CandleStick> getSnapshot(){
+    public Map<String, CandleStick> getSnapshot(boolean reset){
         while (lock.get());
         lock.set(true);
-        /* Capture last minute's snapshot */
+        /* Capture the snapshot */
         HashMap<String, CandleStick> clone = new HashMap<>(this.combinedSticks);
         /* Reset after capturing snapshot */
-        this.reset();
+        if(reset)
+        {
+            this.reset();
+        }
         lock.set(false);
         return clone;
     }

@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/VolumeWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/Models/TestStick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Sinks/SinksConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/TickReceivedEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/TickReceivedEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Election/LeaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Election/LeaderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/app.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +117,7 @@
     "JUnit.RiskManagementApplicationTests.executor": "Run",
     "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
     "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
+    "Maven.AuthService [clean].executor": "Run",
     "Maven.LiquidityService [clean].executor": "Run",
     "Maven.LiquidityService [install].executor": "Run",
     "Maven.MarketDataService [clean].executor": "Run",
@@ -223,7 +226,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MarketDataEngineTest (1)">
+  <component name="RunManager" selected="Spring Boot.MarketData">
     <configuration name="ClientServiceTests.testSignup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthService" />
       <extension name="coverage">
@@ -352,7 +355,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketData" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="true" nameIsGenerated="true">
+    <configuration name="MarketData" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" nameIsGenerated="true">
       <module name="MarketDataService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.market.MarketData" />
       <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED" />
@@ -534,7 +537,8 @@
       <workItem from="1711184101058" duration="9023000" />
       <workItem from="1711208756277" duration="3701000" />
       <workItem from="1711215151530" duration="174000" />
-      <workItem from="1711215329612" duration="13431000" />
+      <workItem from="1711215329612" duration="14329000" />
+      <workItem from="1711266724138" duration="10109000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

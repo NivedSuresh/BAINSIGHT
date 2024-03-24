@@ -54,7 +54,8 @@ public class LeaderConfig implements MembershipListener {
     }
 
     private void checkIfElected(){
-        if(hazelcast.getCluster().getLocalMember().getSocketAddress().toString().equals(leaderAddress)){
+        if(hazelcast.getCluster().getLocalMember().getSocketAddress().toString().equals(leaderAddress))
+        {
             IS_LEADER .set(true);
             log.info("This node has been elected as the new leader!");
         }

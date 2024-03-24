@@ -21,7 +21,7 @@ class MarketDataJob {
 
 
     @SneakyThrows
-    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 3, timeUnit = TimeUnit.SECONDS)
     public void multicastMessages(){
         primary.execute(() -> iterateAndSend(true));
         Thread.sleep(200);

@@ -44,11 +44,6 @@
        
        New users sign up with required information.
        Passwords are securely hashed before storage.
-       
-       Considerations
-       
-       Implementation details may vary.
-       Ensure robust security measures are in place.
 
 
 

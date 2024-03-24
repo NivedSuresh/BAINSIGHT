@@ -156,7 +156,7 @@ public class MarketDataEngineTest {
         CandleHandler candleHandler = disruptorConfig.getCandleHandler();
         CandleStickBuffer candleStickBuffer = candleHandler.getCandleStickBuffer();
         Map<String, TestStick> testStickMap = this.testStickMap;
-        Map<String, CandleStick> snapshot = candleStickBuffer.getSnapshot();
+        Map<String, CandleStick> snapshot = candleStickBuffer.getSnapshot(true);
 
 
         for(String key : testStickMap.keySet()){
