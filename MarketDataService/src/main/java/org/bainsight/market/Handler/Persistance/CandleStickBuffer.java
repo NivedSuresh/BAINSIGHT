@@ -1,15 +1,22 @@
 package org.bainsight.market.Handler.Persistance;
 
-import io.aeron.Aeron;
-import org.bainsight.market.Model.Dto.CandleStick;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
+import org.bainsight.market.Exception.ExpiredTickTimeStampException;
+import org.bainsight.market.Model.Entity.CandleStick;
 import org.bainsight.market.Model.Dto.ExchangePrice;
 import org.bainsight.market.Model.Dto.VolumeWrapper;
+import org.exchange.library.Advice.Error;
 import org.exchange.library.Dto.MarketRelated.Tick;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
@@ -23,25 +30,91 @@ public class CandleStickBuffer {
     private final Map<String, CandleStick> combinedSticks;
     private final AtomicBoolean lock = new AtomicBoolean(false);
     private final ZoneId zoneId;
-    private final Aeron aeron;
+    private final RedisTemplate<String, Object> redisTemplate;
+    private final ExecutorService recoveryExecutor;
+    private final ExecutorService greenExecutor;
+    private final ObjectMapper mapper;
 
 
 
-    public CandleStickBuffer(final Aeron aeron)
+    public CandleStickBuffer(final RedisTemplate<String, Object> redisTemplate,
+                             final ExecutorService recoveryExecutor,
+                             final ExecutorService greenExecutor,
+                             final ObjectMapper mapper)
     {
-        this.aeron = aeron;
+        this.redisTemplate = redisTemplate;
+        this.recoveryExecutor = recoveryExecutor;
+        this.greenExecutor = greenExecutor;
+        this.mapper = mapper;
         this.combinedSticks = new HashMap<>();
         this.volumeMap =  new HashMap<>();
         this.zoneId = ZoneId.of("Asia/Kolkata");
     }
 
 
-    /* TODO: FETCH ORDER BOOK ON CONSTRUCT */
-    public  void fetchOrderBook(){
+    @PostConstruct
+    public void restoreStateOnConstruct(){
+        this.recoveryExecutor.execute(() -> {
+            Set<String> keys = this.redisTemplate.keys("*");
+            ZonedDateTime currentTime = ZonedDateTime.now();
+            if(keys == null) return;
+            keys.forEach(key -> this.fetchStickFromRedisAndUpdate(key, currentTime));
+        });
+    }
+
+    private void fetchStickFromRedisAndUpdate(String key, ZonedDateTime currentTime) {
+        greenExecutor.execute(() -> {
+            Object o = this.redisTemplate.opsForValue().get(key);
+            if(o instanceof String jsonifiedStick){
+                try {
+                    CandleStick candleStick = this.mapper.readValue(jsonifiedStick, CandleStick.class);
+                    this.updateIfValid(candleStick, currentTime);
+                } catch (JsonProcessingException e) {
+                    //TODO: IMPLEMENT JOURNALING
+                }
+            }
+        });
+    }
+
+    private void updateIfValid(CandleStick stick, ZonedDateTime currentTime) {
+        while (lock.get()) ;
+        lock.set(true);
+
+
+        if(this.combinedSticks.containsKey(stick.getSymbol())) return;
+
+        try{ validateStickTimeStamp(stick, currentTime); }
+        catch (ExpiredTickTimeStampException e){
+            lock.set(false);
+            return;
+        }
+
+        CandleStick existingStick = this.combinedSticks.get(stick.getSymbol());
+
+        if(existingStick != null) stick = mergeRedisAndJvmSticks(stick, existingStick);
+
+        System.out.println(stick);
+        this.combinedSticks.put(stick.getSymbol(), stick);
+
+        lock.set(false);
+    }
+
+    private void validateStickTimeStamp(CandleStick stick, ZonedDateTime currentTime) {
+        LocalDate currentDate = currentTime.toLocalDate();
+
+        if(!currentDate.isEqual(stick.getTimeStamp().toLocalDate())) ExpiredTickTimeStampException.trigger();
+        else if(currentTime.getHour() != stick.getTimeStamp().getHour()) ExpiredTickTimeStampException.trigger();
+        else if (currentTime.getMinute() != stick.getTimeStamp().getMinute()) ExpiredTickTimeStampException.trigger();
 
     }
 
 
+    private CandleStick mergeRedisAndJvmSticks(CandleStick stick, CandleStick existingStick) {
+        existingStick.setLow(Math.min(stick.getLow(), existingStick.getLow()));
+        existingStick.setHigh(Math.max(stick.getHigh(), existingStick.getHigh()));
+        existingStick.setOpen(stick.getOpen());
+        return existingStick;
+    }
 
 
     /** Will take a CandleStick from a specific exchange and returns

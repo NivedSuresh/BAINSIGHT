@@ -26,7 +26,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
     private final RingBuffer<TickAcceptedEvent> acceptedBuffer;
     private boolean isFirstMessage = true;
     private final AtomicBoolean lock;
-    private final ExecutorService recoveryExecutor;
+
 
     private String[] profiles;
 
@@ -35,12 +35,10 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
 
     public TickReceivedEventHandler(final RecentlyReceivedBuffer bufferManager,
                                     final RingBuffer<TickAcceptedEvent> acceptedBuffer,
-                                    final ExecutorService recoveryExecutor,
                                     final @Value("${exchange.id}") String[] exchanges,
                                     final @Value("${spring.profiles.active}") String[] profiles) {
         this.bufferManager = bufferManager;
         this.acceptedBuffer = acceptedBuffer;
-        this.recoveryExecutor = recoveryExecutor;
         this.lock = new AtomicBoolean(false);
 
         this.exchanges = exchanges;

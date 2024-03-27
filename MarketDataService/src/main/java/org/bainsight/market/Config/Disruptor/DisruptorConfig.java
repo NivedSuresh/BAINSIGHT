@@ -23,6 +23,7 @@ import org.bainsight.market.Repository.CandleStickRepo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -62,7 +63,7 @@ public class DisruptorConfig {
                 new YieldingWaitStrategy()
                 );
 
-        this.receivedEventHandler = new TickReceivedEventHandler(recentlyReceivedBuffer, acceptedBuffer, recoveryExecutor, exchanges, profiles);
+        this.receivedEventHandler = new TickReceivedEventHandler(recentlyReceivedBuffer, acceptedBuffer, exchanges, profiles);
         disruptor.handleEventsWith(receivedEventHandler);
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
@@ -79,7 +80,8 @@ public class DisruptorConfig {
                                                                    final ObjectMapper mapper,
                                                                    final ExecutorService greenExecutor,
                                                                    final KafkaTemplate<String, Object> template,
-                                                                   final CandleStickRepo candleStickRepo){
+                                                                   final CandleStickRepo candleStickRepo,
+                                                                   final RedisTemplate<String, Object> redisTemplate){
         Disruptor<TickAcceptedEvent> disruptor = new Disruptor<>(
                 TickAcceptedEvent.TICK_ACCEPTED_EVENT_FACTORY,
                 1024,
@@ -100,7 +102,8 @@ public class DisruptorConfig {
                 mapper,
                 greenExecutor,
                 template,
-                candleStickRepo
+                candleStickRepo,
+                redisTemplate
         );
 
         disruptor.handleEventsWith(candleHandler, new MarketAnalyzer((byte) 0, (byte) 1));

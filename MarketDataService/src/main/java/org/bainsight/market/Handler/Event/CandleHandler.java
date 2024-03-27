@@ -10,13 +10,15 @@ import org.agrona.BufferUtil;
 import org.agrona.concurrent.UnsafeBuffer;
 import org.bainsight.market.Config.Election.LeaderConfig;
 import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
-import org.bainsight.market.Model.Dto.CandleStick;
+import org.bainsight.market.Model.Entity.CandleStick;
 import org.bainsight.market.Model.Events.TickAcceptedEvent;
 import org.bainsight.market.Repository.CandleStickRepo;
 import org.exchange.library.Dto.MarketRelated.Tick;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
 
@@ -34,6 +36,7 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
     private final UnsafeBuffer buffer = new UnsafeBuffer(BufferUtil.allocateDirectAligned(300, 64));
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final CandleStickRepo candleStickRepo;
+    private final RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
@@ -59,7 +62,13 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
     }
 
     private void updateRedisCluster(CandleStick combinedStick) {
-        this.candleStickRepo.save(combinedStick);
+        try{
+            String jsonifiedStick = this.mapper.writeValueAsString(combinedStick);
+            this.redisTemplate.opsForValue().set(combinedStick.getSymbol(), jsonifiedStick);
+        }catch (JsonProcessingException  e){
+            /* TODO: IMPLEMENT LOGGING */
+            System.out.println("TODO: IMPLEMENT LOGGING");
+        }
     }
 
     private void validateResult(long result) {
@@ -121,8 +130,36 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
             for(String symbol : sticks.keySet()){
                 this.kafkaTemplate.send("candle_sticks", sticks.get(symbol));
             }
+
+            Set<String> activeSymbolsLastMinute = sticks.keySet();
+            Set<String> allTradableSymbols = this.redisTemplate.keys("*");
+
+
+            if(allTradableSymbols == null) return;
+
+            allTradableSymbols.forEach(key -> {
+                if(!activeSymbolsLastMinute.contains(key)){
+                    CandleStick stick = (CandleStick) this.redisTemplate.opsForValue().get(key);
+                    if(stick != null) modifyAsAbsentThenStream(stick);
+                }
+            });
+
         });
     }
+
+
+    /**
+     * The symbol's for which no trade was executed in the last minute is modified and
+     * persisted in the history service.
+     * */
+    public void modifyAsAbsentThenStream(CandleStick stick){
+        stick.setLow(0.0);
+        stick.setHigh(0.0);
+        stick.setOpen(0.0);
+        stick.setClose(0.0);
+        this.kafkaTemplate.send("candle_sticks", stick);
+    }
+
 
     public CandleStickBuffer getCandleStickBuffer(){
         for(String profile: profiles){

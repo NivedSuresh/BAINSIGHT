@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/CandleStickKeySpaceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Exception/ExpiredTickTimeStampException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/TickReceivedEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/TickReceivedEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Listener/MessageReceiveBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Listener/MessageReceiveBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Entity/CandleStick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Repository/CandleStickRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Repository/CandleStickRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Service/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Service/WebSocketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/CandleStick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockkker-compose.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,11 +208,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.bainsight.market.Exception" />
       <recent name="com.exchange.riskmanagement.Advice.Kafka" />
       <recent name="com.exchange.gateway.Config.Filters" />
       <recent name="org.exchange.library.Exception" />
       <recent name="com.exchange.riskmanagement.service" />
-      <recent name="org.exchange.library.Enums" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config" />
@@ -473,8 +492,23 @@
   <component name="SpringProfilesService">
     <option name="activeProfiles">
       <map>
-        <entry key="ConfigServer" value="dev" />
+        <entry key="AuthenticationService" value="dev, test" />
+        <entry key="BAINSIGHT" value="dev, test" />
+        <entry key="BainsightGateway" value="dev, test" />
+        <entry key="ConfigServer" value="dev, test" />
+        <entry key="JournalService" value="dev, test" />
+        <entry key="Library" value="dev, test" />
+        <entry key="LiquidityService" value="dev, test" />
         <entry key="MarketDataService" value="dev, test" />
+        <entry key="MarketUpdate" value="dev, test" />
+        <entry key="MatchingEngine" value="dev, test" />
+        <entry key="OrderManagement" value="dev, test" />
+        <entry key="RiskManagement" value="dev, test" />
+        <entry key="ServiceRegistry" value="dev, test" />
+        <entry key="TestExchangeEnv" value="dev, test" />
+        <entry key="UserService" value="dev, test" />
+        <entry key="Watchlist" value="dev, test" />
+        <entry key="YLibrary" value="dev, test" />
       </map>
     </option>
   </component>
@@ -585,7 +619,7 @@
       <workItem from="1711526960983" duration="3704000" />
       <workItem from="1711531186093" duration="518000" />
       <workItem from="1711531722109" duration="4347000" />
-      <workItem from="1711536431102" duration="10051000" />
+      <workItem from="1711536431102" duration="29541000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

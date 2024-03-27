@@ -22,4 +22,5 @@ public class Error {
     public static final String KAFKA_ORDER_REJECTION_FAILURE = "EXCEPTION-1018";
     public static final String NOT_ENOUGH_BALANCE_TO_BID = "EXCEPTION-1019";
     public static final String JWT_EXPIRED = "EXCEPTION-1020";
+    public static final String CANDLE_STICK_EXPIRED = "EXCEPTION-1021";
 }

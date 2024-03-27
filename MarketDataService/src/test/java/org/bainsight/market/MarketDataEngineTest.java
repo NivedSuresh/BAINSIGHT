@@ -3,14 +3,13 @@ package org.bainsight.market;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.aeron.Aeron;
-import io.aeron.Publication;
 import io.aeron.driver.MediaDriver;
 import org.bainsight.market.Config.Disruptor.DisruptorConfig;
 import org.bainsight.market.Handler.Event.CandleHandler;
 import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
 import org.bainsight.market.Handler.Persistance.RecentlyReceivedBuffer;
 import org.bainsight.market.Listener.MessageReceiveBuffer;
-import org.bainsight.market.Model.Dto.CandleStick;
+import org.bainsight.market.Model.Entity.CandleStick;
 import org.bainsight.market.Model.Dto.VolumeWrapper;
 import org.bainsight.market.Models.TestStick;
 import org.bainsight.market.Models.PushTo;
@@ -18,11 +17,9 @@ import org.bainsight.market.Models.TickerEx;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import reactor.core.publisher.Mono;
 
 
 import java.time.ZoneId;
