@@ -12,9 +12,12 @@ import org.bainsight.market.Config.Election.LeaderConfig;
 import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
 import org.bainsight.market.Model.Dto.CandleStick;
 import org.bainsight.market.Model.Events.TickAcceptedEvent;
+import org.bainsight.market.Repository.CandleStickRepo;
 import org.exchange.library.Dto.MarketRelated.Tick;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 
 @AllArgsConstructor
@@ -27,8 +30,10 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
     private final String[] profiles;
     private final Publication publication;
     private final ObjectMapper mapper;
-    private final UnsafeBuffer buffer = new UnsafeBuffer(BufferUtil.allocateDirectAligned(256, 64));
-
+    private final ExecutorService greenExecutor;
+    private final UnsafeBuffer buffer = new UnsafeBuffer(BufferUtil.allocateDirectAligned(300, 64));
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final CandleStickRepo candleStickRepo;
 
 
     @Override
@@ -38,52 +43,61 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
         Tick tick = event.getTick();
         CandleStick combinedStick = this.candleStickBuffer.updateAndGetCandleStick(tick);
 
-        final byte[] data = this.serialize(combinedStick);
-        if(data.length == 0) return;
-        buffer.putBytes(0, data);
 
-        final long result = publication.offer(buffer);
+        this.greenExecutor.execute(() -> {
+            final byte[] data = this.serialize(combinedStick);
+            if(data.length == 0) return;
+            buffer.putBytes(0, data);
 
-        this.validateResult(result);
+            final long result = publication.offer(buffer);
 
+            this.updateRedisCluster(combinedStick);
+
+            this.validateResult(result);
+        });
+
+    }
+
+    private void updateRedisCluster(CandleStick combinedStick) {
+        this.candleStickRepo.save(combinedStick);
     }
 
     private void validateResult(long result) {
         /* TODO: IMPLEMENT JOURNALING */
         if (result > 0)
         {
-            System.out.println("sent!");
+//            System.out.println("sent!");
         }
         else if (result == Publication.BACK_PRESSURED)
         {
-            System.out.println("Offer failed due to back pressure");
+//            System.out.println("Offer failed due to back pressure");
         }
         else if (result == Publication.NOT_CONNECTED)
         {
-            System.out.println("Offer failed because publisher is not connected to a subscriber");
+//            System.out.println("Offer failed because publisher is not connected to a subscriber");
         }
         else if (result == Publication.ADMIN_ACTION)
         {
-            System.out.println("Offer failed because of an administration action in the system");
+//            System.out.println("Offer failed because of an administration action in the system");
         }
         else if (result == Publication.CLOSED)
         {
-            System.out.println("Offer failed because publication is closed");
+//            System.out.println("Offer failed because publication is closed");
 //            break;
         }
         else if (result == Publication.MAX_POSITION_EXCEEDED)
         {
-            System.out.println("Offer failed due to publication reaching its max position");
+//            System.out.println("Offer failed due to publication reaching its max position");
 //            break;
         }
         else
         {
-            System.out.println("Offer failed due to unknown reason: " + result);
+//            System.out.println("Offer failed due to unknown reason: " + result);
         }
 
         if (!this.publication.isConnected())
         {
-            System.out.println("No active subscribers detected");
+            log.warn("No active subscribers detected");
         }
     }
 
@@ -102,8 +116,12 @@ public class CandleHandler implements EventHandler<TickAcceptedEvent> {
      * TODO: USE SCYLLA DB TO PERSIST THE SNAPSHOT
      * */
     public void takeSnapshot(){
-        Map<String, CandleStick> sticks = this.candleStickBuffer.getSnapshot(true);
-//        System.out.println(sticks.get("AAPL").getTimeStamp());
+        this.greenExecutor.execute(() -> {
+            Map<String, CandleStick> sticks = this.candleStickBuffer.getSnapshot(true);
+            for(String symbol : sticks.keySet()){
+                this.kafkaTemplate.send("candle_sticks", sticks.get(symbol));
+            }
+        });
     }
 
     public CandleStickBuffer getCandleStickBuffer(){

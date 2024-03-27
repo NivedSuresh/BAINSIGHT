@@ -22,12 +22,13 @@
         <module>ServiceRegistry</module>
         <module>BainsightGateway</module>
         <module>TestExchangeEnv</module>
-        <module>AuthService</module>
+        <module>AuthenticationService</module>
         <module>OrderManagement</module>
         <module>JournalService</module>
         <module>RiskManagement</module>
         <module>MarketDataService</module>
         <module>JournalService</module>
+        <module>Watchlist</module>
     </modules>
 
     <dependencies>

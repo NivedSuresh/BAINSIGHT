@@ -5,16 +5,106 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisDevConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Repository/CandleStickRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Config/Aeron/AeronConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Service/WebSocketService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/WebSocket/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/WatchlistApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/src/test/java/org/bainsight/watchlist/TestWatchlistApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Watchlist/src/test/java/org/bainsight/watchlist/WatchlistApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/CandleStick.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/ExchangePrice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/KafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/MfaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/MfaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/db/migration/V1__create_tables_user_service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/migration/V1__create_tables_user_service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/db/queries/other.sql" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/queries/other.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/BrokerUserServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/BrokerUserServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/bainsight/user/authenticationservice/AuthenticationServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/MarketUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/bainsight/user/authenticationservice/AuthenticationServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/test/java/org/bainsight/updates/MarketUpdateTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConfigServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Election/LeaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Election/LeaderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisClusterConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/app.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZDocker/Redis/dependencies-compose-reddit.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ZDocker/Redis/compose-reddit-cluster.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dockkker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +170,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.MarketDataService/compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor": "Run",
+    "Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor": "Run",
+    "Docker.Redis/compose-redis-dev.yaml: Compose Deployment.executor": "Run",
     "Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
     "Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
@@ -109,20 +203,26 @@
     "JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor": "Run",
     "JUnit.ExchangeUserTests.testTest.executor": "Run",
     "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
+    "JUnit.MarketData1EngineTest (1).executor": "Run",
+    "JUnit.MarketData1EngineTest.executor": "Run",
     "JUnit.MarketDataEngineTest (1).executor": "Run",
     "JUnit.MarketDataEngineTest.executor": "Run",
     "JUnit.MarketDataEngineTest.testAFewTimes.executor": "Run",
+    "JUnit.MarketEngineTest.executor": "Run",
     "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
     "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
     "JUnit.RiskManagementApplicationTests.executor": "Run",
     "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
     "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
     "Maven.AuthService [clean].executor": "Run",
+    "Maven.AuthenticationService [clean].executor": "Run",
+    "Maven.AuthenticationService [install].executor": "Run",
     "Maven.LiquidityService [clean].executor": "Run",
     "Maven.LiquidityService [install].executor": "Run",
     "Maven.MarketDataService [clean].executor": "Run",
     "Maven.MarketDataService [install].executor": "Run",
     "Maven.MarketDataService [package].executor": "Run",
+    "Maven.MarketDataService [validate].executor": "Run",
     "Maven.YLibrary [clean].executor": "Run",
     "Maven.YLibrary [deploy].executor": "Run",
     "Maven.YLibrary [install].executor": "Run",
@@ -142,8 +242,13 @@
     "Spring Boot.ExchangeRegistryApplication.executor": "Run",
     "Spring Boot.ExchangeUser.executor": "Run",
     "Spring Boot.LiquidityServiceApplication.executor": "Run",
+    "Spring Boot.MarketAggregatorApplication.executor": "Run",
+    "Spring Boot.MarketData (1).executor": "Run",
     "Spring Boot.MarketData.executor": "Run",
+    "Spring Boot.MarketData1.executor": "Run",
     "Spring Boot.MarketDataGenerator.executor": "Run",
+    "Spring Boot.MarketUpdate.executor": "Run",
+    "Spring Boot.MarketUpdateApplication.executor": "Run",
     "Spring Boot.MatchingEngineApplication.executor": "Debug",
     "Spring Boot.RiskManagementApplication.executor": "Run",
     "Spring Boot.TestExchangeEnv.executor": "Run",
@@ -154,7 +259,7 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/apple/Desktop/BAINSIGHT",
+    "last_opened_file_path": "/Users/apple/Desktop/BAINSIGHT/MarketDataService/src/main/java/org/bainsight/market/Config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -165,7 +270,7 @@
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "settings.editor.selected.configurable": "spring",
     "spring.configuration.checksum": "33c034acc31924bfb2a71c7f6579a759",
     "vue.rearranger.settings.migration": "true"
   },
@@ -190,29 +295,29 @@
       <recent name="org.exchange.library.Enums" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/liquidity" />
-      <recent name="$PROJECT_DIR$/LiquidityService/src/main/resources" />
-      <recent name="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model" />
-      <recent name="$PROJECT_DIR$/PersistenceExchange/src/main/java/org/exchange/persistance" />
-      <recent name="$PROJECT_DIR$/PersistanceExchange/src/main/resources/db/migration" />
+      <recent name="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config" />
+      <recent name="$PROJECT_DIR$/MarketDataService" />
+      <recent name="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market" />
+      <recent name="$PROJECT_DIR$/MarketAggregator/src" />
+      <recent name="$PROJECT_DIR$/MarketAggregator/src/main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/MarketDataService" />
+      <recent name="$PROJECT_DIR$/AuthenticationService" />
       <recent name="$PROJECT_DIR$/ZDocker/Redis" />
       <recent name="$PROJECT_DIR$/ZDocker/Scylla" />
-      <recent name="$PROJECT_DIR$/ZRedisConfig" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/AdminService/src/main/resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.bainsight.liquidity" />
       <recent name="org.exchange.user.Service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.exchange.library.Dto.MarketRelated" />
       <recent name="com.exchange.matchingengine.MarketDataSimulation.Models" />
       <recent name="org.bainsight.liquidity.Model" />
       <recent name="com.exchange.riskmanagement.Model.Cache" />
       <recent name="org.exchange.user.Advice" />
-      <recent name="org.exchange.user.ExceptionHandler" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -226,38 +331,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MarketData">
-    <configuration name="ClientServiceTests.testSignup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AuthService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.exchange.user.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.exchange.user.Service" />
-      <option name="MAIN_CLASS_NAME" value="org.exchange.user.Service.ClientServiceTests" />
-      <option name="METHOD_NAME" value="testSignup" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MarketDataEngineTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MarketDataService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.market.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.market" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.market.MarketDataEngineTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.MarketUpdate">
     <configuration name="MarketDataEngineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MarketDataService" />
       <extension name="coverage">
@@ -275,18 +349,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketDataEngineTest.testAFewTimes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MarketDataService" />
+    <configuration name="MarketEngineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MarketData" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.bainsight.market.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.liquidity" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.market.MarketDataEngineTest" />
-      <option name="METHOD_NAME" value="testAFewTimes" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.bainsight.market" />
+      <option name="MAIN_CLASS_NAME" value="org.bainsight.market.MarketEngineTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED -ea" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -305,7 +380,7 @@
       </method>
     </configuration>
     <configuration name="AuthService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="AuthService" />
+      <module name="AuthenticationService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.exchange.user.AuthService" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -320,6 +395,9 @@
       </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="GIT_ACCESS_TOKEN" value="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" />
+      </envs>
       <module name="ConfigServer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.config.ConfigServerApplication" />
       <method v="2">
@@ -355,9 +433,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MarketData" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" nameIsGenerated="true">
+    <configuration name="MarketAggregatorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="MarketAggregator" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.aggregator.MarketAggregatorApplication" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarketData" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="MarketDataService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.market.MarketData" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarketData1" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MarketData" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.market.MarketData1" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarketDataApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MarketData" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.watchlist.marketdata.MarketDataApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MarketUpdate" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MarketUpdate" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.updates.MarketUpdate" />
       <option name="VM_PARAMETERS" value="--add-opens java.base/sun.nio.ch=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -379,10 +489,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scylla/docker-compose-scylla.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="WatchlistApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Watchlist" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.watchlist.WatchlistApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Redis/compose-reddit-cluster.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="ZDocker/Scylla/docker-compose-scylla.yaml" />
+          <option name="sourceFilePath" value="ZDocker/Redis/compose-reddit-cluster.yaml" />
         </settings>
       </deployment>
       <method v="2" />
@@ -393,13 +510,33 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment" />
-      <item itemvalue="JUnit.MarketDataEngineTest (1)" />
-      <item itemvalue="JUnit.MarketDataEngineTest.testAFewTimes" />
+      <item itemvalue="Docker.MarketDataService/compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment" />
       <item itemvalue="JUnit.MarketDataEngineTest" />
-      <item itemvalue="JUnit.ClientServiceTests.testSignup" />
+      <item itemvalue="JUnit.MarketEngineTest" />
+      <item itemvalue="Spring Boot.MarketAggregatorApplication" />
       <item itemvalue="Spring Boot.MarketData" />
+      <item itemvalue="Spring Boot.MarketDataApplication" />
+      <item itemvalue="Spring Boot.WatchlistApplication" />
+      <item itemvalue="Spring Boot.MarketUpdate" />
       <item itemvalue="Spring Boot.JournalServiceApplication" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.AuthService" />
@@ -409,14 +546,15 @@
       <item itemvalue="Spring Boot.ExchangeRegistryApplication" />
       <item itemvalue="Spring Boot.LibraryApplication" />
       <item itemvalue="Spring Boot.TestExchangeEnv" />
+      <item itemvalue="Spring Boot.MarketData1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MarketDataEngineTest (1)" />
+        <item itemvalue="Docker.MarketDataService/compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.MarketDataEngineTest" />
-        <item itemvalue="JUnit.MarketDataEngineTest.testAFewTimes" />
-        <item itemvalue="Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.ClientServiceTests.testSignup" />
+        <item itemvalue="JUnit.MarketEngineTest" />
+        <item itemvalue="JUnit.MarketData1EngineTest" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -435,6 +573,7 @@
     <option name="activeProfiles">
       <map>
         <entry key="ConfigServer" value="dev" />
+        <entry key="MarketDataService" value="dev, test" />
       </map>
     </option>
   </component>
@@ -538,7 +677,14 @@
       <workItem from="1711208756277" duration="3701000" />
       <workItem from="1711215151530" duration="174000" />
       <workItem from="1711215329612" duration="14329000" />
-      <workItem from="1711266724138" duration="10109000" />
+      <workItem from="1711266724138" duration="24284000" />
+      <workItem from="1711315806141" duration="606000" />
+      <workItem from="1711357047113" duration="21580000" />
+      <workItem from="1711443329135" duration="16772000" />
+      <workItem from="1711526960983" duration="3704000" />
+      <workItem from="1711531186093" duration="518000" />
+      <workItem from="1711531722109" duration="4347000" />
+      <workItem from="1711536431102" duration="9361000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
@@ -582,7 +728,21 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/apache/kafka/kafka-clients/3.6.1/kafka-clients-3.6.1-sources.jar!/org/apache/kafka/clients/admin/NewTopic.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BAINSIGHT$MarketDataEngineTest.ic" NAME="MarketDataEngineTest Coverage Results" MODIFIED="1711546771904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.bainsight.market.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -18,7 +18,6 @@ spring:
           predicates:
             - Path=/eureka
 
-
         - id: service-registry-static
           uri: http://localhost:8761
           predicates:
@@ -35,15 +34,8 @@ spring:
             - HeaderManipulationFilter
 
 
-        #MatchingEngine
-        - id: matching-engine
-          uri: lb://matching-engine
-          predicates:
-            - Path=/api/exchange/engine/**
-            - Method=GET,PUT,POST,DELETE
 
-
-        #UserService Client
+        #AuthService Client
         - id: auth-service
           uri: lb://auth-service
           predicates:
@@ -52,7 +44,6 @@ spring:
           filters:
             - SecurityFilter
 
-        #UserService Client
         - id: auth-service
           uri: lb://auth-service
           predicates:
@@ -62,42 +53,19 @@ spring:
             - SecurityFilter
 
 
-
-
-            #OrderPersistence
-        - id: persistence-exchange
-          uri: lb://persistence-exchange
+        #UserService Client
+        - id: market-updates
+          uri: lb://market-updates
           predicates:
-            - Path=/api/exchange/persist/**
+            - Path=/api/bainsight/updates/**
             - Method=GET,PUT,POST
 
 
-        #LoggingExchange
-        - id: logging-exchange
-          uri: lb://logging-exchange
-          predicates:
-            - Path=/api/exchange/log/**
-            - Method=GET,PUT,POST
 
   config:
     import: optional:configserver:http://localhost:8888
 
 
-
-#EUREKA
-#eureka:
-#  instance:
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-#    prefer-ip-address: true
-#    lease-renewal-interval-in-seconds: 10
-#    lease-expiration-duration-in-seconds: 30
-#    metadata-map:
-#      replication: true
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka
-#    register-with-eureka: true
-#    fetch-registry: true
 
 
 

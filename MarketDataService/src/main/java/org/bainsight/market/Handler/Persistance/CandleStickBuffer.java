@@ -26,6 +26,7 @@ public class CandleStickBuffer {
     private final Aeron aeron;
 
 
+
     public CandleStickBuffer(final Aeron aeron)
     {
         this.aeron = aeron;

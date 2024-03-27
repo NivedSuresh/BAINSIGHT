@@ -2,6 +2,9 @@ package org.bainsight.market;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.aeron.Aeron;
+import io.aeron.Publication;
+import io.aeron.driver.MediaDriver;
 import org.bainsight.market.Config.Disruptor.DisruptorConfig;
 import org.bainsight.market.Handler.Event.CandleHandler;
 import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
@@ -15,8 +18,11 @@ import org.bainsight.market.Models.TickerEx;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import reactor.core.publisher.Mono;
 
 
 import java.time.ZoneId;
@@ -24,10 +30,12 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import static org.mockito.ArgumentMatchers.any;
+import static reactor.core.publisher.Mono.when;
+
 
 @SpringBootTest
 public class MarketDataEngineTest {
-
 
     @Autowired
     private DisruptorConfig disruptorConfig;
@@ -48,10 +56,15 @@ public class MarketDataEngineTest {
     private RecentlyReceivedBuffer recent;
 
     private final Map<String, List<VolumeWrapper>> volumeMap = new HashMap<>();
-    private final Map<String, Long> totalVolumeMap = new HashMap<>();
 
     private final ZoneId zoneId = ZoneId.of("Asia/Kolkata");
 
+
+    @MockBean
+    private Aeron aeron;
+
+    @MockBean
+    MediaDriver driver;
 
 
     /**
@@ -72,6 +85,8 @@ public class MarketDataEngineTest {
 
 
     public void evokeTest() throws JsonProcessingException {
+
+
 
         this.recent = disruptorConfig.getReceivedEventHandler().getBufferManager();
 

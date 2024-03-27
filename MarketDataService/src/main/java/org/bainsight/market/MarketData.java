@@ -1,17 +1,24 @@
 package org.bainsight.market;
 
+import com.redis.om.spring.annotations.EnableRedisEnhancedRepositories;
 import lombok.RequiredArgsConstructor;
+import org.bainsight.market.Model.Dto.CandleStick;
+import org.bainsight.market.Repository.CandleStickRepo;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableCaching
 @RequiredArgsConstructor
 @EnableScheduling
+@EnableRedisEnhancedRepositories(basePackages = "org.bainsight.market")
 public class MarketData {
 
+	private final CandleStickRepo candleStickRepo;
 
 	public static void main(String[] args) {
 
@@ -22,5 +29,6 @@ public class MarketData {
 
 		SpringApplication.run(MarketData.class, args);
 	}
+
 
 }

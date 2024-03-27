@@ -32,7 +32,6 @@ public class EndpointsUtil {
 
     private boolean iterate(List<String> endpoints, String endpoint){
         for(String uri : endpoints){
-            System.out.println(endpoint + " starts with " + uri);
             if(endpoint.startsWith(uri)) return true;
         }
         return false;
@@ -54,6 +53,7 @@ public class EndpointsUtil {
 
     private List<String> initializeOpenEndpoints() {
         return List.of(
+                "/ws",
                 "/api/bainsight/auth/"
         );
     }

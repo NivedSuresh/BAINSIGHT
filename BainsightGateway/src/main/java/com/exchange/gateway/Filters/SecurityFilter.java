@@ -61,9 +61,7 @@ public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.
                         System.out.println(token.getSubject() + " " + token.getClaim("authority"));
 
                         if(endpointsUtil.isAllowed(path, token.getClaim("authority"))){
-                            return updateSecurityContextHolder(token).flatMap(securityContext -> {
-                                return chain.filter(exchange);
-                            });
+                            return updateSecurityContextHolder(token).flatMap(securityContext -> chain.filter(exchange));
                         }
                         System.out.println("User not allowed for path ".concat(path));
                         return Mono.error(InvalidJwtException::new);

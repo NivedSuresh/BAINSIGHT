@@ -28,12 +28,19 @@
         <option value="$PROJECT_DIR$/BainsightGateway/pom.xml" />
         <option value="$PROJECT_DIR$/OrderManagement/pom.xml" />
         <option value="$PROJECT_DIR$/MarketDataService/pom.xml" />
+        <option value="$PROJECT_DIR$/AuthenticationService/pom.xml" />
+        <option value="$PROJECT_DIR$/MarketUpdate/pom.xml" />
+        <option value="$PROJECT_DIR$/MarketData/pom.xml" />
+        <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/AuthService/pom.xml" />
         <option value="$PROJECT_DIR$/BrokerService/pom.xml" />
         <option value="$PROJECT_DIR$/ExchangeAdminService/pom.xml" />
+        <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
+        <option value="$PROJECT_DIR$/MarketData/pom.xml" />
       </set>
     </option>
   </component>

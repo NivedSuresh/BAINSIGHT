@@ -19,9 +19,11 @@ import org.bainsight.market.Handler.Persistance.CandleStickBuffer;
 import org.bainsight.market.Handler.Persistance.RecentlyReceivedBuffer;
 import org.bainsight.market.Model.Events.TickAcceptedEvent;
 import org.bainsight.market.Model.Events.TickReceivedEvent;
+import org.bainsight.market.Repository.CandleStickRepo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.concurrent.ExecutorService;
@@ -74,7 +76,10 @@ public class DisruptorConfig {
     @Bean
     public Disruptor<TickAcceptedEvent> tickAcceptedEventDisruptor(final CandleStickBuffer candleStickBuffer,
                                                                    final Aeron aeron,
-                                                                   final ObjectMapper mapper) {
+                                                                   final ObjectMapper mapper,
+                                                                   final ExecutorService greenExecutor,
+                                                                   final KafkaTemplate<String, Object> template,
+                                                                   final CandleStickRepo candleStickRepo){
         Disruptor<TickAcceptedEvent> disruptor = new Disruptor<>(
                 TickAcceptedEvent.TICK_ACCEPTED_EVENT_FACTORY,
                 1024,
@@ -92,7 +97,10 @@ public class DisruptorConfig {
                 candleStickBuffer,
                 profiles,
                 userServicePublication,
-                mapper
+                mapper,
+                greenExecutor,
+                template,
+                candleStickRepo
         );
 
         disruptor.handleEventsWith(candleHandler, new MarketAnalyzer((byte) 0, (byte) 1));

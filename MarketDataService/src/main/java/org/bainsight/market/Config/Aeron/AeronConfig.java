@@ -1,6 +1,7 @@
 package org.bainsight.market.Config.Aeron;
 
 import io.aeron.Aeron;
+import io.aeron.driver.MaxMulticastFlowControlSupplier;
 import io.aeron.driver.MediaDriver;
 import io.aeron.driver.MinMulticastFlowControlSupplier;
 import io.aeron.driver.ThreadingMode;
@@ -8,6 +9,7 @@ import org.agrona.concurrent.BackoffIdleStrategy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Objects;
 
@@ -30,7 +32,7 @@ public class AeronConfig {
                 .dirDeleteOnStart(true)
                 .dirDeleteOnShutdown(true)
                 .senderIdleStrategy(new BackoffIdleStrategy())
-                .multicastFlowControlSupplier(new MinMulticastFlowControlSupplier())
+                .multicastFlowControlSupplier(new MaxMulticastFlowControlSupplier())
                 .aeronDirectoryName(AERON_DIRECTORY)
                 .threadingMode(ThreadingMode.SHARED);
 
