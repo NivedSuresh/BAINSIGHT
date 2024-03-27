@@ -5,106 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisDevConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Repository/CandleStickRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Config/Aeron/AeronConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Service/WebSocketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/WebSocket/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MarketUpdate/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/WatchlistApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/src/test/java/org/bainsight/watchlist/TestWatchlistApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Watchlist/src/test/java/org/bainsight/watchlist/WatchlistApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/CandleStick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/ExchangePrice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/AdminClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Service/MfaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/MfaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/db/migration/V1__create_tables_user_service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/migration/V1__create_tables_user_service.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/main/resources/db/queries/other.sql" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/queries/other.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/BrokerUserServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/BrokerUserServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/bainsight/user/authenticationservice/AuthenticationServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/MarketUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/bainsight/user/authenticationservice/AuthenticationServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketUpdate/src/test/java/org/bainsight/updates/MarketUpdateTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/BainsightGateway/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Aeron/AeronConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Event/CandleHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Handler/Persistance/CandleStickBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/java/org/bainsight/market/Model/Dto/CandleStick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MarketDataService/src/test/java/org/bainsight/market/MarketDataEngineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZDocker/Redis/dependencies-compose-reddit.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ZDocker/Redis/compose-reddit-cluster.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dockkker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,7 +232,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MarketUpdate">
+  <component name="RunManager" selected="Spring Boot.MarketData">
     <configuration name="MarketDataEngineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MarketDataService" />
       <extension name="coverage">
@@ -684,7 +585,7 @@
       <workItem from="1711526960983" duration="3704000" />
       <workItem from="1711531186093" duration="518000" />
       <workItem from="1711531722109" duration="4347000" />
-      <workItem from="1711536431102" duration="9361000" />
+      <workItem from="1711536431102" duration="10051000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
