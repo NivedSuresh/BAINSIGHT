@@ -23,4 +23,5 @@ public class Error {
     public static final String NOT_ENOUGH_BALANCE_TO_BID = "EXCEPTION-1019";
     public static final String JWT_EXPIRED = "EXCEPTION-1020";
     public static final String CANDLE_STICK_EXPIRED = "EXCEPTION-1021";
+    public static final String ENTITY_NOT_FOUND = "EXCEPTION-1022";
 }

@@ -14,7 +14,7 @@ public class EntityAlreadyExistsException extends GlobalException {
 
 
     /*
-        what -> User, Broker etc
+        what -> Watchlist, Broker etc
         name -> Username/email/specific-field provided as the identifier while signing up
     */
     public EntityAlreadyExistsException(String entity, String identifier) {

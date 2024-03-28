@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
 
     <name>BAINSIGHT</name>
-    <url>http://maven.apache.org</url>
+    <url>https://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,14 +20,15 @@
         <module>YLibrary</module>
         <module>ConfigServer</module>
         <module>ServiceRegistry</module>
-        <module>BainsightGateway</module>
-        <module>TestExchangeEnv</module>
+        <module>Gateway</module>
+        <module>YA_TestExchangeEnv</module>
         <module>AuthenticationService</module>
         <module>OrderManagement</module>
         <module>JournalService</module>
         <module>RiskManagement</module>
-        <module>MarketDataService</module>
         <module>JournalService</module>
+        <module>MarketUpdate</module>
+        <module>MarketData</module>
         <module>Watchlist</module>
     </modules>
 

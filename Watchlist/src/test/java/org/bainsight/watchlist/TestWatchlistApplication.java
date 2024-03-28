@@ -17,7 +17,7 @@ public class TestWatchlistApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(WatchlistApplication::main).with(TestWatchlistApplication.class).run(args);
+		SpringApplication.from(WatchlistApp::main).with(TestWatchlistApplication.class).run(args);
 	}
 
 }

@@ -32,6 +32,8 @@
         <option value="$PROJECT_DIR$/MarketUpdate/pom.xml" />
         <option value="$PROJECT_DIR$/MarketData/pom.xml" />
         <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/DataAggregator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -41,6 +43,7 @@
         <option value="$PROJECT_DIR$/ExchangeAdminService/pom.xml" />
         <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
         <option value="$PROJECT_DIR$/MarketData/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
       </set>
     </option>
   </component>

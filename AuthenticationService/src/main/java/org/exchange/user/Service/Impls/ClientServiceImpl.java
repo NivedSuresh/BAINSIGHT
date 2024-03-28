@@ -8,7 +8,7 @@ import org.exchange.library.Dto.Authentication.ClientSignupRequest;
 import org.exchange.library.Exception.Authentication.ConfirmPasswordMismatchException;
 import org.exchange.library.Exception.BadRequest.EntityAlreadyExistsException;
 import org.exchange.library.Exception.BadRequest.InvalidUpdateRequestException;
-import org.exchange.library.Exception.IO.ConnectionFailureException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Mapper.Mapper;
 import org.exchange.user.Model.Client;
 import org.exchange.user.Repository.Postgres.ClientRepo;
@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
         return clientRepo.findByPhoneNumber(phoneNumber)
                 .onErrorResume(e -> {
                     log.error("Failed to fetch user: {}", e.getMessage());
-                    return Mono.error(new ConnectionFailureException());
+                    return Mono.error(new ServiceUnavailableException());
                 });
     }
 
@@ -60,7 +60,7 @@ public class ClientServiceImpl implements ClientService {
 
         return clientRepo.existsByPhoneNumber(request.getPhoneNumber())
                 .flatMap(exists -> {
-                    if (exists) return Mono.error(new EntityAlreadyExistsException("User ", request.getPhoneNumber()));
+                    if (exists) return Mono.error(new EntityAlreadyExistsException("Watchlist ", request.getPhoneNumber()));
 
                     if (request.getPassword() == null || !Objects.equals(request.getPassword(), request.getConfirmPassword())) {
                         return Mono.error(new ConfirmPasswordMismatchException(Error.CONFIRM_PASSWORD_MISMATCH));
@@ -91,7 +91,7 @@ public class ClientServiceImpl implements ClientService {
                     }
 
 
-                    return Mono.error(ConnectionFailureException::new);
+                    return Mono.error(ServiceUnavailableException::new);
                 });
     }
 
@@ -104,9 +104,9 @@ public class ClientServiceImpl implements ClientService {
                 .onErrorResume(throwable -> {
                     log.error(throwable.getMessage());
                     if(throwable instanceof DuplicateKeyException){
-                        return Mono.error(new EntityAlreadyExistsException("User", request.getEmail()));
+                        return Mono.error(new EntityAlreadyExistsException("Watchlist", request.getEmail()));
                     }
-                    return Mono.error(ConnectionFailureException::new);
+                    return Mono.error(ServiceUnavailableException::new);
                 });
 
     }

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Dto.Symbol.SymbolRequest;
 import org.exchange.library.Dto.Symbol.SymbolResponse;
 import org.exchange.library.Exception.BadRequest.EntityAlreadyExistsException;
-import org.exchange.library.Exception.IO.ConnectionFailureException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -26,7 +26,7 @@ public class SymbolServiceImpl implements SymbolService {
     public Flux<SymbolResponse> findAllSymbols() {
         return symbol.findAllFromDB()
                 .onErrorResume(throwable ->
-                        Mono.error(new ConnectionFailureException())
+                        Mono.error(new ServiceUnavailableException())
                 );
     }
 
@@ -38,9 +38,9 @@ public class SymbolServiceImpl implements SymbolService {
                     log.error("Exception caught : {}", e.getMessage());
                     if (e instanceof DuplicateKeyException)
                         return Mono.error(new EntityAlreadyExistsException(
-                                request.getTradingSymbol(), "Symbol"
+                                request.getTradingSymbol(), "CandleStick"
                         ));
-                    return Mono.error(new ConnectionFailureException());
+                    return Mono.error(new ServiceUnavailableException());
                 });
     }
 }

@@ -11,7 +11,7 @@ import org.exchange.library.Exception.Authorization.InvalidJwtException;
 import org.exchange.library.Exception.Authorization.JwtExpiredException;
 import org.exchange.library.Exception.BadRequest.InvalidStateException;
 import org.exchange.library.Exception.GlobalException;
-import org.exchange.library.Exception.IO.ConnectionFailureException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Model.PrincipalRevoked;
 import org.exchange.user.Repository.Postgres.AdminRepo;
 import org.exchange.user.Repository.Postgres.ClientRepo;
@@ -242,7 +242,7 @@ public class AuthServiceImpl implements AuthService {
                             throwable instanceof UnableToInitiateMfaException)
                         throw (GlobalException) throwable;
 
-                    throw new ConnectionFailureException();
+                    throw new ServiceUnavailableException();
                 });
 
 

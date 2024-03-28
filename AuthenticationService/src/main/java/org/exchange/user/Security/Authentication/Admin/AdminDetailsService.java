@@ -3,7 +3,7 @@ package org.exchange.user.Security.Authentication.Admin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
-import org.exchange.library.Exception.IO.ConnectionFailureException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Repository.Postgres.AdminRepo;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
@@ -24,7 +24,7 @@ public class AdminDetailsService implements ReactiveUserDetailsService {
         return adminRepo.findByEmail(email)
                 .onErrorResume(throwable -> {
                     log.error("Exception : {}", throwable.getMessage());
-                    throw new ConnectionFailureException();
+                    throw new ServiceUnavailableException();
                 })
                 .handle((admin, sink) -> {
                     if (admin == null || !admin.getAuthority().equals("ADMIN")) {

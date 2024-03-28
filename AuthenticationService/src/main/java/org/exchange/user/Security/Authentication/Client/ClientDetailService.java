@@ -3,7 +3,7 @@ package org.exchange.user.Security.Authentication.Client;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
-import org.exchange.library.Exception.IO.ConnectionFailureException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Service.ClientService;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,7 +46,7 @@ public class ClientDetailService implements ReactiveUserDetailsService {
                     if (throwable instanceof InvalidCredentialsException)
                         throw (InvalidCredentialsException) throwable;
 
-                    throw new ConnectionFailureException();
+                    throw new ServiceUnavailableException();
                 });
     }
 }

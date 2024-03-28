@@ -6,6 +6,7 @@ import io.aeron.logbuffer.Header;
 import lombok.RequiredArgsConstructor;
 import org.agrona.DirectBuffer;
 import org.bainsight.updates.Service.WebSocketService;
+import org.exchange.library.Dto.MarketRelated.CandleStick;
 
 import java.io.IOException;
 
