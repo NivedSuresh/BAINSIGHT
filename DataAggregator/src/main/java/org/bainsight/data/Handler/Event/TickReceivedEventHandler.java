@@ -11,6 +11,7 @@ import org.exchange.library.Dto.MarketRelated.Tick;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -29,7 +30,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
     private final AtomicBoolean lock;
     private String[] profiles;
 
-    private String[] exchanges;
+    private final String[] exchanges;
 
     public TickReceivedEventHandler(final RecentlyReceivedBuffer bufferManager,
                                     final RingBuffer<TickAcceptedEvent> acceptedBuffer,
@@ -125,6 +126,7 @@ public class TickReceivedEventHandler implements EventHandler<TickReceivedEvent>
     }
 
 
+    /* TODO: IMPLEMENT TCP REQUESTING FOR LOST MESSAGES */
     public void requireRecovery(){
 //        System.out.println("recovery");
 //        Map<String, TLongHashSet> recoveryMap = new HashMap<>(this.missedMap);

@@ -1,7 +1,6 @@
 package org.bainsight.data.Persistance;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.annotation.PostConstruct;
 import org.bainsight.data.Exception.ExpiredTickTimeStampException;
 import org.bainsight.data.Model.Dto.ExchangePrice;
@@ -28,29 +27,27 @@ public class CandleStickBuffer {
 
     /* Will persist CandleSticks as CandleStick:Stick */
     private final Map<String, CandleStick> combinedSticks;
+    private final Map<String, List<ExchangePrice>> exchangePriceMap;
     private final AtomicBoolean lock = new AtomicBoolean(false);
     private final ZoneId zoneId;
     private final RedisTemplate<String, Object> redisTemplate;
     private final ExecutorService recoveryExecutor;
     private final ExecutorService greenExecutor;
-    private final ObjectMapper mapper;
     private final CandleStickRepo candleStickRepo;
-
 
 
     public CandleStickBuffer(final RedisTemplate<String, Object> redisTemplate,
                              final ExecutorService recoveryExecutor,
                              final ExecutorService greenExecutor,
-                             final ObjectMapper mapper,
                              final CandleStickRepo candleStickRepo)
     {
         this.redisTemplate = redisTemplate;
         this.recoveryExecutor = recoveryExecutor;
         this.greenExecutor = greenExecutor;
-        this.mapper = mapper;
         this.candleStickRepo = candleStickRepo;
         this.combinedSticks = new HashMap<>();
         this.volumeMap =  new HashMap<>();
+        this.exchangePriceMap = new HashMap<>();
         this.zoneId = ZoneId.of("Asia/Kolkata");
     }
 
@@ -59,7 +56,6 @@ public class CandleStickBuffer {
     public void restoreStateOnConstruct(){
         this.recoveryExecutor.execute(() -> {
             Set<String> keys = this.redisTemplate.keys("CandleStick:*");
-            System.out.println("Keys: " + keys);
             ZonedDateTime currentTime = ZonedDateTime.now();
             if(keys == null) return;
             keys.forEach(key -> this.fetchStickFromRedisAndUpdate(key, currentTime));
@@ -121,7 +117,8 @@ public class CandleStickBuffer {
     a combined stick of all exchanges plus updates the current state **/
     public CandleStick updateAndGetCandleStick(final Tick tick) {
 
-        while (lock.get()) ;
+        while (lock.get());
+
         lock.set(true);
 
         double lastTradedPrice = tick.getLastTradedPrice();
@@ -131,7 +128,7 @@ public class CandleStickBuffer {
 
 
         CandleStick candleStick = this.combinedSticks.get(tick.getSymbol());
-        List<ExchangePrice> exchangePrices = computePricesIfAbsentFromCandle(candleStick, tick);
+        List<ExchangePrice> exchangePrices = computePricesIfAbsentFromCandle(tick);
 
         if (candleStick == null) {
             candleStick = CandleStick.builder()
@@ -169,6 +166,7 @@ public class CandleStickBuffer {
         }
 
         this.combinedSticks.put(tick.getSymbol(), candleStick);
+
         lock.set(false);
         return candleStick;
     }
@@ -204,14 +202,13 @@ public class CandleStickBuffer {
         return totalVolume;
     }
 
-    private List<ExchangePrice> computePricesIfAbsentFromCandle(CandleStick candleStick, Tick tick)
+    private List<ExchangePrice> computePricesIfAbsentFromCandle(Tick tick)
     {
-        List<ExchangePrice> exchangePrices = null;
+        List<ExchangePrice> exchangePrices = this.exchangePriceMap.get(tick.getSymbol());
         String forExchange = tick.getExchange();
 
-        if(candleStick != null)
+        if(exchangePrices != null)
         {
-            exchangePrices = candleStick.getExchangePrices();
             boolean found = false;
             for(ExchangePrice exchangePrice : exchangePrices) {
                 String iterableExchange = exchangePrice.getExchange();
@@ -228,15 +225,33 @@ public class CandleStickBuffer {
             exchangePrices = new ArrayList<>();
             exchangePrices.add(new ExchangePrice(tick.getExchange(), tick.getLastTradedPrice()));
         }
+
+        this.exchangePriceMap.put(tick.getSymbol(), exchangePrices);
         return exchangePrices;
     }
 
 
     public Map<String, CandleStick> getSnapshot(boolean reset){
         while (lock.get());
+
         lock.set(true);
+
         /* Capture the snapshot */
-        HashMap<String, CandleStick> clone = new HashMap<>(this.combinedSticks);
+        Map<String, CandleStick> clone = new HashMap<>();
+        for(String key : this.combinedSticks.keySet()){
+            CandleStick stick = new CandleStick();
+            CandleStick existing = this.combinedSticks.get(key);
+            stick.setVolume(existing.getVolume());
+            stick.setHigh(existing.getHigh());
+            stick.setLow(existing.getLow());
+            stick.setOpen(existing.getOpen());
+            stick.setClose(existing.getClose());
+            stick.setChange(existing.getChange());
+            stick.setTimeStamp(existing.getTimeStamp());
+            stick.setExchangePrices(existing.getExchangePrices());
+            stick.setSymbol(existing.getSymbol());
+            clone.put(key, stick);
+        }
         /* Reset after capturing snapshot */
         if(reset)
         {
@@ -247,8 +262,6 @@ public class CandleStickBuffer {
     }
 
 
-
-    // Clear the maps by 4pm every day as the market will be closed by 3:30
     public void reset(){
         this.combinedSticks.clear();
     }

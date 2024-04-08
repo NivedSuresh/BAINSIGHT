@@ -26,10 +26,10 @@
         <module>OrderManagement</module>
         <module>JournalService</module>
         <module>RiskManagement</module>
-        <module>JournalService</module>
         <module>MarketUpdate</module>
-        <module>MarketData</module>
+        <module>DataAggregator</module>
         <module>Watchlist</module>
+        <module>HistoryService</module>
     </modules>
 
     <dependencies>

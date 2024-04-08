@@ -9,32 +9,32 @@ import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
 
-@Slf4j
-@RequiredArgsConstructor
-class PrimaryGroupListener implements Runnable, GroupListener {
-
-
-    private final MessageReceiveBuffer messageReceiveBuffer;
-    private final String PRIMARY_MULTICAST_ADDRESS;
-    private final int PRIMARY_MULTICAST_PORT;
-
-
-    @Override
-    public void run() {
-
-
-        try (MulticastSocket socket = new MulticastSocket(PRIMARY_MULTICAST_PORT))
-        {
-            InetAddress group = InetAddress.getByName(PRIMARY_MULTICAST_ADDRESS);
-            NetworkInterface networkInterface = NetworkInterface.getByInetAddress(group);
-            socket.joinGroup(new InetSocketAddress(group, 5000), networkInterface);
-
-
-            byte[] buffer = new byte[1024];
-            this.listenToGroup(socket, group, buffer, messageReceiveBuffer, log);
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-}
+//@Slf4j
+//@RequiredArgsConstructor
+//class PrimaryGroupListener implements Runnable, GroupListener {
+//
+//
+//    private final MessageReceiveBuffer messageReceiveBuffer;
+//    private final String PRIMARY_MULTICAST_ADDRESS;
+//    private final int PRIMARY_MULTICAST_PORT;
+//
+//
+//    @Override
+//    public void run() {
+//
+//
+//        try (MulticastSocket socket = new MulticastSocket(PRIMARY_MULTICAST_PORT))
+//        {
+//            InetAddress group = InetAddress.getByName(PRIMARY_MULTICAST_ADDRESS);
+//            NetworkInterface networkInterface = NetworkInterface.getByInetAddress(group);
+//            socket.joinGroup(new InetSocketAddress(group, 5000), networkInterface);
+//
+//
+//            byte[] buffer = new byte[1024];
+//            this.listenToGroup(socket, group, buffer, messageReceiveBuffer, log);
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//        }
+//    }
+//}

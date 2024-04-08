@@ -3,15 +3,11 @@ package com.exchange.gateway.Filters;
 import com.exchange.gateway.Filters.Helper.EndpointsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Exception.Authorization.InvalidJwtException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.ReactiveSecurityContextHolder;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -46,29 +42,29 @@ public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.
 
             HttpCookie cookie = request.getCookies().getFirst("ACCESS_TOKEN");
 
-            if(cookie == null) return Mono.error(InvalidJwtException::new);
+            if(cookie == null)
+            {
+                return Mono.error(InvalidJwtException::new);
+            }
 
             return jwtDecoder.decode(cookie.getValue())
                     .flatMap(token -> {
-
-                        System.out.println(token.getSubject() + " " + token.getClaim("authority"));
-
-                        if(endpointsUtil.isAllowed(path, token.getClaim("authority"))){
-                            return updateSecurityContextHolder(token)
-                                    .flatMap(securityContext -> chain.filter(exchange));
+                        if(endpointsUtil.isAllowed(path, token.getClaim("authority")))
+                        {
+                            exchange.getRequest().mutate().header("x-auth-user-id", token.getSubject());
+                            return chain.filter(exchange);
                         }
-                        log.error("Watchlist not allowed for path ".concat(path));
+                        log.error("User not allowed for path ".concat(path));
                         return Mono.error(InvalidJwtException::new);
                     })
 
-                    .onErrorResume(throwable -> Mono.error(InvalidJwtException::new));
+                    .onErrorResume(throwable -> {
+                        if(throwable instanceof InvalidJwtException) return Mono.error(throwable);
+                        return Mono.error(ServiceUnavailableException::new);
+                    });
 
         };
     }
 
-    private Mono<SecurityContext> updateSecurityContextHolder(Jwt jwt) {
-        Authentication authentication = new UsernamePasswordAuthenticationToken(jwt, null);
-        return ReactiveSecurityContextHolder.getContext()
-                .doOnNext(securityContext -> securityContext.setAuthentication(authentication));
-    }
+
 }

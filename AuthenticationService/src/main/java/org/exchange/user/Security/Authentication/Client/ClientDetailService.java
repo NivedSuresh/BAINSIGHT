@@ -2,7 +2,7 @@ package org.exchange.user.Security.Authentication.Client;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Service.ClientService;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
@@ -28,7 +28,7 @@ public class ClientDetailService implements ReactiveUserDetailsService {
                     log.info("Client : {}", client);
                     if (client == null) {
                         log.error("Failed to fetch Client from Database with the provided tag!");
-                        sink.error(new InvalidCredentialsException());
+                        sink.error(new BadBindException());
                         return;
                     }
                     sink.next(new ClientDetails(
@@ -43,8 +43,8 @@ public class ClientDetailService implements ReactiveUserDetailsService {
                 }).map(o -> (UserDetails) o)
                 .doOnError(throwable -> {
                     log.error("Exception caught: {}", throwable.getMessage());
-                    if (throwable instanceof InvalidCredentialsException)
-                        throw (InvalidCredentialsException) throwable;
+                    if (throwable instanceof BadBindException)
+                        throw (BadBindException) throwable;
 
                     throw new ServiceUnavailableException();
                 });

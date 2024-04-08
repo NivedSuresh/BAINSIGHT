@@ -3,6 +3,8 @@
 ## Tools Used:
 
 * TDD (TestContainers, JUNIT, Mockito)
+* Aeron
+* Lmax Disruptor
 * Apache Kafka for streaming.
 * Flyway for database migrations.
 * Hazelcast embedded cache for Leader election.

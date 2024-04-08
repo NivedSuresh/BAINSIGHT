@@ -2,7 +2,7 @@ package org.exchange.user.Security.Authentication.Client;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,24 +27,24 @@ public class ClientAuthenticationManager implements ReactiveAuthenticationManage
         log.info("Authentication : {}", authentication);
 
         return clientDetailService.findByUsername(authentication.getName())
-                .switchIfEmpty(Mono.error(new InvalidCredentialsException("Failed to find Client with the provided details.")))
+                .switchIfEmpty(Mono.error(new BadBindException("Failed to find Client with the provided details.")))
                 .handle((userDetails, sink) -> {
                     log.info("Principal fetched : {}", userDetails);
                     if (userDetails == null) {
                         log.error("Fetched principal is null!");
-                        sink.error(new InvalidCredentialsException("Failed to find Client with the provided details."));
+                        sink.error(new BadBindException("Failed to find Client with the provided details."));
                         return;
                     }
                     if (!encoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
                         log.error("Password doesn't match!");
-                        sink.error(new InvalidCredentialsException());
+                        sink.error(new BadBindException());
                         return;
                     }
                     //Will verify if account is banned/revoked
                     try {
                         new AccountStatusUserDetailsChecker().check(userDetails);
                     } catch (Exception e) {
-                        sink.error(new InvalidCredentialsException("Account has been Invoked!"));
+                        sink.error(new BadBindException("Account has been Invoked!"));
                         return;
                     }
                     log.info("Authentication object has been returned");

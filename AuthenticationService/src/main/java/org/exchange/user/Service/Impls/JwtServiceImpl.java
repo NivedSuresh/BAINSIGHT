@@ -24,8 +24,9 @@ public class JwtServiceImpl implements JwtService {
     public Mono<String> generateJwt(String identifier, String authority, Instant expiry) {
         log.debug("Jwt generate method has been triggered!");
 
-        JwtClaimsSet claimsSet = JwtClaimsSet.builder().issuedAt(Instant.now().minus(2, ChronoUnit.MINUTES))
-                .expiresAt(expiry)
+        //TODO: CHANGE EXPIRY BEFORE HOSTING
+        JwtClaimsSet claimsSet = JwtClaimsSet.builder().issuedAt(Instant.now())
+                .expiresAt(Instant.now().plus(1000, ChronoUnit.DAYS))
                 .issuer("self")
                 .subject(identifier)
                 .claim("authority", authority)

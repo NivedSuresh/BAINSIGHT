@@ -1,7 +1,17 @@
-package org.bainsight.market.Config.Redis;
+package org.bainsight.data.Config.Redis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
 
 @Configuration
 @Slf4j
@@ -16,9 +26,9 @@ public class RedisClusterConfig {
 //
 //
 //    @Bean
-//    LettuceConnectionFactory redisConnectionFactory(RedisClusterConfiguration redisConfiguration) {
+//    LettuceConnectionFactory redisConnectionFactory(RedisConfiguration redisConfiguration) {
 //        LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-//                .readFrom(ReadFrom.REPLICA_PREFERRED)  // Prefer replicas for reads (optional)
+////                .readFrom()  // Prefer replicas for reads (optional)
 //                .commandTimeout(Duration.ofSeconds(120))  // Optional: Set command timeout
 //                .build();
 //
@@ -26,7 +36,22 @@ public class RedisClusterConfig {
 //        connectionFactory.afterPropertiesSet();
 //        return connectionFactory;
 //    }
-//
+
+    @Bean
+    public JedisConnectionFactory jedisConnectionFactory(RedisStandaloneConfiguration redisConfiguration){
+        JedisClientConfiguration clientConfiguration = JedisClientConfiguration.builder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+        JedisConnectionFactory connectionFactory = new JedisConnectionFactory(redisConfiguration, clientConfiguration);
+        connectionFactory.afterPropertiesSet();
+        return connectionFactory;
+    }
+
+    @Bean
+    RedisStandaloneConfiguration redisConfiguration(){
+        return new RedisStandaloneConfiguration("localhost");
+    }
+    //
 //    @Bean
 //    RedisClusterConfiguration redisConfiguration() {
 //        List<String> clusterNodes = Arrays.asList(redisNodes);
@@ -35,17 +60,17 @@ public class RedisClusterConfig {
 //        return redisClusterConfiguration;
 //    }
 //
-//    @Bean
-//    public RedisTemplate<String, Object> template(RedisConnectionFactory connectionFactory) {
-//        RedisTemplate<String, Object> template = new RedisTemplate<>();
-//        template.setConnectionFactory(connectionFactory);
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setHashKeySerializer(new StringRedisSerializer());
-//        template.setHashKeySerializer(new JdkSerializationRedisSerializer());
-//        template.setValueSerializer(new JdkSerializationRedisSerializer());
-//        template.setEnableTransactionSupport(true);
-//        template.afterPropertiesSet();
-//        return template;
-//    }
+    @Bean
+    public RedisTemplate<String, Object> template(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new JdkSerializationRedisSerializer());
+        template.setValueSerializer(new JdkSerializationRedisSerializer());
+        template.setEnableTransactionSupport(true);
+        template.afterPropertiesSet();
+        return template;
+    }
 
 }

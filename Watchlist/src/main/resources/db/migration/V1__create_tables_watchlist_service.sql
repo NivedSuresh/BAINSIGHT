@@ -1,13 +1,9 @@
-CREATE TABLE watchlist
-(
-    watchlist_id    BIGSERIAL PRIMARY KEY,
-    watchlist_name  VARCHAR(50),
-    ucc             UUID NOT NULL
+create table watchlist (
+    is_pinned boolean,
+    watchlist_id bigserial not null,
+    ucc uuid, watchlist_name varchar(255),
+    primary key (watchlist_id),
+    constraint ucc_watchlist unique (ucc, watchlist_name)
 );
 
-CREATE TABLE watchlist_symbols
-(
-    id              BIGSERIAL PRIMARY KEY,
-    watchlist_id    BIGSERIAL,
-    symbol          VARCHAR(10)
-)
+create table watchlist_symbols (watchlist_id bigint not null, symbols varchar(255))

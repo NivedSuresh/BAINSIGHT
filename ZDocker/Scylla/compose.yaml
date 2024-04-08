@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  scylla-node1:
+    container_name: scylla-node1
+    image: scylladb/scylla:5.2.0
+    ports:
+      - "9042:9042"
+    restart: always
+    environment:
+      - SCYLLA_CLUSTER_NAME=scylla-docker
+      - SCYLLA_DC=datacenter1
+      - SCYLLA_LISTEN_ADDRESS=0.0.0.0
+      - SCYLLA_RPC_ADDRESS=0.0.0.0
+      - SCYLLA_NUM_TOKENS=256
+      - SCYLLA_AUTO_BOOTSTRAP=true
+#    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
+#
+#  scylla-node2:
+#    container_name: scylla-node2
+#    image: scylladb/scylla:5.2.0
+#    ports:
+#      - "9043:9042"
+#    restart: always
+#    environment:
+#      - SCYLLA_CLUSTER_NAME=scylla-docker
+#      - SCYLLA_DC=datacenter1
+#      - SCYLLA_LISTEN_ADDRESS=0.0.0.0
+#      - SCYLLA_RPC_ADDRESS=0.0.0.0
+#      - SCYLLA_NUM_TOKENS=256
+#      - SCYLLA_AUTO_BOOTSTRAP=true
+#    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
+#
+#  scylla-node3:
+#    container_name: scylla-node3
+#    image: scylladb/scylla:5.2.0
+#    ports:
+#      - "9044:9042"
+#    restart: always
+#    environment:
+#      - SCYLLA_CLUSTER_NAME=scylla-docker
+#      - SCYLLA_DC=datacenter1
+#      - SCYLLA_LISTEN_ADDRESS=0.0.0.0
+#      - SCYLLA_RPC_ADDRESS=0.0.0.0
+#      - SCYLLA_NUM_TOKENS=256
+#      - SCYLLA_AUTO_BOOTSTRAP=true
+#    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll

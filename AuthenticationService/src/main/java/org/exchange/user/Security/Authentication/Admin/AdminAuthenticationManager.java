@@ -2,7 +2,7 @@ package org.exchange.user.Security.Authentication.Admin;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -23,10 +23,10 @@ public class AdminAuthenticationManager implements ReactiveAuthenticationManager
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
         return adminDetailsService.findByUsername(authentication.getName())
-                .switchIfEmpty(Mono.error(InvalidCredentialsException::new))
+                .switchIfEmpty(Mono.error(BadBindException::new))
                 .handle((adminDetails, sink) -> {
                     if (!encoder.matches(authentication.getCredentials().toString(), adminDetails.getPassword())) {
-                        sink.error(new InvalidCredentialsException());
+                        sink.error(new BadBindException());
                         log.error("BadRequest Password entry");
                         return;
                     }
@@ -34,7 +34,7 @@ public class AdminAuthenticationManager implements ReactiveAuthenticationManager
                     try {
                         new AccountStatusUserDetailsChecker().check(adminDetails);
                     } catch (Exception e) {
-                        sink.error(new InvalidCredentialsException("License expired/revoked!"));
+                        sink.error(new BadBindException("License expired/revoked!"));
                         return;
                     }
                     log.info("Authentication object has been returned");

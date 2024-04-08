@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Advice.Error;
 import org.exchange.library.Dto.Authentication.*;
 import org.exchange.library.Enums.MfaType;
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.exchange.library.Exception.Authentication.UnableToInitiateMfaException;
 import org.exchange.library.Exception.Authorization.InvalidJwtException;
 import org.exchange.library.Exception.Authorization.JwtExpiredException;
@@ -102,7 +102,7 @@ public class AuthServiceImpl implements AuthService {
                     log.info("Fetched validation : {}", validation);
 
                     if (validation.getRevoked()) {
-                        return Mono.error(new InvalidCredentialsException("The account has been revoked"));
+                        return Mono.error(new BadBindException("The account has been revoked"));
                     }
 
 
@@ -157,8 +157,8 @@ public class AuthServiceImpl implements AuthService {
         log.info("Authenticate method called!");
         return CLIENT_AUTH_MANAGER.authenticate(getAuthToken(request.getIdentifier(), request.getPassword()))
                 .doOnError(throwable -> {
-                    if (throwable instanceof InvalidCredentialsException) throw (InvalidCredentialsException) throwable;
-                    throw new InvalidCredentialsException();
+                    if (throwable instanceof BadBindException) throw (BadBindException) throwable;
+                    throw new BadBindException();
                 })
 
 
@@ -192,8 +192,8 @@ public class AuthServiceImpl implements AuthService {
 
                 .onErrorResume(e -> {
                     log.error("Exception : {}", e.getMessage());
-                    if (e instanceof InvalidCredentialsException) throw (InvalidCredentialsException) e;
-                    else throw new InvalidCredentialsException();
+                    if (e instanceof BadBindException) throw (BadBindException) e;
+                    else throw new BadBindException();
                 });
     }
 
@@ -204,7 +204,7 @@ public class AuthServiceImpl implements AuthService {
                 .handle((authentication, sink) -> {
                     log.debug("Finished Authentication : {}", authentication);
                     if (!authentication.isAuthenticated()) {
-                        sink.error(new InvalidCredentialsException());
+                        sink.error(new BadBindException());
                         return;
                     }
                     AdminDetails adminDetails = (AdminDetails) authentication.getPrincipal();
@@ -238,7 +238,7 @@ public class AuthServiceImpl implements AuthService {
 
                     log.error("Exception caught : {}", throwable.getMessage());
 
-                    if (throwable instanceof InvalidCredentialsException ||
+                    if (throwable instanceof BadBindException ||
                             throwable instanceof UnableToInitiateMfaException)
                         throw (GlobalException) throwable;
 

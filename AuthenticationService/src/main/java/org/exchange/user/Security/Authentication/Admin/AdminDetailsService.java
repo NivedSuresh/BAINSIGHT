@@ -2,7 +2,7 @@ package org.exchange.user.Security.Authentication.Admin;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.user.Repository.Postgres.AdminRepo;
 import org.springframework.context.annotation.Primary;
@@ -28,7 +28,7 @@ public class AdminDetailsService implements ReactiveUserDetailsService {
                 })
                 .handle((admin, sink) -> {
                     if (admin == null || !admin.getAuthority().equals("ADMIN")) {
-                        sink.error(new InvalidCredentialsException());
+                        sink.error(new BadBindException());
                         return;
                     }
 

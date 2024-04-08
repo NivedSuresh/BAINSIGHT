@@ -8,11 +8,16 @@ import java.util.concurrent.Executors;
 
 @Configuration
 public class ExecutorsConfig {
-    @Bean
-    public ExecutorService listenerThreads(){
-        return Executors.newFixedThreadPool(2);
-    }
 
+//    @Bean
+//    public ExecutorService primary(){
+//        return Executors.newSingleThreadExecutor();
+//    }
+//
+//    @Bean
+//    public ExecutorService backup(){
+//        return Executors.newSingleThreadExecutor();
+//    }
 
     @Bean
     public ExecutorService recoveryExecutor(){

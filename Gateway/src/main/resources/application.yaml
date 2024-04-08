@@ -31,7 +31,7 @@ spring:
             - Path=/api/exchange/risk/**
             - Method=GET,PUT,POST,DELETE
           filters:
-            - HeaderManipulationFilter
+            - SecurityFilter
 
         #AuthService Client
         - id: auth-service
@@ -50,12 +50,21 @@ spring:
           filters:
             - SecurityFilter
 
-        #Market Update Data
+        #Market Update
         - id: market-update
           uri: lb://market-update
           predicates:
             - Path=/ws
             - Method=GET,PUT,POST
+
+        #Watchlist
+        - id: watchlist-service
+          uri: lb://watchlist-service
+          predicates:
+            - Path=/api/bainsight/watchlist/**
+            - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
 
 
 # TODO:Move to config server

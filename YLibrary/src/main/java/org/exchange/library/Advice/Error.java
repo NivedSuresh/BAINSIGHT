@@ -24,4 +24,7 @@ public class Error {
     public static final String JWT_EXPIRED = "EXCEPTION-1020";
     public static final String CANDLE_STICK_EXPIRED = "EXCEPTION-1021";
     public static final String ENTITY_NOT_FOUND = "EXCEPTION-1022";
+    public static final String DUPLICATE_SYMBOL_ADDITION = "EXCEPTION-1023";
+    public static final String SYMBOL_NOT_FOUND = "EXCEPTION-1024";
+    public static final String INVALID_REQUEST_METHOD_OR_VALUE = "EXCEPTION-1024";
 }

@@ -8,11 +8,10 @@ import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import io.aeron.Aeron;
 import io.aeron.Publication;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.data.Config.Disruptor.ThreadFactory.TickEventFactory;
 import org.bainsight.data.Config.Election.LeaderConfig;
-import org.bainsight.data.Handler.Event.CandleHandler;
+import org.bainsight.data.Handler.Event.MarketDataHandler;
 import org.bainsight.data.Handler.Event.MarketAnalyzer;
 import org.bainsight.data.Handler.Event.TickReceivedEventHandler;
 import org.bainsight.data.Handler.Exception.TickExceptionHandler;
@@ -28,6 +27,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalTime;
 import java.util.concurrent.ExecutorService;
 
 @Configuration
@@ -39,12 +39,13 @@ public class DisruptorConfig {
 
     private final ExecutorService snapshotExecutor;
 
-    private CandleHandler candleHandler;
+    private MarketDataHandler marketDataHandler;
 
     private TickReceivedEventHandler receivedEventHandler;
 
     private final static String USER_SERVICE_CHANNEL;
     private final static Integer USER_SERVICE_STREAM_ID;
+    private final LocalTime limitTime = LocalTime.of(15, 30); // 3:30 PM
 
     static {
         USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
@@ -96,7 +97,7 @@ public class DisruptorConfig {
 
         Publication userServicePublication = aeron.addPublication(USER_SERVICE_CHANNEL, USER_SERVICE_STREAM_ID);
 
-        this.candleHandler = new CandleHandler(
+        this.marketDataHandler = new MarketDataHandler(
                 (byte) 0, (byte) 1,
                 candleStickBuffer,
                 profiles,
@@ -108,7 +109,7 @@ public class DisruptorConfig {
                 redisTemplate
         );
 
-        disruptor.handleEventsWith(candleHandler, new MarketAnalyzer((byte) 0, (byte) 1));
+        disruptor.handleEventsWith(marketDataHandler, new MarketAnalyzer((byte) 0, (byte) 1));
 
         disruptor.start();
 
@@ -128,25 +129,30 @@ public class DisruptorConfig {
 
 
     //TODO : FIX SCHEDULED
-    @Scheduled(cron = "0 * 9-16 * * *")
+//    @Scheduled(cron = "0 * 9-16 * * *")
+    @Scheduled(fixedRate = 5000)
     public void takeSnapshot(){
-        if(!LeaderConfig.IS_LEADER.get()) return;
-        this.snapshotExecutor.execute(() -> this.candleHandler.takeSnapshot());
+//        if (LocalTime.now().isAfter(limitTime)) return;
+//        if(!LeaderConfig.IS_LEADER.get()) return;
+        System.out.println("Snapshot");
+        this.snapshotExecutor.execute(() -> this.marketDataHandler.takeSnapshot());
     }
 
 
 
-    @Scheduled(fixedRate = 3000)
-//    @Scheduled(cron = "0 0 16 * * *")
+
+    @Scheduled(cron = "0 * 9-16 * * *", zone = "Asia/Kolkata")
     public void reset(){
+        if (LocalTime.now().isAfter(limitTime)) return;
         try{ this.receivedEventHandler.reset(); }
         catch (Exception e){ System.out.println(e.getMessage()); }
     }
 
-    @Scheduled(fixedRate = 1000)
-    public void checkIfRequireRecovery(){
-        this.receivedEventHandler.requireRecovery();
-    }
+    /* TODO: UNCOMMENT */
+//    @Scheduled(fixedRate = 1000)
+//    public void checkIfRequireRecovery(){
+//        this.receivedEventHandler.requireRecovery();
+//    }
 
 
     @Value("${spring.profiles.active}")
@@ -158,9 +164,9 @@ public class DisruptorConfig {
         return null;
     }
 
-    public CandleHandler getCandleHandler() {
+    public MarketDataHandler getMarketDataHandler() {
         for(String profile : profiles){
-            if(profile.equals("test")) return this.candleHandler;
+            if(profile.equals("test")) return this.marketDataHandler;
         }
         return null;
     }

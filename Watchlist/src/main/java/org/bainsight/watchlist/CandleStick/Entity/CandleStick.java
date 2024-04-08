@@ -1,7 +1,6 @@
 package org.bainsight.watchlist.CandleStick.Entity;
 
 import com.redis.om.spring.annotations.Document;
-import com.redis.om.spring.annotations.Indexed;
 import com.redis.om.spring.annotations.Searchable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +18,9 @@ import java.util.List;
 @Builder
 @Document
 public class CandleStick {
-    @Indexed
-    @Searchable
+
     @Id
+    @Searchable
     private String symbol;
     private ZonedDateTime timeStamp;
     private double open;
@@ -31,4 +30,5 @@ public class CandleStick {
     private double change;
     private long volume;
     private List<ExchangePrice> exchangePrices;
+
 }

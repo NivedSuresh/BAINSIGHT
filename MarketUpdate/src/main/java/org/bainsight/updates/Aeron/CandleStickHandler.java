@@ -19,11 +19,19 @@ public class CandleStickHandler implements FragmentHandler {
     public void onFragment(DirectBuffer buffer, int offset, int length, Header header) {
         byte[] bytes = new byte[length];
         buffer.getBytes(offset, bytes);
-        try {
+        try
+        {
             CandleStick stick = mapper.readValue(bytes, CandleStick.class);
             this.webSocketService.pushRequested(stick);
-        } catch (IOException e) {
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
             /* TODO: IMPLEMENT JOURNALING */
         }
+//        catch (IOException e) {
+//            System.out.println(e.getMessage());
+//            /* TODO: IMPLEMENT JOURNALING */
+//        }
     }
 }

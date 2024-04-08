@@ -28,7 +28,6 @@ public class ClientAuthController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
     public Mono<ClientAuthResponse> saveClient(@Validated @RequestBody ClientSignupRequest request, ServerWebExchange webExchange) {
-        System.out.println(request);
         return clientService.save(request, webExchange);
     }
 

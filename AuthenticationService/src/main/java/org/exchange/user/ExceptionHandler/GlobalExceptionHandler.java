@@ -2,20 +2,59 @@ package org.exchange.user.ExceptionHandler;
 
 
 import org.exchange.library.Advice.ErrorResponse;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.exchange.library.Exception.GlobalException;
+import org.exchange.library.Mapper.ValidationErrorMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.support.WebExchangeBindException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(GlobalException.class)
-    public ResponseEntity<ErrorResponse> handleException(GlobalException e) {
-        return ResponseEntity.status(e.getStatus())
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception e) {
+
+
+        if(e instanceof GlobalException exception)
+        {
+            return ResponseEntity.status(exception.getStatus())
+                    .body(ErrorResponse.builder()
+                            .errorCode(exception.getErrorCode())
+                            .message(e.getMessage())
+                            .build()
+                    );
+        }
+
+
+//        else if(e instanceof MissingRequestValueException)
+//        {
+//            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+//                    .body(ErrorResponse.builder()
+//                            .errorCode(Error.INVALID_REQUEST_METHOD_OR_VALUE)
+//                            .message("Invalid request made!")
+//                            .build());
+//        }
+        else if (e instanceof WebExchangeBindException)
+        {
+            BindingResult result = ((WebExchangeBindException) e).getBindingResult();
+            BadBindException badBindException = ValidationErrorMapper.fetchFirstError(result);
+            return ResponseEntity.status(badBindException.getStatus())
+                    .body(ErrorResponse.builder()
+                    .errorCode(badBindException.getErrorCode())
+                    .message(badBindException.getMessage())
+                    .build());
+
+        }
+
+        /* Todo: IMPLEMENT LOGGING */
+
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
                 .body(ErrorResponse.builder()
-                        .errorCode(e.getErrorCode())
-                        .message(e.getMessage())
-                        .build()
-                );
+                        .errorCode(e.getMessage())
+                        .message("This service is unavailable right now, please try again later!")
+                        .build());
     }
 }

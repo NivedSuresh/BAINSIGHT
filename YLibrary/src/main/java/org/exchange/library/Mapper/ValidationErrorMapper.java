@@ -1,16 +1,18 @@
 package org.exchange.library.Mapper;
 
-import org.exchange.library.Exception.Authentication.InvalidCredentialsException;
+import org.exchange.library.Exception.Authentication.BadBindException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.support.WebExchangeBindException;
 
 public class ValidationErrorMapper {
-    public static InvalidCredentialsException fetchFirstError(WebExchangeBindException webBindException) {
-        BindingResult bindingResult = webBindException.getBindingResult();
+    public static BadBindException fetchFirstError(BindingResult bindingResult) {
+
         String message = bindingResult.getFieldErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .findFirst().orElse("Validation error occurred");
-        return new InvalidCredentialsException(message);
+
+        return new BadBindException(message);
     }
+
+
 }

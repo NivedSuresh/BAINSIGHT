@@ -3,7 +3,7 @@ package org.bainsight.data;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bainsight.data.Config.Disruptor.DisruptorConfig;
-import org.bainsight.data.Handler.Event.CandleHandler;
+import org.bainsight.data.Handler.Event.MarketDataHandler;
 import org.bainsight.data.Listener.MessageReceiveBuffer;
 import org.bainsight.data.Model.Dto.VolumeWrapper;
 import org.bainsight.data.Model.Entity.CandleStick;
@@ -12,16 +12,16 @@ import org.bainsight.data.Models.TestStick;
 import org.bainsight.data.Models.TickerEx;
 import org.bainsight.data.Persistance.CandleStickBuffer;
 import org.bainsight.data.Persistance.RecentlyReceivedBuffer;
+import org.bainsight.data.Repository.CandleStickRepo;
 import org.exchange.library.Dto.MarketRelated.Tick;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.testcontainers.junit.jupiter.Container;
-
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -39,7 +39,7 @@ public class MarketDataEngineTest {
 
     private final MarketDataGenerator marketData = new MarketDataGenerator();
 
-    private Map<String, TestStick> testStickMap = new HashMap<>();
+    private final Map<String, TestStick> testStickMap = new HashMap<>();
 
     private final Random random= new Random();
 
@@ -55,7 +55,20 @@ public class MarketDataEngineTest {
     private final Map<String, List<VolumeWrapper>> volumeMap = new HashMap<>();
 
     private final ZoneId zoneId = ZoneId.of("Asia/Kolkata");
+    private final int n = 100;
 
+    @MockBean
+    CandleStickRepo candleStickRepo;
+
+    @MockBean
+    KafkaTemplate<String, Object> kafkaTemplate;
+
+    @BeforeAll
+    static void beforeAll(){
+        System.setProperty("aeron.sample.stream.id", "1001");
+        System.setProperty("aeron.stick.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
+        System.setProperty("aeron.sample.embeddedMediaDriver", "true");
+    }
 
 
 
@@ -64,15 +77,13 @@ public class MarketDataEngineTest {
      * the persisted snapshot also gets cleared, similarly in production, a snapshot
      * is taken every 1 minute thus clearing the current Market state.
      * <p>
-     * This test here would send 1000 * 100 * 200 messages in total,
-     * will take 100 snapshots (no sleep) and compare
+     * {this.n} snapshots will be taken
      * */
     @Test
     void testAFewTimes() throws JsonProcessingException {
-        System.setProperty("aeron.sample.stream.id", "1001");
-        System.setProperty("aeron.stick.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
-        System.setProperty("aeron.sample.embeddedMediaDriver", "true");
-        for(int i=0 ; i<10 ; i++){
+        Mockito.when(candleStickRepo.save(any())).thenReturn(null);
+        Mockito.when(kafkaTemplate.send(any(), any())).thenReturn(null);
+        for(int i=0 ; i<n ; i++){
             evokeTest();
         }
     }
@@ -117,7 +128,6 @@ public class MarketDataEngineTest {
         nseOrderBook.stream().filter(Objects::nonNull).forEach(this::assertSequence);
 
         assertSnapshot();
-
     }
 
 
@@ -162,9 +172,10 @@ public class MarketDataEngineTest {
      * Will validate the snapshot.
      * */
     public void assertSnapshot(){
+        System.out.println("Asserting snapshot");
         //ASSERTION 2
-        CandleHandler candleHandler = disruptorConfig.getCandleHandler();
-        CandleStickBuffer candleStickBuffer = candleHandler.getCandleStickBuffer();
+        MarketDataHandler marketDataHandler = disruptorConfig.getMarketDataHandler();
+        CandleStickBuffer candleStickBuffer = marketDataHandler.getCandleStickBuffer();
         Map<String, TestStick> testStickMap = this.testStickMap;
         Map<String, CandleStick> snapshot = candleStickBuffer.getSnapshot(true);
 
@@ -172,6 +183,8 @@ public class MarketDataEngineTest {
         for(String key : testStickMap.keySet()){
             TestStick testStick = testStickMap.get(key);
             CandleStick candleStick = snapshot.get(key);
+
+//            System.out.println("Test: " + testStick + " Main: "+candleStick);
 
             Assertions.assertEquals(testStick.getChange(), candleStick.getChange());
             Assertions.assertEquals(testStick.getLow(), candleStick.getLow());
