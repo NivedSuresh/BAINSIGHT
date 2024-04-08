@@ -65,7 +65,6 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=watchlist'
       - 'POSTGRES_PASSWORD=2255'
       - 'POSTGRES_USER=postgres'
     ports:

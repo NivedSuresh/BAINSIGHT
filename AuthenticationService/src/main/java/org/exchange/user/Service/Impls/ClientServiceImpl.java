@@ -60,7 +60,7 @@ public class ClientServiceImpl implements ClientService {
 
         return clientRepo.existsByPhoneNumber(request.getPhoneNumber())
                 .flatMap(exists -> {
-                    if (exists) return Mono.error(new EntityAlreadyExistsException("Watchlist ", request.getPhoneNumber()));
+                    if (exists) return Mono.error(new EntityAlreadyExistsException("User ", request.getPhoneNumber()));
 
                     if (request.getPassword() == null || !Objects.equals(request.getPassword(), request.getConfirmPassword())) {
                         return Mono.error(new ConfirmPasswordMismatchException(Error.CONFIRM_PASSWORD_MISMATCH));
@@ -98,13 +98,11 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public Mono<Client> saveUserAndUpdateMeta(ClientSignupRequest request) {
         return clientRepo.save(mapper.requestToClient(request))
-                .doOnNext(client -> {
-                    kafkaService.updateClientMeta(client.getUcc(), 0.0);
-                })
+                .doOnNext(client -> kafkaService.updateClientMeta(client.getUcc(), 0.0))
                 .onErrorResume(throwable -> {
                     log.error(throwable.getMessage());
                     if(throwable instanceof DuplicateKeyException){
-                        return Mono.error(new EntityAlreadyExistsException("Watchlist", request.getEmail()));
+                        return Mono.error(new EntityAlreadyExistsException("User", request.getEmail()));
                     }
                     return Mono.error(ServiceUnavailableException::new);
                 });
