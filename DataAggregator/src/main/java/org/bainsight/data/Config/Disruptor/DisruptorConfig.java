@@ -46,6 +46,7 @@ public class DisruptorConfig {
     private final static String USER_SERVICE_CHANNEL;
     private final static Integer USER_SERVICE_STREAM_ID;
     private final LocalTime limitTime = LocalTime.of(15, 30); // 3:30 PM
+    private final LocalTime startTime = LocalTime.of(9, 0);
 
     static {
         USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
@@ -128,22 +129,19 @@ public class DisruptorConfig {
 
 
 
-    //TODO : FIX SCHEDULED
-//    @Scheduled(cron = "0 * 9-16 * * *")
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 0/5 9-16 * * *", zone = "Asia/Kolkata")
     public void takeSnapshot(){
-//        if (LocalTime.now().isAfter(limitTime)) return;
-//        if(!LeaderConfig.IS_LEADER.get()) return;
-        System.out.println("Snapshot");
+        LocalTime now = LocalTime.now();
+        if (now.isAfter(limitTime) || now.isBefore(startTime)) return;
+        if(!LeaderConfig.IS_LEADER.get()) return;
         this.snapshotExecutor.execute(() -> this.marketDataHandler.takeSnapshot());
     }
 
 
 
 
-    @Scheduled(cron = "0 * 9-16 * * *", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 30 8 * * *", zone = "Asia/Kolkata")
     public void reset(){
-        if (LocalTime.now().isAfter(limitTime)) return;
         try{ this.receivedEventHandler.reset(); }
         catch (Exception e){ System.out.println(e.getMessage()); }
     }

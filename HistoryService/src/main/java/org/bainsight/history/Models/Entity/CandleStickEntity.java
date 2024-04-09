@@ -16,7 +16,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 
-@Table("legacy_sticks")
+@Table("candle_sticks")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,5 +44,6 @@ public class CandleStickEntity {
     private double low;
     private double change;
     private long volume;
+
 }
 

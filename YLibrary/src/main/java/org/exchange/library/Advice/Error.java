@@ -27,4 +27,5 @@ public class Error {
     public static final String DUPLICATE_SYMBOL_ADDITION = "EXCEPTION-1023";
     public static final String SYMBOL_NOT_FOUND = "EXCEPTION-1024";
     public static final String INVALID_REQUEST_METHOD_OR_VALUE = "EXCEPTION-1024";
+    public static final String INVALID_TIME_SPACE = "EXCEPTION-1025";
 }

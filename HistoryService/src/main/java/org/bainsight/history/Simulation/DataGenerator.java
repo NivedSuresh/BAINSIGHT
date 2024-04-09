@@ -4,9 +4,8 @@ package org.bainsight.history.Simulation;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.bainsight.history.Data.HistoryServiceImpl;
-import org.bainsight.history.HistoryService;
-import org.bainsight.history.Models.Dto.CandleStick;
 import org.bainsight.history.Models.Entity.CandleStickEntity;
+import org.exchange.library.Exception.BadRequest.InvalidStateException;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -49,10 +48,11 @@ class DataGenerator {
 
     private static final Random random = new Random();
 
-    private static final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
-    private static final LocalDateTime TODAY_CLOSE = LocalDateTime.of(
-            now.getYear(), now.getMonthValue(), now.getDayOfMonth(), 15, 30, 0, 0
-    );
+    private static final LocalDateTime NOW = LocalDateTime.now();
+
+//            LocalDateTime.of(
+//            now.getYear(), now.getMonthValue(), now.getDayOfMonth(), 15, 30, 0, 0
+//    );
 
     DataGenerator(HistoryServiceImpl historyService) {
         this.historyService = historyService;
@@ -87,8 +87,8 @@ class DataGenerator {
 
 
         ZonedDateTime mod = ZonedDateTime.of(
-                now.getYear() - 3, now.getMonthValue(),
-                now.getDayOfMonth(), 9,
+                NOW.getYear() - 3, NOW.getMonthValue(),
+                NOW.getDayOfMonth(), 9,
                 0, 0, 0,
                 ZoneId.of("Asia/Kolkata")
         );
@@ -122,19 +122,17 @@ class DataGenerator {
 
 
     public void generateSticks(CandleStickEntity entity, byte time, TimeUnit timeUnit){
-        int bullRun = 0;
-
-        Set<Integer> years = new HashSet<>();
-
-        while (entity.getKey().getTimestamp().isBefore(TODAY_CLOSE))
+        this.historyService.saveCandleStick(entity);
+        int bullRun;
+        while (entity.getKey().getTimestamp().isBefore(NOW))
         {
             bullRun = getBullRun(timeUnit);
-            while (bullRun != 0 && entity.getKey().getTimestamp().isBefore(TODAY_CLOSE)){
-                updateEntity(entity, bullRun > 0, time, timeUnit);
-
+            while (bullRun != 0 && entity.getKey().getTimestamp().isBefore(NOW))
+            {
+                try{ updateEntity(entity, bullRun > 0, time, timeUnit); }
+                catch (InvalidStateException e){return;}
 
 //                historyService.saveCandleStick(entity);
-
 
                 if(entity.getLow() < random.nextInt(50, 100)){
                     bullRun = 101;
@@ -158,7 +156,8 @@ class DataGenerator {
 
         double prevClose = entity.getClose();
 
-        setTimeStamp(entity, time, timeUnit);
+        setTimeStamp(entity, time);
+
 
         double high = bullRun ? entity.getHigh() + random.nextDouble(-1, 2.8) :
                 entity.getHigh() + random.nextDouble(-3, 1);
@@ -201,24 +200,11 @@ class DataGenerator {
     }
 
 
-    private void setTimeStamp(CandleStickEntity entity, byte time, TimeUnit timeUnit) {
+    private void setTimeStamp(CandleStickEntity entity, byte time) {
         LocalDateTime current = entity.getKey().getTimestamp();
-        if(timeUnit == TimeUnit.MON) {
-            LocalDateTime newTime = getNewTime(current, time);
-            entity.getKey().setTimestamp(validTime(newTime) ? newTime : TODAY_CLOSE);
-        }
-        else if(timeUnit == TimeUnit.DAY){
-            LocalDateTime newTime = getNewTime(current, time);
-            entity.getKey().setTimestamp(validTime(newTime) ? newTime : TODAY_CLOSE);
-        }
-        else if(timeUnit == TimeUnit.HOUR){
-            LocalDateTime newTime = getNewTime(current, time);
-            entity.getKey().setTimestamp(validTime(newTime) ? newTime : TODAY_CLOSE);
-        }
-        else if(timeUnit == TimeUnit.MIN){
-            LocalDateTime newTime = getNewTime(current, time);
-            entity.getKey().setTimestamp(validTime(newTime) ? newTime : TODAY_CLOSE);
-        }
+        LocalDateTime newTime = getNewTime(current, time);
+        if(validTime(newTime)) entity.getKey().setTimestamp(newTime);
+        else throw new InvalidStateException();
     }
 
     private LocalDateTime getNewTime(LocalDateTime current, byte time) {
@@ -234,7 +220,7 @@ class DataGenerator {
 
 
     private boolean validTime(LocalDateTime newTime) {
-        return newTime.isBefore(TODAY_CLOSE);
+        return newTime.isBefore(NOW) || newTime.isEqual(NOW);
     }
 
 
