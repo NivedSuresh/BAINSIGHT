@@ -1,5 +1,10 @@
 # Stock Broker Application
 
+
+Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-SERVICE?type=design&node-id=0%3A1&mode=design&t=OBxyYBzm23eqzfjY-1
+
+
+
 ## Tools Used:
 
 * TDD (TestContainers, JUNIT, Mockito)
@@ -58,7 +63,6 @@ This script outlines a process for handling market data updates from exchanges (
 snapshot the current OrderBook each minute of the day from 9:00am till 3:30pm. The snapshots are persisted on ScyllaDB.
 
 
-Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-SERVICE?type=design&node-id=0%3A1&mode=design&t=OBxyYBzm23eqzfjY-1
 
 **Assumptions:**
 
