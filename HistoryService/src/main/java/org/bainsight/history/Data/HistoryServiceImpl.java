@@ -16,7 +16,6 @@ import org.exchange.library.Exception.BadRequest.InvalidTimeSpaceException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 import reactor.util.function.Tuple2;
 
 import java.math.BigDecimal;
@@ -81,8 +80,7 @@ public class HistoryServiceImpl {
         List<CandleStickDto> entities = Objects.requireNonNullElseGet(cache.get(key), ArrayList::new);
         if(!entities.isEmpty()) return Flux.fromIterable(entities);
 
-
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = this.getLatestSnapshotDateAndTime();
 
         LocalDateTime start = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 9, 0, 0, 0);
         if(start.getDayOfWeek() == DayOfWeek.SUNDAY)
@@ -95,11 +93,38 @@ public class HistoryServiceImpl {
                 .map(mapper::toCandleStickDto)
                 .doOnNext(entities::add)
                 .doOnComplete(() -> {
-                    Duration duration = getTTl(now, 5);
-                    log.info("Sticks for the day cached till {}", now.plus(duration));
-                    cache.put(key, entities, duration.getSeconds(), TimeUnit.SECONDS);
+                    System.out.println(entities.size());
+                    Duration ttl = getTTl(now, 5);
+                    long seconds = ttl.getSeconds();
+                    cache.put(key, entities, seconds, TimeUnit.SECONDS);
+                    log.info("Sticks for the day cached till {}", now.plus(ttl));
                 });
     }
+
+    private LocalDateTime getLatestSnapshotDateAndTime() {
+        LocalDateTime now = LocalDateTime.now();
+
+        if(now.getDayOfWeek() == DayOfWeek.SUNDAY){
+            now = now.minusDays(1);
+        }
+
+        if(now.getHour() < 9) {
+            now = LocalDateTime.of(
+                    now.toLocalDate().minusDays(1),
+                    LocalTime.of(15, 30, 0)
+            );
+        }
+
+        else if((now.getHour() == 15 && now.getMinute() > 30 ) || (now.getHour() > 15)){
+            now = LocalDateTime.of(
+                    now.toLocalDate(),
+                    LocalTime.of(15, 30, 0)
+            );
+        }
+
+        return now;
+    }
+
 
     private Duration getTTl(LocalDateTime now, int minutes)
     {
@@ -107,12 +132,11 @@ public class HistoryServiceImpl {
         *  If minutes > 120 then the value has to be >= 3days, meaning you can cache
         *  this data till next day 9:00 and there won't be any change for the data anymore today.
         * */
-        if(minutes > 120) return getTTLForNextDay(now);
-        boolean isMarketClosed = now.isAfter(LocalDateTime.of(now.getYear(),
-                                             now.getMonth(),
-                                             now.getDayOfMonth(),
-                                             15, 30));
-        return isMarketClosed ? getTTLForNextDay(now) : getDurationForMarketOpen(now, minutes);
+        if(minutes > 120) return getTTLForMarketClosed(now);
+
+        boolean isMarketClosed = (now.getHour() > 15 && now.getMinute() > 30) || (now.getHour() < 9);
+
+        return isMarketClosed ? getTTLForMarketClosed(now) : getDurationForMarketOpen(now, minutes);
     }
 
 
@@ -123,9 +147,13 @@ public class HistoryServiceImpl {
     }
 
 
-    private Duration getTTLForNextDay(LocalDateTime now) {
-        LocalDateTime marketOpenNextDay = LocalDateTime.of(now.plusDays(1).toLocalDate(), LocalTime.of(9, 0, 0));
-        return Duration.between(now, marketOpenNextDay);
+    private Duration getTTLForMarketClosed(LocalDateTime now) {
+        LocalDateTime marketOpen;
+
+        if(now.getHour() < 9) marketOpen = LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 0, 0));
+        else marketOpen = LocalDateTime.of(now.plusDays(1).toLocalDate(), LocalTime.of(9, 0, 0));
+
+        return Duration.between(now, marketOpen);
     }
 
 
@@ -227,12 +255,10 @@ public class HistoryServiceImpl {
     public void cacheLosersGainersForTheDay() {
 
         LocalDateTime now = LocalDateTime.now();
-        int min = now.getHour() > 15 ? 30 : now.getMinute() - now.getMinute() % 5;
-        LocalDateTime latest = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), Math.min(now.getHour(), 15), min, 0, 0);
 
-        if(latest.getHour() == 15 && latest.getMinute() > 30){
-            latest = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 15, 30, 0, 0);
-        }
+        LocalDateTime latest = getLatest(now);
+
+        System.out.println(latest);
 
         Mono<CandleStickEntity> loserChange = this.historyRepo.findMinChangeByTimestamp(latest);
         Mono<CandleStickEntity> gainerChange = this.historyRepo.findMaxChangeByTimestamp(latest);
@@ -264,6 +290,21 @@ public class HistoryServiceImpl {
             candleSticks.put("losers_gainers", combinedList);
         });
 
+    }
+
+    public static LocalDateTime getLatest(LocalDateTime now) {
+        int min = now.getMinute() - now.getMinute() % 5;
+
+        LocalDateTime latest = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), Math.min(now.getHour(), 15), min, 0, 0);
+
+        if(latest.getHour() > 15 || (latest.getHour() == 15 && latest.getMinute() > 30 )){
+            latest = LocalDateTime.of(now.toLocalDate(), LocalTime.of(15, 30, 0, 0));
+        }
+        else if(latest.getHour() < 9) {
+            latest = LocalDateTime.of(now.toLocalDate().minusDays(1) , LocalTime.of(15, 30, 0));
+        }
+
+        return latest;
     }
 
 

@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/scylla.cql" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/resources/scylla.cql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/HistoryServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/HistoryServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/temp-9.rdb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -717,7 +697,8 @@
       <workItem from="1712763792118" duration="9368000" />
       <workItem from="1712784543530" duration="1701000" />
       <workItem from="1712833496839" duration="2453000" />
-      <workItem from="1712845568160" duration="6380000" />
+      <workItem from="1712845568160" duration="7713000" />
+      <workItem from="1712860201445" duration="7136000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
