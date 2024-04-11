@@ -71,7 +71,7 @@ public class WatchlistController {
 
         Watchlist watchlist = this.watchlistService.computeWatchlistIfAbsent(ucc, request);
 
-        List<CandleStick> candleSticks = this.candleStickService.fetchCurrentSymbolState(watchlist.getSymbols(), page, 5);
+        List<CandleStick> candleSticks = this.candleStickService.fetchCurrentSymbolState(watchlist.getSymbols(), page, 10);
 
         Page pageable = new Page(page, page * 5 < watchlist.getSymbols().size(), page > 1);
         return mapper.toWatchlistDto(watchlist, candleSticks, pageable);

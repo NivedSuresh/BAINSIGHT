@@ -60,7 +60,7 @@ services:
       - SCYLLA_RPC_ADDRESS=0.0.0.0
       - SCYLLA_NUM_TOKENS=256
       - SCYLLA_AUTO_BOOTSTRAP=true
-    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
+#    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
 
   postgres:
     image: 'postgres:latest'

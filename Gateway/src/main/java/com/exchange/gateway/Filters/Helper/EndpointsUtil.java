@@ -49,7 +49,8 @@ public class EndpointsUtil {
     private List<String> initializeClientEndpoints() {
         return List.of(
                 "/api/bainsight/order",
-                "/api/bainsight/watchlist"
+                "/api/bainsight/watchlist",
+                "/api/bainsight/history"
         );
     }
 

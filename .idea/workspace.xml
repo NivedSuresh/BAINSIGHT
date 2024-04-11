@@ -5,23 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/HazelCast/HazelCastConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Mapper/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Dto/CandleStickDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/InvalidTimeSpaceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/CommandLineRunnerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/scylla.cql" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/main/resources/scylla.cql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/HistoryServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/HistoryServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/temp-9.rdb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +220,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Desktop/BAINSIGHT/HistoryService/src/main/java/org/bainsight/history/Config&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Desktop/BAINSIGHT/HistoryService/src/main/java/org/bainsight/history&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -251,8 +256,8 @@
       <recent name="com.exchange.riskmanagement.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config" />
       <recent name="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history" />
+      <recent name="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config" />
       <recent name="$PROJECT_DIR$/ZDocker/Scylla" />
       <recent name="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data" />
       <recent name="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation" />
@@ -288,7 +293,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.HistoryService">
-    <configuration name="HistoryServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HistoryServiceTests.testCurrentMonth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HistoryService" />
       <extension name="coverage">
         <pattern>
@@ -298,7 +303,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.bainsight.history" />
       <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testCurrentMonth" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -314,6 +320,22 @@
       <option name="PACKAGE_NAME" value="org.bainsight.history" />
       <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
       <option name="METHOD_NAME" value="testCurrentYear" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HistoryServiceTests.testThreeYears" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HistoryService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bainsight.history.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.bainsight.history" />
+      <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
+      <option name="METHOD_NAME" value="testThreeYears" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -439,12 +461,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="compose.yaml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="kafka" />
+              <option value="postgres" />
             </list>
           </option>
           <option name="sourceFilePath" value="compose.yaml" />
@@ -452,25 +474,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="compose.yaml.scylla-node1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="compose.yaml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="scylla-node1" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="compose.yaml.zookeeper: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="zookeeper" />
+              <option value="redis" />
             </list>
           </option>
           <option name="sourceFilePath" value="compose.yaml" />
@@ -479,10 +488,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.compose.yaml.kafka: Compose Deployment" />
-      <item itemvalue="Docker.compose.yaml.scylla-node1: Compose Deployment" />
-      <item itemvalue="Docker.compose.yaml.zookeeper: Compose Deployment" />
-      <item itemvalue="JUnit.HistoryServiceTests" />
+      <item itemvalue="Docker.compose.yaml.postgres: Compose Deployment" />
+      <item itemvalue="Docker.compose.yaml.redis: Compose Deployment" />
+      <item itemvalue="JUnit.HistoryServiceTests.testCurrentMonth" />
+      <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
       <item itemvalue="JUnit.HistoryServiceTests.testCurrentYear" />
       <item itemvalue="Spring Boot.HistoryService" />
       <item itemvalue="Spring Boot.Gateway" />
@@ -500,11 +509,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.compose.yaml.kafka: Compose Deployment" />
-        <item itemvalue="Docker.compose.yaml.zookeeper: Compose Deployment" />
-        <item itemvalue="Docker.compose.yaml.scylla-node1: Compose Deployment" />
+        <item itemvalue="Docker.compose.yaml.redis: Compose Deployment" />
+        <item itemvalue="Docker.compose.yaml.postgres: Compose Deployment" />
+        <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
         <item itemvalue="JUnit.HistoryServiceTests.testCurrentYear" />
-        <item itemvalue="JUnit.HistoryServiceTests" />
+        <item itemvalue="JUnit.HistoryServiceTests.testCurrentMonth" />
       </list>
     </recent_temporary>
   </component>
@@ -697,7 +706,18 @@
       <workItem from="1712563656198" duration="5666000" />
       <workItem from="1712585596406" duration="23080000" />
       <workItem from="1712652234440" duration="16894000" />
-      <workItem from="1712684762602" duration="418000" />
+      <workItem from="1712684762602" duration="6403000" />
+      <workItem from="1712736882270" duration="4434000" />
+      <workItem from="1712741343079" duration="16000" />
+      <workItem from="1712741381069" duration="37000" />
+      <workItem from="1712741443562" duration="38000" />
+      <workItem from="1712741996383" duration="5364000" />
+      <workItem from="1712748643812" duration="1533000" />
+      <workItem from="1712759359478" duration="4227000" />
+      <workItem from="1712763792118" duration="9368000" />
+      <workItem from="1712784543530" duration="1701000" />
+      <workItem from="1712833496839" duration="2453000" />
+      <workItem from="1712845568160" duration="6380000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

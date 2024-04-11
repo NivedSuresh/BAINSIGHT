@@ -62,13 +62,10 @@ class MarketData {
     @NotNull
     private static Set<String> getSymbols() {
         List<String> symbols = List.of(
-                "AAPL", "MSFT", "GOOGL", "AMZN", "FB", // Tech companies
-                 "GS", "TSLA", "NVDA", "NFLX",   // Tech & entertainment
-                "KO", "PEP", "MCD", "SBUX", "CMG",       // Food & beverages
-                "DIS", "TWTR", "SNAP", "UBER", "LYFT",   // Entertainment & transportation
-                "WMT", "TGT", "AMZN",     // Healthcare
-                "MMM", "CAT", "PYPL",  "META",   // Oil & gas
-                "IBM", "ORCL", "BAIN", "VNILUSSO" // Cloud & software
+                "AAPL", "MSFT", "GOOGL", "AMZN", "FB",
+                "TSLA", "NVDA", "NFLX", "SBUX", "TWTR",
+                "SNAP", "UBER", "LYFT", "TGT", "AMZN",
+                "PYPL",  "META", "IBM", "ORCL", "BAIN"
         );
 
         return new HashSet<>(symbols);

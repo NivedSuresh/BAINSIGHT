@@ -50,30 +50,19 @@ class DataGenerator {
 
     private static final LocalDateTime NOW = LocalDateTime.now();
 
-//            LocalDateTime.of(
-//            now.getYear(), now.getMonthValue(), now.getDayOfMonth(), 15, 30, 0, 0
-//    );
 
     DataGenerator(HistoryServiceImpl historyService) {
         this.historyService = historyService;
         this.fillQueue();
         while(!this.entities.isEmpty()){
             CandleStickEntity stick = this.entities.poll();
-            if(stick.getKey().getSymbol().equals("AAPL")){
-                this.generateSticks(stick, MINUTES_TO_SKIP_FOR_1D, TimeUnit.MIN);
-                return;
-            }
+            this.generateSticks(stick, MINUTES_TO_SKIP_FOR_1D, TimeUnit.MIN);
         }
     }
 
     private static List<String> getSymbols(){
         return List.of(
-                "AAPL", "MSFT", "GOOGL", "AMZN", "FB",
-                "GS", "TSLA", "NVDA", "NFLX", "KO",
-                "PEP", "MCD", "SBUX", "CMG", "DIS",
-                "TWTR", "SNAP", "UBER", "LYFT", "WMT",
-                "TGT", "MMM", "CAT", "PYPL", "META",
-                "IBM", "ORCL", "BAIN", "VNILUSSO"
+                "AAPL", "MSFT", "TSLA", "NVDA"
         );
     }
     private static List<SymbolMeta> getSymbolMeta() {
@@ -96,14 +85,15 @@ class DataGenerator {
         LocalDateTime before5Years = mod.toLocalDateTime();
 
         getSymbolMeta().forEach(meta -> {
-            CandleStickEntity.Key key = new CandleStickEntity.Key(meta.symbol(), before5Years);
-
             long volume = random.nextLong(100000, 100000000);
             double open = meta.startPrice();
             double low = meta.startPrice() + random.nextDouble(-10, 0);
             double high = meta.startPrice() + random.nextDouble(0, 10);
             double close = (low + high) / 2;
             double change = close - open;
+
+            CandleStickEntity.Key key = new CandleStickEntity.Key(meta.symbol(), before5Years);
+
 
             CandleStickEntity entity = CandleStickEntity.builder()
                     .key(key)
@@ -132,6 +122,7 @@ class DataGenerator {
                 try{ updateEntity(entity, bullRun > 0, time, timeUnit); }
                 catch (InvalidStateException e){return;}
 
+                   /* TODO TODO TODO TODO */
 //                historyService.saveCandleStick(entity);
 
                 if(entity.getLow() < random.nextInt(50, 100)){

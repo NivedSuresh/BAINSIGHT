@@ -66,6 +66,15 @@ spring:
           filters:
             - SecurityFilter
 
+        #History
+        - id: history-service
+          uri: lb://history-service
+          predicates:
+            - Path=/api/bainsight/history/**
+            - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
+
 
 # TODO:Move to config server
 

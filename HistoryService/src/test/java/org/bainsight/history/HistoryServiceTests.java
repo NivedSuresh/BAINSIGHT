@@ -69,6 +69,9 @@ class HistoryServiceTests {
 					prev = LocalDateTime.of(timeStamp.getYear(), timeStamp.getMonth(),  timeStamp.getDayOfMonth(), 8, 30, 0, 0);
 				}
 
+				System.out.println(prev);
+				System.out.println(dto.getTimeStamp());
+
 				this.assertTrue(close, open, timeStamp);
 				this.checkDif(prev, timeStamp, 30);
 				prev = timeStamp;
@@ -140,7 +143,6 @@ class HistoryServiceTests {
 			LocalDateTime prev = open.minusDays(3);
 
 			Assertions.assertNotNull(response);
-
 
 			for(CandleStickDto dto : response)
 			{

@@ -50,17 +50,17 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
 
 
         /* TODO: UNCOMMENT WHEN HOSTING */
-//        this.greenExecutor.execute(() -> {
-//            final byte[] data = this.serialize(combinedStick);
-//            if(data.length == 0) return;
-//            buffer.putBytes(0, data);
-//
-//            final long result = publication.offer(buffer);
-//
-//            this.updateRedisCluster(combinedStick);
-//
-//            this.validateResult(result);
-//        });
+        this.greenExecutor.execute(() -> {
+            final byte[] data = this.serialize(combinedStick);
+            if(data.length == 0) return;
+            buffer.putBytes(0, data);
+
+            final long result = publication.offer(buffer);
+
+            this.updateRedisCluster(combinedStick);
+
+            this.validateResult(result);
+        });
 
     }
 

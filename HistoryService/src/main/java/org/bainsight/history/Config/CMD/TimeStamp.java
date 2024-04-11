@@ -1,6 +1,7 @@
 package org.bainsight.history.Config.CMD;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@EnableScheduling
 public class TimeStamp implements CommandLineRunner {
 
     public List<LocalDateTime> _1W;

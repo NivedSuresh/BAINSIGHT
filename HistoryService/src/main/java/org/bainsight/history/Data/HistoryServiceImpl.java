@@ -3,6 +3,7 @@ package org.bainsight.history.Data;
 
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bainsight.history.Config.CMD.TimeStamp;
@@ -10,10 +11,16 @@ import org.bainsight.history.Mapper.Mapper;
 import org.bainsight.history.Models.Dto.CandleStick;
 import org.bainsight.history.Models.Dto.CandleStickDto;
 import org.bainsight.history.Models.Entity.CandleStickEntity;
+import org.exchange.library.Exception.BadRequest.InvalidStateException;
 import org.exchange.library.Exception.BadRequest.InvalidTimeSpaceException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+import reactor.util.function.Tuple2;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -125,7 +132,6 @@ public class HistoryServiceImpl {
     public Flux<CandleStickDto> fetchByTime(final String symbol, final String timeSpace) {
         List<LocalDateTime> times = findTimesStampsByTimeSpace(timeSpace);
 
-
         final String key = this.getKey(timeSpace, symbol);
 
         IMap<String, List<CandleStickDto>> cache = this.instance.getMap("candle_sticks");
@@ -136,7 +142,43 @@ public class HistoryServiceImpl {
         return Flux.fromIterable(times)
                 .concatMap(time -> this.historyRepo.findByTimeStamp(time, symbol))
                 .map(mapper::toCandleStickDto)
-                .doOnNext(entities::add)
+                .concatMap(candleStick -> {
+                    int prevIndex = entities.size() - 1;
+
+                    if(prevIndex >= 0)
+                    {
+                        CandleStickDto prev = entities.get(prevIndex);
+
+                        double change = candleStick.getClose() - prev.getClose();
+                        BigDecimal bigChange = new BigDecimal(change).setScale(2, RoundingMode.DOWN);
+                        change = bigChange.doubleValue();
+
+                        candleStick.setChange(change);
+
+                        Mono<CandleStickDto> highForSymbolBwTimestamp = this.historyRepo.findHighForSymbolBwTimestamp(prev.getTimeStamp(), candleStick.getTimeStamp(), symbol)
+                                .map(mapper::toCandleStickDto);
+                        Mono<CandleStickDto> lowForSymbolBwTimestamp = this.historyRepo.findLowForSymbolBwTimestamp(prev.getTimeStamp(), candleStick.getTimeStamp(), symbol)
+                                .map(mapper::toCandleStickDto);
+
+                        return Mono.zip(Mono.just(candleStick), highForSymbolBwTimestamp, lowForSymbolBwTimestamp);
+                    }
+                    CandleStickDto high = new CandleStickDto();
+                    high.setHigh(candleStick.getHigh());
+                    CandleStickDto low = new CandleStickDto();
+                    low.setLow(candleStick.getLow());
+                    return Mono.zip(Mono.just(candleStick), Mono.just(high), Mono.just(low));
+                })
+                .doOnNext(tuple -> {
+                    CandleStickDto persistable = tuple.getT1();
+                    CandleStickDto high = tuple.getT2();
+                    CandleStickDto low = tuple.getT3();
+
+                    persistable.setHigh(high.getHigh());
+                    persistable.setLow(low.getLow());
+
+                    entities.add(persistable);
+                })
+                .map(Tuple2::getT1)
                 .doOnComplete(() -> {
                     int minutes = fetchMinutesByTimeSpace(timeSpace);
                     Duration ttl = getTTl(LocalDateTime.now(), minutes);
@@ -151,9 +193,13 @@ public class HistoryServiceImpl {
             case CURRENT_DAY -> { return "1D:" + symbol; }
             case CURRENT_WEEK -> { return "1W:" + symbol; }
             case CURRENT_MONTH -> { return "1M:" + symbol; }
-            default -> { return "TILL_NEXT_OPEN:" + symbol; }
-        }
+            case CURRENT_YEAR -> { return "1Y:" + symbol; }
+            case THREE_YEAR ->  { return "3Y:" + symbol; }
+            default -> throw new InvalidStateException();
+            }
     }
+
+
 
     private int fetchMinutesByTimeSpace(String timeSpace) {
         switch (timeSpace){
@@ -175,4 +221,55 @@ public class HistoryServiceImpl {
             default -> throw new InvalidTimeSpaceException();
         }
     }
+
+
+    @PostConstruct
+    public void cacheLosersGainersForTheDay() {
+
+        LocalDateTime now = LocalDateTime.now();
+        int min = now.getHour() > 15 ? 30 : now.getMinute() - now.getMinute() % 5;
+        LocalDateTime latest = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), Math.min(now.getHour(), 15), min, 0, 0);
+
+        if(latest.getHour() == 15 && latest.getMinute() > 30){
+            latest = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 15, 30, 0, 0);
+        }
+
+        Mono<CandleStickEntity> loserChange = this.historyRepo.findMinChangeByTimestamp(latest);
+        Mono<CandleStickEntity> gainerChange = this.historyRepo.findMaxChangeByTimestamp(latest);
+
+        Mono<Tuple2<CandleStickEntity, CandleStickEntity>> combinedChange = Mono.zip(loserChange, gainerChange);
+
+        final LocalDateTime lt = latest;
+
+        Mono<List<CandleStickDto>> combinedMono = combinedChange.flatMap(changes -> {
+            CandleStickEntity lc = changes.getT1();
+            CandleStickEntity gc = changes.getT2();
+            Mono<CandleStickEntity> loser = this.historyRepo.findCandleStickEntityByChangeAndTimeStamp(lc.getChange(), lt);
+            Mono<CandleStickEntity> gainer = this.historyRepo.findCandleStickEntityByChangeAndTimeStamp(gc.getChange(), lt);
+            return Mono.zip(loser, gainer);
+        })
+        .map(entities -> {
+            CandleStickDto loser = mapper.toCandleStickDto(entities.getT1());
+            CandleStickDto gainer = mapper.toCandleStickDto(entities.getT2());
+
+            List<CandleStickDto> combinedList = new ArrayList<>();
+            combinedList.add(loser);
+            combinedList.add(gainer);
+            return combinedList;
+        });
+
+        combinedMono.subscribe(combinedList -> {
+            IMap<String, List<CandleStickDto>> candleSticks = instance.getMap("candle_sticks");
+            /* No need to have a ttl as the job gets executed each 5 minutes until the market is closed */
+            candleSticks.put("losers_gainers", combinedList);
+        });
+
+    }
+
+
+    public List<CandleStickDto> findLosersGainersForTheDay() {
+        IMap<String, List<CandleStickDto>> candleSticks = instance.getMap("candle_sticks");
+        return candleSticks.get("losers_gainers");
+    }
+
 }
