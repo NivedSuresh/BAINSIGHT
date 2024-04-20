@@ -17,19 +17,20 @@
     </properties>
 
     <modules>
-        <module>YLibrary</module>
-        <module>ConfigServer</module>
-        <module>ServiceRegistry</module>
-        <module>Gateway</module>
-        <module>YA_TestExchangeEnv</module>
-        <module>AuthenticationService</module>
-        <module>OrderManagement</module>
-        <module>JournalService</module>
-        <module>RiskManagement</module>
-        <module>MarketUpdate</module>
-        <module>DataAggregator</module>
-        <module>Watchlist</module>
-        <module>HistoryService</module>
+        <module>y-lib</module>
+        <module>config-server</module>
+        <module>eureka-server</module>
+        <module>gateway</module>
+        <module>y-test-exchange</module>
+        <module>authentication</module>
+        <module>order-processing</module>
+        <module>portfolio</module>
+        <module>risk-management</module>
+        <module>market-update</module>
+        <module>data-aggregator</module>
+        <module>watchlist</module>
+        <module>history</module>
+        <module>y-gRPC-proto</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package org.bainsight;
+
+
+option java_multiple_files = true;
+option java_package = "org.bainsight";
+
+
+
+/*      RISK MANAGEMENT       */
+
+message RiskRequest
+{
+  string symbol = 1;
+  double price = 2;
+  TransactionType transactionType = 3;
+  int64 quantity = 4;
+  OrderType orderType = 5;
+  string ucc = 6;
+}
+
+message Proceedable
+{
+  bool proceedable = 1;
+  string message = 2;
+}
+
+enum TransactionType
+{
+  ASK = 0;
+  BID = 1;
+}
+
+enum OrderType
+{
+  ORDER_TYPE_MARKET = 0;
+  ORDER_TYPE_LIMIT = 1;
+  ORDER_TYPE_STOP = 2;
+}
+
+service RiskService
+{
+  rpc checkIfProceedable(RiskRequest) returns (Proceedable){}
+}
+
+
+/*        PORTFOLIO        */
+
+message ValidateBid
+{
+  string ucc = 1;
+  double balanceRequired = 2;
+}
+
+message ValidateAsk
+{
+  string ucc = 1;
+  string symbol = 2;
+  int64 quantityRequired = 3;
+}
+
+service PortfolioValidate
+{
+  rpc checkIfBidValid(ValidateBid) returns(Proceedable) {}
+  rpc checkIfAskValid(ValidateAsk) returns(Proceedable) {}
+}

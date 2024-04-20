@@ -8,6 +8,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/ExchangeOrderPersistance" />
+    <file type="web" url="file://$PROJECT_DIR$/RiskManagement" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -39,6 +40,9 @@
         <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$PROJECT_DIR$/DataAggregator/pom.xml" />
+        <option value="$PROJECT_DIR$/Portfolio/pom.xml" />
+        <option value="$PROJECT_DIR$/History/pom.xml" />
+        <option value="$PROJECT_DIR$/RiskManagement/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -46,9 +50,12 @@
         <option value="$PROJECT_DIR$/AuthService/pom.xml" />
         <option value="$PROJECT_DIR$/BrokerService/pom.xml" />
         <option value="$PROJECT_DIR$/ExchangeAdminService/pom.xml" />
+        <option value="$PROJECT_DIR$/JournalService/pom.xml" />
         <option value="$PROJECT_DIR$/MarketAggregator/pom.xml" />
         <option value="$PROJECT_DIR$/MarketData/pom.xml" />
+        <option value="$PROJECT_DIR$/RiskManagement/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/order-management/pom.xml" />
       </set>
     </option>
   </component>
