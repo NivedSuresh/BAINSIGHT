@@ -20,11 +20,34 @@ message RiskRequest
   string ucc = 6;
 }
 
+message GrpcOrderRequest
+{
+  string ucc = 1;
+  string symbol = 2;
+  string exchange = 3;
+  double price = 4;
+  int64 quantity = 5;
+  TransactionType transactionType = 6;
+  OrderType orderType = 7;
+}
+
 message Proceedable
 {
   bool proceedable = 1;
   string message = 2;
 }
+
+
+message OrderUID{
+  string orderId = 1;
+}
+
+message UpdateStatusRequest{
+  string ucc = 1;
+  string orderId = 2;
+  string orderStatus = 3;
+}
+
 
 enum TransactionType
 {
@@ -39,18 +62,27 @@ enum OrderType
   ORDER_TYPE_STOP = 2;
 }
 
-service RiskService
+service RiskManagement
 {
   rpc checkIfProceedable(RiskRequest) returns (Proceedable){}
 }
 
 
-/*        PORTFOLIO        */
+service PersistOrder
+{
+  rpc persistOrder(GrpcOrderRequest) returns (OrderUID){}
+  rpc updateOrderStatus(UpdateStatusRequest) returns (Proceedable){}
+  rpc cancelOrder(UpdateStatusRequest) returns (RiskRequest) {}
+}
 
+
+
+/*        PORTFOLIO       */
 message ValidateBid
 {
   string ucc = 1;
   double balanceRequired = 2;
+  OrderType orderType = 3;
 }
 
 message ValidateAsk

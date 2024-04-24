@@ -16,7 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -79,20 +78,21 @@ public class WalletTests {
     @Test
     void testBalanceUpdates() {
 
-        String ucc = UUID.randomUUID().toString();
-        Wallet wallet = this.walletService.fetchWallet(ucc);
+        UUID ucc = UUID.randomUUID();
 
-        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(100.0, 100.0));
+        Wallet wallet = this.walletService.fetchWallet(ucc.toString());
 
-        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(0.0, -50.0));
+        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(100.0, 100.0), 1);
 
-        wallet = this.walletService.fetchWallet(ucc);
+        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(0.0, -50.0), 1);
+
+        wallet = this.walletService.fetchWallet(ucc.toString());
 
         Assertions.assertEquals(wallet.getCurrentBalance(), 100);
         Assertions.assertEquals(wallet.getAvailableBalance(), 50);
 
-        this.walletService.updateWalletBalance(ucc ,new WalletUpdateRequest(-50.0, -50.0));
-        wallet = this.walletService.fetchWallet(ucc);
+        this.walletService.updateWalletBalance(ucc ,new WalletUpdateRequest(-50.0, -50.0), 1);
+        wallet = this.walletService.fetchWallet(ucc.toString());
 
         Assertions.assertEquals(wallet.getAvailableBalance(), 0);
         Assertions.assertEquals(wallet.getCurrentBalance(), 50);

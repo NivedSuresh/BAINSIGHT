@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.bainsight.OrderType;
 import org.bainsight.TransactionType;
-import org.exchange.library.Enums.Validity;
 
 
 /* The Brokers are requested to send each and every required ID
@@ -17,6 +16,9 @@ public record OrderRequest(
 
         @NotBlank(message = "Invalid trading symbol provided")
         String symbol,
+
+        @NotBlank(message = "Unable to proceed the current order.")
+        String exchange,
 
         @Min(value = 1, message = "Bid/Ask should have a minimum quantity of 1")
         Long quantity,

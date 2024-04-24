@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.bainsight.data.Config.Disruptor.ThreadFactory.TickEventFactory;
 import org.bainsight.data.Config.Election.LeaderConfig;
 import org.bainsight.data.Handler.Event.MarketDataHandler;
-import org.bainsight.data.Handler.Event.MarketAnalyzer;
 import org.bainsight.data.Handler.Event.TickReceivedEventHandler;
 import org.bainsight.data.Handler.Exception.TickExceptionHandler;
 import org.bainsight.data.Model.Events.TickAcceptedEvent;
@@ -110,7 +109,7 @@ public class DisruptorConfig {
                 redisTemplate
         );
 
-        disruptor.handleEventsWith(marketDataHandler, new MarketAnalyzer((byte) 0, (byte) 1));
+        disruptor.handleEventsWith(this.marketDataHandler);
 
         disruptor.start();
 

@@ -1,9 +1,9 @@
 package com.bainsight.risk;
 
 
+import com.bainsight.risk.Message.gRPC_Client.RiskManagementService;
 import com.bainsight.risk.Model.Entity.CandleStick;
 import com.bainsight.risk.repo.CandleStickRepo;
-import com.bainsight.risk.Message.gRPC_Client.RiskManagementService;
 import com.bainsight.risk.repo.DailyOrderMetaRepo;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;

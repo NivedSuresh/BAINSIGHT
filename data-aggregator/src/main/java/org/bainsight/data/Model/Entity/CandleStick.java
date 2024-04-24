@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import org.bainsight.data.Model.Dto.ExchangePrice;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 

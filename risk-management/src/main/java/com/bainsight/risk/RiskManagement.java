@@ -1,8 +1,13 @@
 package com.bainsight.risk;
 
 import com.bainsight.risk.Config.Redis.CandleStickKeySpaceConfig;
+import com.bainsight.risk.repo.DailyOrderMetaRepo;
+import lombok.RequiredArgsConstructor;
+import org.exchange.library.Utils.STRINGS;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 
@@ -41,9 +46,25 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 * */
 @SpringBootApplication
 @EnableRedisRepositories(basePackages = {"com.bainsight.risk.repo"}, keyspaceConfiguration = CandleStickKeySpaceConfig.class)
+@RequiredArgsConstructor
 public class RiskManagement {
+
+
+    private final DailyOrderMetaRepo dailyOrderMetaRepo;
+
     public static void main(String[] args) {
         SpringApplication.run(RiskManagement.class, args);
     }
+
+
+    /*TODO: REMOVE*/
+
+    @Bean
+    public CommandLineRunner commandLineRunner(){
+        return args -> {
+            this.dailyOrderMetaRepo.deleteById(STRINGS.UCC);
+        };
+    }
+
 }
 

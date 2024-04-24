@@ -11,7 +11,6 @@ import org.exchange.library.Enums.OrderStatus;
 @NoArgsConstructor
 @Data
 public class OrderResponse {
-    private Long id;
     private String brokerOrderId;
     private Long matchedSize;
     private OrderStatus status;

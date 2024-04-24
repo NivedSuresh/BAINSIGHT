@@ -2,7 +2,6 @@ package org.bainsight.portfolio.Model.Dto;
 
 
 import lombok.Builder;
-import org.exchange.library.Enums.TransactionType;
 
 @Builder
 public record PortfolioUpdateRequest(

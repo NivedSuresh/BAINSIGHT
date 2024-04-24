@@ -1,8 +1,10 @@
 package org.bainsight.portfolio.Model.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +18,8 @@ import java.util.UUID;
 @ToString
 @Entity
 @Table(name = "wallet")
+@OptimisticLocking(type = OptimisticLockType.DIRTY)
+@DynamicUpdate
 public class Wallet {
 
     @Id
@@ -24,7 +28,6 @@ public class Wallet {
 
     @Column(unique = true)
     private UUID ucc;
-
 
     @Column(columnDefinition = "DOUBLE PRECISION DEFAULT 0 CHECK (available_balance >= 0)")
     private Double availableBalance;
@@ -37,5 +40,8 @@ public class Wallet {
                mappedBy = "walletId")
     @ToString.Exclude
     private List<Transaction> transactions;
+
+    @Version
+    private Long version;
 
 }

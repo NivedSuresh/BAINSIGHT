@@ -4,7 +4,6 @@ import org.bainsight.portfolio.Data.PortfolioService;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
-import org.exchange.library.Enums.TransactionType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

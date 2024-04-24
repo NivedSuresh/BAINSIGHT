@@ -1,12 +1,10 @@
 package org.bainsight.portfolio.Mapper;
 
 
-import org.bainsight.portfolio.Model.Dto.PortfolioDto;
-import org.bainsight.portfolio.Model.Dto.PortfolioSymbolDto;
-import org.bainsight.portfolio.Model.Dto.TransactionDto;
-import org.bainsight.portfolio.Model.Dto.WalletDto;
+import org.bainsight.portfolio.Model.Dto.*;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.Wallet;
+import org.exchange.library.KafkaEvent.PortfolioUpdateEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +47,16 @@ public class Mapper {
                 .build();
     }
 
+
+    public PortfolioUpdateRequest getPortfolioUpdateRequest(PortfolioUpdateEvent updateEvent){
+        double total = updateEvent.getPricePerShare() * updateEvent.getQuantity();
+        return PortfolioUpdateRequest.builder()
+                .ucc(updateEvent.getUcc().toString())
+                .price(total)
+                .quantity(updateEvent.getQuantity())
+                .symbol(updateEvent.getSymbol())
+                .build();
+    }
 
 
 

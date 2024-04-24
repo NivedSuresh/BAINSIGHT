@@ -8,8 +8,6 @@ import org.agrona.DirectBuffer;
 import org.bainsight.updates.Service.WebSocketService;
 import org.exchange.library.Dto.MarketRelated.CandleStick;
 
-import java.io.IOException;
-
 @RequiredArgsConstructor
 public class CandleStickHandler implements FragmentHandler {
 

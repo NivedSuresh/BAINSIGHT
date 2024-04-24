@@ -5,450 +5,117 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/order-processing/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Controller/OrderReceivingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Exception/RiskCheckFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/OrderProcessingApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Service/OrderProcessingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/PortfolioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioSymbolRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/ValidationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Dubug/Debugger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Exceptions/NotEnoughAvailableSharesToTradeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Exceptions/PortfolioNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Exceptions/SymbolNotFoundInPortfolioException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Exceptions/WalletNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Mapper/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/NewTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioSymbolDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/TransactionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/WalletDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/WalletUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/Portfolio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/PortfolioSymbol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/Wallet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Enums/WalletTransactionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/PortfolioApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/PortfolioApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/TestPortfolioApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/ValidationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/WalletTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/CandleStickKeySpaceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/ExceededPurchaseQuantityPerRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/FailedToAcquireLockException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/OpenOrderCountExceededException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/PriceAboveHighestAcceptableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/PriceBelowLowestAcceptableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/SpendLimitPerDayExceededException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/Kafka/DailyOrderMetaEventListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/gRPC_Client/RiskManagementService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Model/Entity/CandleStick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Model/Entity/DailyOrderMeta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/repo/CandleStickRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/repo/DailyOrderMetaRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk-management/src/test/java/com/bainsight/risk/RiskTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/y-gRPC-proto/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/y-gRPC-proto/src/main/Proto/OrderProcessing.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/DailyOrderMetaEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Config/Executor/ExecutorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Exception/MatchNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Exception/OrderNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/GrpcOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/MatchRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/OrderRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Kafka/WalletUpdateListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Listeners/OrderMatchListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Mapper/ModelMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Entity/CandleStick.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/CandleStickKeySpaceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Repo/CandleStickRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Model/Entity/Match.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Model/Entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Model/Events/OrderMatch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/OrderPersistence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-persistence/src/test/java/org/bainsight/order/OrderPersistenceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Debug/Debugger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Exception/FailedToCompleteOrderException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Exception/FailedToUpdateOrderException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Mapper/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Kafka/MatchUpdates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Kafka/RollbackListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Kafka/WalletValidationMarketBid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Debug/Debugger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Exception/FailedToUnlockException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Mapper/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/PortfolioUpdateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/RollbackEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/WalletUpdateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Utils/STRINGS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Config/WebClient/WebClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/AdminClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/AdminClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/ClientAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/ClientAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Model/PrincipalRevoked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Repository/Postgres/AdminRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Repository/Postgres/ClientRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Admin/AdminDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/AuthenticationBeans.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Client/ClientAuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authentication/Client/ClientDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/JWT/JwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Security/JWT/RsaKeyProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/ClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/JwtServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/KafkaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/Impls/MfaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Service/MfaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Service/MfaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/migration/V1__create_tables_user_service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/db/migration/V1__create_tables_user_service.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/db/queries/other.sql" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/db/queries/other.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/BrokerUserServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/org/exchange/user/BrokerUserServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/AuthServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/org/exchange/user/Service/AuthServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/test/java/org/exchange/user/Service/ClientServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/test/java/org/exchange/user/Service/ClientServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/java/org/bainsight/config/ConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/java/org/bainsight/config/ConfigServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigServer/src/test/java/org/bainsight/config/ConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/test/java/org/bainsight/config/ConfigServerApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Aeron/AeronConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Aeron/AeronConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/ConfigurationVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/ConfigurationVariables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Disruptor/ThreadFactory/TickEventFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/ThreadFactory/TickEventFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Election/LeaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Election/LeaderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Executors/ExecutorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Executors/ExecutorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/HazelCast/HazelCastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/HazelCast/HazelCastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Listener/SerializationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Listener/SerializationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Redis/CandleStickKeySpaceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/CandleStickKeySpaceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Config/Redis/RedisDevConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/DataAggregator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/DataAggregator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Exception/ExpiredTickTimeStampException.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Exception/ExpiredTickTimeStampException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/MarketAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Event/TickReceivedEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/TickReceivedEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Handler/Exception/TickExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Exception/TickExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Jobs/ListenerJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Jobs/ListenerJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Jobs/ResetJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Jobs/ResetJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Listener/BackupGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/BackupGroupListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Listener/GroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/GroupListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Listener/MessageReceiveBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/MessageReceiveBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Listener/PrimaryGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/PrimaryGroupListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Listener/UdpListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/UdpListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Dto/ExchangePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Dto/ExchangePrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Dto/ExchangeStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Dto/ExchangeStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Dto/VolumeWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Dto/VolumeWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Entity/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Entity/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Events/MessageEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Events/MessageEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Events/TickAcceptedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Events/TickAcceptedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Events/TickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Events/TickEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Model/Events/TickReceivedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Events/TickReceivedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Persistance/CandleStickBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Persistence/CandleStickBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Persistance/RecentlyReceivedBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Persistence/RecentlyReceivedBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Repository/CandleStickRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Persistence/Repository/CandleStickRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/InstantAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/InstantAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketDataEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/MarketDataEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/MarketDataJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/PushTo.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/PushTo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/java/org/bainsight/data/Simulation/TickerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/TickerEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/resources/app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/app.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/DataAggregatorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/DataAggregatorTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/MarketDataEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/MarketDataEngineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/MarketDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/MarketDataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/Models/PushTo.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/Models/PushTo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/Models/TestStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/Models/TestStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAggregator/src/test/java/org/bainsight/data/Models/TickerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/test/java/org/bainsight/data/Models/TickerEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Filters/Helper/EndpointsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Filters/SecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Gateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Gateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Security/Authorization/FilterChainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Security/Config/CorsConfigurationSourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Security/Config/CorsConfigurationSourceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Security/Jwt/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Security/Jwt/JwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/exchange/gateway/Security/Jwt/RsaKeyProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/exchange/gateway/Security/Jwt/RsaKeyProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/exchange/gateway/GatewayTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/test/java/com/exchange/gateway/GatewayTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/history/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/history/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/CMD/TimeStamp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/HazelCast/HazelCastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/HazelCast/HazelCastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Data/SnapshotListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/SnapshotListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Dto/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Dto/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Dto/CandleStickDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Dto/CandleStickDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Dto/ExchangePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Dto/ExchangePrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/SymbolMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/SymbolMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history/Simulation/TimeUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/TimeUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/main/resources/scylla.cql" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/scylla.cql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/HistoryServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/test/java/org/bainsight/history/HistoryServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HistoryService/src/test/java/org/bainsight/history/TestHistoryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/test/java/org/bainsight/history/TestHistoryServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/history/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/history/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/history/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/history/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/src/main/java/org/bainsight/journal/JournalServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/src/test/java/org/bainsight/journal/JournalServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/test/java/org/bainsight/processing/OrderProcessingApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JournalService/src/test/java/org/bainsight/journal/TestJournalServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Config/Aeron/AeronConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Config/Aeron/AeronConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/MarketUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/MarketUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/Service/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Service/WebSocketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/java/org/bainsight/updates/WebSocket/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/WebSocket/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarketUpdate/src/test/java/org/bainsight/updates/MarketUpdateTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/test/java/org/bainsight/updates/MarketUpdateTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Advice/ExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Config/Kafka/KafkaConsumerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Config/WebClient/WebClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Controller/AdminOrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Mapper/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Mapper/MapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Model/Match.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Model/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Model/OrderExchange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Model/OrderInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/PersistanceExchangeApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/java/org/exchange/order/Repository/OrderRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/main/resources/db/migration/V1__create_tables_user_service.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/test/java/org/exchange/order/PersistenceExchangeApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrderManagement/src/test/java/org/exchange/order/TestPersistanceExchangeApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Advice/ExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/ClientManagement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Config/Kafka/KafkaTopicConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Config/Stomp/StompConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Config/Stomp/StompHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Config/WebClient/WebClientConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Controller/AdminSymbolController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Mapper/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Mapper/MapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model/Cache/SymbolMetaCachable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model/Entity/ClientMeta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model/Entity/ClientSymbol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model/Entity/SymbolMeta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Model/Properties/ExchangeOrderURI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Repository/ClientMetaRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Repository/ClientSecurityRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Repository/Symbol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/KafkaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/RiskManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/SymbolService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/impls/KafkaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/impls/OrderServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/java/com/exchange/riskmanagement/Service/impls/SymbolServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/resources/db/migration/V1__create_tables_user_service.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/main/resources/db/queries/other.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/test/java/com/exchange/riskmanagement/ClientMetaManagementTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiskManagement/src/test/java/com/exchange/riskmanagement/TestRiskManagementApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/src/main/java/org/exchange/registry/ExchangeRegistryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/org/exchange/registry/ExchangeRegistryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServiceRegistry/src/test/java/org/exchange/registry/ExchangeRegistryApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/test/java/org/exchange/registry/ExchangeRegistryApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/data/dump.rdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Data/CandleStickRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Data/CandleStickRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Data/CandleStickService.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Data/CandleStickService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Entity/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Entity/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Entity/ExchangePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/CandleStick/Entity/ExchangePrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Config/Executors/ExecutorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Executors/ExecutorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/CandleStickKeySpaceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/CandleStickKeySpaceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisDevConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisDevConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Exceptions/SymbolAlreadyExistsInWatchlistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Exceptions/SymbolAlreadyExistsInWatchlistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Payload/AddToWatchlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Payload/AddToWatchlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Payload/CreateWatchlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Payload/CreateWatchlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Payload/RemoveSymbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Payload/RemoveSymbol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Payload/WatchlistDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Payload/WatchlistDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Model/Watchlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Model/Watchlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Model/WatchlistMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Model/WatchlistMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/java/org/bainsight/watchlist/WatchlistApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/WatchlistApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/resources/db/migration/V1__create_tables_watchlist_service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/db/migration/V1__create_tables_watchlist_service.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/main/resources/db/queries/other.sql" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/db/queries/other.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Watchlist/src/test/java/org/bainsight/watchlist/WatchlistTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/test/java/org/bainsight/watchlist/WatchlistTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Adapters/InstantAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Adapters/InstantAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/ExecutorServiceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/ExecutorServiceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/GsonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/GsonConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/MulticastSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Beans/MulticastSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Enums/PushTo.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Enums/PushTo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Models/TickerEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/MarketDataJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/OrderBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/MarketDataSimulation/Simulation/OrderBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/java/com/exchange/matchingengine/TestExchangeEnv.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/java/com/exchange/matchingengine/TestExchangeEnv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YA_TestExchangeEnv/src/test/java/com/exchange/matchingengine/TestExchangeEnvTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/src/test/java/com/exchange/matchingengine/TestExchangeEnvTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/y-test-exchange/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/AdminAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/AdminAuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/AuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/ClientAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/ClientAuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/ClientSignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/ClientSignupRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/JwtResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/MfaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/MfaRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Authentication/TokenMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Authentication/TokenMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Client/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Client/ClientDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Client/ClientValidResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Client/ClientValidResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/CandleStick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Depth.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/Depth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/ExchangePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/ExchangePrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Insight.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/Insight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/MarketDepth.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/MarketDepth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/MarketRelated/Tick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/MatchDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/MatchDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/OrderDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Model/Dto/OrderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/OrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/OrderResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/RiskOrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/RiskOrderResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Order/ZOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/ZOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Symbol/SymbolRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Symbol/SymbolRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Symbol/SymbolResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Symbol/SymbolResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Dto/Utils/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Utils/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/Failure.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/Failure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/MfaType.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/MfaType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/OrderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/TransactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/TransactionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Enums/Validity.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/Validity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/BadBindException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Authentication/BadBindException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/ConfirmPasswordMismatchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Authentication/ConfirmPasswordMismatchException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authentication/UnableToInitiateMfaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Authentication/UnableToInitiateMfaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/InvalidJwtException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Authorization/InvalidJwtException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Authorization/JwtExpiredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Authorization/JwtExpiredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/BadRequest/EntityAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/InvalidStateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/BadRequest/InvalidStateException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/InvalidTimeSpaceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/BadRequest/InvalidTimeSpaceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/InvalidUpdateRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/BadRequest/InvalidUpdateRequestException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/BadRequest/NotImplementedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/BadRequest/NotImplementedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/GlobalException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/GlobalException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/IO/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/IO/ServiceUnavailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Kafka/KafkaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Kafka/KafkaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderAdditionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderAdditionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderCancellationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderCancellationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderRejectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Kafka/KafkaOrderRejectionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/NotFound/NotFoundOnCacheException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/NotFound/NotFoundOnCacheException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/NotFound/SymbolNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/NotFound/SymbolNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/NotFound/WatchlistNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/NotFound/WatchlistNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/InvalidOrderRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/InvalidOrderRequestException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/InvalidOrderTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/InvalidOrderTypeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/InvalidTransactionTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/InvalidTransactionTypeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/NonExistentOrderException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/NonExistentOrderException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/NotEnoughBalanceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/NotEnoughBalanceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Exception/Order/NotEnoughSecurityToPlaceOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/NotEnoughSecurityToPlaceOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/KafkaEvent/OrderAcceptedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/OrderAcceptedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/KafkaEvent/OrderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/KafkaEvent/OrderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/LibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/LibraryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Mapper/ValidationErrorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Mapper/ValidationErrorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Utils/CONTEXT_PATH.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Utils/CONTEXT_PATH.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/java/org/exchange/library/Utils/WebTrimmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Utils/WebTrimmer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/resources/certs/private.pem" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/resources/certs/private.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/main/resources/certs/public.pem" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/resources/certs/public.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLibrary/src/test/java/org/exchange/library/LibraryApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/test/java/org/exchange/library/LibraryApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/ExceptionHandler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/MarketAnalyzer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/BackupGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/BackupGroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/GroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/GroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/PrimaryGroupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/PrimaryGroupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/UdpListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Listener/UdpListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Entity/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Model/Entity/CandleStick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Jobs/GainerLoserJobs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Dto/ExchangePrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Dto/ExchangePrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/test/java/org/bainsight/history/HistoryServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/test/java/org/bainsight/history/HistoryServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Controller/OrderReceivingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Controller/OrderReceivingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Exception/RiskCheckFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/Order/RiskCheckFailureException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Model/Dto/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Model/Dto/OrderRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Service/OrderProcessingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Service/OrderProcessingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-processing/src/test/java/org/bainsight/processing/OrderProcessingApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/test/java/org/bainsight/processing/OrderProcessingApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/PortfolioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/ValidationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/ValidationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Data/WalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Dubug/Debugger.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Debug/Debugger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/NewTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/NewTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/PortfolioUpdateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/TransactionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/TransactionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/WalletDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Dto/WalletDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Model/Entity/Wallet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/PortfolioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/PortfolioApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/PortfolioApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/PortfolioApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/ValidationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/ValidationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/WalletTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/test/java/org/bainsight/portfolio/WalletTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/Kafka/DailyOrderMetaEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/Kafka/RollbackListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/gRPC_Client/RiskManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Message/gRPC_Client/RiskManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Model/Entity/CandleStick.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Model/Entity/CandleStick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/RiskManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/RiskManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/test/java/com/bainsight/risk/RiskTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/test/java/com/bainsight/risk/RiskTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Data/WatchlistRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-gRPC-proto/src/main/Proto/OrderProcessing.proto" beforeDir="false" afterPath="$PROJECT_DIR$/y-gRPC-proto/src/main/Proto/OrderProcessing.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/OrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Order/OrderResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/Failure.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/Failure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Enums/OrderType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,6 +127,9 @@
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/RiskManagement">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/demo">
       <ProjectState />
     </projectState>
   </component>
@@ -481,9 +151,9 @@
         <option value="AnnotationType" />
         <option value="Dockerfile" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="package-info" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -516,198 +186,199 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Docker.MarketDataService/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-redis-dev.yaml: Compose Deployment.executor": "Run",
-    "Docker.Scylla/compose.yaml.scylla-node1: Compose Deployment.executor": "Run",
-    "Docker.Scylla/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
-    "Docker.Watchlist/compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "Docker.Watchlist/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.broker: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.kafdrop: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.kafka: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.redis: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.scylla-node1: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.zookeeper: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "JUnit.AuthServiceTests (1).executor": "Run",
-    "JUnit.AuthServiceTests.executor": "Run",
-    "JUnit.AuthServiceTests.failRenewJwt.executor": "Run",
-    "JUnit.AuthServiceTests.testAdminLogin.executor": "Run",
-    "JUnit.AuthServiceTests.testRenewJwt.executor": "Run",
-    "JUnit.AuthServiceTests.testSuccessfulAuthentication.executor": "Run",
-    "JUnit.BrokerServiceTests.executor": "Run",
-    "JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor": "Run",
-    "JUnit.BrokerServiceTests.testSaveBroker.executor": "Run",
-    "JUnit.ClientServiceTests.executor": "Run",
-    "JUnit.ClientServiceTests.testSignup.executor": "Run",
-    "JUnit.DataAggregatorApplicationTests.executor": "Run",
-    "JUnit.ExchangeUserTests.UnAuthTest.executor": "Run",
-    "JUnit.ExchangeUserTests.authorizedWhenJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.executor": "Run",
-    "JUnit.ExchangeUserTests.testAdminLogin.executor": "Run",
-    "JUnit.ExchangeUserTests.testJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRefreshJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRenewJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor": "Run",
-    "JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor": "Run",
-    "JUnit.ExchangeUserTests.testTest.executor": "Run",
-    "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
-    "JUnit.HistoryServiceTests.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentDay.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentMonth.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentWeek.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentYear.executor": "Run",
-    "JUnit.HistoryServiceTests.testThreeYears.executor": "Run",
-    "JUnit.MarketData1EngineTest (1).executor": "Run",
-    "JUnit.MarketData1EngineTest.executor": "Run",
-    "JUnit.MarketDataEngineTest (1).executor": "Run",
-    "JUnit.MarketDataEngineTest.executor": "Run",
-    "JUnit.MarketDataEngineTest.testAFewTimes.executor": "Run",
-    "JUnit.MarketEngineTest.executor": "Run",
-    "JUnit.PortfolioApplicationTests.executor": "Run",
-    "JUnit.PortfolioApplicationTests.testFetchPortfolio.executor": "Run",
-    "JUnit.PortfolioApplicationTests.testPortfolio.executor": "Run",
-    "JUnit.RecoveryTest.evokeTest.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
-    "JUnit.RiskTests.checkRisk.executor": "Run",
-    "JUnit.RiskTests.executor": "Run",
-    "JUnit.RiskTests.failPriceBelowLowest.executor": "Run",
-    "JUnit.RiskTests.failRiskForAboveAllowedQuantity.executor": "Run",
-    "JUnit.RiskTests.passAsk.executor": "Run",
-    "JUnit.RiskTests.passBid.executor": "Run",
-    "JUnit.RiskTests.pastAllowedOpenOrderLimit.executor": "Run",
-    "JUnit.RiskTests.priceBoundaryExceptionTest.executor": "Run",
-    "JUnit.RiskTests.test.executor": "Run",
-    "JUnit.Tests.executor": "Run",
-    "JUnit.ValidationTests.testCheckIfAskValid.executor": "Run",
-    "JUnit.WalletTests.connectionEstablished.executor": "Run",
-    "JUnit.WalletTests.executor": "Run",
-    "JUnit.WalletTests.fetchWalletTest.executor": "Run",
-    "JUnit.WalletTests.testBalanceUpdates.executor": "Run",
-    "JUnit.WatchlistAppTests.executor": "Run",
-    "JUnit.WatchlistTests.addToList.executor": "Run",
-    "JUnit.WatchlistTests.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.AuthService [clean].executor": "Run",
-    "Maven.AuthenticationService [clean].executor": "Run",
-    "Maven.AuthenticationService [install].executor": "Run",
-    "Maven.LiquidityService [clean].executor": "Run",
-    "Maven.LiquidityService [install].executor": "Run",
-    "Maven.MarketDataService [clean].executor": "Run",
-    "Maven.MarketDataService [install].executor": "Run",
-    "Maven.MarketDataService [package].executor": "Run",
-    "Maven.MarketDataService [validate].executor": "Run",
-    "Maven.Proto [clean].executor": "Run",
-    "Maven.Proto [compile].executor": "Run",
-    "Maven.Proto [install].executor": "Run",
-    "Maven.YLibrary [clean].executor": "Run",
-    "Maven.YLibrary [deploy].executor": "Run",
-    "Maven.YLibrary [install].executor": "Run",
-    "Maven.y-gRPC-proto [clean].executor": "Run",
-    "Maven.y-gRPC-proto [compile].executor": "Run",
-    "Maven.y-gRPC-proto [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminServiceApplication.executor": "Run",
-    "Spring Boot.AuthService.executor": "Run",
-    "Spring Boot.BrokerServiceApplication.executor": "Run",
-    "Spring Boot.BrokerUserService.executor": "Run",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.DataAggregator.executor": "Run",
-    "Spring Boot.DataAggregatorApplication.executor": "Run",
-    "Spring Boot.DemoApplication.executor": "Run",
-    "Spring Boot.ExchangeGatewayApplication.executor": "Run",
-    "Spring Boot.ExchangeRegistryApplication.executor": "Run",
-    "Spring Boot.ExchangeUser.executor": "Run",
-    "Spring Boot.Gateway.executor": "Run",
-    "Spring Boot.HistoryService.executor": "Run",
-    "Spring Boot.HistoryServiceApplication.executor": "Run",
-    "Spring Boot.LiquidityServiceApplication.executor": "Run",
-    "Spring Boot.MarketAggregatorApplication.executor": "Run",
-    "Spring Boot.MarketData (1).executor": "Run",
-    "Spring Boot.MarketData.executor": "Run",
-    "Spring Boot.MarketData1.executor": "Run",
-    "Spring Boot.MarketDataGenerator.executor": "Run",
-    "Spring Boot.MarketUpdate.executor": "Run",
-    "Spring Boot.MarketUpdateApplication.executor": "Run",
-    "Spring Boot.MatchingEngineApplication.executor": "Debug",
-    "Spring Boot.OrderProcessingApplication.executor": "Run",
-    "Spring Boot.PortfolioApplication.executor": "Run",
-    "Spring Boot.RiskManagement.executor": "Run",
-    "Spring Boot.RiskManagementApplication.executor": "Run",
-    "Spring Boot.TestExchangeEnv.executor": "Run",
-    "Spring Boot.TestWatchlistApplication.executor": "Run",
-    "Spring Boot.WatchlistApp.executor": "Run",
-    "ToolWindowRun.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/apple/Desktop/BAINSIGHT/order-processing/src/main/java/org/bainsight/processing",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "spring.configuration.checksum": "33c034acc31924bfb2a71c7f6579a759",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.MarketDataService/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-redis-dev.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/compose.yaml.scylla-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Watchlist/compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Watchlist/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.scylla-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.failRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testSuccessfulAuthentication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.testSaveBroker.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientServiceTests.testSignup.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAggregatorApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.UnAuthTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.authorizedWhenJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRefreshJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentDay.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentMonth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentWeek.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentYear.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testThreeYears.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketData1EngineTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketData1EngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest.testAFewTimes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketEngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.testFetchPortfolio.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.testPortfolio.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RecoveryTest.evokeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.assertThatS.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.connectionEstablished.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.testCancelOrder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.checkRisk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.failPriceBelowLowest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.failRiskForAboveAllowedQuantity.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.passAsk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.passBid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.pastAllowedOpenOrderLimit.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.priceBoundaryExceptionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Tests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidationTests.testCheckIfAskValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.connectionEstablished.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.fetchWalletTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.testBalanceUpdates.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistAppTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistTests.addToList.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistTests.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthenticationService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthenticationService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LiquidityService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LiquidityService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BrokerServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BrokerUserService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DataAggregator.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DataAggregatorApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DemoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeUser.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Gateway.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HistoryService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HistoryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.LiquidityServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketAggregatorApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData1.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketDataGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketUpdateApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MatchingEngineApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.OrderPersistence.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OrderProcessingApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PortfolioApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RiskManagement.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RiskManagementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TestExchangeEnv.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TestWatchlistApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.WatchlistApp.executor&quot;: &quot;Run&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Desktop/BAINSIGHT/order-persistence/src/main/java/org/bainsight/order/Config&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;33c034acc31924bfb2a71c7f6579a759&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
-      "PostgreSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.bainsight.order.Exception" />
       <recent name="com.bainsight.risk.Exception" />
       <recent name="org.bainsight.market.Exception" />
       <recent name="com.exchange.riskmanagement.Advice.Kafka" />
       <recent name="com.exchange.gateway.Config.Filters" />
-      <recent name="org.exchange.library.Exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Config" />
+      <recent name="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim" />
       <recent name="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing" />
-      <recent name="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config" />
-      <recent name="$PROJECT_DIR$/RiskManagement/src/main/java/org/bainsight/risk" />
-      <recent name="$PROJECT_DIR$/Portfolio/src/main/java/org/bainsight/portfolio" />
-      <recent name="$PROJECT_DIR$/HistoryService/src/main/java/org/bainsight/history" />
+      <recent name="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk" />
+      <recent name="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/HistoryService/src/main/resources" />
@@ -721,11 +392,11 @@
       <recent name="org.exchange.user.Service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.bainsight.order.MatchingSim.Repo" />
+      <recent name="org.bainsight.order.MatchingSim.Entity" />
       <recent name="org.bainsight.risk.Repo" />
       <recent name="org.bainsight.risk.Model" />
       <recent name="org.bainsight.risk.Config" />
-      <recent name="com.exchange.riskmanagement.Config" />
-      <recent name="org.bainsight.history.Models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -739,38 +410,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WalletTests.testBalanceUpdates">
-    <configuration name="PortfolioApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portfolio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.portfolio.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.portfolio" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.portfolio.PortfolioApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PortfolioApplicationTests.testPortfolio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="portfolio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.portfolio.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.portfolio" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.portfolio.PortfolioApplicationTests" />
-      <option name="METHOD_NAME" value="testPortfolio" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.OrderPersistence">
     <configuration name="WalletTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="portfolio" />
       <extension name="coverage">
@@ -894,6 +534,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OrderPersistence" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="order-persistence" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.order.OrderPersistence" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OrderProcessingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="order-processing" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.processing.OrderProcessingApplication" />
@@ -939,12 +586,39 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="compose.yaml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="kafka" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yaml.zookeeper: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="zookeeper" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="JUnit.PortfolioApplicationTests" />
+      <item itemvalue="Docker.compose.yaml.kafka: Compose Deployment" />
+      <item itemvalue="Docker.compose.yaml.zookeeper: Compose Deployment" />
       <item itemvalue="JUnit.WalletTests" />
       <item itemvalue="JUnit.WalletTests.fetchWalletTest" />
       <item itemvalue="JUnit.WalletTests.testBalanceUpdates" />
-      <item itemvalue="JUnit.PortfolioApplicationTests.testPortfolio" />
+      <item itemvalue="Spring Boot.OrderPersistence" />
       <item itemvalue="Spring Boot.OrderProcessingApplication" />
       <item itemvalue="Spring Boot.PortfolioApplication" />
       <item itemvalue="Spring Boot.HistoryService" />
@@ -961,11 +635,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.compose.yaml.kafka: Compose Deployment" />
+        <item itemvalue="Docker.compose.yaml.zookeeper: Compose Deployment" />
         <item itemvalue="JUnit.WalletTests.testBalanceUpdates" />
         <item itemvalue="JUnit.WalletTests" />
         <item itemvalue="JUnit.WalletTests.fetchWalletTest" />
-        <item itemvalue="JUnit.PortfolioApplicationTests" />
-        <item itemvalue="JUnit.PortfolioApplicationTests.testPortfolio" />
       </list>
     </recent_temporary>
   </component>
@@ -1191,6 +865,19 @@
       <workItem from="1713513937794" duration="9701000" />
       <workItem from="1713526172370" duration="457000" />
       <workItem from="1713597083479" duration="4879000" />
+      <workItem from="1713610717888" duration="3046000" />
+      <workItem from="1713623494201" duration="13614000" />
+      <workItem from="1713686511609" duration="5726000" />
+      <workItem from="1713692354058" duration="793000" />
+      <workItem from="1713703946577" duration="4526000" />
+      <workItem from="1713711742702" duration="8937000" />
+      <workItem from="1713772653369" duration="1548000" />
+      <workItem from="1713774218781" duration="3792000" />
+      <workItem from="1713796065009" duration="20208000" />
+      <workItem from="1713859355070" duration="9255000" />
+      <workItem from="1713883654631" duration="13899000" />
+      <workItem from="1713944896606" duration="5513000" />
+      <workItem from="1713954836484" duration="6571000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

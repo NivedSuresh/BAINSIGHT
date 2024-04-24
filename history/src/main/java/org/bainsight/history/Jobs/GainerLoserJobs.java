@@ -1,7 +1,6 @@
 package org.bainsight.history.Jobs;
 
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.history.Data.HistoryServiceImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -9,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @EnableScheduling

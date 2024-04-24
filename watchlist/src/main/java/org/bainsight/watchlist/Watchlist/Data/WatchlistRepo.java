@@ -1,6 +1,5 @@
 package org.bainsight.watchlist.Watchlist.Data;
 
-import org.bainsight.watchlist.Payload.WatchlistDto;
 import org.bainsight.watchlist.Watchlist.Model.Watchlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

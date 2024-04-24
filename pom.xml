@@ -18,19 +18,20 @@
 
     <modules>
         <module>y-lib</module>
+        <module>y-gRPC-proto</module>
+        <module>y-test-exchange</module>
         <module>config-server</module>
         <module>eureka-server</module>
         <module>gateway</module>
-        <module>y-test-exchange</module>
         <module>authentication</module>
         <module>order-processing</module>
-        <module>portfolio</module>
         <module>risk-management</module>
+        <module>portfolio</module>
+        <module>order-persistence</module>
         <module>market-update</module>
         <module>data-aggregator</module>
         <module>watchlist</module>
         <module>history</module>
-        <module>y-gRPC-proto</module>
     </modules>
 
     <dependencies>

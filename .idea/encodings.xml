@@ -22,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/history/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/market-update/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-management/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-persistence/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-processing/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/portfolio/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/risk-management/src/main/java" charset="UTF-8" />

@@ -3,13 +3,14 @@ package org.bainsight.portfolio.Data;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bainsight.portfolio.Dubug.Debugger;
+import org.bainsight.portfolio.Debug.Debugger;
 import org.bainsight.portfolio.Exceptions.NotEnoughAvailableSharesToTradeException;
 import org.bainsight.portfolio.Exceptions.SymbolNotFoundInPortfolioException;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
-import org.exchange.library.Exception.BadRequest.InvalidStateException;
+import org.exchange.library.Exception.GlobalException;
+import org.exchange.library.KafkaEvent.RollbackEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ public class PortfolioService {
     private final PortfolioSymbolRepo portfolioSymbolRepo;
     private final Debugger DEBUGGER;
 
+
+
+    public Portfolio save(Portfolio portfolio){
+        return this.portfolioRepo.save(portfolio);
+    }
 
 
     /**
@@ -75,6 +81,7 @@ public class PortfolioService {
      * Is evoked when a bid is matched.
      * */
     public void updatePortfolioAfterBidMatch(final PortfolioUpdateRequest request){
+        log.info("Portfolio Update Request: {}", request);
         PortfolioSymbol portfolioSymbol = this.fetchUserPortfolioSymbolForBid(request);
 
         long quantity = request.quantity() + portfolioSymbol.getQuantity();
@@ -126,4 +133,21 @@ public class PortfolioService {
                 .orElseThrow(SymbolNotFoundInPortfolioException::new);
     }
 
+
+    public void rollbackPortfolio(RollbackEvent riskRequest) {
+        PortfolioUpdateRequest build = PortfolioUpdateRequest.builder()
+                .symbol(riskRequest.getSymbol())
+                .ucc(riskRequest.getUcc())
+                .quantity(-riskRequest.getQuantity())
+                .build();
+        try{
+            this.updatePortfolioAfterAsk(build);
+        }
+        catch (RuntimeException ex){
+            if(ex instanceof GlobalException){
+                /* TODO: IMPLEMENT LOGGING*/
+            }
+            throw ex;
+        }
+    }
 }

@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.bainsight.portfolio.Data.WalletService;
 import org.bainsight.portfolio.Mapper.Mapper;
 import org.bainsight.portfolio.Model.Dto.WalletDto;
-import org.bainsight.portfolio.Model.Dto.WalletUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,5 @@
 package com.bainsight.risk.Model.Entity;
 
-import com.redis.om.spring.annotations.Document;
-import com.redis.om.spring.annotations.Searchable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

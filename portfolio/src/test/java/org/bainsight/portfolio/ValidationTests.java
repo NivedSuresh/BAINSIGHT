@@ -1,14 +1,8 @@
 package org.bainsight.portfolio;
 
 
-import io.grpc.internal.testing.StreamRecorder;
-import org.bainsight.Proceedable;
-import org.bainsight.ValidateAsk;
 import org.bainsight.portfolio.Data.PortfolioService;
 import org.bainsight.portfolio.Data.ValidationService;
-import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
-import org.exchange.library.Enums.TransactionType;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -18,9 +12,6 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

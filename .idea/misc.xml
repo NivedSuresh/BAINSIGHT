@@ -7,6 +7,7 @@
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/demo" />
     <file type="web" url="file://$PROJECT_DIR$/ExchangeOrderPersistance" />
     <file type="web" url="file://$PROJECT_DIR$/RiskManagement" />
   </component>
@@ -43,6 +44,8 @@
         <option value="$PROJECT_DIR$/Portfolio/pom.xml" />
         <option value="$PROJECT_DIR$/History/pom.xml" />
         <option value="$PROJECT_DIR$/RiskManagement/pom.xml" />
+        <option value="$PROJECT_DIR$/order-management/pom.xml" />
+        <option value="$PROJECT_DIR$/order/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

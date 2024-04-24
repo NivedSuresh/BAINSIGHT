@@ -36,4 +36,8 @@ public class Error {
     public static final String FAILED_TO_ACQUIRE_LOCK = "EXCEPTION-1031";
     public static final String RISK_CHECK_FAILED = "EXCEPTION-1032";
     public static final String WALLET_NOT_FOUND = "EXCEPTION-1033";
+    public static final String FAILED_TO_RELEASE_LOCK = "EXCEPTION-1034";
+    public static final String FAILED_TO_COMPLETE_ORDER = "EXCEPTION-1035";
+    public static final String FAILED_TO_UPDATE_ORDER = "EXCEPTION-1036";
+    public static final String MATCH_NOT_FOUND = "EXCEPTION-1037";
 }
