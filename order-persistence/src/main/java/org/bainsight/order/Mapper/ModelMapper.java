@@ -5,6 +5,7 @@ import org.bainsight.GrpcOrderRequest;
 import org.bainsight.order.Model.Entity.Match;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
+import org.bainsight.order.Model.Dto.OrderDto;
 import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
@@ -32,13 +33,15 @@ public class ModelMapper {
     }
 
     public Order getOrder(GrpcOrderRequest request) {
+        Double priceRequestedFor = request.getOrderType() == org.bainsight.OrderType.ORDER_TYPE_MARKET ? null : request.getPrice();
         return Order.builder()
                 .ucc(UUID.fromString(request.getUcc()))
                 .symbol(request.getSymbol())
                 .exchange(request.getExchange())
                 .orderType(this.getOrderType(request.getOrderType()))
                 .transactionType(this.getTransactionType(request.getTransactionType()))
-                .price(request.getPrice())
+                .priceRequestedFor(priceRequestedFor)
+                .totalAmountSpent(0.0)
                 .quantityRequested(request.getQuantity())
                 .quantityMatched(0L)
                 .orderStatus(OrderStatus.OPEN.name())
@@ -98,5 +101,24 @@ public class ModelMapper {
                 .ucc(order.getUcc())
                 .pricePerShare(match.getPriceMatchedFor())
                 .build();
+    }
+
+    public OrderDto toOrderDto(Order order) {
+
+        return OrderDto.builder()
+                .orderId(order.getOrderId())
+                .symbol(order.getSymbol())
+                .exchange(order.getExchange())
+                .transactionType(order.getTransactionType())
+                .orderType(order.getOrderType())
+                .quantityRequested(order.getQuantityRequested())
+                .priceRequestedFor(order.getPriceRequestedFor())
+                .totalAmountSpent(order.getTotalAmountSpent())
+                .quantityMatched(order.getQuantityMatched())
+                .orderPlacedAt(order.getOrderPlacedAt())
+                .lastUpdatedAt(order.getLastUpdatedAt())
+                .orderStatus(order.getOrderStatus())
+                .build();
+
     }
 }

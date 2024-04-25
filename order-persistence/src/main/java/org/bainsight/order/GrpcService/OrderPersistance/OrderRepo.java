@@ -2,10 +2,13 @@ package org.bainsight.order.GrpcService.OrderPersistance;
 
 import jakarta.persistence.LockModeType;
 import org.bainsight.order.Model.Entity.Order;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.ListPagingAndSortingRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +19,10 @@ import java.util.UUID;
 
 
 @Repository
-interface OrderRepo extends JpaRepository<Order, UUID> {
+interface OrderRepo extends PagingAndSortingRepository<Order, UUID>, JpaRepository<Order, UUID> {
 
 
-    Optional<List<Order>> findByUcc(UUID ucc);
+    Optional<List<Order>> findByUcc(UUID ucc, PageRequest pageRequest);
 
     @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     Optional<Order> findWithLockingByOrderId(UUID orderId);

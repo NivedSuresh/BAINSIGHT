@@ -42,6 +42,6 @@ public class Wallet {
     private List<Transaction> transactions;
 
     @Version
-    private Long version;
+    private long version;
 
 }

@@ -1,8 +1,8 @@
 package org.bainsight.portfolio;
 
 import lombok.RequiredArgsConstructor;
-import org.bainsight.portfolio.Data.PortfolioService;
-import org.bainsight.portfolio.Data.WalletService;
+import org.bainsight.portfolio.Data.Portfolio.PortfolioService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Dto.WalletUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
@@ -51,7 +51,7 @@ public class PortfolioApplication {
                             .changeInBalance(1000000.0)
                             .build();
 
-                    this.walletService.updateWalletBalance(UUID.fromString(ucc), walletUpdateRequest, 1);
+                    this.walletService.updateWalletBalance(UUID.fromString(ucc), walletUpdateRequest);
                 }
 
                 List<PortfolioSymbol> portfolioSymbols = portfolio.getPortfolioSymbols();

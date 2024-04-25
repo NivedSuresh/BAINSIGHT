@@ -3,6 +3,7 @@ package org.bainsight.portfolio.Mapper;
 
 import org.bainsight.portfolio.Model.Dto.*;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
+import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
 import org.bainsight.portfolio.Model.Entity.Wallet;
 import org.exchange.library.KafkaEvent.PortfolioUpdateEvent;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ public class Mapper {
         List<PortfolioSymbolDto> portfolioSymbols = portfolio.getPortfolioSymbols().stream().map(portfolioSymbol ->
             PortfolioSymbolDto.builder()
                     .symbolQuantityId(portfolioSymbol.getSymbolQuantityId())
-                    .portfolioId(portfolio.getPortfolioId())
                     .soldAmount(portfolioSymbol.getSoldAmount())
                     .symbol(portfolioSymbol.getSymbol())
                     .investedAmount(portfolioSymbol.getInvestedAmount())
@@ -59,5 +59,13 @@ public class Mapper {
     }
 
 
-
+    public PortfolioSymbolDto toPortfolioSymbolDto(PortfolioSymbol portfolioSymbol) {
+        return PortfolioSymbolDto.builder()
+                .symbolQuantityId(portfolioSymbol.getSymbolQuantityId())
+                .soldAmount(portfolioSymbol.getSoldAmount())
+                .symbol(portfolioSymbol.getSymbol())
+                .investedAmount(portfolioSymbol.getInvestedAmount())
+                .quantity(portfolioSymbol.getQuantity())
+                .build();
+    }
 }

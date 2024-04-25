@@ -30,4 +30,7 @@ public class PortfolioSymbol {
     private Double soldAmount;
     private Long quantity;
     private Long openQuantity;
+
+    @Version
+    private long version;
 }

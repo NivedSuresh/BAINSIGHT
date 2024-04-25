@@ -2,7 +2,7 @@ package org.bainsight.portfolio;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.bainsight.portfolio.Data.WalletService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Model.Dto.NewTransaction;
 import org.bainsight.portfolio.Model.Dto.WalletDto;
 import org.bainsight.portfolio.Model.Dto.WalletUpdateRequest;
@@ -82,16 +82,16 @@ public class WalletTests {
 
         Wallet wallet = this.walletService.fetchWallet(ucc.toString());
 
-        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(100.0, 100.0), 1);
+        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(100.0, 100.0));
 
-        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(0.0, -50.0), 1);
+        this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(0.0, -50.0));
 
         wallet = this.walletService.fetchWallet(ucc.toString());
 
         Assertions.assertEquals(wallet.getCurrentBalance(), 100);
         Assertions.assertEquals(wallet.getAvailableBalance(), 50);
 
-        this.walletService.updateWalletBalance(ucc ,new WalletUpdateRequest(-50.0, -50.0), 1);
+        this.walletService.updateWalletBalance(ucc ,new WalletUpdateRequest(-50.0, -50.0));
         wallet = this.walletService.fetchWallet(ucc.toString());
 
         Assertions.assertEquals(wallet.getAvailableBalance(), 0);

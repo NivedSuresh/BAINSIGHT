@@ -24,6 +24,7 @@ spring:
           predicates:
             - Path=/eureka/**
 
+
         #RiskManagement
         - id: risk-management
           uri: lb://risk-management
@@ -32,6 +33,7 @@ spring:
             - Method=GET,PUT,POST,DELETE
           filters:
             - SecurityFilter
+
 
         #AuthService Client
         - id: auth-service
@@ -42,6 +44,7 @@ spring:
           filters:
             - SecurityFilter
 
+
         - id: auth-service
           uri: lb://auth-service
           predicates:
@@ -50,12 +53,14 @@ spring:
           filters:
             - SecurityFilter
 
+
         #Market Update
         - id: market-update
           uri: lb://market-update
           predicates:
             - Path=/ws
             - Method=GET,PUT,POST
+
 
         #Watchlist
         - id: watchlist-service
@@ -66,6 +71,7 @@ spring:
           filters:
             - SecurityFilter
 
+
         #History
         - id: history-service
           uri: lb://history-service
@@ -75,6 +81,7 @@ spring:
           filters:
             - SecurityFilter
 
+
         - id: portfolio-service
           uri: lb://portfolio-service
           predicates:
@@ -82,6 +89,24 @@ spring:
             - Method=GET,PUT,POST
           filters:
             - SecurityFilter
+
+
+        - id: order-persistence
+          uri: lb://order-persistence
+          predicates:
+            - Path=/api/bainsight/persistence/**
+            - Method=GET
+          filters:
+#            - SecurityFilter
+
+
+        - id: order-processing
+          uri: lb://order-processing
+          predicates:
+            - Path=/api/bainsight/order/**
+            - Method=GET,PUT,POST
+          filters:
+#            - SecurityFilter
 
 
 # TODO:Move to config server

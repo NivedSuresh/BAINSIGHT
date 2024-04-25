@@ -1,4 +1,4 @@
-package org.bainsight.portfolio.Data;
+package org.bainsight.portfolio.Data.Wallet;
 
 import jakarta.persistence.LockModeType;
 import org.bainsight.portfolio.Model.Entity.Wallet;

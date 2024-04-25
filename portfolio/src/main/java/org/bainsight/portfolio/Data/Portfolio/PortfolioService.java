@@ -1,4 +1,4 @@
-package org.bainsight.portfolio.Data;
+package org.bainsight.portfolio.Data.Portfolio;
 
 
 import lombok.RequiredArgsConstructor;
@@ -11,9 +11,15 @@ import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
 import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.KafkaEvent.RollbackEvent;
+import org.exchange.library.Utils.BainsightUtils;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -37,8 +43,11 @@ public class PortfolioService {
     /**
      * Called when Order is being processed.
      * */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updatePortfolioAfterAsk(final PortfolioUpdateRequest request){
+
         PortfolioSymbol portfolioSymbol = this.fetchUserPortfolioSymbol(request.ucc(), request.symbol());
+
 
         DEBUGGER.DEBUG(log, "PortfolioSymbol has been fetched: {}", portfolioSymbol);
 
@@ -59,6 +68,7 @@ public class PortfolioService {
     /**
      * Invoked when a sell request gets matched
      * */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updatePortfolioAfterAskMatch(final PortfolioUpdateRequest request){
         PortfolioSymbol portfolioSymbol = this.fetchUserPortfolioSymbol(request.ucc(), request.symbol());
 
@@ -80,6 +90,7 @@ public class PortfolioService {
     /**
      * Is evoked when a bid is matched.
      * */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updatePortfolioAfterBidMatch(final PortfolioUpdateRequest request){
         log.info("Portfolio Update Request: {}", request);
         PortfolioSymbol portfolioSymbol = this.fetchUserPortfolioSymbolForBid(request);
@@ -93,10 +104,13 @@ public class PortfolioService {
         this.portfolioSymbolRepo.save(portfolioSymbol);
     }
 
-    private PortfolioSymbol fetchUserPortfolioSymbolForBid(PortfolioUpdateRequest request) {
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    PortfolioSymbol fetchUserPortfolioSymbolForBid(PortfolioUpdateRequest request) {
+
         UUID unqiueId = UUID.fromString(request.ucc());
 
-        return this.portfolioRepo.fetchPortfolioSymbol(unqiueId, request.symbol()).orElseGet(() -> {
+        return this.portfolioSymbolRepo.findByUccAndSymbolForUpdate(unqiueId, request.symbol()).orElseGet(() -> {
             Portfolio portfolio = this.fetchUserPortfolio(request.ucc());
 
             PortfolioSymbol portfolioSymbol = PortfolioSymbol.builder()
@@ -110,6 +124,7 @@ public class PortfolioService {
 
             return this.portfolioSymbolRepo.save(portfolioSymbol);
         });
+
     }
 
 
@@ -125,15 +140,18 @@ public class PortfolioService {
 
             return portfolioRepo.save(portfolio);
         });
+
     }
 
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public PortfolioSymbol fetchUserPortfolioSymbol(final String ucc, final  String symbol) {
-        return this.portfolioRepo.fetchPortfolioSymbol(UUID.fromString(ucc), symbol)
+        return this.portfolioSymbolRepo.findByUccAndSymbolForUpdate(UUID.fromString(ucc), symbol)
                 .orElseThrow(SymbolNotFoundInPortfolioException::new);
     }
 
 
+    @Transactional
     public void rollbackPortfolio(RollbackEvent riskRequest) {
         PortfolioUpdateRequest build = PortfolioUpdateRequest.builder()
                 .symbol(riskRequest.getSymbol())
@@ -149,5 +167,10 @@ public class PortfolioService {
             }
             throw ex;
         }
+    }
+
+    public List<PortfolioSymbol> fetchPortfolioSymbols(UUID ucc, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        return this.portfolioSymbolRepo.findByUcc(ucc, pageRequest).orElse(List.of());
     }
 }

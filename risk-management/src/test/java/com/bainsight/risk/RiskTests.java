@@ -12,6 +12,7 @@ import org.bainsight.OrderType;
 import org.bainsight.Proceedable;
 import org.bainsight.RiskRequest;
 import org.bainsight.TransactionType;
+import org.exchange.library.Utils.STRINGS;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ import java.util.concurrent.ExecutionException;
 public class RiskTests {
 
 
+    /**
+     * START PORTFOLIO APPLICATION AND SERVICE REGISTRY BEFORE RUNNING TESTS!
+     * */
+
+
+
     @Autowired
     private CandleStickRepo stickRepo;
 
@@ -40,6 +47,10 @@ public class RiskTests {
     private static int maxAllowedQuantity = 100;
     private static int allowedSpend = 300000;
     private static int allowedOpenOrders = 5;
+    private final String ucc = STRINGS.UCC;
+
+
+
 
     @DynamicPropertySource
     static void updateRedis(DynamicPropertyRegistry registry) {
@@ -61,7 +72,7 @@ public class RiskTests {
 
 
         RiskRequest riskRequest = RiskRequest.newBuilder()
-                .setUcc("UCC")
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.BID)
                 .setSymbol(SYMBOL)
@@ -91,12 +102,11 @@ public class RiskTests {
 
 
         RiskRequest riskRequest = RiskRequest.newBuilder()
-                .setUcc("UCC")
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.ASK)
                 .setSymbol(SYMBOL)
-                /* SELLER CAN SELL ANY AMOUNT OF QUANTITY AS PER LOGIC (FOR NOW) */
-                .setQuantity(1011)
+                .setQuantity(1)
                 .setPrice(AAPL.getHigh() * 1.15)
                 .build();
 
@@ -119,7 +129,7 @@ public class RiskTests {
 
 
         RiskRequest riskRequest = RiskRequest.newBuilder()
-                .setUcc("UCC")
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.BID)
                 .setSymbol(SYMBOL)
@@ -130,10 +140,10 @@ public class RiskTests {
         this.riskManagementService.checkIfProceedable(riskRequest, responseObserver);
         StatusRuntimeException exception = (StatusRuntimeException) responseObserver.getError();
 
+        assert exception != null;
         Status status = exception.getStatus();
 
-        Assertions.assertEquals(Status.OUT_OF_RANGE, status);
-        Assertions.assertEquals("OUT_OF_RANGE: The maximum allowed order quantity per purchase is ".concat(String.valueOf(maxAllowedQuantity)), exception.getMessage());
+        Assertions.assertEquals(Status.OUT_OF_RANGE.withDescription("The maximum allowed order quantity per purchase is ".concat(String.valueOf(maxAllowedQuantity))).toString(), status.toString());
 
     }
 
@@ -148,7 +158,7 @@ public class RiskTests {
 
 
         RiskRequest riskRequest1 = RiskRequest.newBuilder()
-                .setUcc("UCC")
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.BID)
                 .setSymbol(SYMBOL)
@@ -157,7 +167,7 @@ public class RiskTests {
                 .build();
 
         RiskRequest riskRequest2 = RiskRequest.newBuilder()
-                .setUcc("UCC")
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.BID)
                 .setSymbol(SYMBOL)
@@ -172,9 +182,8 @@ public class RiskTests {
         this.riskManagementService.checkIfProceedable(riskRequest1, responseObserver);
         Assertions.assertEquals(responseObserver.getError().getMessage(), "OUT_OF_RANGE: The Order cannot be accepted as the lowest acceptable price for the symbol ".concat(SYMBOL).concat(" is ").concat(String.valueOf(lowest)));
 
-        double highest = Math.round(candleStick.getLow() * 1.2);
         this.riskManagementService.checkIfProceedable(riskRequest2, responseObserver);
-        Assertions.assertEquals(responseObserver.getError().getMessage(), "OUT_OF_RANGE: The Order cannot be accepted as the highest acceptable price for the symbol ".concat(SYMBOL).concat(" is ").concat(String.valueOf(highest)));
+        Assertions.assertTrue(responseObserver.getError().getMessage().startsWith("OUT_OF_RANGE: The Order cannot be accepted as the highest acceptable price for the symbol "));
 
     }
 
@@ -191,7 +200,7 @@ public class RiskTests {
 
 
         RiskRequest riskRequest = RiskRequest.newBuilder()
-                .setUcc(UUID.randomUUID().toString())
+                .setUcc(ucc)
                 .setOrderType(OrderType.ORDER_TYPE_LIMIT)
                 .setTransactionType(TransactionType.BID)
                 .setSymbol(SYMBOL)

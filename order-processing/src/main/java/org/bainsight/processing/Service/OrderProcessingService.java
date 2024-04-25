@@ -60,7 +60,7 @@ public class OrderProcessingService {
 
 
     public void placeOrder(OrderRequest request, String ucc){
-        log.info("Placing order!");
+        log.info("Placing order! UCC: {}", ucc);
         final GrpcOrderRequest orderRequest = this.mapper.getGrpcOrderRequest(request, ucc);
         String orderId = null;
         try
@@ -143,7 +143,6 @@ public class OrderProcessingService {
         }
         catch (RuntimeException ex)
         {
-            ex.printStackTrace();
             log.error(ex.getMessage());
             if(ex instanceof StatusRuntimeException e) throw new FailedToUpdateOrderException(e.getMessage());
             if(ex instanceof GlobalException) throw ex;

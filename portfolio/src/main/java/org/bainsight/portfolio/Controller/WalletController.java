@@ -2,7 +2,7 @@ package org.bainsight.portfolio.Controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.bainsight.portfolio.Data.WalletService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Mapper.Mapper;
 import org.bainsight.portfolio.Model.Dto.WalletDto;
 import org.bainsight.portfolio.Model.Entity.Wallet;

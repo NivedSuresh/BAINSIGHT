@@ -5,11 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.bainsight.*;
+import org.bainsight.portfolio.Data.Portfolio.PortfolioService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Debug.Debugger;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Dto.WalletUpdateRequest;
 import org.exchange.library.Exception.GlobalException;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -44,7 +45,7 @@ public class ValidationService extends PortfolioValidateGrpc.PortfolioValidateIm
         Proceedable proceedable;
         try{
             UUID ucc = UUID.fromString(request.getUcc());
-            this.walletService.updateWalletBalance(ucc, updateRequest, 1);
+            this.walletService.updateWalletBalance(ucc, updateRequest);
             DEBUGGER.DEBUG(log, "Balance validated and updated!");
             proceedable = getProceedable("", true);
         }

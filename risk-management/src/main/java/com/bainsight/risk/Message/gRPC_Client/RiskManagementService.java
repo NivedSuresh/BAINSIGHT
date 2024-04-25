@@ -58,13 +58,15 @@ public class RiskManagementService extends RiskManagementGrpc.RiskManagementImpl
 
     @Override
     public void checkIfProceedable(RiskRequest request, StreamObserver<Proceedable> responseObserver) {
-        try{
+        try
+        {
             DEBUGGER.DEBUG(log, "PROCESSING ORDER VALIDATION");
             Proceedable proceedable = validateOrder(request);
             DEBUGGER.DEBUG(log, "PROCEEDABLE: {}", proceedable);
             responseObserver.onNext(proceedable);
         }
-        catch (GlobalException e){
+        catch (GlobalException e)
+        {
             DEBUGGER.DEBUG(log, "EXCEPTION OCCURED WHILE PROCESSING ORDER. EX: {}", e.getMessage());
             responseObserver.onError((Status.OUT_OF_RANGE.withDescription(e.getMessage())).asRuntimeException());
             return;
@@ -90,7 +92,7 @@ public class RiskManagementService extends RiskManagementGrpc.RiskManagementImpl
         final boolean isLimit = request.getOrderType() == OrderType.ORDER_TYPE_LIMIT;
         boolean orderMetaProcessed = false;
         boolean portfolioProcessed = false;
-        boolean lock = false;
+//        boolean lock = false;
 
         try{
 
@@ -102,9 +104,9 @@ public class RiskManagementService extends RiskManagementGrpc.RiskManagementImpl
 
 
             DEBUGGER.DEBUG(log, "Attempting to gain lock!");
-            lock = this.lock(request.getUcc());
-            DEBUGGER.DEBUG(log, "Locked: {}", lock);
-            if(!lock) throw new FailedToAcquireLockException();
+//            lock = this.lock(request.getUcc());
+//            DEBUGGER.DEBUG(log, "Locked: {}", lock);
+//            if(!lock) throw new FailedToAcquireLockException();
 
 
             if(isLimit) this.validatePriceBoundaries(candleStick, request.getPrice());
@@ -125,8 +127,8 @@ public class RiskManagementService extends RiskManagementGrpc.RiskManagementImpl
 
 
             /* DON'T RETRY TO UNLOCK IF UNLOCKING FAILED, THE LOCK WILL AUTOMATICALLY EXPIRE IN A MINUTE */
-           lock = false;
-           this.unlock(request.getUcc());
+//           lock = false;
+//           this.unlock(request.getUcc());
            DEBUGGER.DEBUG(log, "Unlocked!");
 
            return Proceedable.newBuilder().setProceedable(true).setMessage("").build();
@@ -138,7 +140,7 @@ public class RiskManagementService extends RiskManagementGrpc.RiskManagementImpl
             if(orderMetaProcessed && portfolioProcessed) return Proceedable.newBuilder().setProceedable(true).setMessage("").build();
 
             if(orderMetaProcessed) this.rollBackDailyOrderMeta(this.mapper.getRollbackEvent(request));
-            if(lock) this.unlock(request.getUcc());
+//            if(lock) this.unlock(request.getUcc());
 
             if(ex instanceof GlobalException) throw ex;
             if(ex instanceof StatusRuntimeException sr && (sr.getStatus() != Status.UNAVAILABLE ||

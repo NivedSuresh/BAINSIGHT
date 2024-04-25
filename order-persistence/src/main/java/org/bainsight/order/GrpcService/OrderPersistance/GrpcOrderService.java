@@ -15,17 +15,19 @@ import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
 import org.exchange.library.Exception.GlobalException;
+import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.library.KafkaEvent.PortfolioUpdateEvent;
 import org.exchange.library.KafkaEvent.WalletUpdateEvent;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
 
 
 @GrpcService
@@ -36,7 +38,6 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
 
     private final OrderRepo orderRepo;
     private final List<String> CANCELLABLE_STATUSES = List.of("OPEN");
-    private final ExecutorService greenExecutor;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final ModelMapper mapper;
     private final MatchRepo matchRepo;
@@ -109,7 +110,7 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
 
             if(order == null){
                 log.error("Order is null!");
-                responseObserver.onError(Status.NOT_FOUND.withDescription("Order not found!").asRuntimeException());
+                responseObserver.onError(Status.NOT_FOUND.withDescription("Order not found as it is already filled or doesn't exist!").asRuntimeException());
                 return;
             }
 
@@ -120,9 +121,10 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
 
 
             long rollbackQuantity = order.getQuantityRequested() - (order.getQuantityMatched() != null ? order.getQuantityMatched() : 0);
+            double priceRequestedFor = order.getOrderType() == OrderType.ORDER_TYPE_MARKET ? 0.0 : order.getPriceRequestedFor();
             RiskRequest riskRequest = RiskRequest.newBuilder()
                     .setSymbol(order.getSymbol())
-                    .setPrice(order.getPrice())
+                    .setPrice(priceRequestedFor)
                     .setQuantity(rollbackQuantity)
                     .setTransactionType(this.mapper.getTransactionType(order.getTransactionType()))
                     .setOrderType(this.mapper.getOrderType(order.getOrderType()))
@@ -198,12 +200,20 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
         }
         else order.setQuantityMatched(totalMatched);
 
+        if(order.getTransactionType() == TransactionType.BID){
+            double totalSpent = order.getTotalAmountSpent() + (match.getPriceMatchedFor() * match.getMatchedQuantity());
+            log.info("Total Amount Spent for the order: {}", totalSpent);
+            order.setTotalAmountSpent(totalSpent);
+        }
+
         if(totalMatched == order.getQuantityRequested()){
             /* TODO: FIRST GRPC THEN KAFKA */
             log.info("Order has been filled completely!");
             order.setOrderStatus(OrderStatus.CLOSED.name());
-            this.kafkaTemplate.send("open-order-count-decrement", order.getUcc());
+            this.kafkaTemplate.send("open-order-count-decrement", order.getUcc().toString());
         }
+
+        order.setLastUpdatedAt(LocalDateTime.now());
 
         this.orderRepo.save(order);
 
@@ -227,6 +237,20 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
 
     @Transactional
     public Order findOrderById(UUID orderId) {
-        return this.orderRepo.findWithLockingByOrderId(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+        try
+        {
+            return this.orderRepo.findWithLockingByOrderId(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+        }
+        catch (RuntimeException ex)
+        {
+            log.error(ex.getMessage());
+            if(ex instanceof GlobalException) throw ex;
+            else throw new ServiceUnavailableException();
+        }
+    }
+
+    public List<Order> findOrdersByPageAndUcc(UUID uniqueClientCode, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        return this.orderRepo.findByUcc(uniqueClientCode, pageRequest).orElse(List.of());
     }
 }

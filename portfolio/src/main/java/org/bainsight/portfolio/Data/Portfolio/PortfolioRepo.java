@@ -1,4 +1,4 @@
-package org.bainsight.portfolio.Data;
+package org.bainsight.portfolio.Data.Portfolio;
 
 
 import jakarta.persistence.LockModeType;
@@ -17,6 +17,8 @@ import java.util.UUID;
 interface PortfolioRepo extends JpaRepository<Portfolio, Long> {
     Optional<Portfolio> findByUcc(UUID ucc);
 
+
+    @Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
     @Query("SELECT ps FROM PortfolioSymbol ps JOIN ps.portfolio p WHERE p.ucc = :ucc AND ps.symbol = :symbol")
     Optional<PortfolioSymbol> fetchPortfolioSymbol(@Param("ucc") UUID ucc, String symbol);
 

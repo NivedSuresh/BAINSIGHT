@@ -41,7 +41,7 @@ public class KafkaPropertiesConfig {
     public Map<String, Object> consumerConfig() {
         Map<String, Object> kafkaProps = new HashMap<>();
         kafkaProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "risk-processing-rollback");
+        kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "risk-management");
         kafkaProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         kafkaProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         kafkaProps.put("spring.json.type.mapping", DailyOrderMetaEvent.class);

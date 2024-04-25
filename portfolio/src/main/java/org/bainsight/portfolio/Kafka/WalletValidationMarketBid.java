@@ -4,8 +4,8 @@ package org.bainsight.portfolio.Kafka;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bainsight.portfolio.Data.PortfolioService;
-import org.bainsight.portfolio.Data.WalletService;
+import org.bainsight.portfolio.Data.Portfolio.PortfolioService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Dto.WalletUpdateRequest;
 import org.exchange.library.KafkaEvent.WalletUpdateEvent;
@@ -31,7 +31,7 @@ public class WalletValidationMarketBid {
             log.info("New match for market bid. {}", update);
             WalletUpdateEvent walletUpdateEvent = this.objectMapper.readValue(update, WalletUpdateEvent.class);
             WalletUpdateRequest walletUpdateRequest = new WalletUpdateRequest(-walletUpdateEvent.getRequiredBalance(), -walletUpdateEvent.getRequiredBalance());
-            this.walletService.updateWalletBalance(walletUpdateEvent.getUcc(), walletUpdateRequest, 1);
+            this.walletService.updateWalletBalance(walletUpdateEvent.getUcc(), walletUpdateRequest);
 
             PortfolioUpdateRequest portfolioUpdateRequest  = PortfolioUpdateRequest.builder()
                     .symbol(walletUpdateEvent.getSymbol())

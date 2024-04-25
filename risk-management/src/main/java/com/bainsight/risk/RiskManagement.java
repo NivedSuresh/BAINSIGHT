@@ -62,7 +62,7 @@ public class RiskManagement {
     @Bean
     public CommandLineRunner commandLineRunner(){
         return args -> {
-            this.dailyOrderMetaRepo.deleteById(STRINGS.UCC);
+            this.dailyOrderMetaRepo.deleteAll();
         };
     }
 

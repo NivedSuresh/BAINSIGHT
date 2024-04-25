@@ -3,7 +3,6 @@ package org.bainsight.order.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
 import org.hibernate.annotations.DynamicUpdate;
@@ -45,11 +44,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
+    @Enumerated(EnumType.STRING)
     private OrderType orderType;
 
     private Long quantityRequested;
 
-    private Double price;
+    private Double priceRequestedFor;
+    private Double totalAmountSpent;
 
     @Column(columnDefinition = "BIGINT DEFAULT 0")
     private Long quantityMatched;

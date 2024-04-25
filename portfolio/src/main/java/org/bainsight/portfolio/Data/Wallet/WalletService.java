@@ -1,4 +1,4 @@
-package org.bainsight.portfolio.Data;
+package org.bainsight.portfolio.Data.Wallet;
 
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +16,14 @@ import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.library.Exception.Order.NotEnoughBalanceException;
 import org.exchange.library.KafkaEvent.RollbackEvent;
+import org.exchange.library.Utils.BainsightUtils;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -54,8 +55,11 @@ public class WalletService {
 
 
 
-    @Transactional
-    public void updateWalletBalance(final UUID uniqueClientId, WalletUpdateRequest updateRequest, int tryCount){
+
+
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void updateWalletBalance(final UUID uniqueClientId, WalletUpdateRequest updateRequest){
         try{
             Optional<Wallet> optional = this.walletRepo.findWithLockingByUcc(uniqueClientId);
 
@@ -73,8 +77,6 @@ public class WalletService {
 
             wallet.setCurrentBalance(current);
             wallet.setAvailableBalance(available);
-            long v = Objects.requireNonNullElse(wallet.getVersion(), 0L);
-            wallet.setVersion(v + 1);
 
 
             BEBUGGER.DEBUG(log,"Wallet before update: {}", wallet);
@@ -84,24 +86,16 @@ public class WalletService {
         catch (RuntimeException e)
         {
             log.error(e.getMessage());
-            if(e instanceof ObjectOptimisticLockingFailureException && tryCount <= 3)
+            if(e instanceof ObjectOptimisticLockingFailureException)
             {
-                this.sleep(500);
-                this.updateWalletBalance(uniqueClientId, updateRequest, tryCount + 1);
-                return;
+                throw e;
             }
             if(e instanceof GlobalException) throw e;
             throw new ServiceUnavailableException();
         }
     }
 
-    private void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage());
-        }
-    }
+
 
 
     @Transactional
@@ -134,7 +128,7 @@ public class WalletService {
     @Transactional
     public void rollbackWalletValidation(RollbackEvent request) {
         if(request.getOrderType() == OrderType.ORDER_TYPE_MARKET) return;
-        this.updateWalletBalance(UUID.fromString(request.getUcc()), new WalletUpdateRequest(0.0, request.getPrice() * request.getQuantity()), 1);
+        this.updateWalletBalance(UUID.fromString(request.getUcc()), new WalletUpdateRequest(0.0, request.getPrice() * request.getQuantity()));
     }
 
     public Proceedable validateBalance(ValidateBid request) {

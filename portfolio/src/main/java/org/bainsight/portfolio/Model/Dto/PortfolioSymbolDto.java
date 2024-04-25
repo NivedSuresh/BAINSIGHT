@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PortfolioSymbolDto {
     private Long symbolQuantityId;
-    private Long portfolioId;
     private String symbol;
     private Double investedAmount;
     private Double soldAmount;

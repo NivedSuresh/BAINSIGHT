@@ -147,6 +147,11 @@
             <artifactId>redis-om-spring</artifactId>
             <version>0.8.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

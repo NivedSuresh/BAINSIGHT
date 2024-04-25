@@ -44,7 +44,7 @@ public class MatchingJob {
 
             Optional<CandleStick> optional = this.candleStickRepo.findById(order.getSymbol());
             CandleStick stick = optional.get();
-            double matchPrice = ((stick.getHigh() + stick.getLow()) / 2) + random.nextDouble(-2, 2);
+            double matchPrice = Math.round(((stick.getHigh() + stick.getLow()) / 2) + random.nextDouble(-2, 2));
 
 
             OrderMatch orderMatch = OrderMatch.builder()
@@ -79,7 +79,7 @@ public class MatchingJob {
                     .matchTime(LocalDateTime.now())
                     .symbol(order.getSymbol())
                     .exchange(order.getExchange())
-                    .priceMatchedFor(order.getPrice())
+                    .priceMatchedFor(order.getPriceRequestedFor())
                     .orderId(order.getOrderId().toString())
                     .matchedQuantity(matched)
                     .quantityRequested(order.getQuantityRequested())

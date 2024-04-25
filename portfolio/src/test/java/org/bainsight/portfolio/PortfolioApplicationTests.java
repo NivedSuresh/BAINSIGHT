@@ -1,6 +1,7 @@
 package org.bainsight.portfolio;
 
-import org.bainsight.portfolio.Data.PortfolioService;
+import org.bainsight.portfolio.Data.Portfolio.PortfolioService;
+import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
@@ -34,6 +35,9 @@ class PortfolioApplicationTests {
 
     @Autowired
     private PortfolioService portfolioService;
+
+    @Autowired
+    private WalletService walletService;
 
     @Test
     public void connectionEstablished() {
@@ -101,5 +105,8 @@ class PortfolioApplicationTests {
         Assertions.assertEquals(portfolioSymbol.getInvestedAmount(), 120);
 
     }
+
+
+
 
 }
