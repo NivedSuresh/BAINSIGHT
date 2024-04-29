@@ -50,7 +50,11 @@ public class EndpointsUtil {
         return List.of(
                 "/api/bainsight/order",
                 "/api/bainsight/watchlist",
-                "/api/bainsight/history"
+                "/api/bainsight/history",
+                "/api/bainsight/risk",
+                "/api/bainsight/portfolio",
+                "/api/bainsight/persistence",
+                "/api/bainsight/wallet"
         );
     }
 

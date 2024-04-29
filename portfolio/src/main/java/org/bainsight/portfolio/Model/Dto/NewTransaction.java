@@ -21,4 +21,6 @@ public class NewTransaction {
 
     private Double amount;
 
+
+
 }

@@ -4,14 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.bainsight.watchlist.CandleStick.Data.CandleStickService;
 import org.bainsight.watchlist.CandleStick.Entity.CandleStick;
 import org.bainsight.watchlist.Mapper.Mapper;
-import org.bainsight.watchlist.Payload.AddToWatchlist;
-import org.bainsight.watchlist.Payload.CreateWatchlist;
-import org.bainsight.watchlist.Payload.RemoveSymbol;
-import org.bainsight.watchlist.Payload.WatchlistDto;
+import org.bainsight.watchlist.Payload.*;
 import org.bainsight.watchlist.Watchlist.Data.WatchlistService;
 import org.bainsight.watchlist.Watchlist.Model.Watchlist;
 import org.bainsight.watchlist.Watchlist.Model.WatchlistMeta;
-import org.exchange.library.Dto.Utils.Page;
+import org.exchange.library.Dto.Utils.BainsightPage;
 import org.exchange.library.Utils.WebTrimmer;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -53,11 +50,11 @@ public class WatchlistController {
 
         if(watchlist.getSymbols().isEmpty())
         {
-            return mapper.toWatchlistDto(watchlist, new ArrayList<>(), new Page((short) 1, false, false));
+            return mapper.toWatchlistDto(watchlist, new ArrayList<>(), new BainsightPage((short) 1, false, false));
         }
         List<CandleStick> candleSticks = this.candleStickService.fetchCurrentSymbolState(watchlist.getSymbols(), page, count);
 
-        Page pageable = this.mapper.getPageable(page, count, watchlist.getSymbols().size());
+        BainsightPage pageable = this.mapper.getPageable(page, count, watchlist.getSymbols().size());
 
 
         return mapper.toWatchlistDto(watchlist, candleSticks, pageable);
@@ -76,7 +73,7 @@ public class WatchlistController {
 
         List<CandleStick> candleSticks = this.candleStickService.fetchCurrentSymbolState(watchlist.getSymbols(), page, 10);
 
-        Page pageable = new Page(page, page * 5 < watchlist.getSymbols().size(), page > 1);
+        BainsightPage pageable = new BainsightPage(page, page * 5 < watchlist.getSymbols().size(), page > 1);
         return mapper.toWatchlistDto(watchlist, candleSticks, pageable);
     }
 
@@ -97,7 +94,7 @@ public class WatchlistController {
 
         Watchlist watchlist = this.watchlistService.createNewWatchlist(ucc, request.watchlistName());
 
-        Page pageable = new Page((short) 1, false, false);
+        BainsightPage pageable = new BainsightPage((short) 1, false, false);
         return mapper.toWatchlistDto(watchlist, new ArrayList<>(), pageable);
     }
 
@@ -138,9 +135,13 @@ public class WatchlistController {
 
         List<CandleStick> sticks = this.candleStickService.fetchCurrentSymbolState(watchlist.getSymbols(), page, 10);
 
-        Page pageable = this.mapper.getPageable(page, 10, watchlist.getSymbols().size());
+        BainsightPage pageable = this.mapper.getPageable(page, 10, watchlist.getSymbols().size());
         WatchlistDto watchlistDto = this.mapper.toWatchlistDto(watchlist, sticks, pageable);
 
         return new WatchlistMeta(watchlistDto, tags);
     }
+
+
+
+
 }

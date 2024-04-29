@@ -5,7 +5,7 @@ import org.exchange.library.Exception.GlobalException;
 import org.springframework.http.HttpStatus;
 
 public class MatchNotFoundException extends GlobalException {
-    public MatchNotFoundException(String matchIdAsString) {
-        super("Unable to find any match with the id ".concat(matchIdAsString), HttpStatus.NOT_FOUND, Error.MATCH_NOT_FOUND);
+    public MatchNotFoundException(long matchId) {
+        super("Unable to find any match with the id ".concat(String.valueOf(matchId)), HttpStatus.NOT_FOUND, Error.MATCH_NOT_FOUND);
     }
 }

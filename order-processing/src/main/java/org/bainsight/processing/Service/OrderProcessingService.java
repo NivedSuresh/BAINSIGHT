@@ -11,13 +11,16 @@ import org.bainsight.processing.Exception.FailedToUpdateOrderException;
 import org.bainsight.processing.Mapper.Mapper;
 import org.bainsight.processing.Model.Dto.OrderRequest;
 import org.exchange.library.Enums.OrderStatus;
+import org.exchange.library.Exception.BadRequest.MarketClosedException;
 import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.library.Exception.Order.RiskCheckFailureException;
 import org.exchange.library.KafkaEvent.RollbackEvent;
+import org.exchange.library.Utils.BainsightUtils;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -43,6 +46,12 @@ public class OrderProcessingService {
 
     public void checkIfRiskFreeElseThrow(RiskRequest request){
         try{
+
+            /*TODO: UNCOMMENT AFTER TESTING */
+//            if(BainsightUtils.isMarketClosed(LocalDateTime.now())){
+//                throw new MarketClosedException();
+//            }
+
             Proceedable proceedable = this.riskClient.checkIfProceedable(request);
             if(!proceedable.getProceedable()) throw new RiskCheckFailureException(proceedable.getMessage());
             log.info("Done validating portfolio!");
@@ -77,7 +86,7 @@ public class OrderProcessingService {
 
             if(orderId != null) {
                 log.info("Order was persisted, now failing!");
-                this.rollbackOrderPersistence(orderId, ucc, e.getMessage());
+                this.rollbackOrderPersistence(orderId, ucc);
             }
 
             if(e instanceof StatusRuntimeException sre) this.handleGRPCException(sre);
@@ -86,7 +95,7 @@ public class OrderProcessingService {
     }
 
     private void sendOrderToExchange(GrpcOrderRequest orderRequest, String orderId) {
-//        throw new RuntimeException("");
+//        throw new RuntimeException("Exchange rejected the order!");
     }
 
     private void updateOrderStatus(UpdateStatusRequest updateStatusRequest){
@@ -107,14 +116,14 @@ public class OrderProcessingService {
 
     private void rollBackValidation(RollbackEvent request) {
         try{
-            this.kafkaTemplate.send("risk-rollback", request);
+            this.kafkaTemplate.send("risk-processing-rollback", request);
         }
         catch (RuntimeException ex){
             log.error("Exception: {}", ex.getMessage());
         }
     }
 
-    private void rollbackOrderPersistence(String orderId, String ucc, String message){
+    private void rollbackOrderPersistence(String orderId, String ucc){
         UpdateStatusRequest request = null;
         try{
             request = this.mapper.getUpdateStatusRequest(orderId, ucc, OrderStatus.FAILED);

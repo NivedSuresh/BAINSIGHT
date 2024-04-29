@@ -11,6 +11,7 @@ import org.bainsight.order.MatchingSim.Repo.CandleStickRepo;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
 import org.exchange.library.Enums.OrderStatus;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Profile("sim")
 public class MatchingJob {
 
     private final GrpcOrderService grpcOrderService;
@@ -36,7 +38,6 @@ public class MatchingJob {
     {
         List<Order> openMarketOrders = this.grpcOrderService.findAllByOrderTypeAndOrderStatus(OrderType.ORDER_TYPE_MARKET, OrderStatus.OPEN);
 
-        log.info("Orders count: {}", openMarketOrders.size());
         for(Order order : openMarketOrders)
         {
 

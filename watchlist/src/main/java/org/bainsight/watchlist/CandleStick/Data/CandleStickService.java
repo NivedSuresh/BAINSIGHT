@@ -31,4 +31,5 @@ public class CandleStickService {
     public void checkIfStickValidElseThrow(String symbol) {
         if(!this.candleStickRepo.existsById(symbol)) throw new SymbolNotFoundException();
     }
+
 }

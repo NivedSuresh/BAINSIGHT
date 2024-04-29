@@ -4,10 +4,13 @@ package org.bainsight.portfolio.Controller;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.portfolio.Data.Wallet.WalletService;
 import org.bainsight.portfolio.Mapper.Mapper;
+import org.bainsight.portfolio.Model.Dto.PagedTransactions;
 import org.bainsight.portfolio.Model.Dto.WalletDto;
 import org.bainsight.portfolio.Model.Entity.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RequestMapping("/api/bainsight/wallet")
 @RequiredArgsConstructor
@@ -21,17 +24,19 @@ public class WalletController {
     /* TODO: TEST*/
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public WalletDto fetchUserWallet(@RequestHeader("x-auth-user-id") String ucc){
+    public WalletDto fetchUserWallet(@RequestHeader("x-auth-user-id") String ucc,
+                                     @RequestParam(value = "page", required = false) Integer page){
+
         Wallet wallet = this.walletService.fetchWallet(ucc);
-        return this.mapper.walletEntityToDto(wallet, false);
+        PagedTransactions transactions = this.walletService.fetchTransactions(wallet.getUcc(), page);
+
+        return this.mapper.walletEntityToDto(wallet, transactions);
     }
 
-//    /* TODO: TEST */
-//    public void updateWalletBalance(@RequestHeader("x-auth-user-id") final String ucc,
-//                                    final WalletUpdateRequest walletUpdateRequest){
-//
-//        this.walletService.updateWalletBalance(ucc, walletUpdateRequest);
-//
-//    }
+    @GetMapping("/transactions")
+    public PagedTransactions fetchTransactions(@RequestHeader("x-auth-user-id") String ucc,
+                                               @RequestParam(value = "page", required = false) Integer page){
+        return this.walletService.fetchTransactions(UUID.fromString(ucc), page);
+    }
 
 }

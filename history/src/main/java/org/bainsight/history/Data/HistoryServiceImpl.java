@@ -319,4 +319,7 @@ public class HistoryServiceImpl {
         return candleSticks.get("losers_gainers");
     }
 
+    public CandleStickDto fetchCandleStick(String symbol) {
+        return null;
+    }
 }

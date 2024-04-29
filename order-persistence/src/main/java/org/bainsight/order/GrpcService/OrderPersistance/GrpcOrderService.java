@@ -8,9 +8,13 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.bainsight.*;
 import org.bainsight.order.Exception.OrderNotFoundException;
 import org.bainsight.order.Mapper.ModelMapper;
+import org.bainsight.order.Model.Dto.OrderDto;
+import org.bainsight.order.Model.Dto.PageableOrders;
 import org.bainsight.order.Model.Entity.Match;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
+import org.exchange.library.Dto.Utils.BainsightPage;
+import org.exchange.library.Enums.MatchStatus;
 import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
@@ -18,6 +22,7 @@ import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.library.KafkaEvent.PortfolioUpdateEvent;
 import org.exchange.library.KafkaEvent.WalletUpdateEvent;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
@@ -90,6 +95,7 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
             responseObserver.onCompleted();
         }
         catch (RuntimeException ex){
+            ex.printStackTrace();
             responseObserver.onError(Status.UNAVAILABLE.withDescription(ex.getMessage()).asRuntimeException());
         }
     }
@@ -167,12 +173,15 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
                 return;
             }
 
+
             Order order = optional.get();
-            Match match = this.mapper.getMatch(orderMatch, getIsValidated(order));
+            boolean wasValidated = getIsValidated(order);
+            Match match = this.mapper.getMatch(orderMatch, wasValidated);
+            if(wasValidated) match.setMatchStatus(MatchStatus.ACCEPTED);
             match = this.matchRepo.save(match);
 
             /* IF NOT VALIDATED (IE IS MARKET_BID) THEN GO UPDATE WALLET AND RETURN THE EVENT THROUGH KAFKA */
-            if(!match.isValidated())
+            if(!match.isWasValidated())
             {
                 log.info("Market_Bid match, match will be updated once balance is deducted!");
                 WalletUpdateEvent walletUpdateEvent = this.mapper.getWalletValidation(match, order.getUcc(), order.getSymbol());
@@ -218,11 +227,16 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
         this.orderRepo.save(order);
 
         /* IF WAS VALIDATED BEFORE MATCH THEN GO AND UPDATE PORTFOLIO */
-        if(match.isValidated())
+        if(this.getIsValidated(order))
         {
             log.info("Match was validated on order placement itself and then never updated, thus portfolio/wallet needs to be updated!");
             PortfolioUpdateEvent portfolioUpdateEvent = this.mapper.getPortfolioUpdateEvent(match, order);
             this.kafkaTemplate.send("update-portfolio", portfolioUpdateEvent);
+        }
+        else
+        {
+            match.setMatchStatus(MatchStatus.ACCEPTED);
+            this.matchRepo.save(match);
         }
     }
 
@@ -252,5 +266,24 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
     public List<Order> findOrdersByPageAndUcc(UUID uniqueClientCode, Integer page) {
         PageRequest pageRequest = PageRequest.of(page, 10);
         return this.orderRepo.findByUcc(uniqueClientCode, pageRequest).orElse(List.of());
+    }
+
+    @Transactional
+    public void partiallyFillAllOpen() {
+        this.orderRepo.partiallyFillAllOpen();
+    }
+
+    public PageableOrders findOrdersByPageAndUccWithPage(UUID uuid, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page - 1, 8);
+        Optional<Page<Order>> optional = this.orderRepo.findByUccWithPage(uuid, pageRequest);
+
+        if(optional.isEmpty()){
+            return new PageableOrders(List.of(), new BainsightPage(page.shortValue(), false, page > 1));
+        }
+
+        Page<Order> orderPage = optional.get();
+        List<OrderDto> orders = orderPage.getContent().stream().map(mapper::toOrderDto).toList();
+        BainsightPage bainsightPage = new BainsightPage(page.shortValue(), orderPage.hasNext(), orderPage.hasPrevious());
+        return new PageableOrders(orders, bainsightPage);
     }
 }

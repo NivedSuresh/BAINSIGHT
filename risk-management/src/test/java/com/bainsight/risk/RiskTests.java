@@ -3,8 +3,8 @@ package com.bainsight.risk;
 
 import com.bainsight.risk.Message.gRPC_Client.RiskManagementService;
 import com.bainsight.risk.Model.Entity.CandleStick;
-import com.bainsight.risk.repo.CandleStickRepo;
-import com.bainsight.risk.repo.DailyOrderMetaRepo;
+import com.bainsight.risk.Data.CandleStickRepo;
+import com.bainsight.risk.Data.DailyOrderMetaRepo;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.grpc.internal.testing.StreamRecorder;
@@ -21,7 +21,6 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 

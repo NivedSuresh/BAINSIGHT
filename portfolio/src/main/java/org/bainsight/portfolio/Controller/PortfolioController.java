@@ -4,6 +4,7 @@ package org.bainsight.portfolio.Controller;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.portfolio.Data.Portfolio.PortfolioService;
 import org.bainsight.portfolio.Mapper.Mapper;
+import org.bainsight.portfolio.Model.Dto.PagedPortfolioSymbols;
 import org.bainsight.portfolio.Model.Dto.PortfolioDto;
 import org.bainsight.portfolio.Model.Dto.PortfolioSymbolDto;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
@@ -23,14 +24,23 @@ public class PortfolioController {
     private final Mapper mapper;
 
 
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping
+//    public List<PortfolioSymbolDto> getPortfolio(@RequestHeader("x-auth-user-id") String ucc,
+//                                                 @RequestParam(value = "page", required = false) Integer page){
+//        if(page == null) page = 0;
+//        List<PortfolioSymbol> portfolioSymbols = this.portfolioService.fetchPortfolioSymbols(UUID.fromString(ucc), page);
+//
+//        return portfolioSymbols.stream().map(mapper::toPortfolioSymbolDto).toList();
+//    }
+
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<PortfolioSymbolDto> getPortfolio(@RequestHeader("x-auth-user-id") String ucc,
-                                                 @RequestParam("page") Integer page){
-        if(page == null) page = 0;
-        List<PortfolioSymbol> portfolioSymbols = this.portfolioService.fetchPortfolioSymbols(UUID.fromString(ucc), page);
-
-        return portfolioSymbols.stream().map(mapper::toPortfolioSymbolDto).toList();
+    public PagedPortfolioSymbols getPortfolio(@RequestHeader("x-auth-user-id") String ucc,
+                                              @RequestParam(value = "page", required = false) Integer page){
+        if(page == null) page = 1;
+        return this.portfolioService.fetchPortfolioSymbolsAsPage(UUID.fromString(ucc), page);
     }
 
 }

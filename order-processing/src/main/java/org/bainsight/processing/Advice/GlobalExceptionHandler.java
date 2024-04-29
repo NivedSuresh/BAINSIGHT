@@ -8,6 +8,8 @@ import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Mapper.ValidationErrorMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -31,7 +33,10 @@ public class GlobalExceptionHandler {
         }
 
 
-        else if(e instanceof HttpRequestMethodNotSupportedException || e instanceof MissingRequestValueException)
+        else if(e instanceof HttpRequestMethodNotSupportedException ||
+                e instanceof MissingRequestValueException ||
+                e instanceof HttpMessageConversionException)
+
         {
             return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
                     .body(ErrorResponse.builder()
@@ -54,7 +59,7 @@ public class GlobalExceptionHandler {
 
         }
 
-        /* Todo: IMPLEMENT LOGGING */
+
 
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
                 .body(ErrorResponse.builder()

@@ -9,7 +9,10 @@ import org.bainsight.processing.Mapper.Mapper;
 import org.bainsight.processing.Model.Dto.OrderRequest;
 import org.bainsight.processing.Service.OrderProcessingService;
 import org.exchange.library.Dto.Order.OrderResponse;
+import org.exchange.library.Utils.WebTrimmer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,9 +27,15 @@ public class OrderReceivingController {
     private final Mapper mapper;
     private final Debugger DEBUGGER;
 
+    @InitBinder
+    public void removeWhiteSpaces(WebDataBinder binder) {
+        WebTrimmer.setCustomEditorForWebBinder(binder);
+    }
+
+
     @PostMapping
     public ResponseEntity<Void> placeOrder(@RequestHeader("x-auth-user-id") final String ucc,
-                                           @RequestBody final OrderRequest orderRequest){
+                                           @Validated @RequestBody final OrderRequest orderRequest){
 
         DEBUGGER.DEBUG(log, "UCC: {}", ucc);
         RiskRequest riskRequest = this.mapper.getRiskRequest(orderRequest, ucc);

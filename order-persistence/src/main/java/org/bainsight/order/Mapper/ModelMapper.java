@@ -6,6 +6,7 @@ import org.bainsight.order.Model.Entity.Match;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
 import org.bainsight.order.Model.Dto.OrderDto;
+import org.exchange.library.Enums.MatchStatus;
 import org.exchange.library.Enums.OrderStatus;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
@@ -27,7 +28,8 @@ public class ModelMapper {
                 .matchedQuantity(orderMatch.matchedQuantity())
                 .priceMatchedFor(orderMatch.priceMatchedFor())
                 .matchTime(orderMatch.matchTime())
-                .isValidated(isValidated)
+                .wasValidated(isValidated)
+                .matchStatus(MatchStatus.PENDING)
                 .orderId(UUID.fromString(orderMatch.orderId()))
                 .build();
     }
@@ -112,7 +114,7 @@ public class ModelMapper {
                 .transactionType(order.getTransactionType())
                 .orderType(order.getOrderType())
                 .quantityRequested(order.getQuantityRequested())
-                .priceRequestedFor(order.getPriceRequestedFor())
+                .priceRequestedFor(order.getPriceRequestedFor() == null ? 0 : order.getPriceRequestedFor())
                 .totalAmountSpent(order.getTotalAmountSpent())
                 .quantityMatched(order.getQuantityMatched())
                 .orderPlacedAt(order.getOrderPlacedAt())

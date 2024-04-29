@@ -151,4 +151,5 @@ public class WatchlistService {
         return this.watchlistRepo.findByUccAndWatchlistName(UUID.fromString(ucc), watchlistName)
                 .orElseThrow(WatchlistNotFoundException::new);
     }
+
 }

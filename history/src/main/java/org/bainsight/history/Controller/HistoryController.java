@@ -38,4 +38,10 @@ public class HistoryController {
         return this.historyService.findLosersGainersForTheDay();
     }
 
+
+    @GetMapping("/stick/{symbol}")
+    public CandleStickDto getCandleStickDto(@PathVariable final String symbol){
+        return this.historyService.fetchCandleStick(symbol);
+    }
+
 }

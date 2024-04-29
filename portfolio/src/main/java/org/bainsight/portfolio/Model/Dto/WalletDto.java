@@ -14,11 +14,9 @@ import java.util.List;
 @Builder
 public class WalletDto {
 
-    private Long walletId;
-
     private Double withdrawableBalance;
     private Double currentBalance;
 
-    private List<TransactionDto> transactions;
+    private PagedTransactions transactions;
 
 }

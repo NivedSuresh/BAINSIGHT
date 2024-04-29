@@ -30,6 +30,7 @@ public class MatchUpdates {
 
     @KafkaListener(topics = "update-portfolio", groupId = "portfolio")
     public void listenToMatches(String match){
+        System.out.println("Message has been received by listenToMatches");
         try
         {
             PortfolioUpdateEvent updateEvent = this.objectMapper.readValue(match, PortfolioUpdateEvent.class);

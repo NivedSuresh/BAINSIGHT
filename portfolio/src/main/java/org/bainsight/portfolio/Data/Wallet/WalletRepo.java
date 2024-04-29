@@ -27,4 +27,7 @@ interface WalletRepo extends JpaRepository<Wallet, Long> {
     @Query("select w.availableBalance from Wallet as w where w.ucc = :ucc")
     Optional<Double> findAvailableBalance(UUID ucc);
 
+    @Modifying
+    @Query("UPDATE  Wallet as w set w.availableBalance = w.currentBalance where w.availableBalance < w.currentBalance")
+    void resetAvailableBalance();
 }

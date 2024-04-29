@@ -32,9 +32,18 @@ public class ValidationService extends PortfolioValidateGrpc.PortfolioValidateIm
         DEBUGGER.DEBUG(log, "Validating BID!");
 
 
-        /* IF MARKET ORDER THEN DON'T DEDUCT BUT VALIDATE */
-        if(request.getOrderType() == OrderType.ORDER_TYPE_MARKET){
-            Proceedable proceedable = this.walletService.validateBalance(request);
+        try{
+            /* IF MARKET ORDER THEN DON'T DEDUCT BUT VALIDATE */
+            if(request.getOrderType() == OrderType.ORDER_TYPE_MARKET){
+                Proceedable proceedable = this.walletService.validateBalance(request);
+                this.publishAndComplete(proceedable, responseObserver);
+                return;
+            }
+        }
+        catch (RuntimeException ex){
+            /* TODO: IMPLEMENT LOGGING */
+            ex.printStackTrace();
+            Proceedable proceedable = Proceedable.newBuilder().setProceedable(false).setMessage(ex.getMessage()).build();
             this.publishAndComplete(proceedable, responseObserver);
             return;
         }

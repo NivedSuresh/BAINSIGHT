@@ -90,6 +90,13 @@ spring:
           filters:
             - SecurityFilter
 
+        - id: portfolio-service
+          uri: lb://portfolio-service
+          predicates:
+            - Path=/api/bainsight/wallet/**
+            - Method=GET,PUT,POST
+          filters:
+            - SecurityFilter
 
         - id: order-persistence
           uri: lb://order-persistence
@@ -97,7 +104,7 @@ spring:
             - Path=/api/bainsight/persistence/**
             - Method=GET
           filters:
-#            - SecurityFilter
+            - SecurityFilter
 
 
         - id: order-processing
@@ -106,7 +113,15 @@ spring:
             - Path=/api/bainsight/order/**
             - Method=GET,PUT,POST
           filters:
-#            - SecurityFilter
+            - SecurityFilter
+
+        - id: risk-management
+          uri: lb://risk-management
+          predicates:
+            - Path=/api/bainsight/risk/**
+            - Method=GET,POST
+          filters:
+            - SecurityFilter
 
 
 # TODO:Move to config server

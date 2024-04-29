@@ -3,7 +3,7 @@ package com.bainsight.risk.Message.Kafka;
 
 import com.bainsight.risk.Message.gRPC_Client.RiskManagementService;
 import com.bainsight.risk.Model.Entity.DailyOrderMeta;
-import com.bainsight.risk.repo.DailyOrderMetaRepo;
+import com.bainsight.risk.Data.DailyOrderMetaRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +13,6 @@ import org.exchange.library.Enums.TransactionType;
 import org.exchange.library.KafkaEvent.RollbackEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +26,7 @@ public class RollbackListener {
 
 
 
-    @KafkaListener(groupId = "risk-processing-rollback", topics = "risk-management")
+    @KafkaListener(groupId = "risk-management" , topics = "risk-processing-rollback")
     public void rollbackRiskProcessing(String rollbackString){
         try {
             RollbackEvent rollbackEvent = this.mapper.readValue(rollbackString, RollbackEvent.class);

@@ -1,10 +1,8 @@
 package org.bainsight.order.Model.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.exchange.library.Enums.MatchStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -24,5 +22,8 @@ public class Match {
     private LocalDateTime matchTime;
     private long matchedQuantity;
     private double priceMatchedFor;
-    private boolean isValidated;
+    private boolean wasValidated;
+
+    @Enumerated(EnumType.STRING)
+    private MatchStatus matchStatus;
 }

@@ -80,6 +80,7 @@ public class WalletTests {
 
         UUID ucc = UUID.randomUUID();
 
+        /* TODO: VISIT THE BELOW fetchWallet(String ucc) METHOD AND MAKE THE MENTIONED CHANGES BEFORE TESTING */
         Wallet wallet = this.walletService.fetchWallet(ucc.toString());
 
         this.walletService.updateWalletBalance(ucc, new WalletUpdateRequest(100.0, 100.0));

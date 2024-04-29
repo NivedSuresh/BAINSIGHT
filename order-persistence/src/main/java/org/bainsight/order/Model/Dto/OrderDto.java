@@ -37,5 +37,4 @@ public class OrderDto {
     private LocalDateTime lastUpdatedAt;
 
     private String orderStatus;
-    private List<MatchDto> matches;
 }

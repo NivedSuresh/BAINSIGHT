@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PortfolioSymbolDto {
-    private Long symbolQuantityId;
+public class PortfolioSymbolDto
+{
     private String symbol;
     private Double investedAmount;
     private Double soldAmount;
     private Long quantity;
+    private Long openQuantity;
 }

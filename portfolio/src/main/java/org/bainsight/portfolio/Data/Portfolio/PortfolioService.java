@@ -6,20 +6,24 @@ import lombok.extern.slf4j.Slf4j;
 import org.bainsight.portfolio.Debug.Debugger;
 import org.bainsight.portfolio.Exceptions.NotEnoughAvailableSharesToTradeException;
 import org.bainsight.portfolio.Exceptions.SymbolNotFoundInPortfolioException;
+import org.bainsight.portfolio.Mapper.Mapper;
+import org.bainsight.portfolio.Model.Dto.PagedPortfolioSymbols;
+import org.bainsight.portfolio.Model.Dto.PortfolioSymbolDto;
 import org.bainsight.portfolio.Model.Dto.PortfolioUpdateRequest;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
+import org.exchange.library.Dto.Utils.BainsightPage;
 import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.KafkaEvent.RollbackEvent;
-import org.exchange.library.Utils.BainsightUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -32,6 +36,7 @@ public class PortfolioService {
     private final PortfolioRepo portfolioRepo;
     private final PortfolioSymbolRepo portfolioSymbolRepo;
     private final Debugger DEBUGGER;
+    private final Mapper mapper;
 
 
 
@@ -172,5 +177,25 @@ public class PortfolioService {
     public List<PortfolioSymbol> fetchPortfolioSymbols(UUID ucc, Integer page) {
         PageRequest pageRequest = PageRequest.of(page, 10);
         return this.portfolioSymbolRepo.findByUcc(ucc, pageRequest).orElse(List.of());
+    }
+
+    public PagedPortfolioSymbols fetchPortfolioSymbolsAsPage(UUID ucc, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page - 1, 5);
+        Optional<Page<PortfolioSymbol>> byUccAsPage = this.portfolioSymbolRepo.findByUccAsPage(ucc, pageRequest);
+        if(byUccAsPage.isEmpty()) return new PagedPortfolioSymbols(List.of(), new BainsightPage(page.shortValue(), false, page > 0));
+
+
+        Page<PortfolioSymbol> portfolioSymbols = byUccAsPage.get();
+        boolean hasPrev = portfolioSymbols.hasPrevious();
+        boolean next = portfolioSymbols.hasNext();
+        BainsightPage bainsightPage = new BainsightPage(page.shortValue(), next, hasPrev);
+
+        List<PortfolioSymbolDto> portfolioSymbolDtos = portfolioSymbols.getContent().stream().map(mapper::toPortfolioSymbolDto).toList();
+        return new PagedPortfolioSymbols(portfolioSymbolDtos, bainsightPage);
+    }
+
+    @Transactional
+    public void resetOpenOrders() {
+        this.portfolioSymbolRepo.resetOpenOrderCount();
     }
 }

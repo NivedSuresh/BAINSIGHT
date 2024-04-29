@@ -4,6 +4,7 @@ package org.bainsight.portfolio.Mapper;
 import org.bainsight.portfolio.Model.Dto.*;
 import org.bainsight.portfolio.Model.Entity.Portfolio;
 import org.bainsight.portfolio.Model.Entity.PortfolioSymbol;
+import org.bainsight.portfolio.Model.Entity.Transaction;
 import org.bainsight.portfolio.Model.Entity.Wallet;
 import org.exchange.library.KafkaEvent.PortfolioUpdateEvent;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ public class Mapper {
 
         List<PortfolioSymbolDto> portfolioSymbols = portfolio.getPortfolioSymbols().stream().map(portfolioSymbol ->
             PortfolioSymbolDto.builder()
-                    .symbolQuantityId(portfolioSymbol.getSymbolQuantityId())
                     .soldAmount(portfolioSymbol.getSoldAmount())
                     .symbol(portfolioSymbol.getSymbol())
                     .investedAmount(portfolioSymbol.getInvestedAmount())
@@ -32,17 +32,11 @@ public class Mapper {
                 .build();
     }
 
-    public WalletDto walletEntityToDto(final Wallet wallet, boolean fetchTransactions){
-        List<TransactionDto> list = fetchTransactions ? wallet.getTransactions().stream().map(transaction -> TransactionDto.builder()
-                .id(transaction.getId())
-                .amount(transaction.getAmount())
-                .walletTransactionType(transaction.getWalletTransactionType())
-                .timestamp(transaction.getTimestamp())
-                .build()).toList() : List.of();
+    public WalletDto walletEntityToDto(final Wallet wallet, PagedTransactions transactions){
+
         return WalletDto.builder()
-                .walletId(wallet.getWalletId())
                 .currentBalance(wallet.getCurrentBalance())
-                .transactions(list)
+                .transactions(transactions)
                 .withdrawableBalance(wallet.getAvailableBalance())
                 .build();
     }
@@ -61,11 +55,20 @@ public class Mapper {
 
     public PortfolioSymbolDto toPortfolioSymbolDto(PortfolioSymbol portfolioSymbol) {
         return PortfolioSymbolDto.builder()
-                .symbolQuantityId(portfolioSymbol.getSymbolQuantityId())
                 .soldAmount(portfolioSymbol.getSoldAmount())
                 .symbol(portfolioSymbol.getSymbol())
                 .investedAmount(portfolioSymbol.getInvestedAmount())
                 .quantity(portfolioSymbol.getQuantity())
+                .openQuantity(portfolioSymbol.getOpenQuantity())
+                .build();
+    }
+
+    public TransactionDto toTransactionDto(Transaction transaction) {
+        return TransactionDto.builder()
+                .amount(transaction.getAmount())
+                .id(transaction.getId())
+                .timestamp(transaction.getTimestamp())
+                .walletTransactionType(transaction.getWalletTransactionType())
                 .build();
     }
 }

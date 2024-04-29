@@ -1,4 +1,4 @@
-package com.bainsight.risk.repo;
+package com.bainsight.risk.Data;
 
 
 import com.bainsight.risk.Model.Entity.CandleStick;

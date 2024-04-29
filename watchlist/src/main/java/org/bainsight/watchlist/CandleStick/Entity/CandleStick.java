@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.exchange.library.Dto.MarketRelated.ExchangePrice;
 import org.springframework.data.annotation.Id;
 
 import java.time.ZonedDateTime;

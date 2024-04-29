@@ -150,7 +150,7 @@ public class MatchTests {
                 .ucc(ucc)
                 .symbol("AAPL")
                 .pricePerShare(100.0)
-                .quantity(25L)
+                .quantity(50L)
                 .build();
 
         String valueAsString = mapper.writeValueAsString(updateEvent);

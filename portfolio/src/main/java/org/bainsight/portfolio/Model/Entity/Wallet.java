@@ -37,7 +37,7 @@ public class Wallet {
 
     @OneToMany(fetch = FetchType.LAZY,
                cascade = CascadeType.ALL,
-               mappedBy = "walletId")
+               mappedBy = "wallet")
     @ToString.Exclude
     private List<Transaction> transactions;
 
