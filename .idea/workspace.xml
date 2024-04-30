@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/CircuitBreaker/CircuitBreakerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/AdminAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/AdminAuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/history/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-processing/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Controller/OrderReceivingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/java/org/bainsight/processing/Controller/OrderReceivingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-processing/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-processing/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/PortfolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/PortfolioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Advice/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/IO/ServiceUnavailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Exception/IO/ServiceUnavailableException.java" afterDir="false" />
-    </list>
+    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -817,7 +789,7 @@
       <workItem from="1714303406184" duration="1000" />
       <workItem from="1714304069028" duration="12049000" />
       <workItem from="1714381344945" duration="9993000" />
-      <workItem from="1714475960649" duration="9908000" />
+      <workItem from="1714475960649" duration="10574000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
