@@ -37,7 +37,6 @@ public class TokenController {
     public Mono<ResponseEntity<Void>> renewJwt(ServerHttpRequest request, ServerWebExchange exchange) {
         log.info("Inside renew method controller");
         return authService.renewJwt(request).map(jwt -> {
-            System.out.println("Token returned: " + jwt);
             ResponseCookie accessCookie = ResponseCookie.from("ACCESS_TOKEN", jwt)
                     .httpOnly(true)
                     .maxAge(Duration.ofDays(30))

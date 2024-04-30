@@ -3,7 +3,6 @@ package org.bainsight.order.Config.JobRunr;
 
 import org.jobrunr.configuration.JobRunr;
 import org.jobrunr.scheduling.JobScheduler;
-import org.jobrunr.storage.nosql.redis.JedisRedisStorageProvider;
 import org.jobrunr.storage.sql.postgres.PostgresStorageProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

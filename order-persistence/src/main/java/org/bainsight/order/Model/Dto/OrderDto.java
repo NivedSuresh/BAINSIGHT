@@ -1,12 +1,13 @@
 package org.bainsight.order.Model.Dto;
 
-import lombok.*;
-import org.exchange.library.Enums.OrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.exchange.library.Enums.OrderType;
 import org.exchange.library.Enums.TransactionType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data

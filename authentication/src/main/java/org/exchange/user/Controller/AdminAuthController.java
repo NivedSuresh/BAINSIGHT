@@ -1,6 +1,9 @@
 package org.exchange.user.Controller;
 
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Dto.Authentication.AdminAuthResponse;
@@ -23,6 +26,7 @@ import reactor.core.publisher.Mono;
 public class AdminAuthController {
 
     private final AuthService authService;
+    private final io.github.resilience4j.circuitbreaker.CircuitBreaker circuitBreaker;
 
     @InitBinder
     public void removeWhiteSpaces(WebDataBinder binder) {
@@ -30,6 +34,8 @@ public class AdminAuthController {
     }
 
     @PostMapping("/login")
+    @CircuitBreaker(name = "auth-service")
+    @Retry(name = "auth-service")
     public Mono<ResponseEntity<AdminAuthResponse>> loginAdmin(@Validated @RequestBody AuthRequest request, ServerWebExchange webExchange) {
         log.info("Admin login triggered!");
 
@@ -42,7 +48,7 @@ public class AdminAuthController {
                         return Mono.error(ValidationErrorMapper.fetchFirstError(webBindException));
                     }
                     return Mono.error(ex);
-                });
+                }).transform(CircuitBreakerOperator.of(circuitBreaker));
     }
 
 

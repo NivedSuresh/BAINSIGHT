@@ -11,17 +11,12 @@ import org.bainsight.processing.Exception.FailedToUpdateOrderException;
 import org.bainsight.processing.Mapper.Mapper;
 import org.bainsight.processing.Model.Dto.OrderRequest;
 import org.exchange.library.Enums.OrderStatus;
-import org.exchange.library.Exception.BadRequest.MarketClosedException;
 import org.exchange.library.Exception.GlobalException;
 import org.exchange.library.Exception.IO.ServiceUnavailableException;
 import org.exchange.library.Exception.Order.RiskCheckFailureException;
 import org.exchange.library.KafkaEvent.RollbackEvent;
-import org.exchange.library.Utils.BainsightUtils;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 @Service

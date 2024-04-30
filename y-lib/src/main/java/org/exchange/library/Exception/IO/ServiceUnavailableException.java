@@ -17,7 +17,7 @@ public class ServiceUnavailableException extends GlobalException {
     public ServiceUnavailableException() {
         super(
                 "Unable to perform this operation at the moment, please try again later!",
-                HttpStatus.INTERNAL_SERVER_ERROR,
+                HttpStatus.SERVICE_UNAVAILABLE,
                 Error.DATABASE_INTERACTION_FAILED
         );
     }

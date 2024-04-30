@@ -1,5 +1,8 @@
 package org.exchange.user.Controller;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.exchange.library.Dto.Authentication.AuthRequest;
@@ -20,15 +23,19 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/bainsight/auth/client")
 @RequiredArgsConstructor
 @Slf4j
+@CircuitBreaker(name = "auth-service")
+@Retry(name = "auth-service")
 public class ClientAuthController {
 
     private final ClientService clientService;
     private final AuthService authService;
+    private final io.github.resilience4j.circuitbreaker.CircuitBreaker circuitBreaker;
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
     public Mono<ClientAuthResponse> saveClient(@Validated @RequestBody ClientSignupRequest request, ServerWebExchange webExchange) {
-        return clientService.save(request, webExchange);
+        return clientService.save(request, webExchange).transform(CircuitBreakerOperator.of(circuitBreaker));
     }
 
     @PostMapping("/login")
@@ -42,7 +49,7 @@ public class ClientAuthController {
                         return Mono.error(ValidationErrorMapper.fetchFirstError(webBindException));
                     }
                     return Mono.error(throwable);
-                });
+                }).transform(CircuitBreakerOperator.of(circuitBreaker));
 
     }
 

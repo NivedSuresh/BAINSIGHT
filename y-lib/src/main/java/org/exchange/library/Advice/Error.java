@@ -41,4 +41,5 @@ public class Error {
     public static final String FAILED_TO_UPDATE_ORDER = "EXCEPTION-1036";
     public static final String MATCH_NOT_FOUND = "EXCEPTION-1037";
     public static final String MARKET_CLOSED = "EXCEPTION-1038";
+    public static final String SERVICE_UNAVAILABLE = "EXCEPTION-1039";
 }

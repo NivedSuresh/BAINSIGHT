@@ -1,6 +1,9 @@
 package org.bainsight.history.Controller;
 
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.bainsight.history.Data.HistoryServiceImpl;
 import org.bainsight.history.Models.Dto.CandleStickDto;
@@ -15,9 +18,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/bainsight/history")
+@CircuitBreaker(name = "history-service")
+@Retry(name = "history-service")
 public class HistoryController {
 
     private final HistoryServiceImpl historyService;
+    private final io.github.resilience4j.circuitbreaker.CircuitBreaker circuitBreaker;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{symbol}/{timeSpace}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -27,8 +33,15 @@ public class HistoryController {
         symbol = symbol.toUpperCase();
         timeSpace = timeSpace.toUpperCase();
 
-        if(timeSpace.equals("1D")) return this.historyService.fetchSticksForTheDay(symbol);
-        else return this.historyService.fetchByTime(symbol, timeSpace);
+        if(timeSpace.equals("1D"))
+        {
+            return this.historyService.fetchSticksForTheDay(symbol)
+                    .transform(CircuitBreakerOperator.of(circuitBreaker));
+        }
+        else
+        {
+            return this.historyService.fetchByTime(symbol, timeSpace);
+        }
     }
 
 

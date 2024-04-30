@@ -1,11 +1,8 @@
 package org.bainsight.order.Model.Events;
 
-import lombok.*;
-import org.bainsight.OrderType;
-import org.bainsight.TransactionType;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 
