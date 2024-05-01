@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/db/migration/V1__create_tables_order_persistence.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/db/queries/other.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/resources/db/migration/V1__create_tables_portfolio_service.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/src/main/resources/db/queries/other.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/data/dump.rdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/GrpcOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/GrpcOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/MatchRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/MatchRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/GrpcService/OrderPersistance/OrderRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/OrderRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Jobs/CloseOpenJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Jobs/CloseOpenJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Kafka/WalletUpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Kafka/WalletUpdateListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Listeners/OrderMatchListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Listeners/OrderMatchListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/test/java/org/bainsight/order/OrderPersistenceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/test/java/org/bainsight/order/OrderPersistenceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/PortfolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/PortfolioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/java/org/bainsight/portfolio/Controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Controller/WatchlistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Mapper/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Watchlist/Model/WatchlistMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Payload/WatchlistMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/resources/db/migration/V1__create_tables_watchlist_service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/db/migration/V1__create_tables_watchlist_service.sql" afterDir="false" />
-    </list>
+    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -420,10 +389,10 @@
       </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <envs>
-        <env name="GIT_ACCESS_TOKEN" value="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" />
-      </envs>
       <module name="config-server" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.config.ConfigServerApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
         <option name="credential" />
@@ -830,7 +799,7 @@
       <workItem from="1714554504004" duration="451000" />
       <workItem from="1714554986869" duration="1854000" />
       <workItem from="1714560139108" duration="1298000" />
-      <workItem from="1714574310234" duration="1643000" />
+      <workItem from="1714574310234" duration="1786000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
