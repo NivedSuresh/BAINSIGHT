@@ -4,7 +4,7 @@ package org.bainsight.order.Controller;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
-import org.bainsight.order.GrpcService.OrderPersistance.GrpcOrderService;
+import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
 import org.bainsight.order.Model.Dto.PageableOrders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

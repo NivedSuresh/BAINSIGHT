@@ -26,7 +26,6 @@ public class PortfolioController {
     public PagedPortfolioSymbols getPortfolio(@RequestHeader("x-auth-user-id") String ucc,
                                               @RequestParam(value = "page", required = false) Integer page){
         if(page == null) page = 1;
-        if(page == 1) throw new ServiceUnavailableException();
         return this.portfolioService.fetchPortfolioSymbolsAsPage(UUID.fromString(ucc), page);
     }
 

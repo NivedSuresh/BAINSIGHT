@@ -10,7 +10,7 @@ import org.bainsight.watchlist.Payload.RemoveSymbol;
 import org.bainsight.watchlist.Payload.WatchlistDto;
 import org.bainsight.watchlist.Watchlist.Data.WatchlistService;
 import org.bainsight.watchlist.Watchlist.Model.Watchlist;
-import org.bainsight.watchlist.Watchlist.Model.WatchlistMeta;
+import org.bainsight.watchlist.Payload.WatchlistMeta;
 import org.exchange.library.Dto.Utils.BainsightPage;
 import org.exchange.library.Utils.WebTrimmer;
 import org.springframework.http.HttpStatus;

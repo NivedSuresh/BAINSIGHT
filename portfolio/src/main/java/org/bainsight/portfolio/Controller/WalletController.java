@@ -25,14 +25,11 @@ public class WalletController {
     private final Mapper mapper;
 
 
-
-    /* TODO: TEST*/
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public WalletDto fetchUserWallet(@RequestHeader("x-auth-user-id") String ucc,
                                      @RequestParam(value = "page", required = false) Integer page){
 
-        if(page == 1) throw new RuntimeException();
         Wallet wallet = this.walletService.fetchWallet(ucc);
         PagedTransactions transactions = this.walletService.fetchTransactions(wallet.getUcc(), page);
 
@@ -44,7 +41,6 @@ public class WalletController {
     @GetMapping("/transactions")
     public PagedTransactions fetchTransactions(@RequestHeader("x-auth-user-id") String ucc,
                                                @RequestParam(value = "page", required = false) Integer page){
-        if(page == 1) throw new RuntimeException();
         return this.walletService.fetchTransactions(UUID.fromString(ucc), page);
     }
 

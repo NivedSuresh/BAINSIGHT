@@ -1,4 +1,4 @@
-package org.bainsight.watchlist.Watchlist.Model;
+package org.bainsight.watchlist.Payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

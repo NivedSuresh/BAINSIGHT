@@ -3,7 +3,7 @@ package org.bainsight.order.Listeners;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bainsight.order.GrpcService.OrderPersistance.GrpcOrderService;
+import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
 import org.bainsight.order.Model.Events.OrderMatch;
 import org.springframework.stereotype.Service;
 

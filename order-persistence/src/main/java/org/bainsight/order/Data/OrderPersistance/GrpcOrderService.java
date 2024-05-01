@@ -1,4 +1,4 @@
-package org.bainsight.order.GrpcService.OrderPersistance;
+package org.bainsight.order.Data.OrderPersistance;
 
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
