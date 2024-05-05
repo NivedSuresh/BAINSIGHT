@@ -7,9 +7,11 @@ import io.aeron.Subscription;
 import io.aeron.driver.MediaDriver;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.agrona.CloseHelper;
 import org.agrona.concurrent.SigInt;
 import org.bainsight.updates.Service.WebSocketService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -20,13 +22,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EnableScheduling
 public class CandleStickListener {
 
     private final ObjectMapper mapper;
     private final WebSocketService webSocketService;
-    private final static String USER_SERVICE_CHANNEL;
+
+    @Value("${user.service.channel}")
+    String USER_SERVICE_CHANNEL;
     private final static Integer USER_SERVICE_STREAM_ID;
     private static final ExecutorService LISTENER_THREAD;
     private final AtomicBoolean running = new AtomicBoolean(true);
@@ -34,7 +38,7 @@ public class CandleStickListener {
     private final Aeron aeron;
 
     static {
-        USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
+//        USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
         USER_SERVICE_STREAM_ID = Integer.getInteger("aeron.user.service.multicast.steam.id",1001);
         LISTENER_THREAD = Executors.newSingleThreadExecutor();
     }
@@ -50,6 +54,7 @@ public class CandleStickListener {
 
 
         LISTENER_THREAD.execute(() -> {
+            System.out.println("user service channel: " + USER_SERVICE_CHANNEL);
             try (Subscription subscription = aeron.addSubscription(USER_SERVICE_CHANNEL,
                                                                 USER_SERVICE_STREAM_ID)) {
                 while (running.get()) {

@@ -16,12 +16,6 @@ class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
     @Value("${allowed.origin:http://localhost:4200}")
     private String allowedOrigin;
 
-//    @Override
-//    public void configureMessageBroker(final MessageBrokerRegistry registry) {
-//        registry.enableSimpleBroker("/topic");
-//        registry.setApplicationDestinationPrefixes("/bainsight");
-//    }
-
     @Override
     public void registerStompEndpoints(final StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOrigins(allowedOrigin).withSockJS();
