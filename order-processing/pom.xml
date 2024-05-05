@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.bainsight</groupId>
 	<artifactId>order-processing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>OrderProcessing</name>
 	<description>OrderProcessing</description>
 	<properties>
@@ -87,9 +87,10 @@
 			<artifactId>y-gRPC-proto</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-
-
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
 
 
 	</dependencies>

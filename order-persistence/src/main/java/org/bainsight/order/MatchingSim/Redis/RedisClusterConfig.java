@@ -3,8 +3,10 @@ package org.bainsight.order.MatchingSim.Redis;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
@@ -18,6 +20,7 @@ import java.time.Duration;
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
+@Profile("sim")
 public class RedisClusterConfig {
 
     private final ObjectMapper mapper;
@@ -53,10 +56,11 @@ public class RedisClusterConfig {
     }
 
     @Bean
-    RedisStandaloneConfiguration redisConfiguration(){
-        return new RedisStandaloneConfiguration("localhost");
+    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname){
+        System.out.println("redis host: " + hostname);
+        return new RedisStandaloneConfiguration(hostname);
     }
-//
+    //
 //    @Bean
 //    RedisClusterConfiguration redisConfiguration() {
 //        List<String> clusterNodes = Arrays.asList(redisNodes);
@@ -76,5 +80,4 @@ public class RedisClusterConfig {
         template.afterPropertiesSet();
         return template;
     }
-
 }

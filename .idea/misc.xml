@@ -46,6 +46,8 @@
         <option value="$PROJECT_DIR$/RiskManagement/pom.xml" />
         <option value="$PROJECT_DIR$/order-management/pom.xml" />
         <option value="$PROJECT_DIR$/order/pom.xml" />
+        <option value="$PROJECT_DIR$/watchlist/pom.xml" />
+        <option value="$PROJECT_DIR$/history-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -58,6 +60,7 @@
         <option value="$PROJECT_DIR$/MarketData/pom.xml" />
         <option value="$PROJECT_DIR$/RiskManagement/pom.xml" />
         <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/history-service/pom.xml" />
         <option value="$PROJECT_DIR$/order-management/pom.xml" />
       </set>
     </option>

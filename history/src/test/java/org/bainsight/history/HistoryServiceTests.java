@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,13 +23,15 @@ class HistoryServiceTests {
 	void testCurrentDay(){
 
 		LocalDateTime now = LocalDateTime.now();
+		if(now.getDayOfWeek() == DayOfWeek.SUNDAY) now = now.minusDays(1);
 		LocalDateTime todayOpen = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 9, 0, 0, 0);
 		LocalDateTime todayClose = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 15, 30, 0, 0);
 
+		LocalDateTime finalNow = now;
 		makeRequest("1d", "aapl").consumeWith(res -> {
 			List<CandleStickDto> response = res.getResponseBody();
 
-			LocalDateTime prev = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 9, 0, 0, 0);
+			LocalDateTime prev = LocalDateTime.of(finalNow.getYear(), finalNow.getMonth(), finalNow.getDayOfMonth(), 9, 0, 0, 0);
 
 			Assertions.assertNotNull(response);
 
@@ -210,13 +213,17 @@ class HistoryServiceTests {
 	}
 
 	private void assertTrue(LocalDateTime close, LocalDateTime open, LocalDateTime timeStamp) {
+		System.out.println(open);
+		System.out.println(timeStamp);
+		System.out.println(close + " " + (close.isAfter(timeStamp) || close.isEqual(timeStamp)));
+		System.out.println();
 		Assertions.assertTrue(timeStamp.isBefore(close) || timeStamp.isEqual(close));
 		Assertions.assertTrue(timeStamp.isAfter(open) || timeStamp.isEqual(open));
 	}
 
 	WebTestClient.ListBodySpec<CandleStickDto> makeRequest(String timespace, String symbol){
 		return webTestClient.get()
-				.uri("/api/bainsight/history/{timeSpace}/{symbol}", timespace, symbol)
+				.uri("/api/bainsight/history/{symbol}/{timeSpace}", symbol, timespace)
 				.exchange()
 				.expectStatus().isOk()
 				.expectBodyList(CandleStickDto.class);

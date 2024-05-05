@@ -79,38 +79,38 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
         /* TODO: IMPLEMENT JOURNALING */
         if (result > 0)
         {
-//            System.out.println("sent!");
+            System.out.println("sent!");
         }
         else if (result == Publication.BACK_PRESSURED)
         {
-//            System.out.println("Offer failed due to back pressure");
+            System.out.println("Offer failed due to back pressure");
         }
         else if (result == Publication.NOT_CONNECTED)
         {
-//            System.out.println("Offer failed because publisher is not connected to a subscriber");
+            System.out.println("Offer failed because publisher is not connected to a subscriber");
         }
         else if (result == Publication.ADMIN_ACTION)
         {
-//            System.out.println("Offer failed because of an administration action in the system");
+            System.out.println("Offer failed because of an administration action in the system");
         }
         else if (result == Publication.CLOSED)
         {
-//            System.out.println("Offer failed because publication is closed");
+            System.out.println("Offer failed because publication is closed");
 //            break;
         }
         else if (result == Publication.MAX_POSITION_EXCEEDED)
         {
-//            System.out.println("Offer failed due to publication reaching its max position");
+            System.out.println("Offer failed due to publication reaching its max position");
 //            break;
         }
         else
         {
-//            System.out.println("Offer failed due to unknown reason: " + result);
+            System.out.println("Offer failed due to unknown reason: " + result);
         }
 
         if (!this.publication.isConnected())
         {
-//            log.warn("No active subscribers detected");
+            log.warn("No active subscribers detected");
         }
     }
 

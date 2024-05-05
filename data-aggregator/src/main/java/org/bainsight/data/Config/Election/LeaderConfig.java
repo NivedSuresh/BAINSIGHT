@@ -17,12 +17,17 @@ public class LeaderConfig implements MembershipListener {
     private HazelcastInstance hazelcast;
     private String leaderAddress;
 
-    public final static AtomicBoolean IS_LEADER = new AtomicBoolean(false);
+    public final static AtomicBoolean IS_LEADER;
 
-    public LeaderConfig(Config config, HazelcastInstance instance) {
+    static
+    {
+        IS_LEADER = new AtomicBoolean(false);
+    }
+
+    public LeaderConfig(HazelcastInstance instance)
+    {
         this.hazelcast = instance;
         this.onStart();
-
     }
 
 
@@ -49,7 +54,6 @@ public class LeaderConfig implements MembershipListener {
         if (membershipEvent.getMember().getSocketAddress().toString().equals(leaderAddress)) {
             leaderAddress = getLeaderAddress();
             checkIfElected();
-
         }
     }
 

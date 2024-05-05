@@ -10,8 +10,8 @@
     </parent>
     <groupId>com.exchange</groupId>
     <artifactId>gateway</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ExchangeGateway</name>
+    <version>1.0.0</version>
+    <name>Gateway</name>
     <description>ExchangeGateway</description>
     <properties>
         <java.version>21</java.version>

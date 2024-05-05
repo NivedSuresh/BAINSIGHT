@@ -143,7 +143,7 @@ public class AuthServiceTests {
                 .uri("/api/bainsight/auth/refresh")
                 .header("Authorization", "Bearer fake-token-djcbdjchbvdjcdvjcvdjcvdjcvdjhcvdjc djc dhc dhc dhjcdbcjdh cjd cjdcdjcijhiewgfeuygfuewvf")
                 .exchange()
-                .expectStatus().is5xxServerError() //Nimbus Jwt Decoder will throw INTERNAL_SERVER_ERROR
+                .expectStatus().isUnauthorized()
                 .expectBody(String.class);
 
     }

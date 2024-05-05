@@ -18,7 +18,7 @@ public class CandleStickKeySpaceConfig extends KeyspaceConfiguration {
         KeyspaceSettings dailyOrderMeta = new KeyspaceSettings(DailyOrderMeta.class, "DailyOrderMeta");
 
         /* TODO: UNCOMMENT BEFORE DEPLOYING */
-//        dailyOrderMeta.setTimeToLive(calculateTTLInSecondsUntil3_30PM());
+        dailyOrderMeta.setTimeToLive(calculateTTLInSecondsUntil3_30PM());
 
         return List.of(candleStick, dailyOrderMeta );
     }

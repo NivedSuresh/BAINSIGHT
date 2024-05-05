@@ -5,7 +5,7 @@ import org.exchange.library.Exception.GlobalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.UNAUTHORIZED)
+@ResponseStatus(HttpStatus.FORBIDDEN)
 public class InvalidJwtException extends GlobalException {
     public InvalidJwtException(String message, HttpStatus status, String errorCode) {
         super(message, status, errorCode);
@@ -14,7 +14,7 @@ public class InvalidJwtException extends GlobalException {
     public InvalidJwtException(String errorCode) {
         super(
                 "You're UnAuthorized to access this URL, please authenticate yourself and try again.",
-                HttpStatus.UNAUTHORIZED,
+                HttpStatus.FORBIDDEN,
                 errorCode
         );
     }
@@ -22,7 +22,7 @@ public class InvalidJwtException extends GlobalException {
     public InvalidJwtException() {
         super(
                 "You're UnAuthorized to access this URL, please authenticate yourself and try again.",
-                HttpStatus.UNAUTHORIZED,
+                HttpStatus.FORBIDDEN,
                 Error.INVALID_JWT
         );
     }

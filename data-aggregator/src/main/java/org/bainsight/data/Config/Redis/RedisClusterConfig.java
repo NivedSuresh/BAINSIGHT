@@ -1,7 +1,9 @@
 package org.bainsight.data.Config.Redis;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -19,7 +21,9 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RedisClusterConfig {
 
-    //    @Value("${spring.data.redis.nodes}")
+    private final ObjectMapper mapper;
+
+//    @Value("${spring.data.redis.nodes}")
 //    String[] redisNodes;
 
 //    @Value("${spring.data.redis.cluster.max-redirects}")
@@ -50,10 +54,11 @@ public class RedisClusterConfig {
     }
 
     @Bean
-    RedisStandaloneConfiguration redisConfiguration(){
-        return new RedisStandaloneConfiguration("localhost");
+    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname){
+        System.out.println("redis host: " + hostname);
+        return new RedisStandaloneConfiguration(hostname);
     }
-    //
+//
 //    @Bean
 //    RedisClusterConfiguration redisConfiguration() {
 //        List<String> clusterNodes = Arrays.asList(redisNodes);
@@ -68,7 +73,6 @@ public class RedisClusterConfig {
         template.setConnectionFactory(connectionFactory);
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashKeySerializer(new JdkSerializationRedisSerializer());
         template.setValueSerializer(new JdkSerializationRedisSerializer());
         template.setEnableTransactionSupport(true);
         template.afterPropertiesSet();

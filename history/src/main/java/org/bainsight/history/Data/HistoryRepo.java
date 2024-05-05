@@ -48,4 +48,13 @@ interface HistoryRepo extends ReactiveCassandraRepository<CandleStickEntity, Lon
 
     @Query("select min(low) as low from candle_sticks where symbol = :symbol and timestamp >= :start and timestamp <= :end ALLOW FILTERING")
     Mono<CandleStickEntity> findLowForSymbolBwTimestamp(LocalDateTime start, LocalDateTime end, String symbol);
+
+    @Query("select max(timestamp) as timestamp from candle_sticks where symbol =:symbol")
+    Mono<CandleStickEntity> findLatestTimestamp(String symbol);
+
+    @Query("select * from candle_sticks where symbol =:symbol and timestamp =:timestamp")
+    Mono<CandleStickEntity> findByKey(String symbol, LocalDateTime timestamp);
+
+    @Query("delete from candle_sticks where timestamp >= :time and symbol = 'AAPL'")
+    Mono<Void> deleteByTimestamp(LocalDateTime time);
 }

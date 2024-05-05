@@ -1,6 +1,7 @@
 package org.bainsight.watchlist.Config.Redis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -48,9 +49,14 @@ public class RedisClusterConfig {
     }
 
     @Bean
-    RedisStandaloneConfiguration redisConfiguration(){
-        return new RedisStandaloneConfiguration("localhost");
+    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname){
+        return new RedisStandaloneConfiguration(hostname);
     }
+
+//    @Bean
+//    RedisStandaloneConfiguration redisConfiguration(){
+//        return new RedisStandaloneConfiguration("localhost");
+//    }
 //
 //    @Bean
 //    RedisClusterConfiguration redisConfiguration() {

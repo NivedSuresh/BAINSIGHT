@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.exchange.library.KafkaEvent.DailyOrderMetaEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.*;
@@ -18,10 +19,17 @@ import java.util.Map;
 @Configuration
 public class KafkaPropertiesConfig {
 
+
+    private final String kafkaServer;
+
+    public KafkaPropertiesConfig(@Value("${kafka.bootstrap-servers}") final String kafkaServer) {
+        this.kafkaServer = kafkaServer;
+    }
+
     @Bean
     public Map<String, Object> producerConfig() {
         Map<String, Object> kafkaProps = new HashMap<>();
-        kafkaProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        kafkaProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         kafkaProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         kafkaProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return kafkaProps;
@@ -40,8 +48,8 @@ public class KafkaPropertiesConfig {
     @Bean
     public Map<String, Object> consumerConfig() {
         Map<String, Object> kafkaProps = new HashMap<>();
-        kafkaProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "order-persistence");
+        kafkaProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
+        kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "portfolio-validation-rollback");
         kafkaProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         kafkaProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         kafkaProps.put("spring.json.type.mapping", DailyOrderMetaEvent.class);

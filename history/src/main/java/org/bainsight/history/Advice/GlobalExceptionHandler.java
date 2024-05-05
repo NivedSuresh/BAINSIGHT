@@ -17,6 +17,7 @@ import org.springframework.web.server.ServerWebInputException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
 

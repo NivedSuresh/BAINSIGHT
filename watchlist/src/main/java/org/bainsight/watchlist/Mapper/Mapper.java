@@ -16,7 +16,7 @@ public class Mapper {
                 .watchlistId(watchlist.getWatchlistId())
                 .watchlistName(watchlist.getWatchlistName())
                 .sticks(candleSticks)
-                .bainsightPage(bainsightPage)
+                .page(bainsightPage)
                 .build();
     }
 

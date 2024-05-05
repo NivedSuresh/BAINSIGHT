@@ -1,22 +1,23 @@
 package org.bainsight.history.Simulation;
 
 
+import jakarta.annotation.PostConstruct;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.bainsight.history.Data.HistoryServiceImpl;
 import org.bainsight.history.Models.Entity.CandleStickEntity;
 import org.exchange.library.Exception.BadRequest.InvalidStateException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 
 /**
@@ -32,6 +33,8 @@ import java.util.Random;
  */
 
 @Component
+@Slf4j
+//@Profile("sim")
 class DataGenerator {
 
 
@@ -51,22 +54,34 @@ class DataGenerator {
 
     private static final Random random = new Random();
 
-    private static final LocalDateTime NOW = LocalDateTime.now();
+    private static final LocalDateTime NOW;
+
+    static
+    {
+        LocalDateTime now = LocalDateTime.now();
+        if(now.getDayOfWeek() == DayOfWeek.SUNDAY){
+            NOW = LocalDateTime.now().minusDays(1);
+        }
+        else NOW = now;
+    }
 
 
     DataGenerator(HistoryServiceImpl historyService) {
         this.historyService = historyService;
+    }
+
+    @PostConstruct
+    public void generate(){
         this.fillQueue();
         while(!this.entities.isEmpty()){
             CandleStickEntity stick = this.entities.poll();
-
             this.generateSticks(stick, MINUTES_TO_SKIP_FOR_1D, TimeUnit.MIN);
         }
     }
 
     private static List<String> getSymbols(){
         return List.of(
-                "AAPL", "MSFT", "TSLA", "NVDA"
+                "AAPL"
         );
     }
     private static List<SymbolMeta> getSymbolMeta() {
@@ -79,16 +94,37 @@ class DataGenerator {
     public void fillQueue(){
 
 
-        ZonedDateTime mod = ZonedDateTime.of(
-                NOW.getYear() - 3, NOW.getMonthValue(),
-                NOW.getDayOfMonth(), 9,
-                0, 0, 0,
-                ZoneId.of("Asia/Kolkata")
-        );
-
-        LocalDateTime before5Years = mod.toLocalDateTime();
-
         getSymbolMeta().forEach(meta -> {
+
+            LocalDateTime before3years;
+            CandleStickEntity candleStick = this.historyService.fetchLatestTimeStamp(meta.symbol());
+            log.info("Fetched latest timestamp from repo: {}", candleStick);
+            if(candleStick == null || candleStick.getKey() == null || candleStick.getKey().getTimestamp() == null)
+            {
+                log.info("Failed to find latest timestamp from repo, thus a complete write will be done.");
+                ZonedDateTime mod = ZonedDateTime.of(
+                        NOW.getYear() - 3, NOW.getMonthValue(),
+                        NOW.getDayOfMonth(), 9,
+                        0, 0, 0,
+                        ZoneId.of("Asia/Kolkata")
+                );
+                before3years = mod.toLocalDateTime();
+            }
+            else
+            {
+                before3years = candleStick.getKey().getTimestamp();
+                CandleStickEntity entity = this.historyService.findByKey(new CandleStickEntity.Key(meta.symbol(), before3years));
+                this.entities.offer(entity);
+                return;
+            }
+
+            if(before3years.isEqual(LocalDateTime.of(NOW.getYear(), NOW.getMonth(), NOW.getDayOfMonth(), 15, 30))||
+               before3years.isAfter(LocalDateTime.of(NOW.getYear(), NOW.getMonth(), NOW.getDayOfMonth(), 15, 30))){
+                log.info("No need to add any new sticks as DB is already upto date.");
+                return;
+            }
+
+
             long volume = random.nextLong(100000, 100000000);
             double open = meta.startPrice();
             double low = meta.startPrice() + random.nextDouble(-10, 0);
@@ -96,7 +132,7 @@ class DataGenerator {
             double close = (low + high) / 2;
             double change = close - open;
 
-            CandleStickEntity.Key key = new CandleStickEntity.Key(meta.symbol(), before5Years);
+            CandleStickEntity.Key key = new CandleStickEntity.Key(meta.symbol(), before3years);
 
 
             CandleStickEntity entity = CandleStickEntity.builder()
@@ -116,18 +152,23 @@ class DataGenerator {
 
 
     public void generateSticks(CandleStickEntity entity, byte time, TimeUnit timeUnit){
+
         this.historyService.saveCandleStick(entity);
         int bullRun;
         while (entity.getKey().getTimestamp().isBefore(NOW))
         {
             bullRun = getBullRun(timeUnit);
+            if(entity.getKey().getTimestamp().getDayOfWeek() == DayOfWeek.SUNDAY){
+                LocalDateTime dateTime = entity.getKey().getTimestamp().plusDays(1);
+                entity.getKey().setTimestamp(dateTime);
+            }
             while (bullRun != 0 && entity.getKey().getTimestamp().isBefore(NOW))
             {
                 try{ updateEntity(entity, bullRun > 0, time, timeUnit); }
                 catch (InvalidStateException e){return;}
 
                    /* TODO TODO TODO TODO */
-//                historyService.saveCandleStick(entity);
+                historyService.saveCandleStick(entity);
 
                 if(entity.getLow() < random.nextInt(50, 100)){
                     bullRun = 101;

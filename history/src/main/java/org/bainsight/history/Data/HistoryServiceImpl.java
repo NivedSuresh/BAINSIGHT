@@ -60,6 +60,7 @@ public class HistoryServiceImpl {
                 .volume(stick.getVolume())
                 .build();
 
+
         this.historyRepo.insert(entity).subscribe(
                 candleStick -> {},
                 throwable -> log.error(throwable.getMessage())
@@ -319,7 +320,13 @@ public class HistoryServiceImpl {
         return candleSticks.get("losers_gainers");
     }
 
-    public CandleStickDto fetchCandleStick(String symbol) {
-        return null;
+    public CandleStickEntity fetchLatestTimeStamp(String symbol){
+//        this.historyRepo.deleteByTimestamp(LocalDateTime.now().minusDays(2)).block();
+        return this.historyRepo.findLatestTimestamp(symbol).block();
     }
+
+    public CandleStickEntity findByKey(CandleStickEntity.Key key) {
+        return this.historyRepo.findByKey(key.getSymbol(), key.getTimestamp()).block();
+    }
+
 }

@@ -3,6 +3,7 @@ package com.bainsight.risk.Config.Redis;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -53,8 +54,9 @@ public class RedisClusterConfig {
     }
 
     @Bean
-    RedisStandaloneConfiguration redisConfiguration(){
-        return new RedisStandaloneConfiguration("localhost");
+    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname){
+        System.out.println("redis host: " + hostname);
+        return new RedisStandaloneConfiguration(hostname);
     }
 //
 //    @Bean

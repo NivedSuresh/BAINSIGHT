@@ -5,7 +5,8 @@ spring:
   application:
     name: exchange-gateway
   config:
-    import: optional:configserver:http://localhost:8888
+    import: configserver:${CONFIG_SERVER_URI:http://localhost:8081}
+
 
   #Gateway Specific
   cloud:
@@ -132,15 +133,15 @@ logging:
     root: info
     org:
       springframework:
-        security: debug
+        security: ${LOGGING_LEVEL:debug}
         cloud:
           gateway: trace
           route:
-            RouteDefinitionLocator: info
+            RouteDefinitionLocator:
 
 rsa:
-  private-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/private.pem
-  public-key: file:/Users/apple/Desktop/BAINSIGHT_API/YLibrary/src/main/resources/certs/public.pem
+  private-key: /certs/private.pem
+  public-key: /certs/public.pem
 
 allowed:
-  origin: http://localhost:4200
+  origin: ${ALLOWED_ORIGIN:http://localhost:4200}
