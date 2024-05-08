@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-config
+data:
+  config_server_git_username: 'NivedSuresh'
+  config_server_git_password: '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'
+  common_config_server_uri: 'http://config-server:8081'
+  common_kafka_bootstrap_server: 'broker:29092'
+  aeron_user_service_channel: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'

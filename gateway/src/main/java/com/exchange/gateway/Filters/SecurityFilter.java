@@ -59,7 +59,6 @@ public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.
                     })
 
                     .onErrorResume(throwable -> {
-                        throwable.printStackTrace();
                         if(throwable instanceof InvalidJwtException) return Mono.error(throwable);
                         return Mono.error(ServiceUnavailableException::new);
                     });

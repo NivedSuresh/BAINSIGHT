@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+
+  auth_service_postgres_host: 'postgres'
+  auth_service_postgres_port: "5432"
+  auth_service_postgres_name: 'auth_service'
+  auth_service_postgres_username: 'postgres'
+  auth_service_postgres_password: '2255'
+
+  watchlist_postgres_host: 'postgres'
+  watchlist_postgres_port: "5432"
+  watchlist_postgres_name: 'watchlist'
+  watchlist_postgres_username: 'postgres'
+  watchlist_postgres_password: '2255'
+
+  order_persistence_postgres_host: 'postgres'
+  order_persistence_postgres_port: "5432"
+  order_persistence_postgres_name: 'order_persistence'
+  order_persistence_postgres_username: 'postgres'
+  order_persistence_postgres_password: '2255'
+
+  portfolio_postgres_host: 'postgres'
+  portfolio_postgres_port: "5432"
+  portfolio_postgres_name: 'portfolio'
+  portfolio_postgres_username: 'postgres'
+  portfolio_postgres_password: '2255'
+
+  history_scylla_contact_points: 'scylla:9042'
+
+  common_redis_host: 'redis'

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: auth-service
+  name: auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+      - image: nivedsuresh/gateway:1.0.0
+        name: auth-service
+        ports:
+          - containerPort: 8080
+        resources: {}
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: CONFIG_SERVER_URI
+            valueFrom:
+              configMapKeyRef:
+                key: common_config_server_uri
+                name: common-config
+
+          - name: SPRING_APPLICATION_PORT
+            value: '8082'
+
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                key: auth_service_postgres_name
+                name: db-config
+
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: auth_service_postgres_host
+                name: db-config
+
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: auth_service_postgres_port
+                name: db-config
+
+          - name: DB_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                key: auth_service_postgres_username
+                name: db-config
+
+          - name: DB_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: config_server_git_password
+                name: common-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

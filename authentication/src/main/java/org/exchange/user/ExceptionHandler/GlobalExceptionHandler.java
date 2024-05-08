@@ -47,6 +47,7 @@ public class GlobalExceptionHandler {
                             .build());
         }
         /* Todo: IMPLEMENT LOGGING */
+        e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ErrorResponse.builder()
                         .errorCode("INTERNAL_SERVER_ERROR")

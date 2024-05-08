@@ -168,7 +168,15 @@ class DataGenerator {
                 catch (InvalidStateException e){return;}
 
                    /* TODO TODO TODO TODO */
-                historyService.saveCandleStick(entity);
+                if(entity.getKey().getTimestamp().getDayOfWeek() == DayOfWeek.SUNDAY){
+                    LocalDateTime dateTime = entity.getKey().getTimestamp().plusDays(1);
+                    entity.getKey().setTimestamp(dateTime);
+                }
+                if(entity.getKey().getTimestamp().isBefore(NOW))
+                {
+                    historyService.saveCandleStick(entity);
+                }
+
 
                 if(entity.getLow() < random.nextInt(50, 100)){
                     bullRun = 101;

@@ -23,6 +23,7 @@ class HistoryServiceTests {
 	void testCurrentDay(){
 
 		LocalDateTime now = LocalDateTime.now();
+		if(now.getHour() < 9) now = now.minusDays(1);
 		if(now.getDayOfWeek() == DayOfWeek.SUNDAY) now = now.minusDays(1);
 		LocalDateTime todayOpen = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 9, 0, 0, 0);
 		LocalDateTime todayClose = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 15, 30, 0, 0);
@@ -203,12 +204,18 @@ class HistoryServiceTests {
 		});
 	}
 
-		private void checkDifInDays(LocalDateTime prev, LocalDateTime timeStamp, int difIndays) {
+	private void checkDifInDays(LocalDateTime prev, LocalDateTime timeStamp, int difIndays) {
+		System.out.println("Prev: " + prev);
+		System.out.println("Current: " + timeStamp);
+		System.out.println();
 		Assertions.assertTrue(prev.plusDays(difIndays).isEqual(timeStamp));
 	}
 
 
 	private void checkDif(LocalDateTime prev, LocalDateTime timeStamp, int differenceInMinutes) {
+		System.out.println("Prev: " + prev);
+		System.out.println("Current: " + timeStamp);
+		System.out.println();
 		Assertions.assertTrue(prev.plusMinutes(differenceInMinutes).isEqual(timeStamp));
 	}
 
