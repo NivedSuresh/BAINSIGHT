@@ -16,10 +16,10 @@ spec:
         app: auth-service
     spec:
       containers:
-      - image: nivedsuresh/gateway:1.0.0
+      - image: nivedsuresh/auth-server:1.0.0
         name: auth-service
         ports:
-          - containerPort: 8080
+          - containerPort: 8082
         resources: {}
         imagePullPolicy: IfNotPresent
         env:
@@ -31,12 +31,6 @@ spec:
 
           - name: SPRING_APPLICATION_PORT
             value: '8082'
-
-          - name: DB_NAME
-            valueFrom:
-              configMapKeyRef:
-                key: auth_service_postgres_name
-                name: db-config
 
           - name: DB_HOST
             valueFrom:
@@ -56,21 +50,26 @@ spec:
                 key: auth_service_postgres_username
                 name: db-config
 
-          - name: DB_PASSWORD
+          - name: DB_NAME
             valueFrom:
               configMapKeyRef:
-                key: config_server_git_password
-                name: common-config
+                key: auth_service_postgres_db_name
+                name: db-config
 
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: auth_service_postgres_password
+                name: bainsight-secrets
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: gateway
+  name: auth-service
 spec:
   selector:
-    app: gateway
+    app: auth-service
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8082
+      targetPort: 8082

@@ -31,11 +31,14 @@ spec:
 
 
 ---
+
+
 apiVersion: v1
 kind: Service
 metadata:
   name: gateway
 spec:
+  type: ClusterIP
   selector:
     app: gateway
   ports:
