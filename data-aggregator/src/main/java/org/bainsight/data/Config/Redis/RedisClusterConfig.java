@@ -21,52 +21,29 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RedisClusterConfig {
 
-    private final ObjectMapper mapper;
-
-//    @Value("${spring.data.redis.nodes}")
-//    String[] redisNodes;
-
-//    @Value("${spring.data.redis.cluster.max-redirects}")
-//    private int maxRedirects;
-
-//
-//
-//    @Bean
-//    LettuceConnectionFactory redisConnectionFactory(RedisConfiguration redisConfiguration) {
-//        LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-////                .readFrom()  // Prefer replicas for reads (optional)
-//                .commandTimeout(Duration.ofSeconds(120))  // Optional: Set command timeout
-//                .build();
-//
-//        LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory(redisConfiguration, clientConfig);
-//        connectionFactory.afterPropertiesSet();
-//        return connectionFactory;
-//    }
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory(RedisStandaloneConfiguration redisConfiguration){
         JedisClientConfiguration clientConfiguration = JedisClientConfiguration.builder()
-                .connectTimeout(Duration.ofSeconds(10))
+                .connectTimeout(Duration.ofSeconds(60))
+                .useSsl()
                 .build();
         JedisConnectionFactory connectionFactory = new JedisConnectionFactory(redisConfiguration, clientConfiguration);
         connectionFactory.afterPropertiesSet();
+        connectionFactory.start();
         return connectionFactory;
     }
 
     @Bean
-    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname){
-        System.out.println("redis host: " + hostname);
-        return new RedisStandaloneConfiguration(hostname);
+    RedisStandaloneConfiguration redisConfiguration(@Value("${spring.data.redis.host:localhost}") final String hostname,
+                                                    @Value("${spring.data.redis.password}") final String password){
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(hostname);
+        configuration.setPassword(password);
+        configuration.setPort(6380);
+        return configuration;
     }
-//
-//    @Bean
-//    RedisClusterConfiguration redisConfiguration() {
-//        List<String> clusterNodes = Arrays.asList(redisNodes);
-//        RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration(clusterNodes);
-//        redisClusterConfiguration.setMaxRedirects(5);
-//        return redisClusterConfiguration;
-//    }
-//
+
+
     @Bean
     public RedisTemplate<String, Object> template(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();

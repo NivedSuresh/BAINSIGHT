@@ -4,29 +4,31 @@ metadata:
   name: db-config
 data:
 
-  auth_service_postgres_host: 'postgres-auth'
+  auth_service_postgres_host: 'postgres'
   auth_service_postgres_port: "5432"
   auth_service_postgres_db_name: 'auth_service'
   auth_service_postgres_username: 'postgres'
 
-  watchlist_postgres_host: 'postgres-watchlist'
+  watchlist_postgres_host: 'postgres'
   watchlist_postgres_port: "5432"
   watchlist_postgres_db_name: 'watchlist'
   watchlist_postgres_username: 'postgres'
 
-  order_persistence_postgres_host: 'postgres-order-persistence'
+  order_persistence_postgres_host: 'postgres'
   order_persistence_postgres_port: "5432"
   order_persistence_postgres_db_name: 'order_persistence'
   order_persistence_postgres_username: 'postgres'
 
-  portfolio_postgres_host: 'postgres-portfolio'
+  portfolio_postgres_host: 'postgres'
   portfolio_postgres_port: "5432"
   portfolio_postgres_db_name: 'portfolio'
   portfolio_postgres_username: 'postgres'
 
   history_scylla_contact_points: 'scylla:9042'
 
-  common_redis_host: 'redis'
+  common_redis_host: 'bainsight-redis.redis.cache.windows.net'
+  common_redis_password: 'fEk47sNhUJQApoQSMBAwjzArKGPL5xKqjAzCaOVo4SM='
+  common_redis_port: '6380'
 
   postgres_username: 'postgres'
   postgres_password: '2255'

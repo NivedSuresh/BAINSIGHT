@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: auth-service
-  name: auth-service
+    app: portfolio
+  name: portfolio
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-service
+      app: portfolio
   strategy: {}
   template:
     metadata:
       labels:
-        app: auth-service
+        app: portfolio
     spec:
       containers:
-      - image: nivedsuresh/auth-server:1.0.0
+      - image: nivedsuresh/portfolio:1.0.0
         name: auth-service
         ports:
-          - containerPort: 8082
+          - containerPort: 8088
         resources: {}
         imagePullPolicy: IfNotPresent
         env:
@@ -28,48 +28,49 @@ spec:
               configMapKeyRef:
                 key: common_config_server_uri
                 name: common-config
-
+          - name: KAFKA_BOOTSTRAP_SERVER
+            valueFrom:
+              configMapKeyRef:
+                key: common_kafka_bootstrap_server
+                name: common-config
           - name: SPRING_APPLICATION_PORT
-            value: '8082'
-
+            value: '8088'
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
-                key: auth_service_postgres_host
+                key: portfolio_postgres_host
                 name: db-config
-
           - name: DB_PORT
             valueFrom:
               configMapKeyRef:
-                key: auth_service_postgres_port
+                key: portfolio_postgres_port
                 name: db-config
-
           - name: DB_USERNAME
             valueFrom:
               configMapKeyRef:
-                key: auth_service_postgres_username
+                key: portfolio_postgres_username
                 name: db-config
-
           - name: DB_NAME
             valueFrom:
               configMapKeyRef:
-                key: auth_service_postgres_db_name
+                key: portfolio_postgres_db_name
                 name: db-config
-
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: auth_service_postgres_password
+                key: portfolio_postgres_password
                 name: bainsight-secrets
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
+  name: portfolio
 spec:
   selector:
-    app: auth-service
+    app: portfolio
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8088
+      targetPort: 8088

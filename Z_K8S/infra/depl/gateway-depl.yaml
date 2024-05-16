@@ -38,10 +38,12 @@ kind: Service
 metadata:
   name: gateway
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: gateway
   ports:
-    - protocol: TCP
+    - name: gateway-port-mapping
+      protocol: TCP
       port: 8080
       targetPort: 8080
+      nodePort: 30080

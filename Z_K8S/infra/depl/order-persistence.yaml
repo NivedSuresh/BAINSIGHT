@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: order-persistence
+  name: order-persistence
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-persistence
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: order-persistence
+    spec:
+      containers:
+      - image: nivedsuresh/order-persistence:1.0.0
+        name: auth-service
+        ports:
+          - containerPort: 8086
+        resources: {}
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value:  "dev,sim"
+          - name: CONFIG_SERVER_URI
+            valueFrom:
+              configMapKeyRef:
+                key: common_config_server_uri
+                name: common-config
+          - name: KAFKA_BOOTSTRAP_SERVER
+            valueFrom:
+              configMapKeyRef:
+                key: common_kafka_bootstrap_server
+                name: common-config
+          - name: SPRING_APPLICATION_PORT
+            value: '8086'
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: order_persistence_postgres_host
+                name: db-config
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: order_persistence_postgres_port
+                name: db-config
+          - name: DB_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                key: order_persistence_postgres_username
+                name: db-config
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                key: order_persistence_postgres_db_name
+                name: db-config
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: portfolio_postgres_password
+                name: bainsight-secrets
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: common_redis_host
+                name: db-config
+          - name: REDIS_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: common_redis_password
+                name: db-config
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-persistence
+spec:
+  selector:
+    app: order-persistence
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086

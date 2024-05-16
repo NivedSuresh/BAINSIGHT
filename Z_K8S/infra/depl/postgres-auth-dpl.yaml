@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-auth
+  name: postgres
 spec:
   selector:
     app: postgres
@@ -18,7 +18,7 @@ metadata:
   name: postgres
 spec:
   serviceName: postgres
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
@@ -85,7 +85,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/psql/data"
+    path: "/psql/volume"
 
 
 ---

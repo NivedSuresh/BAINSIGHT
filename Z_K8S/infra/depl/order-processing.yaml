@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: order-processing
+  name: order-processing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-processing
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: order-processing
+    spec:
+      containers:
+      - image: nivedsuresh/order-processing:1.0.0
+        name: order-processing
+        ports:
+          - containerPort: 8087
+        resources: {}
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: CONFIG_SERVER_URI
+            valueFrom:
+              configMapKeyRef:
+                key: common_config_server_uri
+                name: common-config
+          - name: KAFKA_BOOTSTRAP_SERVER
+            valueFrom:
+              configMapKeyRef:
+                key: common_kafka_bootstrap_server
+                name: common-config
+
+          - name: SPRING_APPLICATION_PORT
+            value: '8087'
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-processing
+spec:
+  selector:
+    app: order-processing
+  ports:
+    - protocol: TCP
+      port: 8087
+      targetPort: 8087

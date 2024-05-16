@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: risk-management
+  name: risk-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: risk-management
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: risk-management
+    spec:
+      containers:
+      - image: nivedsuresh/risk-management:1.0.0
+        name: auth-service
+        ports:
+          - containerPort: 8089
+        resources: {}
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: CONFIG_SERVER_URI
+            valueFrom:
+              configMapKeyRef:
+                key: common_config_server_uri
+                name: common-config
+          - name: KAFKA_BOOTSTRAP_SERVER
+            valueFrom:
+              configMapKeyRef:
+                key: common_kafka_bootstrap_server
+                name: common-config
+          - name: SPRING_APPLICATION_PORT
+            value: '8089'
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: common_redis_host
+                name: db-config
+          - name: REDIS_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: common_redis_password
+                name: db-config
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-persistence
+spec:
+  selector:
+    app: order-persistence
+  ports:
+    - protocol: TCP
+      port: 8089
+      targetPort: 8089

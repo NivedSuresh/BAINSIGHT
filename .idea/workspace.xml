@@ -5,14 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/kafka-broker-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-processing.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/portfolio-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/risk-managemnt-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/zookeeper-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/common-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/common-config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/db-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/db-config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/auth-service-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/auth-service-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/auth-service-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/done/auth-service-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/kind/destroy-cluster.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/kind/destroy-cluster.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/kind/kind-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/kind/kind-config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisDevConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,6 +222,8 @@
     &quot;Maven.YLibrary [deploy].executor&quot;: &quot;Run&quot;,
     &quot;Maven.YLibrary [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.authentication [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.config-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.order-persistence [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.watchlist [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.watchlist [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.y-gRPC-proto [clean].executor&quot;: &quot;Run&quot;,
@@ -294,22 +317,22 @@
       <recent name="$PROJECT_DIR$/portfolio/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Z_K8S/infra/depl/done" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra/depl" />
       <recent name="$PROJECT_DIR$/HistoryService/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/MarketDataService" />
-      <recent name="$PROJECT_DIR$/AuthenticationService" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.bainsight.liquidity" />
       <recent name="org.exchange.user.Service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.bainsight.watchlist.Config.Redis" />
+      <recent name="com.bainsight.risk.Config.Redis" />
+      <recent name="org.bainsight.order.MatchingSim.Redis" />
       <recent name="org.exchange.user.Config.CircuitBreaker" />
       <recent name="org.bainsight.portfolio.Config.JobRunr" />
-      <recent name="org.bainsight.order.MatchingSim.Repo" />
-      <recent name="org.bainsight.order.MatchingSim.Entity" />
-      <recent name="org.bainsight.risk.Repo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -323,7 +346,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthService">
+  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
     <configuration name="HistoryServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="history" />
       <extension name="coverage">
@@ -392,10 +415,11 @@
       </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <envs>
-        <env name="GIT_ACCESS_TOKEN" value="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" />
-      </envs>
+      <option name="ACTIVE_PROFILES" value="GIT_ACCESS_TOKEN=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" />
       <module name="config-server" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.bainsight.config.ConfigServerApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
         <option name="credential" />
@@ -526,11 +550,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment" />
-      <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="JUnit.HistoryServiceTests" />
       <item itemvalue="JUnit.HistoryServiceTests.testCurrentDay" />
       <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
-      <item itemvalue="JUnit.HistoryServiceTests" />
       <item itemvalue="Spring Boot.AuthService" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.DataAggregator" />
@@ -545,11 +567,13 @@
       <item itemvalue="Spring Boot.RiskManagement" />
       <item itemvalue="Spring Boot.TestExchangeEnv" />
       <item itemvalue="Spring Boot.WatchlistApp" />
+      <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment" />
+        <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
         <item itemvalue="JUnit.HistoryServiceTests" />
         <item itemvalue="JUnit.HistoryServiceTests.testCurrentDay" />
@@ -822,6 +846,28 @@
       <workItem from="1715170977569" duration="18345000" />
       <workItem from="1715253691361" duration="1660000" />
       <workItem from="1715266889409" duration="9793000" />
+      <workItem from="1715280400463" duration="3744000" />
+      <workItem from="1715329123222" duration="3327000" />
+      <workItem from="1715340869376" duration="1798000" />
+      <workItem from="1715352354190" duration="9630000" />
+      <workItem from="1715422147262" duration="2132000" />
+      <workItem from="1715453497498" duration="199000" />
+      <workItem from="1715454202815" duration="308000" />
+      <workItem from="1715458142608" duration="269000" />
+      <workItem from="1715458435702" duration="544000" />
+      <workItem from="1715502996954" duration="616000" />
+      <workItem from="1715506975348" duration="27000" />
+      <workItem from="1715507055383" duration="9000" />
+      <workItem from="1715508976047" duration="124000" />
+      <workItem from="1715513700751" duration="1076000" />
+      <workItem from="1715523978379" duration="8000" />
+      <workItem from="1715527723174" duration="568000" />
+      <workItem from="1715673310486" duration="55000" />
+      <workItem from="1715724016791" duration="737000" />
+      <workItem from="1715727523683" duration="604000" />
+      <workItem from="1715792783148" duration="10275000" />
+      <workItem from="1715805433808" duration="42000" />
+      <workItem from="1715805557389" duration="386000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

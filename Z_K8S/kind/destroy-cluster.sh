@@ -2,4 +2,4 @@
 
 echo "Destroying Kubernetes cluster..."
 
-kind delete cluster --name sb-k8s-series
+kind delete cluster --name bainsight-cluster

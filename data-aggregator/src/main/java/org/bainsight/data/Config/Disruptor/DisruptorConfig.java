@@ -3,6 +3,7 @@ package org.bainsight.data.Config.Disruptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
@@ -50,7 +51,6 @@ public class DisruptorConfig {
     private final LocalTime startTime = LocalTime.of(9, 0);
 
     static {
-//        USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
         USER_SERVICE_STREAM_ID = Integer.getInteger("aeron.user.service.multicast.steam.id",1001);
     }
 
@@ -97,7 +97,6 @@ public class DisruptorConfig {
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
 
-        System.out.println("user service channel: " + USER_SERVICE_CHANNEL);
         Publication userServicePublication = aeron.addPublication(USER_SERVICE_CHANNEL, USER_SERVICE_STREAM_ID);
 
         this.marketDataHandler = new MarketDataHandler(

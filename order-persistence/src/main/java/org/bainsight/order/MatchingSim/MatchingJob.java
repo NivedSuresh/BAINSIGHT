@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @EnableScheduling
 @Service
@@ -33,7 +34,7 @@ public class MatchingJob {
     private final OrderMatchListener orderMatchListener;
     private final Random random = new Random();
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
     public void matchAllMarketOrders()
     {
         List<Order> openMarketOrders = this.grpcOrderService.findAllByOrderTypeAndOrderStatus(OrderType.ORDER_TYPE_MARKET, OrderStatus.OPEN);
