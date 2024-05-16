@@ -415,7 +415,7 @@
       </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="ACTIVE_PROFILES" value="GIT_ACCESS_TOKEN=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" />
+      <option name="ACTIVE_PROFILES" value="GIT_ACCESS_TOKEN=" />
       <module name="config-server" />
       <selectedOptions>
         <option name="environmentVariables" />
