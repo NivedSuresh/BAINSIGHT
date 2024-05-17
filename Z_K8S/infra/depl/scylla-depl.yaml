@@ -1,0 +1,179 @@
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: scylla
+#spec:
+#  selector:
+#    app: scylla
+#  ports:
+#    - protocol: TCP
+#      port: 9042
+#      targetPort: 9042
+#
+#---
+#
+#apiVersion: apps/v1
+#kind: StatefulSet
+#metadata:
+#  name: scylla
+#spec:
+#  serviceName: scylla
+#  replicas: 2
+#  selector:
+#    matchLabels:
+#      app: scylla
+#  template:
+#    metadata:
+#      labels:
+#        app: scylla
+#    spec:
+#      containers:
+#        - name: scylla
+#          image: scylladb/scylla:5.2.0
+#          imagePullPolicy: "IfNotPresent"
+#          ports:
+#            - containerPort: 9042
+#          env:
+#            - name: SCYLLA_RPC_ADDRESS
+#              value: 0.0.0.0
+#            - name: SCYLLA_DC
+#              value: datacenter1
+#            - name: SCYLLA_LISTEN_ADDRESS
+#              value: 0.0.0.0
+#            - name:  SCYLLA_NUM_TOKENS
+#              value: "256"
+#            - name: SCYLLA_AUTO_BOOTSTRAP
+#              value: "true"
+#          volumeMounts:
+#            - mountPath: /var/lib/scylladb/data
+#              name: scylladb
+#      volumes:
+#        - name: scylladb
+#          persistentVolumeClaim:
+#            claimName: postgres-pv-claim
+#
+#
+#---
+#
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: scylla-pv-claim
+#  labels:
+#    app: scylla
+#spec:
+#  storageClassName: manual
+#  accessModes:
+#    - ReadWriteMany
+#  resources:
+#    requests:
+#      storage: 5Gi
+#
+#
+#---
+#
+#
+#kind: PersistentVolume
+#apiVersion: v1
+#metadata:
+#  name: scylla-pv-volume
+#  labels:
+#    type: local
+#    app: scylla
+#spec:
+#  storageClassName: manual
+#  capacity:
+#    storage: 5Gi
+#  accessModes:
+#    - ReadWriteMany
+#  hostPath:
+#    path: "/scylla/volume"
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylla
+spec:
+  selector:
+    app: scylla
+  ports:
+    - protocol: TCP
+      port: 9042
+      targetPort: 9042
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: scylla
+spec:
+  serviceName: scylla
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scylla
+  template:
+    metadata:
+      labels:
+        app: scylla
+    spec:
+      containers:
+        - name: scylla
+          image: scylladb/scylla:5.2.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9042
+          env:
+            - name: SCYLLA_RPC_ADDRESS
+              value: "0.0.0.0"
+            - name: SCYLLA_DC
+              value: "datacenter1"
+            - name: SCYLLA_LISTEN_ADDRESS
+              value: "0.0.0.0"
+            - name: SCYLLA_NUM_TOKENS
+              value: "256"
+            - name: SCYLLA_AUTO_BOOTSTRAP
+              value: "true"
+          volumeMounts:
+            - mountPath: /var/lib/scylla
+              name: scylla-data
+      volumes:
+        - name: scylla-data
+          persistentVolumeClaim:
+            claimName: scylla-pv-claim
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: scylla-pv-claim
+  labels:
+    app: scylla
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: scylla-pv-volume
+  labels:
+    type: local
+    app: scylla
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/var/lib/scylla"
+    type: DirectoryOrCreate

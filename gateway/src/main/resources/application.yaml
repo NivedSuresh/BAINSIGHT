@@ -7,7 +7,6 @@ spring:
   config:
     import: configserver:${CONFIG_SERVER_URI:http://localhost:8081}
 
-
   #Gateway Specific
   cloud:
     gateway:

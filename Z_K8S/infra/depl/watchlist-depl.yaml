@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: watchlist
+  name: watchlist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: watchlist
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: watchlist
+    spec:
+      containers:
+        - image: nivedsuresh/watchlist:1.0.0
+          name: watchlist
+          ports:
+            - containerPort: 8084
+          resources: {}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev,sim,test"
+            - name: CONFIG_SERVER_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: common_config_server_uri
+                  name: common-config
+            - name: SPRING_APPLICATION_PORT
+              value: '8083'
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: watchlist_postgres_host
+                  name: db-config
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: watchlist_postgres_port
+                  name: db-config
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: watchlist_postgres_username
+                  name: db-config
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: watchlist_postgres_db_name
+                  name: db-config
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: watchlist_postgres_password
+                  name: bainsight-secrets
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: common_redis_host
+                  name: db-config
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: common_redis_password
+                  name: db-config
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: watchlist
+spec:
+  selector:
+    app: watchlist
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083

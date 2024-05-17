@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: history
+  name: history
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: history
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: history
+    spec:
+      containers:
+        - image: nivedsuresh/history:1.0.0
+          name: history
+          ports:
+            - containerPort: 8084
+          resources: {}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev,sim,test"
+            - name: CONFIG_SERVER_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: common_config_server_uri
+                  name: common-config
+            - name: KAFKA_BOOTSTRAP_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  key: common_kafka_bootstrap_server
+                  name: common-config
+            - name: SPRING_CASSANDRA_CONTACT_POINTS
+              valueFrom:
+                configMapKeyRef:
+                  key: history_scylla_contact_points
+                  name: db-config
+            - name: SPRING_APPLICATION_PORT
+              value: '8084'
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: history
+spec:
+  selector:
+    app: history
+  ports:
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084

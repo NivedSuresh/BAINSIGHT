@@ -5,35 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/kafka-broker-depl.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-processing.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/portfolio-depl.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/risk-managemnt-depl.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/zookeeper-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_DOCKER/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/history-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/market-update-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/scylla-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/watchlist-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_DOCKER/Scylla/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_DOCKER/Scylla/compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/common-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/common-config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/db-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/db-config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/auth-service-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/done/auth-service-depl.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/config-server-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/config-server-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/done/auth-service-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/auth-service-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/eureka-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/eureka-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-auth-dpl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/postgres-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/kind/destroy-cluster.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/kind/destroy-cluster.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/kind/kind-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/kind/kind-config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/MatchingJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/MatchingSim/Redis/RedisClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config/Kafka/KafkaPropertiesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/resources/scylla.cql" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/scylla.cql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market-update/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market-update/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/java/com/bainsight/risk/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/risk-management/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisClusterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/java/org/bainsight/watchlist/Config/Redis/RedisDevConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/watchlist/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +101,10 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Docker.MarketDataService/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Microservices/docker-compose.yaml.scylla: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Microservices/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -120,6 +115,11 @@
     &quot;Docker.Watchlist/compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.Watchlist/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.compose.yaml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -223,6 +223,7 @@
     &quot;Maven.YLibrary [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.authentication [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.config-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.history [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.order-persistence [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.watchlist [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.watchlist [install].executor&quot;: &quot;Run&quot;,
@@ -311,14 +312,14 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Z_K8S/infra/depl" />
+      <recent name="$PROJECT_DIR$/Z_DOCKER" />
+      <recent name="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra/config-map" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra" />
-      <recent name="$PROJECT_DIR$/Z_K8S" />
-      <recent name="$PROJECT_DIR$/portfolio/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Z_K8S/infra/depl/done" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra/depl" />
+      <recent name="$PROJECT_DIR$/Z_K8S/infra/depl/done" />
       <recent name="$PROJECT_DIR$/HistoryService/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/MarketDataService" />
@@ -346,54 +347,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
-    <configuration name="HistoryServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="history" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.history.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.history" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HistoryServiceTests.testCurrentDay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="history" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.history.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.history" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
-      <option name="METHOD_NAME" value="testCurrentDay" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HistoryServiceTests.testThreeYears" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="history" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bainsight.history.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.bainsight.history" />
-      <option name="MAIN_CLASS_NAME" value="org.bainsight.history.HistoryServiceTests" />
-      <option name="METHOD_NAME" value="testThreeYears" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.Microservices/docker-compose.yaml: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="BAINSIGHT-EXCHANGE" />
       <method v="2">
@@ -415,7 +369,7 @@
       </method>
     </configuration>
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="ACTIVE_PROFILES" value="GIT_ACCESS_TOKEN=" />
+      <option name="ACTIVE_PROFILES" value="GIT_ACCESS_TOKEN=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" />
       <module name="config-server" />
       <selectedOptions>
         <option name="environmentVariables" />
@@ -530,15 +484,54 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="Microservices/docker-compose.yaml.config-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="Z_DOCKER/docker-compose.yaml.history: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="config-server" />
+              <option value="history" />
             </list>
           </option>
-          <option name="sourceFilePath" value="Z_DOCKER/Microservices/docker-compose.yaml" />
+          <option name="sourceFilePath" value="Z_DOCKER/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="kafka" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Z_DOCKER/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="scylla" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Z_DOCKER/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="zookeeper" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Z_DOCKER/docker-compose.yaml" />
         </settings>
       </deployment>
       <method v="2" />
@@ -550,9 +543,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.HistoryServiceTests" />
-      <item itemvalue="JUnit.HistoryServiceTests.testCurrentDay" />
-      <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
+      <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment" />
+      <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment" />
+      <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment" />
+      <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment" />
+      <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
       <item itemvalue="Spring Boot.AuthService" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.DataAggregator" />
@@ -567,16 +562,14 @@
       <item itemvalue="Spring Boot.RiskManagement" />
       <item itemvalue="Spring Boot.TestExchangeEnv" />
       <item itemvalue="Spring Boot.WatchlistApp" />
-      <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
-      <item itemvalue="Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment" />
         <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.HistoryServiceTests.testThreeYears" />
-        <item itemvalue="JUnit.HistoryServiceTests" />
-        <item itemvalue="JUnit.HistoryServiceTests.testCurrentDay" />
+        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment" />
+        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment" />
+        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment" />
+        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -868,6 +861,14 @@
       <workItem from="1715792783148" duration="10275000" />
       <workItem from="1715805433808" duration="42000" />
       <workItem from="1715805557389" duration="386000" />
+      <workItem from="1715846445852" duration="2385000" />
+      <workItem from="1715851932834" duration="5453000" />
+      <workItem from="1715860568791" duration="154000" />
+      <workItem from="1715870427341" duration="8340000" />
+      <workItem from="1715931553143" duration="2217000" />
+      <workItem from="1715934114091" duration="115000" />
+      <workItem from="1715934519444" duration="2980000" />
+      <workItem from="1715938957362" duration="2621000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

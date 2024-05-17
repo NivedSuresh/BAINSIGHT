@@ -19,7 +19,7 @@ spec:
         - image: nivedsuresh/eureka-server:1.0.0
           name: eureka-server
           ports:
-            - containerPort: 8080
+            - containerPort: 8761
           resources: {}
           imagePullPolicy: IfNotPresent
           env:

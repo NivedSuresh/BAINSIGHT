@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: market-update
+  name: market-update
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: market-update
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: market-update
+    spec:
+      containers:
+        - image: nivedsuresh/market-update:1.0.0
+          name: eureka-server
+          ports:
+            - containerPort: 8083
+          resources: {}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SPRING_APPLICATION_PORT
+              value: "8083"
+            - name: CONFIG_SERVER_URI
+              value: 'http://config-server:8081'
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'dev,test,sim'
+            - name: KAFKA_BOOTSTRAP_SERVER
+              value: 'broker:29092'
+            - name: USER_SERVICE_CHANNEL
+              value: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: market-update
+spec:
+  selector:
+    app: market-update
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083

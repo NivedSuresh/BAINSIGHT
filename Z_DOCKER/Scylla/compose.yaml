@@ -2,7 +2,7 @@ version: "3"
 
 services:
   scylla-node1:
-    container_name: scylla-node1
+    container_name: scylla
     image: scylladb/scylla:5.2.0
     ports:
       - "9042:9042"

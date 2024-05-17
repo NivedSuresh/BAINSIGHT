@@ -24,22 +24,28 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
-  broker:
+  kafka:
     image: confluentinc/cp-kafka:latest
+    hostname: broker
     container_name: broker
-    ports:
-      - "9092:9092"
     depends_on:
       - zookeeper
+    ports:
+      - "29092:29092"
+      - "9092:9092"
+      - "9101:9101"
+    restart: always
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-    restart: always
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
 
   scylla:
     container_name: scylla
@@ -83,20 +89,20 @@ services:
       - '8081:8081'
     environment:
       GIT_USERNAME: 'NivedSuresh'
-      GIT_ACCESS_TOKEN: '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'
+      GIT_ACCESS_TOKEN: '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'
 
-#  gateway:
-#    container_name: gateway
-#    image: 'nivedsuresh/gateway:1.0.0'
-#    ports:
-#      - '8080:8080'
-#    environment:
-#      CONFIG_SERVER_URI: 'http://config-server:8081'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
+  gateway:
+    container_name: gateway
+    image: 'nivedsuresh/gateway:1.0.0'
+    ports:
+      - '8080:8080'
+    environment:
+      CONFIG_SERVER_URI: 'http://config-server:8081'
+    depends_on:
+      eureka-server:
+        condition: service_started
+      config-server:
+        condition: service_started
 
 #  order-processing:
 #    container_name: order-processing
@@ -194,17 +200,17 @@ services:
       KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
       SPRING_PROFILES_ACTIVE: 'dev,test,sim'
       SPRING_CASSANDRA_CONTACT_POINTS: 'scylla:9042'
-    depends_on:
-      eureka-server:
-        condition: service_started
-      config-server:
-        condition: service_started
+#    depends_on:
+#      eureka-server:
+#        condition: service_started
+#      config-server:
+#        condition: service_started
 #      gateway:
 #        condition: service_started
-      scylla:
-        condition: service_started
-      broker:
-        condition: service_started
+#      scylla:
+#        condition: service_started
+#      broker:
+#        condition: service_started
 
 
 

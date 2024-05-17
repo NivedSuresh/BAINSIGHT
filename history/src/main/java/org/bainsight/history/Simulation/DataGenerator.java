@@ -1,7 +1,6 @@
 package org.bainsight.history.Simulation;
 
 
-import jakarta.annotation.PostConstruct;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +8,8 @@ import org.bainsight.history.Data.HistoryServiceImpl;
 import org.bainsight.history.Models.Entity.CandleStickEntity;
 import org.exchange.library.Exception.BadRequest.InvalidStateException;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -17,7 +18,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
 
 
 /**
@@ -34,7 +38,8 @@ import java.util.*;
 
 @Component
 @Slf4j
-//@Profile("sim")
+@EnableScheduling
+@Profile("sim")
 class DataGenerator {
 
 
@@ -70,7 +75,9 @@ class DataGenerator {
         this.historyService = historyService;
     }
 
-    @PostConstruct
+
+
+    @Scheduled(initialDelay = 10000)
     public void generate(){
         this.fillQueue();
         while(!this.entities.isEmpty()){

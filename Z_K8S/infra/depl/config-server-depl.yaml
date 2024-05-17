@@ -25,9 +25,9 @@ spec:
         env:
           - name: GIT_ACCESS_TOKEN
             valueFrom:
-              configMapKeyRef:
-                key: config_server_git_password
-                name: common-config
+              secretKeyRef:
+                key: token
+                name: bainsight-secrets
           - name: GIT_USERNAME
             valueFrom:
               configMapKeyRef:
