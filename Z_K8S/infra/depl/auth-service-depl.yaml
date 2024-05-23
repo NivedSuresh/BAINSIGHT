@@ -21,7 +21,7 @@ spec:
         ports:
           - containerPort: 8082
         resources: {}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
           - name: CONFIG_SERVER_URI
             valueFrom:
@@ -55,6 +55,8 @@ spec:
               secretKeyRef:
                 key: auth_service_postgres_password
                 name: bainsight-secrets
+          - name: DOMAIN
+            value: lusso.college
 ---
 
 apiVersion: v1

@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - image: nivedsuresh/order-persistence:1.0.0
-        name: auth-service
+        name: order-persistence
         ports:
           - containerPort: 8086
         resources: {}
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_PROFILES_ACTIVE
-            value:  "dev,sim"
+            value:  "dev"
           - name: CONFIG_SERVER_URI
             valueFrom:
               configMapKeyRef:

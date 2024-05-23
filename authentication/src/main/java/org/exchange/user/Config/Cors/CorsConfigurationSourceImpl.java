@@ -1,15 +1,10 @@
-package com.exchange.gateway.Security.Config;
+package org.exchange.user.Config.Cors;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.ServerWebExchange;
-
-import java.util.List;
 
 @Component
 public class CorsConfigurationSourceImpl implements CorsConfigurationSource {

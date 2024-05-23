@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: data-aggregator
+  name: data-aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-aggregator
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: data-aggregator
+    spec:
+      containers:
+        - image: nivedsuresh/data-aggregator:1.0.0
+          name: data-aggregator
+          ports:
+            - containerPort: 8084
+          resources: {}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SPRING_APPLICATION_PORT
+              value: "8084"
+            - name: CONFIG_SERVER_URI
+              value: 'http://config-server:8081'
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'dev,test,sim'
+            - name: KAFKA_BOOTSTRAP_SERVER
+              value: 'broker:29092'
+            - name: USER_SERVICE_CHANNEL
+              value: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: common_redis_host
+                  name: db-config
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: common_redis_password
+                  name: db-config
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-aggregator
+spec:
+  selector:
+    app: data-aggregator
+  ports:
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084
+
+
+#      SPRING_APPLICATION_PORT: '8084'
+      #      CONFIG_SERVER_URI: 'http://config-server:8081'
+      #      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
+      #      REDIS_HOST: 'redis'
+      #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
+      #      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'

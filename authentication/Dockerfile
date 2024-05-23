@@ -1,15 +1,3 @@
-#
-##Runtime
-#FROM amazoncorretto:21
-#
-#ADD target/*.jar app.jar
-#WORKDIR /app
-#COPY --from=build /build/target/app-name-*.jar /app/
-#
-#EXPOSE 8080
-#CMD java -jar app-name-*.jar
-#
-#
 
 #Runtime
 FROM amazoncorretto:21

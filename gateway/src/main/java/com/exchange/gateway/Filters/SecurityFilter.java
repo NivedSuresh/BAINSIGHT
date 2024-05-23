@@ -44,6 +44,7 @@ public class SecurityFilter extends AbstractGatewayFilterFactory<SecurityFilter.
 
             if(cookie == null)
             {
+                System.out.println("COOKIE IS NOT PRESENT");
                 return Mono.error(InvalidJwtException::new);
             }
 

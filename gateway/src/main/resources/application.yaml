@@ -13,14 +13,14 @@ spring:
       routes:
         #Service Registry
         - id: service-registry
-          uri: http://localhost:8761
+          uri: lb://eureka-server
           filters:
             - SetPath=/
           predicates:
             - Path=/eureka
 
         - id: service-registry-static
-          uri: http://localhost:8761
+          uri: lb://eureka-server
           predicates:
             - Path=/eureka/**
 
@@ -124,19 +124,18 @@ spring:
             - SecurityFilter
 
 
-# TODO:Move to config server
 
 #LOGGING
-logging:
-  level:
-    root: info
-    org:
-      springframework:
-        security: ${LOGGING_LEVEL:debug}
-        cloud:
-          gateway: trace
-          route:
-            RouteDefinitionLocator:
+#logging:
+#  level:
+#    root: info
+#    org:
+#      springframework:
+#        security: ${LOGGING_LEVEL:debug}
+#        cloud:
+#          gateway: trace
+#          route:
+#            RouteDefinitionLocator:
 
 rsa:
   private-key: /certs/private.pem

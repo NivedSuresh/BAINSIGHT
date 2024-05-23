@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - image: nivedsuresh/market-update:1.0.0
-          name: eureka-server
+          name: market-update
           ports:
             - containerPort: 8083
           resources: {}
@@ -48,3 +48,11 @@ spec:
     - protocol: TCP
       port: 8083
       targetPort: 8083
+
+
+#      SPRING_APPLICATION_PORT: '8084'
+      #      CONFIG_SERVER_URI: 'http://config-server:8081'
+      #      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
+      #      REDIS_HOST: 'redis'
+      #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
+      #      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'

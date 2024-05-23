@@ -1,5 +1,5 @@
 #Runtime
-FROM amazoncorretto:21
+FROM eclipse-temurin:21-jre
 
 EXPOSE 8080
 ARG JAR_FILE=target/*.jar

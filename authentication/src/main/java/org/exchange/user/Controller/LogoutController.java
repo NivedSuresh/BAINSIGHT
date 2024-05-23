@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 
-@RequestMapping("/api/bainsight/logout")
+@RequestMapping("/api/bainsight/auth/logout")
 @RestController
 @RequiredArgsConstructor
 @CircuitBreaker(name = "auth-service")
