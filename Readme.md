@@ -7,6 +7,7 @@ Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-S
 
 ## Tools Used:
 
+* Docker, Kubernetes, Azure AKS (Deployment)
 * TDD (TestContainers, JUNIT, Mockito)
 * Aeron
 * Lmax Disruptor
@@ -21,7 +22,6 @@ Link to design : https://www.figma.com/file/atrgPhH4OS6lmEwwsvNDmV/MARKET-DATA-S
 * Redis Cluster.
 * ScyllaDB for Timeseries Data (Market Updates)
 * R2DBC with PostgreSQL for non-blocking database querying.
-* MongoDB Reactive
 * JobRunr for distributed jobs.
 * Zipkin for distributed logging.
 * UDP Multicasting for Exchange Layer.
