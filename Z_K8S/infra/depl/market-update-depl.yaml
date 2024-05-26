@@ -21,7 +21,7 @@ spec:
           ports:
             - containerPort: 8083
           resources: {}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: SPRING_APPLICATION_PORT
               value: "8083"

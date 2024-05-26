@@ -1,19 +1,19 @@
 version: '3.9'
 services:
 
-#  redis:
-#    container_name: redis
-#    image: 'redis/redis-stack:latest'
-#    ports:
-#      - '6379:6379'
-#    volumes:
-#      - ./data:/data
-#    environment:
-#      REDIS_ARGS: --save 20 1
-#    deploy:
-#      replicas: 1
-#      restart_policy:
-#        condition: on-failure
+  redis:
+    container_name: redis
+    image: 'redis/redis-stack:latest'
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./data:/data
+    environment:
+      REDIS_ARGS: --save 20 1
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -40,20 +40,20 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     restart: always
-
-  scylla:
-    container_name: scylla
-    image: scylladb/scylla:5.2.0
-    ports:
-      - "9042:9042"
-    restart: always
-    environment:
-      - SCYLLA_CLUSTER_NAME=scylla-docker
-      - SCYLLA_DC=datacenter1
-      - SCYLLA_LISTEN_ADDRESS=0.0.0.0
-      - SCYLLA_RPC_ADDRESS=0.0.0.0
-      - SCYLLA_NUM_TOKENS=256
-      - SCYLLA_AUTO_BOOTSTRAP=true
+#
+#  scylla:
+#    container_name: scylla
+#    image: scylladb/scylla:5.2.0
+#    ports:
+#      - "9042:9042"
+#    restart: always
+#    environment:
+#      - SCYLLA_CLUSTER_NAME=scylla-docker
+#      - SCYLLA_DC=datacenter1
+#      - SCYLLA_LISTEN_ADDRESS=0.0.0.0
+#      - SCYLLA_RPC_ADDRESS=0.0.0.0
+#      - SCYLLA_NUM_TOKENS=256
+#      - SCYLLA_AUTO_BOOTSTRAP=true
 #    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
 
 #  postgres:
@@ -92,11 +92,9 @@ services:
 #      - '8080:8080'
 #    environment:
 #      CONFIG_SERVER_URI: 'http://config-server:8081'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
+
+
+
 
 #  order-processing:
 #    container_name: order-processing
@@ -105,16 +103,10 @@ services:
 #      - '8087:8087'
 #    environment:
 #      CONFIG_SERVER_URI: 'http://config-server:8081'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      broker:
-#        condition: service_started
-#
+
+
+
+
 #  risk-management:
 #    container_name: risk-management
 #    image: 'nivedsuresh/risk-management:1.0.0'
@@ -124,17 +116,9 @@ services:
 #      CONFIG_SERVER_URI: 'http://config-server:8081'
 #      REDIS_HOST: 'redis'
 #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      redis:
-#        condition: service_started
-#      broker:
-#        condition: service_started
+
+
+
 #
 #  portfolio:
 #    container_name: portfolio
@@ -147,17 +131,9 @@ services:
 #      DB_NAME: 'portfolio_service'
 #      CONFIG_SERVER_URI: 'http://config-server:8081'
 #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      postgres:
-#        condition: service_started
-#      broker:
-#        condition: service_started
+
+
+
 #
 #  order-persistence:
 #    container_name: order-persistence
@@ -172,39 +148,19 @@ services:
 #      DB_PORT: '5432'
 #      DB_NAME: 'order_persistence'
 #      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      postgres:
-#        condition: service_started
-#      broker:
-#        condition: service_started
 
-  history:
-    container_name: history
-    image: 'nivedsuresh/history:1.0.0'
-    ports:
-      - '8085:8084'
-    environment:
-      CONFIG_SERVER_URI: 'http://config-server:8081'
-      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-      SPRING_CASSANDRA_CONTACT_POINTS: 'scylla:9042'
-    depends_on:
-      eureka-server:
-        condition: service_started
-      config-server:
-        condition: service_started
-#      gateway:
-#        condition: service_started
-      scylla:
-        condition: service_started
-      broker:
-        condition: service_started
+
+
+#  history:
+#    container_name: history
+#    image: 'nivedsuresh/history:1.0.0'
+#    ports:
+#      - '8085:8084'
+#    environment:
+#      CONFIG_SERVER_URI: 'http://config-server:8081'
+#      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
+#      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
+#      SPRING_CASSANDRA_CONTACT_POINTS: 'scylla:9042'
 
 
 
@@ -223,70 +179,39 @@ services:
 #      DB_NAME: 'watchlist'
 #      DB_HOST: 'postgres'
 #      DB_PORT: '5432'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      redis:
-#        condition: service_started
-#      postgres:
-#        condition: service_started
 
 
 
 # DATA AGGREGATOR #
 
-#  data-aggregator:
-#    container_name: data-aggregator
-#    image: 'nivedsuresh/data-aggregator:1.0.0'
-#    ports:
-#      - '8084:8084'
-#    environment:
-#      SPRING_APPLICATION_PORT: '8084'
-#      CONFIG_SERVER_URI: 'http://config-server:8081'
-#      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-#      REDIS_HOST: 'redis'
-#      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-#      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      broker:
-#        condition: service_started
-#      redis:
-#        condition: service_started
+  data-aggregator:
+    container_name: data-aggregator
+    image: 'nivedsuresh/data-aggregator:1.0.0'
+    ports:
+      - '8084:8084'
+    environment:
+      SPRING_APPLICATION_PORT: '8084'
+      CONFIG_SERVER_URI: 'http://config-server:8081'
+      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
+      REDIS_HOST: 'redis'
+      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
+      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
 
 
 
 # MARKET UPDATE #
 
-#  market-update:
-#    container_name: market-update
-#    image: 'nivedsuresh/market-update:1.0.0'
-#    ports:
-#      - '8091:8083'
-#    environment:
-#      SPRING_APPLICATION_PORT: '8083'
-#      CONFIG_SERVER_URI: 'http://config-server:8081'
-#      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-#      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-#      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
-#    depends_on:
-#      eureka-server:
-#        condition: service_started
-#      config-server:
-#        condition: service_started
-#      gateway:
-#        condition: service_started
-#      broker:
-#        condition: service_started
+  market-update:
+    container_name: market-update
+    image: 'nivedsuresh/market-update:1.0.0'
+    ports:
+      - '8091:8083'
+    environment:
+      SPRING_APPLICATION_PORT: '8083'
+      CONFIG_SERVER_URI: 'http://config-server:8081'
+      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
+      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
+      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
 
 
 

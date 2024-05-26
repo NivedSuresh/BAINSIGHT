@@ -21,7 +21,7 @@ spec:
           ports:
             - containerPort: 8084
           resources: {}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: SPRING_APPLICATION_PORT
               value: "8084"
@@ -32,7 +32,10 @@ spec:
             - name: KAFKA_BOOTSTRAP_SERVER
               value: 'broker:29092'
             - name: USER_SERVICE_CHANNEL
-              value: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
+              valueFrom:
+                 configMapKeyRef:
+                   key: aeron_user_service_channel
+                   name: common-config
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
@@ -58,11 +61,3 @@ spec:
     - protocol: TCP
       port: 8084
       targetPort: 8084
-
-
-#      SPRING_APPLICATION_PORT: '8084'
-      #      CONFIG_SERVER_URI: 'http://config-server:8081'
-      #      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-      #      REDIS_HOST: 'redis'
-      #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-      #      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'

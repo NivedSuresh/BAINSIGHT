@@ -12,6 +12,7 @@ public class WebSocketService {
     private final SimpMessagingTemplate template;
 
     public void pushRequested(final CandleStick candleStick){
+        System.out.println("received");
         this.template.convertAndSend("/topic/" + candleStick.getSymbol() , candleStick);
     }
 

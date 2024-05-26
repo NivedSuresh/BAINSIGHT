@@ -58,8 +58,7 @@ public class DisruptorConfig {
 
     @Bean
     public Disruptor<TickReceivedEvent> tickReceivedEventDisruptor(final RecentlyReceivedBuffer recentlyReceivedBuffer,
-                                                                   final RingBuffer<TickAcceptedEvent> acceptedBuffer,
-                                                                   final ExecutorService recoveryExecutor) {
+                                                                   final RingBuffer<TickAcceptedEvent> acceptedBuffer) {
         Disruptor<TickReceivedEvent> disruptor = new Disruptor<>(
                 TickReceivedEvent.TICK_RECEIVED_EVENT_FACTORY,
                 2048,

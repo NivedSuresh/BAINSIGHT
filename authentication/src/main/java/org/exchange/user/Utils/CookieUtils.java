@@ -28,7 +28,7 @@ public class CookieUtils {
         ResponseCookie accessCookie = ResponseCookie.from("ACCESS_TOKEN",
                         jwtResponse.accessToken())
                 .domain(domain)
-                .sameSite("Lax")
+                .sameSite(sameSite)
                 .secure(true)
                 .httpOnly(true)
                 .maxAge(Duration.ofDays(30))
@@ -38,7 +38,7 @@ public class CookieUtils {
         ResponseCookie refreshCookie = ResponseCookie.from("REFRESH_TOKEN",
                         jwtResponse.refreshToken())
                 .domain(domain)
-                .sameSite("Lax")
+                .sameSite(sameSite)
                 .httpOnly(true)
                 .secure(true)
                 .maxAge(Duration.ofDays(30))
