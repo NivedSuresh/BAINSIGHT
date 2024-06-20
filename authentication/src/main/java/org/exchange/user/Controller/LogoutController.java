@@ -24,7 +24,7 @@ public class LogoutController {
 
     @GetMapping
     public ResponseEntity<Void> logoutUser(ServerWebExchange webExchange){
-        cookieUtils.bakeCookies(webExchange, new JwtResponse("", "", ""));
+        cookieUtils.bakeCookies(webExchange, new JwtResponse("INVALID", "INVALID", ""));
         return ResponseEntity.ok().build();
     }
 

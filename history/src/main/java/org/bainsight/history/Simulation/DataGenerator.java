@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.bainsight.history.Data.HistoryServiceImpl;
 import org.bainsight.history.Models.Entity.CandleStickEntity;
 import org.exchange.library.Exception.BadRequest.InvalidStateException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -46,6 +47,8 @@ class DataGenerator {
     @Getter(AccessLevel.PACKAGE)
     private final Queue<CandleStickEntity> entities = new LinkedList<>();
 
+    private final List<String> symbols;
+
     private final HistoryServiceImpl historyService;
 
 
@@ -71,8 +74,9 @@ class DataGenerator {
     }
 
 
-    DataGenerator(HistoryServiceImpl historyService) {
+    DataGenerator(HistoryServiceImpl historyService, @Value("${history.symbols}") final List<String> symbols) {
         this.historyService = historyService;
+        this.symbols = symbols;
     }
 
 
@@ -86,12 +90,10 @@ class DataGenerator {
         }
     }
 
-    private static List<String> getSymbols(){
-        return List.of(
-                "AAPL"
-        );
+    private List<String> getSymbols(){
+        return this.symbols;
     }
-    private static List<SymbolMeta> getSymbolMeta() {
+    private List<SymbolMeta> getSymbolMeta() {
 
         return getSymbols().stream()
                 .map(s -> new SymbolMeta(s, random.nextDouble(0, 1), random.nextDouble(100, 200)))

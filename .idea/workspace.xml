@@ -5,18 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/bainsight-ui-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Z_K8S/infra/network/udp.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_DOCKER/Microservices/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_DOCKER/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_DOCKER/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/config-map-common.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/config-map-common.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/config-map/config-map-db.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/config-map/config-map-db.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/data-aggregator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/data-aggregator.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/gateway-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/ingress-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/ingress-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/market-update-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/market-update-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/risk-managemnt-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/risk-managemnt-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/watchlist-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/watchlist-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Utils/CookieUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Utils/CookieUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/src/main/java/org/exchange/user/Controller/LogoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Disruptor/DisruptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Handler/Event/MarketDataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Simulation/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Aeron/CandleStickListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Service/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Service/WebSocketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market-update/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/OrderRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/OrderRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,208 +99,208 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Docker.MarketDataService/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.Microservices/docker-compose.yaml.broker: Compose Deployment.executor": "Run",
-    "Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment.executor": "Run",
-    "Docker.Microservices/docker-compose.yaml.scylla: Compose Deployment.executor": "Run",
-    "Docker.Microservices/docker-compose.yaml.zookeeper: Compose Deployment.executor": "Run",
-    "Docker.Microservices/docker-compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor": "Run",
-    "Docker.Redis/compose-redis-dev.yaml: Compose Deployment.executor": "Run",
-    "Docker.Scylla/compose.yaml.scylla-node1: Compose Deployment.executor": "Run",
-    "Docker.Scylla/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
-    "Docker.Watchlist/compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "Docker.Watchlist/compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor": "Run",
-    "Docker.Z_DOCKER/docker-compose.yaml.broker: Compose Deployment.executor": "Run",
-    "Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment.executor": "Run",
-    "Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment.executor": "Run",
-    "Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment.executor": "Run",
-    "Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.broker: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.kafdrop: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.kafka: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.redis: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.scylla-node1: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml.zookeeper: Compose Deployment.executor": "Run",
-    "Docker.compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.redis: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "JUnit.AuthServiceTests (1).executor": "Run",
-    "JUnit.AuthServiceTests.executor": "Run",
-    "JUnit.AuthServiceTests.failRenewJwt.executor": "Run",
-    "JUnit.AuthServiceTests.testAdminLogin.executor": "Run",
-    "JUnit.AuthServiceTests.testRenewJwt.executor": "Run",
-    "JUnit.AuthServiceTests.testSuccessfulAuthentication.executor": "Run",
-    "JUnit.BrokerServiceTests.executor": "Run",
-    "JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor": "Run",
-    "JUnit.BrokerServiceTests.testSaveBroker.executor": "Run",
-    "JUnit.ClientServiceTests.executor": "Run",
-    "JUnit.ClientServiceTests.testSignup.executor": "Run",
-    "JUnit.DataAggregatorApplicationTests.executor": "Run",
-    "JUnit.ExchangeUserTests.UnAuthTest.executor": "Run",
-    "JUnit.ExchangeUserTests.authorizedWhenJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.executor": "Run",
-    "JUnit.ExchangeUserTests.testAdminLogin.executor": "Run",
-    "JUnit.ExchangeUserTests.testJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRefreshJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRenewJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor": "Run",
-    "JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor": "Run",
-    "JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor": "Run",
-    "JUnit.ExchangeUserTests.testTest.executor": "Run",
-    "JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor": "Run",
-    "JUnit.HistoryServiceTests.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentDay.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentMonth.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentWeek.executor": "Run",
-    "JUnit.HistoryServiceTests.testCurrentYear.executor": "Run",
-    "JUnit.HistoryServiceTests.testThreeYears.executor": "Run",
-    "JUnit.MarketData1EngineTest (1).executor": "Run",
-    "JUnit.MarketData1EngineTest.executor": "Run",
-    "JUnit.MarketDataEngineTest (1).executor": "Run",
-    "JUnit.MarketDataEngineTest.executor": "Run",
-    "JUnit.MarketDataEngineTest.testAFewTimes.executor": "Run",
-    "JUnit.MarketEngineTest.executor": "Run",
-    "JUnit.MatchTests.executor": "Run",
-    "JUnit.MatchTests.testAskMatch.executor": "Run",
-    "JUnit.MatchTests.testMatchBid.executor": "Run",
-    "JUnit.OrderPersistenceTests.executor": "Run",
-    "JUnit.OrderPersistenceTests.testGrpcOrderService.executor": "Run",
-    "JUnit.OrderProcessingApplicationTests.executor": "Run",
-    "JUnit.OrderProcessingApplicationTests.failedOrderPlacement.executor": "Run",
-    "JUnit.OrderProcessingApplicationTests.testPlaceOrder.executor": "Run",
-    "JUnit.PortfolioApplicationTests.executor": "Run",
-    "JUnit.PortfolioApplicationTests.testFetchPortfolio.executor": "Run",
-    "JUnit.PortfolioApplicationTests.testPortfolio.executor": "Run",
-    "JUnit.RecoveryTest.evokeTest.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.assertThatS.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.connectionEstablished.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.testCancelOrder.executor": "Run",
-    "JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor": "Run",
-    "JUnit.RiskTests.checkRisk.executor": "Run",
-    "JUnit.RiskTests.executor": "Run",
-    "JUnit.RiskTests.failPriceBelowLowest.executor": "Run",
-    "JUnit.RiskTests.failRiskForAboveAllowedQuantity.executor": "Run",
-    "JUnit.RiskTests.passAsk.executor": "Run",
-    "JUnit.RiskTests.passBid.executor": "Run",
-    "JUnit.RiskTests.pastAllowedOpenOrderLimit.executor": "Run",
-    "JUnit.RiskTests.priceBoundaryExceptionTest.executor": "Run",
-    "JUnit.RiskTests.test.executor": "Run",
-    "JUnit.Tests.executor": "Run",
-    "JUnit.ValidationTests.executor": "Run",
-    "JUnit.ValidationTests.testCheckIfAskValid.executor": "Run",
-    "JUnit.WalletTests.connectionEstablished.executor": "Run",
-    "JUnit.WalletTests.executor": "Run",
-    "JUnit.WalletTests.fetchWalletTest.executor": "Run",
-    "JUnit.WalletTests.testBalanceUpdates.executor": "Run",
-    "JUnit.WatchlistAppTests.executor": "Run",
-    "JUnit.WatchlistTests.addToList.executor": "Run",
-    "JUnit.WatchlistTests.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.AuthService [clean].executor": "Run",
-    "Maven.AuthenticationService [clean].executor": "Run",
-    "Maven.AuthenticationService [install].executor": "Run",
-    "Maven.BAINSIGHT [clean].executor": "Run",
-    "Maven.LiquidityService [clean].executor": "Run",
-    "Maven.LiquidityService [install].executor": "Run",
-    "Maven.MarketDataService [clean].executor": "Run",
-    "Maven.MarketDataService [install].executor": "Run",
-    "Maven.MarketDataService [package].executor": "Run",
-    "Maven.MarketDataService [validate].executor": "Run",
-    "Maven.Proto [clean].executor": "Run",
-    "Maven.Proto [compile].executor": "Run",
-    "Maven.Proto [install].executor": "Run",
-    "Maven.YLibrary [clean].executor": "Run",
-    "Maven.YLibrary [deploy].executor": "Run",
-    "Maven.YLibrary [install].executor": "Run",
-    "Maven.authentication [clean].executor": "Run",
-    "Maven.config-server [clean].executor": "Run",
-    "Maven.history [clean].executor": "Run",
-    "Maven.order-persistence [clean].executor": "Run",
-    "Maven.watchlist [clean].executor": "Run",
-    "Maven.watchlist [install].executor": "Run",
-    "Maven.y-gRPC-proto [clean].executor": "Run",
-    "Maven.y-gRPC-proto [compile].executor": "Run",
-    "Maven.y-gRPC-proto [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminServiceApplication.executor": "Run",
-    "Spring Boot.AuthService.executor": "Run",
-    "Spring Boot.BrokerServiceApplication.executor": "Run",
-    "Spring Boot.BrokerUserService.executor": "Run",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.DataAggregator.executor": "Run",
-    "Spring Boot.DataAggregatorApplication.executor": "Run",
-    "Spring Boot.DemoApplication.executor": "Run",
-    "Spring Boot.ExchangeGatewayApplication.executor": "Run",
-    "Spring Boot.ExchangeRegistryApplication.executor": "Run",
-    "Spring Boot.ExchangeUser.executor": "Run",
-    "Spring Boot.Gateway.executor": "Run",
-    "Spring Boot.HistoryService.executor": "Run",
-    "Spring Boot.HistoryServiceApplication.executor": "Run",
-    "Spring Boot.LiquidityServiceApplication.executor": "Run",
-    "Spring Boot.MarketAggregatorApplication.executor": "Run",
-    "Spring Boot.MarketData (1).executor": "Run",
-    "Spring Boot.MarketData.executor": "Run",
-    "Spring Boot.MarketData1.executor": "Run",
-    "Spring Boot.MarketDataGenerator.executor": "Run",
-    "Spring Boot.MarketUpdate.executor": "Run",
-    "Spring Boot.MarketUpdateApplication.executor": "Run",
-    "Spring Boot.MatchingEngineApplication.executor": "Debug",
-    "Spring Boot.OrderPersistence.executor": "Run",
-    "Spring Boot.OrderProcessingApplication.executor": "Run",
-    "Spring Boot.PortfolioApplication.executor": "Run",
-    "Spring Boot.RiskManagement.executor": "Run",
-    "Spring Boot.RiskManagementApplication.executor": "Run",
-    "Spring Boot.TestExchangeEnv.executor": "Run",
-    "Spring Boot.TestWatchlistApplication.executor": "Run",
-    "Spring Boot.WatchlistApp.executor": "Run",
-    "ToolWindowRun.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/apple/Documents/Projects/BAINSIGHT_COMPLETE/BAINSIGHT",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.XML",
-    "spring.configuration.checksum": "33c034acc31924bfb2a71c7f6579a759",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.MarketDataService/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.config-server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.scylla: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Microservices/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-reddit-cluster.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-redis-dev.yaml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Redis/compose-redis-dev.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/compose.yaml.scylla-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Scylla/docker-compose-scylla.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Watchlist/compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Watchlist/compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.ZDocker/docker-compose-scylla.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.scylla-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.failRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTests.testSuccessfulAuthentication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.failWhenWrongIdUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BrokerServiceTests.testSaveBroker.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClientServiceTests.testSignup.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAggregatorApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.UnAuthTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.authorizedWhenJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.authorizedWhenValidJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testAdminLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRefreshJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testRenewRefreshTokenAndRenewJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewRefresh.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testSuccessfulRenewalWithValidAuthority.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.testTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExchangeUserTests.unAuthorizedWhenNoJwt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentDay.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentMonth.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentWeek.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testCurrentYear.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HistoryServiceTests.testThreeYears.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketData1EngineTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketData1EngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketDataEngineTest.testAFewTimes.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MarketEngineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MatchTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MatchTests.testAskMatch.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MatchTests.testMatchBid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderPersistenceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderPersistenceTests.testGrpcOrderService.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderProcessingApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderProcessingApplicationTests.failedOrderPlacement.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderProcessingApplicationTests.testPlaceOrder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.testFetchPortfolio.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PortfolioApplicationTests.testPortfolio.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RecoveryTest.evokeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.assertThatS.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.connectionEstablished.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.testCancelOrder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskManagementApplicationTests.testPlaceAskOrder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.checkRisk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.failPriceBelowLowest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.failRiskForAboveAllowedQuantity.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.passAsk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.passBid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.pastAllowedOpenOrderLimit.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.priceBoundaryExceptionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RiskTests.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Tests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValidationTests.testCheckIfAskValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.connectionEstablished.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.fetchWalletTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WalletTests.testBalanceUpdates.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistAppTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistTests.addToList.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WatchlistTests.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthenticationService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.AuthenticationService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.BAINSIGHT [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LiquidityService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.LiquidityService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.MarketDataService [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Proto [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.YLibrary [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.authentication [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.config-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.history [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.order-persistence [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.watchlist [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.watchlist [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.y-gRPC-proto [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BrokerServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BrokerUserService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DataAggregator.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DataAggregatorApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DemoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ExchangeUser.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Gateway.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HistoryService.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HistoryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.LiquidityServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketAggregatorApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketData1.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketDataGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MarketUpdateApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MatchingEngineApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.OrderPersistence.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OrderProcessingApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PortfolioApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RiskManagement.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RiskManagementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TestExchangeEnv.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TestWatchlistApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.WatchlistApp.executor&quot;: &quot;Run&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Documents/Projects/BAINSIGHT_COMPLETE/BAINSIGHT/Z_K8S&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.XML&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;33c034acc31924bfb2a71c7f6579a759&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
-      "PostgreSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -301,11 +313,11 @@
       <recent name="com.exchange.gateway.Config.Filters" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Z_K8S" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra/depl" />
       <recent name="$PROJECT_DIR$/Z_DOCKER" />
       <recent name="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Config" />
       <recent name="$PROJECT_DIR$/Z_K8S/infra/config-map" />
-      <recent name="$PROJECT_DIR$/Z_K8S/infra" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Z_K8S/infra/depl" />
@@ -337,7 +349,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.Microservices/docker-compose.yaml: Compose Deployment">
+  <component name="RunManager" selected="Spring Boot.HistoryService">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
       <option name="appServicePlanName" />
@@ -585,11 +597,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment" />
         <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.kafka: Compose Deployment" />
         <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.zookeeper: Compose Deployment" />
         <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.scylla: Compose Deployment" />
+        <item itemvalue="Docker.Microservices/docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.Z_DOCKER/docker-compose.yaml.history: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -919,6 +931,24 @@
       <workItem from="1716576999288" duration="160000" />
       <workItem from="1716606911533" duration="406000" />
       <workItem from="1716722902361" duration="15000" />
+      <workItem from="1716722921406" duration="276000" />
+      <workItem from="1716740155351" duration="6000" />
+      <workItem from="1716822312406" duration="14478000" />
+      <workItem from="1716874348300" duration="391000" />
+      <workItem from="1716876070476" duration="2573000" />
+      <workItem from="1716910240912" duration="15000" />
+      <workItem from="1716971963096" duration="1452000" />
+      <workItem from="1716974646881" duration="343000" />
+      <workItem from="1716978536451" duration="17000" />
+      <workItem from="1717169493351" duration="138000" />
+      <workItem from="1717684961196" duration="24000" />
+      <workItem from="1718201460742" duration="12568000" />
+      <workItem from="1718279656770" duration="5854000" />
+      <workItem from="1718702219711" duration="4002000" />
+      <workItem from="1718787575023" duration="1107000" />
+      <workItem from="1718795596710" duration="2618000" />
+      <workItem from="1718798602458" duration="992000" />
+      <workItem from="1718865266673" duration="1069000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

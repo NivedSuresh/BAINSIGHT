@@ -57,10 +57,9 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
 
             final long result = publication.offer(buffer);
 
-//            System.out.println("Updating cluster");
-            this.updateRedisCluster(combinedStick);
+//            this.updateRedisCluster(combinedStick);
 
-            this.validateResult(result);
+//            this.validateResult(result);
         });
 
     }

@@ -1,27 +1,100 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  labels:
+#    app: data-aggregator
+#  name: data-aggregator
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: data-aggregator
+#  strategy: {}
+#  template:
+#    metadata:
+#      labels:
+#        app: data-aggregator
+#    spec:
+#      containers:
+#        - image: nivedsuresh/data-aggregator:1.0.1
+#          name: data-aggregator
+#          ports:
+#            - containerPort: 8084
+#              protocol: TCP
+#            - containerPort: 40123
+#              protocol: UDP
+#          resources: {}
+#          imagePullPolicy: Always
+#          env:
+#            - name: SPRING_APPLICATION_PORT
+#              value: "8084"
+#            - name: CONFIG_SERVER_URI
+#              value: 'http://config-server:8081'
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: 'dev,test,sim'
+#            - name: KAFKA_BOOTSTRAP_SERVER
+#              value: 'broker:29092'
+#            - name: USER_SERVICE_CHANNEL
+#              valueFrom:
+#                 configMapKeyRef:
+#                   key: aeron_user_service_channel
+#                   name: common-config
+#            - name: REDIS_HOST
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: common_redis_host
+#                  name: db-config
+#            - name: REDIS_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  key: common_redis_password
+#                  name: bainsight-secrets
+#
+#---
+#
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: data-aggregator
+#spec:
+#  selector:
+#    app: data-aggregator
+#  ports:
+#    - protocol: TCP
+#      port: 8084
+#      name: 'data-aggregator-tcp'
+#      targetPort: 8084
+#    - protocol: UDP
+#      port: 40123
+#      name: 'data-aggregator-udp'
+#      targetPort: 40123
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: data-aggregator
   labels:
     app: data-aggregator
-  name: data-aggregator
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: data-aggregator
-  strategy: {}
   template:
     metadata:
       labels:
         app: data-aggregator
     spec:
       containers:
-        - image: nivedsuresh/data-aggregator:1.0.0
-          name: data-aggregator
+        - name: data-aggregator
+          image: nivedsuresh/data-aggregator:1.0.1
           ports:
             - containerPort: 8084
-          resources: {}
-          imagePullPolicy: Always
+              protocol: TCP
+            - containerPort: 40456
+              protocol: UDP
           env:
             - name: SPRING_APPLICATION_PORT
               value: "8084"
@@ -33,23 +106,21 @@ spec:
               value: 'broker:29092'
             - name: USER_SERVICE_CHANNEL
               valueFrom:
-                 configMapKeyRef:
-                   key: aeron_user_service_channel
-                   name: common-config
+                configMapKeyRef:
+                  name: common-config
+                  key: aeron_user_service_channel
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
-                  key: common_redis_host
                   name: db-config
+                  key: common_redis_host
             - name: REDIS_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
+                  name: bainsight-secrets
                   key: common_redis_password
-                  name: db-config
 
 ---
-
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -61,3 +132,8 @@ spec:
     - protocol: TCP
       port: 8084
       targetPort: 8084
+      name: tcp
+    - protocol: UDP
+      port: 40456
+      targetPort: 40456
+      name: udp

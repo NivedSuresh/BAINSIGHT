@@ -70,7 +70,7 @@ public class CandleStickListener {
     }
 
 
-    /* TODO: FIX SCHEDULED TIME BEFORE HOSTING */
+
     @PostConstruct
     @Scheduled(cron = "0 0 8 * * *") // Run at 8:00 AM every day
     public void setFlagToTrue() {

@@ -96,6 +96,8 @@ public class DisruptorConfig {
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
 
+        System.out.println(USER_SERVICE_CHANNEL);
+
         Publication userServicePublication = aeron.addPublication(USER_SERVICE_CHANNEL, USER_SERVICE_STREAM_ID);
 
         this.marketDataHandler = new MarketDataHandler(

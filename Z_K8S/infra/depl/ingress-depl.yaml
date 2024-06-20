@@ -1,17 +1,27 @@
 #apiVersion: networking.k8s.io/v1
 #kind: Ingress
 #metadata:
-#  annotations:
-#    kubernetes.io/ingress.class: "public"
-#    ingress.kubernetes.io/health-check-path: /actuator/health
-#  namespace: bainsight-ns
 #  name: ingress
+#  namespace: bainsight-ns
+#  annotations:
+##    kubernetes.io/ingress.class: "public"
+#    ingress.kubernetes.io/health-check-path: /actuator/health
 #spec:
-#  ingressClassName: public
+#  ingressClassName: 'public'
 #  rules:
-#    - host: lusso.college
-#      http:
+##    - host: lusso.college
+#    - http:
 #        paths:
+#          - path: /
+#            backend:
+#              service:
+#                name: gateway
+#                port:
+#                  number: 8080
+#            pathType: Prefix
+#  rules:
+#  - http:
+#      paths:
 #          - path: /
 #            pathType: Prefix
 #            backend:
@@ -20,10 +30,7 @@
 #                port:
 #                  number: 8080
 
-
-
-
----
+#---
 
 
 apiVersion: networking.k8s.io/v1
@@ -60,10 +67,27 @@ spec:
                 name: auth-service
                 port:
                   number: 8082
-          - path: /
+          - path: /actuator
             pathType: Prefix
             backend:
               service:
                 name: gateway
                 port:
                   number: 8080
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bainsight-ui
+                port:
+                  number: 80
+
+
+---
