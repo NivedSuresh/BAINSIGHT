@@ -64,9 +64,9 @@ spec:
                   name: db-config
             - name: REDIS_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: common_redis_password
-                  name: db-config
+                  name: bainsight-secrets
 
 
 ---

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bainsight-ui
+  name: bainsight-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bainsight-ui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: bainsight-ui
+    spec:
+      containers:
+      - image: nivedsuresh/bainsight-ui:1.0.0
+        name: bainsightui
+        ports:
+          - containerPort: 80
+        resources: {}
+        imagePullPolicy: IfNotPresent
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bainsight-ui
+spec:
+  selector:
+    app: bainsight-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

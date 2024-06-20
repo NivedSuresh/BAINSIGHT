@@ -1,27 +1,90 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  labels:
+#    app: market-update
+#  name: market-update
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: market-update
+#  strategy: {}
+#  template:
+#    metadata:
+#      labels:
+#        app: market-update
+#    spec:
+#      containers:
+#        - image: nivedsuresh/market-update:1.0.0
+#          name: market-update
+#          ports:
+#            - containerPort: 8083
+#              protocol: TCP
+#            - containerPort: 40123
+#              protocol: UDP
+#          resources: {}
+#          imagePullPolicy: Always
+#          env:
+#            - name: SPRING_APPLICATION_PORT
+#              value: "8083"
+#            - name: CONFIG_SERVER_URI
+#              value: 'http://config-server:8081'
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: 'dev,test,sim'
+#            - name: KAFKA_BOOTSTRAP_SERVER
+#              value: 'broker:29092'
+#            - name: USER_SERVICE_CHANNEL
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: aeron_user_service_channel
+#                  name: common-config
+#
+#---
+#
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: market-update
+#spec:
+#  selector:
+#    app: market-update
+#  ports:
+#    - protocol: TCP
+#      port: 8083
+#      name: 'market-update-tcp'
+#      targetPort: 8083
+#    - protocol: UDP
+#      port: 40123
+#      name: 'market-update'
+#      targetPort: 40123
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: market-update
   labels:
     app: market-update
-  name: market-update
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: market-update
-  strategy: {}
   template:
     metadata:
       labels:
         app: market-update
     spec:
       containers:
-        - image: nivedsuresh/market-update:1.0.0
-          name: market-update
+        - name: market-update
+          image: nivedsuresh/market-update:1.0.0
           ports:
             - containerPort: 8083
-          resources: {}
-          imagePullPolicy: Always
+              protocol: TCP
+            - containerPort: 40456
+              protocol: UDP
           env:
             - name: SPRING_APPLICATION_PORT
               value: "8083"
@@ -32,11 +95,12 @@ spec:
             - name: KAFKA_BOOTSTRAP_SERVER
               value: 'broker:29092'
             - name: USER_SERVICE_CHANNEL
-              value: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
+              valueFrom:
+                configMapKeyRef:
+                  name: common-config
+                  key: aeron_user_service_channel
 
 ---
-
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -48,11 +112,8 @@ spec:
     - protocol: TCP
       port: 8083
       targetPort: 8083
-
-
-#      SPRING_APPLICATION_PORT: '8084'
-      #      CONFIG_SERVER_URI: 'http://config-server:8081'
-      #      SPRING_PROFILES_ACTIVE: 'dev,test,sim'
-      #      REDIS_HOST: 'redis'
-      #      KAFKA_BOOTSTRAP_SERVER: 'broker:29092'
-      #      USER_SERVICE_CHANNEL: 'aeron:udp?endpoint=224.0.1.1:40456|reliable=true'
+      name: tcp
+    - protocol: UDP
+      port: 40456
+      targetPort: 40456
+      name: udp

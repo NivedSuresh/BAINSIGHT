@@ -46,6 +46,7 @@ interface OrderRepo extends PagingAndSortingRepository<Order, UUID>, JpaReposito
 
 
 
+    @Query("SELECT o from Order as o where o.orderStatus = :orderStatus and o.orderType = :orderType")
     List<Order> findAllByOrderTypeAndOrderStatus(org.exchange.library.Enums.OrderType orderType, String orderStatus);
 
 

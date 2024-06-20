@@ -1,20 +1,20 @@
 version: '3.9'
 services:
 
-  redis:
-    container_name: redis
-    image: 'redis/redis-stack:latest'
-    ports:
-      - '6379:6379'
-    volumes:
-      - ./data:/data
-    environment:
-      REDIS_ARGS: --save 20 1
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-
+#  redis:
+#    container_name: redis
+#    image: 'redis/redis-stack:latest'
+#    ports:
+#      - '6379:6379'
+#    volumes:
+#      - ./data:/data
+#    environment:
+#      REDIS_ARGS: --save 20 1
+#    deploy:
+#      replicas: 1
+#      restart_policy:
+#        condition: on-failure
+#
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -62,65 +62,65 @@ services:
       - SCYLLA_AUTO_BOOTSTRAP=true
 #    command: --seeds=scylla-node1,scylla-node2 --memory 750M --api-address 0.0.0.0 --reactor-backend=epoll
 
-  postgres:
-    container_name: postgres
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_PASSWORD=2255'
-      - 'POSTGRES_USER=postgres'
-    ports:
-      - '5432:5432'
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  eureka-server:
-    container_name: eureka-server
-    image: 'nivedsuresh/eureka-server:1.0.0'
-    ports:
-      - '8761:8761'
-    environment:
-      EUREKA_HOSTNAME: 'localhost'
-
-  config-server:
-    container_name: config-server
-    image: 'nivedsuresh/config-server:1.0.0'
-    ports:
-      - '8081:8081'
-    environment:
-      GIT_USERNAME: 'NivedSuresh'
-      GIT_ACCESS_TOKEN: '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'
-
-  gateway:
-    container_name: gateway
-    image: 'nivedsuresh/gateway:1.0.0'
-    ports:
-      - '8080:8080'
-    environment:
-      CONFIG_SERVER_URI: 'http://config-server:8081'
-    depends_on:
-      eureka-server:
-        condition: service_started
-      config-server:
-        condition: service_started
-
-  order-processing:
-    container_name: order-processing
-    image: 'nivedsuresh/order-processing:1.0.0'
-    ports:
-      - '8087:8087'
-    environment:
-      CONFIG_SERVER_URI: 'http://config-server:8081'
-    depends_on:
-      eureka-server:
-        condition: service_started
-      config-server:
-        condition: service_started
-      gateway:
-        condition: service_started
-      broker:
-        condition: service_started
+#  postgres:
+#    container_name: postgres
+#    image: 'postgres:latest'
+#    environment:
+#      - 'POSTGRES_PASSWORD=2255'
+#      - 'POSTGRES_USER=postgres'
+#    ports:
+#      - '5432:5432'
+#    restart: always
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
 #
+#  eureka-server:
+#    container_name: eureka-server
+#    image: 'nivedsuresh/eureka-server:1.0.0'
+#    ports:
+#      - '8761:8761'
+#    environment:
+#      EUREKA_HOSTNAME: 'localhost'
+#
+#  config-server:
+#    container_name: config-server
+#    image: 'nivedsuresh/config-server:1.0.0'
+#    ports:
+#      - '8081:8081'
+#    environment:
+#      GIT_USERNAME: 'NivedSuresh'
+#      GIT_ACCESS_TOKEN: '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'
+#
+#  gateway:
+#    container_name: gateway
+#    image: 'nivedsuresh/gateway:1.0.0'
+#    ports:
+#      - '8080:8080'
+#    environment:
+#      CONFIG_SERVER_URI: 'http://config-server:8081'
+#    depends_on:
+#      eureka-server:
+#        condition: service_started
+#      config-server:
+#        condition: service_started
+#
+#  order-processing:
+#    container_name: order-processing
+#    image: 'nivedsuresh/order-processing:1.0.0'
+#    ports:
+#      - '8087:8087'
+#    environment:
+#      CONFIG_SERVER_URI: 'http://config-server:8081'
+#    depends_on:
+#      eureka-server:
+#        condition: service_started
+#      config-server:
+#        condition: service_started
+#      gateway:
+#        condition: service_started
+#      broker:
+#        condition: service_started
+##
 #  risk-management:
 #    container_name: risk-management
 #    image: 'nivedsuresh/risk-management:1.0.0'

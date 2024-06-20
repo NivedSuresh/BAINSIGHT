@@ -16,7 +16,7 @@ spec:
         app: order-persistence
     spec:
       containers:
-      - image: nivedsuresh/order-persistence:1.0.0
+      - image: nivedsuresh/order-persistence:1.0.1
         name: order-persistence
         ports:
           - containerPort: 8086
@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_PROFILES_ACTIVE
-            value:  "dev"
+            value:  "dev,sim"
           - name: CONFIG_SERVER_URI
             valueFrom:
               configMapKeyRef:
@@ -60,8 +60,8 @@ spec:
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: portfolio_postgres_password
                 name: bainsight-secrets
+                key: order_persistence_postgres_password
           - name: REDIS_HOST
             valueFrom:
               configMapKeyRef:
@@ -69,9 +69,9 @@ spec:
                 name: db-config
           - name: REDIS_PASSWORD
             valueFrom:
-              configMapKeyRef:
+              secretKeyRef:
                 key: common_redis_password
-                name: db-config
+                name: bainsight-secrets
 
 ---
 
