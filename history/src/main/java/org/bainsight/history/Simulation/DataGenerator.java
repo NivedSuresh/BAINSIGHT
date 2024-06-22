@@ -1,6 +1,7 @@
 package org.bainsight.history.Simulation;
 
 
+import jakarta.annotation.PostConstruct;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -81,7 +82,8 @@ class DataGenerator {
 
 
 
-    @Scheduled(initialDelay = 10000)
+    @Scheduled(fixedRate = 5, timeUnit = java.util.concurrent.TimeUnit.MINUTES)
+    @PostConstruct
     public void generate(){
         this.fillQueue();
         while(!this.entities.isEmpty()){

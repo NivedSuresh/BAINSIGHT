@@ -16,7 +16,7 @@ spec:
         app: risk-management
     spec:
       containers:
-      - image: nivedsuresh/risk-management:1.0.0
+      - image: nivedsuresh/risk-management:1.0.1
         name: auth-service
         ports:
           - containerPort: 8089
@@ -45,6 +45,8 @@ spec:
               secretKeyRef:
                 key: common_redis_password
                 name: bainsight-secrets
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev,test,sim,reset_cache
 
 
 ---

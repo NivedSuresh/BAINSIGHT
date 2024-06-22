@@ -49,15 +49,16 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
         CandleStick combinedStick = this.candleStickBuffer.updateAndGetCandleStick(tick);
 
 
-        /* TODO: UNCOMMENT WHEN HOSTING */
         this.greenExecutor.execute(() -> {
             final byte[] data = this.serialize(combinedStick);
             if(data.length == 0) return;
             buffer.putBytes(0, data);
 
-            final long result = publication.offer(buffer);
+//            final long result = publication.offer(buffer);
 
-//            this.updateRedisCluster(combinedStick);
+            this.updateRedisCluster(combinedStick);
+//
+            this.kafkaTemplate.send("live_update_tcp", combinedStick);
 
 //            this.validateResult(result);
         });
@@ -125,9 +126,7 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
 
 
 
-    /**
-     * TODO: USE SCYLLA DB TO PERSIST THE SNAPSHOT
-     * */
+
     public void takeSnapshot(){
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime modifiedNow = ZonedDateTime.of(
@@ -184,7 +183,6 @@ public class MarketDataHandler implements EventHandler<TickAcceptedEvent> {
      * persisted in the history service.
      **/
     public void modifyAsAbsentThenStream(CandleStick stick, ZonedDateTime now){
-        /* TODO: VERIFY IF IT'S WORKING FINE AFTER COMMENTING */
         stick.setTimeStamp(now);
         this.kafkaTemplate.send("candle_sticks", stick);
     }

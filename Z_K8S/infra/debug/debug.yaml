@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+  namespace: bainsight-ns
+spec:
+  containers:
+    - name: debug-container
+      image: nicolaka/netshoot:latest
+      command: ["/bin/bash", "-c", "--"]
+      args: ["while true; do sleep 30; done;"]

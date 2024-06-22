@@ -62,23 +62,18 @@ class MarketData {
     @NotNull
     private static Set<String> getSymbols() {
         List<String> symbols = List.of(
-                "AAPL", "MSFT", "GOOGL", "AMZN", "FB",
-                "TSLA", "NVDA", "NFLX", "SBUX", "TWTR",
-                "SNAP", "UBER", "LYFT", "TGT", "AMZN",
-                "PYPL",  "META", "IBM", "ORCL", "BAIN"
+                "AAPL", "MSFT", "GOOGL", 
+                "TSLA", "NVDA","NFLX"
         );
 
         return new HashSet<>(symbols);
     }
 
     public Set<String> getLosersForTheDay() {
-        return new HashSet<>(List.of(
-                "MSFT", "QQQ", "DIA", "IWM",
-                "PFE", "MRK", "NVDA", "AXP",
-                "PYPL", "SQ", "DIS", "TWTR",
-                "SNAP", "NOW", "CRM", "ZM",
-                "CVS", "WBA", "CI", "UNH",
-                "ANTM"));
+        List<String> list = new ArrayList<>(getSymbols());
+        Collections.shuffle(list);
+
+        return new HashSet<>(list.subList(0, list.size() / 2));
     }
 
     public MarketDepth getMarketDepth() {
@@ -104,7 +99,7 @@ class MarketData {
         double lastTradedPrice = meta.getLastTradedPrice() +
                 (getLosersForTheDay().contains(meta.getSymbol()) ?
                         -(random / 10) :
-                        (random < .6 ? random : -(Math.random())/2)
+                        (random < .52 ? random : -(Math.random())/2)
                 );
 
         double change = lastTradedPrice - meta.getClose();

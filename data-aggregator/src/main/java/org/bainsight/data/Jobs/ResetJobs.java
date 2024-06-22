@@ -13,7 +13,7 @@ public class ResetJobs {
     private final RecentlyReceivedBuffer recentlyReceivedBuffer;
     private final CandleStickBuffer candleStickBuffer;
 
-    @Scheduled(cron = "0 0 16 * * *")
+    @Scheduled(cron = "0 0 17 * * *", zone = "Asia/Kolkata")
     public void reset(){
         this.recentlyReceivedBuffer.reset();
         this.candleStickBuffer.reset();

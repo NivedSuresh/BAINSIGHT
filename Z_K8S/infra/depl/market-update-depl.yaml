@@ -79,7 +79,7 @@ spec:
     spec:
       containers:
         - name: market-update
-          image: nivedsuresh/market-update:1.0.0
+          image: nivedsuresh/market-update:1.0.2
           ports:
             - containerPort: 8083
               protocol: TCP
@@ -91,7 +91,7 @@ spec:
             - name: CONFIG_SERVER_URI
               value: 'http://config-server:8081'
             - name: SPRING_PROFILES_ACTIVE
-              value: 'dev,test,sim'
+              value: 'dev,test,sim,TCP'
             - name: KAFKA_BOOTSTRAP_SERVER
               value: 'broker:29092'
             - name: USER_SERVICE_CHANNEL

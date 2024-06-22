@@ -17,6 +17,7 @@ public class Mapper {
                 .watchlistName(watchlist.getWatchlistName())
                 .sticks(candleSticks)
                 .bainsightPage(bainsightPage)
+                .pinned(watchlist.isPinned())
                 .build();
     }
 

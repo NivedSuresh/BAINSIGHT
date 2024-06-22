@@ -1,0 +1,114 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-udp
+  namespace: bainsight-ns
+spec:
+  policyTypes:
+    - Ingress
+    - Egress
+  podSelector:
+    matchLabels:
+      app: data-aggregator
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 224.0.1.1/32
+      ports:
+        - protocol: UDP
+          port: 40456
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 224.0.1.1/32
+      ports:
+        - protocol: UDP
+          port: 40456
+
+---
+
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-udp-mkt-upd
+  namespace: bainsight-ns
+spec:
+  policyTypes:
+  - Ingress
+  - Egress
+  podSelector:
+    matchLabels:
+      app: market-update
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 224.0.1.1/32
+      ports:
+        - protocol: UDP
+          port: 40456
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 224.0.1.1/32
+      ports:
+        - protocol: UDP
+          port: 40456
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-1
+  namespace: bainsight-ns
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: market-update
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: data-aggregator
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-2
+  namespace: bainsight-ns
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: data-aggregator
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: market-update
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all
+  namespace: bainsight-ns
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector: {}
+  egress:
+    - to:
+        - podSelector: {}
+
+

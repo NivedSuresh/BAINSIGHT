@@ -16,7 +16,7 @@ spec:
         app: watchlist
     spec:
       containers:
-        - image: nivedsuresh/watchlist:1.0.0
+        - image: nivedsuresh/watchlist:1.0.2
           name: watchlist
           ports:
             - containerPort: 8084

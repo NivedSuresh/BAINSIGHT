@@ -1,4 +1,4 @@
-package org.bainsight.updates.Aeron;
+package org.bainsight.updates.Message.Aeron;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,12 +6,12 @@ import io.aeron.Aeron;
 import io.aeron.Subscription;
 import io.aeron.driver.MediaDriver;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.agrona.CloseHelper;
 import org.agrona.concurrent.SigInt;
 import org.bainsight.updates.Service.WebSocketService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Component
 @RequiredArgsConstructor
 @EnableScheduling
+@Profile("UDP")
 public class CandleStickListener {
 
     private final ObjectMapper mapper;
@@ -38,7 +39,6 @@ public class CandleStickListener {
     private final Aeron aeron;
 
     static {
-//        USER_SERVICE_CHANNEL = System.getProperty("aeron.user.service.multicast.channel", "aeron:udp?endpoint=224.0.1.1:40456|interface=localhost|reliable=true");
         USER_SERVICE_STREAM_ID = Integer.getInteger("aeron.user.service.multicast.steam.id",1001);
         LISTENER_THREAD = Executors.newSingleThreadExecutor();
     }

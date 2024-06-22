@@ -28,6 +28,7 @@ public class CorsConfigurationSourceImpl implements CorsConfigurationSource {
         corsConfiguration.addAllowedMethod("GET");
         corsConfiguration.addAllowedMethod("POST");
         corsConfiguration.addAllowedMethod("PUT");
+        corsConfiguration.addAllowedMethod("DELETE");
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setMaxAge(3600L);
         corsConfiguration.addAllowedHeader("*");

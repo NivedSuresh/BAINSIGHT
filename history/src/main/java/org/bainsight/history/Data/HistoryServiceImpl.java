@@ -321,7 +321,6 @@ public class HistoryServiceImpl {
     }
 
     public CandleStickEntity fetchLatestTimeStamp(String symbol){
-//        this.historyRepo.deleteByTimestamp(LocalDateTime.now().minusDays(2)).block();
         return this.historyRepo.findLatestTimestamp(symbol).block();
     }
 

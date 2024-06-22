@@ -12,5 +12,6 @@ public record WatchlistDto (
     long watchlistId,
     String watchlistName,
     List<CandleStick> sticks,
-    BainsightPage bainsightPage
+    BainsightPage bainsightPage,
+    boolean pinned
 ){}

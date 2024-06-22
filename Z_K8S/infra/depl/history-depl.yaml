@@ -16,7 +16,7 @@ spec:
         app: history
     spec:
       containers:
-        - image: nivedsuresh/history:1.0.0
+        - image: nivedsuresh/history:1.0.1
           name: history
           ports:
             - containerPort: 8084
@@ -42,6 +42,9 @@ spec:
                   name: db-config
             - name: SPRING_APPLICATION_PORT
               value: '8084'
+            - name: HISTORY_SYMBOLS
+              value: AAPL,MSFT,GOOGL,TSLA,NVDA,NFLX
+
 
 
 ---

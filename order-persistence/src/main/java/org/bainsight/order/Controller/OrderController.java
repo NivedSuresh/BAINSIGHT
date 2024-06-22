@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
 import org.bainsight.order.Model.Dto.PageableOrders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -28,6 +29,5 @@ public class OrderController {
         if(page == null) page = 1;
         return this.orderService.findOrdersByPageAndUccWithPage(UUID.fromString(ucc), page);
     }
-
 
 }

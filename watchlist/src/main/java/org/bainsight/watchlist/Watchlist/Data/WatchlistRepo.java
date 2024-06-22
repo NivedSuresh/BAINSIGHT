@@ -4,6 +4,7 @@ import org.bainsight.watchlist.Watchlist.Model.Watchlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,8 +24,9 @@ interface WatchlistRepo extends JpaRepository<Watchlist, Long> {
     void unpinCurrentlyPinned(UUID ucc);
 
     @Modifying
-    @Query(nativeQuery = true, value = "UPDATE watchlist w set w.is_pinned = true where w.ucc = :ucc and w.watchlist_id = :id")
-    void pinWatchlist(UUID ucc, Long id);
+    @Query(value = "UPDATE watchlist SET is_pinned = true WHERE ucc = :ucc AND watchlist_id = :id", nativeQuery = true)
+    void pinWatchlist(@Param("ucc") UUID ucc, @Param("id") Long id);
+
 
     boolean existsByUccAndWatchlistId(UUID ucc, Long id);
 

@@ -1,4 +1,4 @@
-package org.bainsight.updates.Aeron;
+package org.bainsight.updates.Message.Aeron;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.aeron.logbuffer.FragmentHandler;

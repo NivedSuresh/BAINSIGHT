@@ -2,6 +2,7 @@ package org.bainsight.data.Config.Disruptor;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.YieldingWaitStrategy;
@@ -64,7 +65,7 @@ public class DisruptorConfig {
                 2048,
                 TickEventFactory.INSTANCE,
                 ProducerType.SINGLE,
-                new YieldingWaitStrategy()
+                new BlockingWaitStrategy()
                 );
 
         this.receivedEventHandler = new TickReceivedEventHandler(recentlyReceivedBuffer, acceptedBuffer, exchanges, profiles);
@@ -91,7 +92,7 @@ public class DisruptorConfig {
                 1024,
                 TickEventFactory.INSTANCE,
                 ProducerType.SINGLE,
-                new YieldingWaitStrategy()
+                new BlockingWaitStrategy()
         );
 
         disruptor.setDefaultExceptionHandler(new TickExceptionHandler<>());
@@ -131,7 +132,7 @@ public class DisruptorConfig {
 
 
 
-    @Scheduled(cron = "0 0/5 9-16 * * *", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 0/5 9-17 * * *", zone = "Asia/Kolkata")
     public void takeSnapshot(){
         LocalTime now = LocalTime.now();
         if (now.isAfter(limitTime) || now.isBefore(startTime)) return;
@@ -148,7 +149,7 @@ public class DisruptorConfig {
         catch (Exception e){ System.out.println(e.getMessage()); }
     }
 
-    /* TODO: UNCOMMENT */
+    /* TODO: UNCOMMENT IF TCP RECOVERY IMPLEMENTED */
 //    @Scheduled(fixedRate = 1000)
 //    public void checkIfRequireRecovery(){
 //        this.receivedEventHandler.requireRecovery();

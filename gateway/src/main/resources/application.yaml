@@ -67,7 +67,7 @@ spring:
           uri: lb://watchlist-service
           predicates:
             - Path=/api/bainsight/watchlist/**
-            - Method=GET,PUT,POST
+            - Method=GET,PUT,POST,DELETE
           filters:
             - SecurityFilter
 
