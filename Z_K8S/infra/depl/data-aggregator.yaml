@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: data-aggregator
-          image: nivedsuresh/data-aggregator:1.0.6
+          image: nivedsuresh/data-aggregator:1.0.7
           ports:
             - containerPort: 8084
               protocol: TCP

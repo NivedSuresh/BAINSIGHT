@@ -17,7 +17,7 @@ spec:
         app: gateway
     spec:
       containers:
-      - image: nivedsuresh/gateway:1.0.3
+      - image: nivedsuresh/gateway:1.0.4
         readinessProbe:
           httpGet:
             port: 8080

@@ -5,7 +5,7 @@ import io.aeron.logbuffer.FragmentHandler;
 import io.aeron.logbuffer.Header;
 import lombok.RequiredArgsConstructor;
 import org.agrona.DirectBuffer;
-import org.bainsight.updates.Service.WebSocketService;
+import org.bainsight.updates.Domain.WebSocketService;
 import org.exchange.library.Dto.MarketRelated.CandleStick;
 
 @RequiredArgsConstructor

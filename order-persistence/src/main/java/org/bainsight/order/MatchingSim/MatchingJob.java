@@ -66,7 +66,7 @@ public class MatchingJob {
 
     }
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 60, timeUnit = TimeUnit.SECONDS)
     public void matchAllLimitOrders()
     {
         List<Order> openMarketOrders = this.grpcOrderService.findAllByOrderTypeAndOrderStatus(OrderType.ORDER_TYPE_LIMIT, OrderStatus.OPEN);
@@ -76,6 +76,8 @@ public class MatchingJob {
 
             long matched = order.getQuantityRequested() - order.getQuantityMatched();
             matched = Math.max(1, matched);
+            matched = random.nextLong(1, matched == 1 ? matched : matched/2);
+
             OrderMatch orderMatch = OrderMatch.builder()
                     .ucc(order.getUcc().toString())
                     .matchTime(LocalDateTime.now())

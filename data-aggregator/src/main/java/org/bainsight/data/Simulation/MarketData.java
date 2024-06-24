@@ -99,7 +99,7 @@ class MarketData {
         double lastTradedPrice = meta.getLastTradedPrice() +
                 (getLosersForTheDay().contains(meta.getSymbol()) ?
                         -(random / 10) :
-                        (random < .52 ? random : -(Math.random())/2)
+                        (random < .55 ? random : -(Math.random())/2)
                 );
 
         double change = lastTradedPrice - meta.getClose();

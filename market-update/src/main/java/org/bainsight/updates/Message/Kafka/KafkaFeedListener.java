@@ -4,7 +4,7 @@ package org.bainsight.updates.Message.Kafka;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.bainsight.updates.Service.WebSocketService;
+import org.bainsight.updates.Domain.WebSocketService;
 import org.exchange.library.Dto.MarketRelated.CandleStick;
 import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;

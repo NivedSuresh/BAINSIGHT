@@ -9,7 +9,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.agrona.CloseHelper;
 import org.agrona.concurrent.SigInt;
-import org.bainsight.updates.Service.WebSocketService;
+import org.bainsight.updates.Domain.WebSocketService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;

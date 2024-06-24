@@ -55,10 +55,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-persistence
+  name: risk-management
 spec:
   selector:
-    app: order-persistence
+    app: risk-management
   ports:
     - protocol: TCP
       port: 8089

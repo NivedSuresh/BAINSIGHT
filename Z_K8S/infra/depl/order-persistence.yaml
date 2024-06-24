@@ -16,7 +16,7 @@ spec:
         app: order-persistence
     spec:
       containers:
-      - image: nivedsuresh/order-persistence:1.0.1
+      - image: nivedsuresh/order-persistence:1.0.2
         name: order-persistence
         ports:
           - containerPort: 8086

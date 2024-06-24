@@ -5,7 +5,7 @@ spring:
   application:
     name: exchange-gateway
   config:
-    import: configserver:${CONFIG_SERVER_URI:http://localhost:8081}
+    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8081}
 
   #Gateway Specific
   cloud:
@@ -17,7 +17,8 @@ spring:
           filters:
             - SetPath=/
           predicates:
-            - Path=/eureka
+            - Path=/api/eureka
+            - Method=GET,PUT,POST
 
         - id: service-registry-static
           uri: lb://eureka-server
@@ -123,19 +124,6 @@ spring:
           filters:
             - SecurityFilter
 
-
-
-#LOGGING
-#logging:
-#  level:
-#    root: info
-#    org:
-#      springframework:
-#        security: ${LOGGING_LEVEL:debug}
-#        cloud:
-#          gateway: trace
-#          route:
-#            RouteDefinitionLocator:
 
 rsa:
   private-key: /certs/private.pem
