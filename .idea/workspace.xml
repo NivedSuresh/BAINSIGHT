@@ -954,7 +954,7 @@
       <workItem from="1719432029138" duration="1179000" />
       <workItem from="1719512892865" duration="669000" />
       <workItem from="1719564793976" duration="228000" />
-      <workItem from="1719597346185" duration="2468000" />
+      <workItem from="1719597346185" duration="2909000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
