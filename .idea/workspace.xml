@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/market-update-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/market-update-depl.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/order-persistence.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/GrpcOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/GrpcOrderService.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges" />
+>>>>>>> notifications
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -254,7 +258,11 @@
     "WebServerToolWindowFactoryState": "false",
     "deletionFromPopupRequiresConfirmation": "false",
     "extract.method.default.visibility": "private",
+<<<<<<< HEAD
     "git-widget-placeholder": "main",
+=======
+    "git-widget-placeholder": "notifications",
+>>>>>>> notifications
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/apple/Documents/Projects/BAINSIGHT_COMPLETE/BAINSIGHT/market-update/src/main/resources",
@@ -959,6 +967,7 @@
       <workItem from="1719432029138" duration="1179000" />
       <workItem from="1719512892865" duration="669000" />
       <workItem from="1719564793976" duration="228000" />
+      <workItem from="1719597346185" duration="2909000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />
