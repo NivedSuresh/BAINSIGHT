@@ -4,7 +4,7 @@ package org.bainsight.order.MatchingSim;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bainsight.OrderType;
-import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
+import org.bainsight.order.Domain.GrpcOrderService;
 import org.bainsight.order.Listeners.OrderMatchListener;
 import org.bainsight.order.MatchingSim.Entity.CandleStick;
 import org.bainsight.order.MatchingSim.Repo.CandleStickRepo;
@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 @EnableScheduling
@@ -67,16 +68,19 @@ public class MatchingJob {
     }
 
     @Scheduled(fixedRate = 60, timeUnit = TimeUnit.SECONDS)
-    public void matchAllLimitOrders()
-    {
+    public void matchAllLimitOrders() {
         List<Order> openMarketOrders = this.grpcOrderService.findAllByOrderTypeAndOrderStatus(OrderType.ORDER_TYPE_LIMIT, OrderStatus.OPEN);
 
-        for(Order order : openMarketOrders)
-        {
-
+        for (Order order : openMarketOrders) {
             long matched = order.getQuantityRequested() - order.getQuantityMatched();
             matched = Math.max(1, matched);
-            matched = random.nextLong(1, matched == 1 ? matched : matched/2);
+
+            if (matched > 3) {
+                long bound = matched / 2;
+                matched = bound > 1 ? ThreadLocalRandom.current().nextLong(1, bound) : 1;
+            } else {
+                matched = order.getQuantityRequested() - order.getQuantityMatched();
+            }
 
             OrderMatch orderMatch = OrderMatch.builder()
                     .ucc(order.getUcc().toString())
@@ -89,11 +93,8 @@ public class MatchingJob {
                     .quantityRequested(order.getQuantityRequested())
                     .build();
 
-
             this.orderMatchListener.updateOnMatch(orderMatch);
-
         }
-
     }
 
 

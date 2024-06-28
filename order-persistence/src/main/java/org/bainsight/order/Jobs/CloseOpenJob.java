@@ -2,7 +2,7 @@ package org.bainsight.order.Jobs;
 
 
 import lombok.RequiredArgsConstructor;
-import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
+import org.bainsight.order.Domain.GrpcOrderService;
 import org.jobrunr.jobs.annotations.Job;
 import org.springframework.stereotype.Component;
 

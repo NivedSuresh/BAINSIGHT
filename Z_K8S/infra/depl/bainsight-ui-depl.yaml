@@ -16,7 +16,7 @@ spec:
         app: bainsight-ui
     spec:
       containers:
-      - image: nivedsuresh/bainsight-ui:1.0.2
+      - image: nivedsuresh/bainsight-ui:1.0.4
         name: bainsightui
         ports:
           - containerPort: 80

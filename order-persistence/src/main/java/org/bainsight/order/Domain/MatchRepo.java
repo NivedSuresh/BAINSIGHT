@@ -1,4 +1,4 @@
-package org.bainsight.order.Data.OrderPersistance;
+package org.bainsight.order.Domain;
 
 import org.bainsight.order.Model.Entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;

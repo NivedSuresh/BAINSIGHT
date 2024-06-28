@@ -1,4 +1,4 @@
-package org.bainsight.order.Data.OrderPersistance;
+package org.bainsight.order.Domain;
 
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
@@ -241,26 +241,33 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
             match.setMatchStatus(MatchStatus.ACCEPTED);
             this.matchRepo.save(match);
         }
-
+        log.info("Notification will be sent!");
         this.notifyUserAfterOrderMatch(order, match);
     }
 
     private void notifyUserAfterOrderMatch(final Order order, final Match match) {
-        String message = String.format(
-                "Your %s order for the symbol %s has a new match.\nMatch count: %d!",
-                order.getTransactionType().name(),
-                order.getSymbol(),
-                match.getMatchedQuantity()
-        );
+        try{
+            String message = String.format(
+                    "Your %s order for the symbol %s has a new match.\nMatch count: %d!",
+                    order.getTransactionType().name(),
+                    order.getSymbol(),
+                    match.getMatchedQuantity()
+            );
 
-        this.kafkaTemplate.send("private-notification",
-                new Notification<>
-                (
-                        "New Match", message,
-                        new Ucc(order.getUcc().toString()),
-                        NotificationStatus.SUCCESS
-                )
-        );
+            log.info("Message being sent: {}", message);
+            this.kafkaTemplate.send("private-notification",
+                    new Notification<>
+                            (
+                                    "New Match", message,
+                                    new Ucc(order.getUcc().toString()),
+                                    NotificationStatus.SUCCESS
+                            )
+            );
+        }
+        catch (RuntimeException ex)
+        {
+            log.error(ex.getMessage());
+        }
     }
 
 

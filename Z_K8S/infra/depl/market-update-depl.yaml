@@ -79,7 +79,7 @@ spec:
     spec:
       containers:
         - name: market-update
-          image: nivedsuresh/market-update:1.0.3
+          image: nivedsuresh/market-update:1.0.6
           ports:
             - containerPort: 8083
               protocol: TCP

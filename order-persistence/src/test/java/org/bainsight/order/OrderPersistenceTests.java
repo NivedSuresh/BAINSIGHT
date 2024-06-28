@@ -2,7 +2,7 @@ package org.bainsight.order;
 
 import io.grpc.internal.testing.StreamRecorder;
 import org.bainsight.*;
-import org.bainsight.order.Data.OrderPersistance.GrpcOrderService;
+import org.bainsight.order.Domain.GrpcOrderService;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
 import org.exchange.library.Enums.OrderStatus;
@@ -15,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;

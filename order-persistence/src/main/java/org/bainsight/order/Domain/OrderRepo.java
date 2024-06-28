@@ -1,4 +1,4 @@
-package org.bainsight.order.Data.OrderPersistance;
+package org.bainsight.order.Domain;
 
 import jakarta.persistence.LockModeType;
 import org.bainsight.order.Model.Entity.Order;
