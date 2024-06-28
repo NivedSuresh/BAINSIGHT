@@ -7,11 +7,8 @@
     <list default="true" id="7d19524e-ef88-4fba-9b4b-819de787c673" name="Changes" comment="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Z_K8S/infra/depl/config-server-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/depl/config-server-depl.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Election/LeaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Config/Election/LeaderConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/data-aggregator/src/main/java/org/bainsight/data/Simulation/MarketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Data/HistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/history/src/main/java/org/bainsight/history/Models/Entity/CandleStickEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Message/Kafka/KafkaFeedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/market-update/src/main/java/org/bainsight/updates/Message/Kafka/KafkaFeedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Z_K8S/infra/secrets/secrets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/GrpcOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-persistence/src/main/java/org/bainsight/order/Data/OrderPersistance/GrpcOrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Notification/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/y-lib/src/main/java/org/exchange/library/Dto/Notification/Notification.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -258,7 +255,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;notifications&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/apple/Documents/Projects/BAINSIGHT_COMPLETE/BAINSIGHT/market-update/src/main/resources&quot;,
@@ -963,6 +960,7 @@
       <workItem from="1719432029138" duration="1179000" />
       <workItem from="1719512892865" duration="669000" />
       <workItem from="1719564793976" duration="228000" />
+      <workItem from="1719597346185" duration="1842000" />
     </task>
     <task id="LOCAL-00001" summary="After updating TickReceivedEventHandler to receive messages from multiple Exchanges">
       <option name="closed" value="true" />

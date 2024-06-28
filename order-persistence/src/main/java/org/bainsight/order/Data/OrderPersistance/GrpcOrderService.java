@@ -13,6 +13,9 @@ import org.bainsight.order.Model.Dto.PageableOrders;
 import org.bainsight.order.Model.Entity.Match;
 import org.bainsight.order.Model.Entity.Order;
 import org.bainsight.order.Model.Events.OrderMatch;
+import org.exchange.library.Dto.Notification.Notification;
+import org.exchange.library.Dto.Notification.NotificationStatus;
+import org.exchange.library.Dto.Notification.Ucc;
 import org.exchange.library.Dto.Utils.BainsightPage;
 import org.exchange.library.Enums.MatchStatus;
 import org.exchange.library.Enums.OrderStatus;
@@ -169,7 +172,7 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
 
             if(optional.isEmpty()){
                 /* TODO: IMPLEMENT JOURNALING */
-                log.error("No order found for the ID!");
+                log.error("No order found for the match with OrderId: {}!", orderID);
                 return;
             }
 
@@ -238,11 +241,35 @@ public class GrpcOrderService extends PersistOrderGrpc.PersistOrderImplBase {
             match.setMatchStatus(MatchStatus.ACCEPTED);
             this.matchRepo.save(match);
         }
+
+        this.notifyUserAfterOrderMatch(order, match);
+    }
+
+    private void notifyUserAfterOrderMatch(final Order order, final Match match) {
+        String message = String.format(
+                "Your %s order for the symbol %s has a new match.\nMatch count: %d!",
+                order.getTransactionType().name(),
+                order.getSymbol(),
+                match.getMatchedQuantity()
+        );
+
+        this.kafkaTemplate.send("private-notification",
+                new Notification<>
+                (
+                        "New Match", message,
+                        new Ucc(order.getUcc().toString()),
+                        NotificationStatus.SUCCESS
+                )
+        );
     }
 
 
+
+
     /**
-     * Returns true for orders except Market_Bid's
+     * Returns true for orders except Market Orders with Transaction Type BID.
+     * Market Orders prices can vary on every match, thus price cannot be deducted
+     * during market bid orders.
      * */
     boolean getIsValidated(Order order){
         return !(order.getTransactionType() == TransactionType.BID &&
