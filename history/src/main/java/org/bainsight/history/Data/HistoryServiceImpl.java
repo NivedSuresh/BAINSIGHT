@@ -221,14 +221,15 @@ public class HistoryServiceImpl {
     }
 
     private String getKey(String timeSpace, String symbol) {
-        switch (timeSpace){
+        switch (timeSpace)
+        {
             case CURRENT_DAY -> { return "1D:" + symbol; }
             case CURRENT_WEEK -> { return "1W:" + symbol; }
             case CURRENT_MONTH -> { return "1M:" + symbol; }
             case CURRENT_YEAR -> { return "1Y:" + symbol; }
             case THREE_YEAR ->  { return "3Y:" + symbol; }
             default -> throw new InvalidStateException();
-            }
+        }
     }
 
 

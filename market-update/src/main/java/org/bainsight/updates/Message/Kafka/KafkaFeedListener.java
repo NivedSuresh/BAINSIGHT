@@ -19,7 +19,6 @@ public class KafkaFeedListener {
 
     private final ObjectMapper mapper;
     private final WebSocketService webSocketService;
-    private static final String group = UUID.randomUUID().toString();
 
     @KafkaListener(topics = "live_update_tcp", groupId = "#{T(java.util.UUID).randomUUID().toString()}")
     public void listenToUpdates(final String jsonStick) throws JsonProcessingException {

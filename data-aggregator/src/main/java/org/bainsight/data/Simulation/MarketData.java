@@ -44,7 +44,7 @@ class MarketData {
 
         tickers.forEach(s -> {
             double random = Math.random();
-            double close = ThreadLocalRandom.current().nextDouble(100.0, 1000.0);
+            double close = ThreadLocalRandom.current().nextDouble(900.0, 1000.0);
             double open = close + (getLosersForTheDay().contains(s) ? -random : random);
             double lastTradedPrice = close + (getLosersForTheDay().contains(s) ? -random : random);
             TickerEx tickerEx = new TickerEx(s, open, close, Double.MIN_VALUE, Double.MAX_VALUE, lastTradedPrice, 0);
@@ -99,7 +99,7 @@ class MarketData {
         double lastTradedPrice = meta.getLastTradedPrice() +
                 (getLosersForTheDay().contains(meta.getSymbol()) ?
                         -(random / 10) :
-                        (random < .55 ? random : -(Math.random())/2)
+                        (random < .575 ? random : -(Math.random())/2)
                 );
 
         double change = lastTradedPrice - meta.getClose();

@@ -32,7 +32,6 @@ public class CandleStickEntity {
 
         @PrimaryKeyColumn(name = "timestamp", ordinal = 1, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.ASCENDING)
         private LocalDateTime timestamp;
-
     }
 
     @PrimaryKey

@@ -36,7 +36,7 @@ public class LeaderConfig implements MembershipListener {
         log.info("Total members in the cluster: {}", hazelcast.getCluster().getMembers().size());
         hazelcast.getCluster().addMembershipListener(this);
         leaderAddress = getLeaderAddress();
-        log.info("Current leader address: " + leaderAddress);
+        log.info("Current leader address: {}", leaderAddress);
 
         checkIfElected();
     }
