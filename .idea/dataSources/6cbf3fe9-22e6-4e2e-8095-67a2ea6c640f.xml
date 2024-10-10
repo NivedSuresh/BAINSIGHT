@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="watchlist@bainsight-watchlist.cxcu24moqdnl.ap-south-1.rds.amazonaws.com">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1"/>
     <database id="2" parent="1" name="watchlist">
       <Current>1</Current>
