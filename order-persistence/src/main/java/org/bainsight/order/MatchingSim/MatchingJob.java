@@ -4,7 +4,6 @@ package org.bainsight.order.MatchingSim;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bainsight.OrderType;
-import org.bainsight.order.Domain.GrpcOrderService;
 import org.bainsight.order.Listeners.OrderMatchListener;
 import org.bainsight.order.MatchingSim.Entity.CandleStick;
 import org.bainsight.order.MatchingSim.Repo.CandleStickRepo;
@@ -22,6 +21,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import org.bainsight.order.Domain.GrpcOrderService;
 
 @EnableScheduling
 @Service
