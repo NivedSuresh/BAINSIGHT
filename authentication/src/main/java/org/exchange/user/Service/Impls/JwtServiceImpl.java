@@ -26,7 +26,7 @@ public class JwtServiceImpl implements JwtService {
 
         //TODO: CHANGE EXPIRY BEFORE HOSTING
         JwtClaimsSet claimsSet = JwtClaimsSet.builder().issuedAt(Instant.now())
-                .expiresAt(Instant.now().plus(1000, ChronoUnit.DAYS))
+                .expiresAt(expiry)
                 .issuer("self")
                 .subject(identifier)
                 .claim("authority", authority)

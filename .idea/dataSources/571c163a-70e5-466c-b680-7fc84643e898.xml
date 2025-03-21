@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="exchange_logging_service@localhost">
-  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.52">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.53">
     <root id="1"/>
     <schema id="2" parent="1" name="USER_MANAGEMENT"/>
     <schema id="3" parent="1" name="admin"/>
